@@ -37,7 +37,7 @@ export async function fetchLiveGame(gamePk: number): Promise<LiveFeed> {
 
 export async function fetchStandings(season: number): Promise<StandingsResponse> {
   return getJson<StandingsResponse>(
-    `/api/v1/standings?leagueId=103,104&season=${season}&standingsTypes=regularSeason`,
+    `/api/v1/standings?leagueId=103,104&season=${season}&standingsTypes=regularSeason&hydrate=division,league,team`,
   )
 }
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { lastName, inningLabel, isFinal, isLive, recordText, teamAbbr } from '../lib/format'
+import { lastName, inningLabel, isFinal, isLive, recordText } from '../lib/format'
 import { sidelineLean } from '../lib/lean'
 import type { ScheduleGame } from '../lib/types'
 import { LeanMeter } from './LeanMeter'
@@ -66,10 +66,6 @@ export function GameCard({ game, watched, onWatch }: Props) {
         awayPct={lean.away}
         homePct={lean.home}
       />
-      <div className="meta">
-        {teamAbbr(away.team)} {Math.round(lean.away * 100)} / {teamAbbr(home.team)}{' '}
-        {Math.round(lean.home * 100)}
-      </div>
     </article>
   )
 }

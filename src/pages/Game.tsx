@@ -15,7 +15,7 @@ import {
   teamAbbr,
 } from '../lib/format'
 import { sidelineLean } from '../lib/lean'
-import type { BoxTeam, Named, WinRecord } from '../lib/types'
+import type { BoxTeam, LiveFeed, Named, WinRecord } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
 
 export function GamePage() {
@@ -43,8 +43,11 @@ export function GamePage() {
   const awayScore = linescore?.teams?.away?.runs ?? 0
   const homeScore = linescore?.teams?.home?.runs ?? 0
   const lean = sidelineLean(away.record, home.record)
-  const current = data.liveData.plays?.currentPlay
   const plays = [...(data.liveData.plays?.allPlays ?? [])].reverse().slice(0, 12)
+  const current =
+    data.liveData.plays?.currentPlay?.result?.description
+      ? data.liveData.plays.currentPlay
+      : plays[0]
   const card = {
     status: status ?? { abstractGameState: 'Preview', detailedState: 'Scheduled' },
     linescore,
@@ -65,14 +68,9 @@ export function GamePage() {
             {inningLabel(card)}
           </p>
           <h1>
-            {teamAbbr(away)} at {teamAbbr(home)}
+            {away.teamName || teamAbbr(away)} at {home.teamName || teamAbbr(home)}
           </h1>
-          <p className="lede">
-            {data.gameData.venue?.name}
-            {data.gameData.weather?.temp
-              ? ` · ${data.gameData.weather.temp}° ${data.gameData.weather.condition ?? ''} ${data.gameData.weather.wind ?? ''}`
-              : ''}
-          </p>
+          <p className="lede">{weatherLine(data)}</p>
         </div>
       </section>
 
@@ -245,4 +243,14 @@ function BoxSide({ label, team }: { label: string; team?: BoxTeam }) {
       </table>
     </div>
   )
+}
+
+function weatherLine(feed: LiveFeed): string {
+  const venue = feed.gameData.venue?.name
+  const weather = feed.gameData.weather
+  const parts = [venue]
+  if (weather?.temp) parts.push(`${weather.temp}°`)
+  if (weather?.condition && weather.condition !== 'None') parts.push(weather.condition)
+  if (weather?.wind && !/^0 mph/i.test(weather.wind)) parts.push(weather.wind)
+  return parts.filter(Boolean).join(' · ')
 }

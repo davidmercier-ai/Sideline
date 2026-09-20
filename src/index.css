@@ -371,35 +371,6 @@ img {
 .diamond {
   width: 110px;
   height: 110px;
-  position: relative;
-}
-
-.base {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border: 2px solid var(--chalk-dim);
-  transform: rotate(45deg);
-  background: transparent;
-}
-
-.base.on {
-  background: var(--gold);
-  border-color: var(--gold);
-}
-
-.base.first { right: 10px; top: 47px; }
-.base.second { left: 47px; top: 10px; }
-.base.third { left: 10px; top: 47px; }
-.home-plate {
-  left: 47px;
-  bottom: 8px;
-  width: 14px;
-  height: 14px;
-  background: var(--chalk);
-  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
-  transform: none;
-  border: 0;
 }
 
 .count-board {

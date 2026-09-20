@@ -9,7 +9,9 @@ export function StandingsPage() {
   const season = seasonFromDate(todayET())
   const { data, error, loading } = usePoll(() => fetchStandings(season), String(season), 0)
 
-  const groups = data?.records ?? []
+  const groups = [...(data?.records ?? [])].sort(
+    (a, b) => divisionOrder(a.division.id) - divisionOrder(b.division.id),
+  )
 
   return (
     <main>
@@ -40,7 +42,7 @@ function DivisionTable({ group }: { group: StandingRecord }) {
   return (
     <section className="panel">
       <h2 className="section-title" style={{ fontSize: 26, marginBottom: 8 }}>
-        {group.division.name}
+        {group.division.nameShort || group.division.name}
       </h2>
       <p className="meta" style={{ marginBottom: 10 }}>
         {group.league.name}
@@ -83,4 +85,10 @@ function DivisionTable({ group }: { group: StandingRecord }) {
       </table>
     </section>
   )
+}
+
+function divisionOrder(id: number): number {
+  const order = [201, 202, 200, 204, 205, 203]
+  const index = order.indexOf(id)
+  return index === -1 ? 99 : index
 }

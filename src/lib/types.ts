@@ -190,7 +190,7 @@ export type StandingTeam = {
 export type StandingRecord = {
   standingsType: string
   league: Named
-  division: Named
+  division: Named & { nameShort?: string }
   teamRecords: StandingTeam[]
 }
 
