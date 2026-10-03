@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
+import { lineFor } from '../lib/context'
 import { lastName, inningLabel, isFinal, isLive, recordText, seriesLine } from '../lib/format'
 import { sidelineLean } from '../lib/lean'
-import type { ScheduleGame } from '../lib/types'
+import type { PitcherSeason, PublicLine, ScheduleGame } from '../lib/types'
 import { LeanMeter } from './LeanMeter'
 import { TeamMark } from './TeamMark'
 
@@ -9,11 +10,19 @@ type Props = {
   game: ScheduleGame
   watched: boolean
   onWatch: (gamePk: number) => void
+  pitchers?: Record<number, PitcherSeason>
+  lines?: Record<string, PublicLine>
 }
 
-export function GameCard({ game, watched, onWatch }: Props) {
+export function GameCard({ game, watched, onWatch, pitchers = {}, lines = {} }: Props) {
   const { away, home } = game.teams
-  const lean = sidelineLean(away.leagueRecord, home.leagueRecord)
+  const lean = sidelineLean({
+    awayRecord: away.leagueRecord,
+    homeRecord: home.leagueRecord,
+    awayPitcher: away.probablePitcher ? pitchers[away.probablePitcher.id] : undefined,
+    homePitcher: home.probablePitcher ? pitchers[home.probablePitcher.id] : undefined,
+  })
+  const line = lineFor(lines, away.team.abbreviation, home.team.abbreviation)
   const live = isLive(game.status)
   const final = isFinal(game.status)
   const awayScore = away.score ?? game.linescore?.teams?.away?.runs
@@ -67,6 +76,8 @@ export function GameCard({ game, watched, onWatch }: Props) {
         home={home.team}
         awayPct={lean.away}
         homePct={lean.home}
+        notes={lean.notes}
+        line={line}
       />
     </article>
   )

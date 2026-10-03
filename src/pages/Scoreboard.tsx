@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { GameCard } from '../components/GameCard'
 import { fetchSchedule } from '../lib/api'
-import { filterGames, formatLongDate, isLive, seriesLine, shiftDate, sortGames, todayET } from '../lib/format'
+import { loadSidelineContext } from '../lib/context'
+import { filterGames, formatLongDate, isLive, seriesLine, shiftDate, todayET, sortGames } from '../lib/format'
 import type { Filter } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
 import { readWatched, toggleWatched, writeWatched } from '../lib/watch'
@@ -15,14 +17,27 @@ const FILTERS: { id: Filter; label: string }[] = [
 ]
 
 export function ScoreboardPage() {
-  const [date, setDate] = useState(todayET)
+  const [params, setParams] = useSearchParams()
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(params.get('date') ?? '') ? params.get('date')! : todayET()
   const [filter, setFilter] = useState<Filter>('all')
   const [watched, setWatched] = useState(readWatched)
+
+  function setDate(next: string) {
+    const nextParams = new URLSearchParams(params)
+    if (next === todayET()) nextParams.delete('date')
+    else nextParams.set('date', next)
+    setParams(nextParams, { replace: true })
+  }
 
   const { data, error, loading } = usePoll(
     () => fetchSchedule(date),
     date,
     20000,
+  )
+  const extras = usePoll(
+    () => loadSidelineContext(data ?? []),
+    `${date}-${(data ?? []).map((game) => game.gamePk).join(',')}`,
+    60000,
   )
 
   const games = useMemo(() => sortGames(data ?? []), [data])
@@ -47,7 +62,8 @@ export function ScoreboardPage() {
           <h1>Scoreboard</h1>
           <p className="lede">
             Live MLB, a clean scorebug, and a Sideline lean on every game — the
-            first surface for the model sitting in the next repo.
+            first surface for the model sitting in the next repo. Starter ERA
+            tilts the lean; the public number is comparison only.
           </p>
         </div>
         <div className="date-nav">
@@ -117,6 +133,8 @@ export function ScoreboardPage() {
             game={game}
             watched={watched.includes(game.gamePk)}
             onWatch={onWatch}
+            pitchers={extras.data?.pitchers}
+            lines={extras.data?.lines}
           />
         ))}
       </div>

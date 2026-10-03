@@ -218,7 +218,7 @@ img {
   padding: 16px 16px 14px;
   display: grid;
   gap: 14px;
-  min-height: 214px;
+  min-height: 260px;
   transition: transform 160ms ease, border-color 160ms ease;
 }
 
@@ -346,6 +346,22 @@ img {
 
 .lean-track .home {
   background: var(--gold);
+}
+
+.lean-track.market .away {
+  background: rgba(126, 163, 200, 0.45);
+}
+
+.lean-track.market .home {
+  background: rgba(230, 195, 106, 0.45);
+}
+
+.edge-pos {
+  color: var(--led);
+}
+
+.edge-neg {
+  color: var(--chalk-faint);
 }
 
 .muted {
