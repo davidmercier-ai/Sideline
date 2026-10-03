@@ -1,6 +1,5 @@
+import { getEspnJson } from './espn'
 import { todayET } from './format'
-
-const ESPN = import.meta.env.DEV ? '/espn' : 'https://site.api.espn.com'
 
 export const SOCCER_LEAGUES = [
   { slug: 'eng.1', name: 'Premier League' },
@@ -52,11 +51,6 @@ export type SoccerEvent = {
   type: string
 }
 
-async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${ESPN}${path}`)
-  if (!response.ok) throw new Error(`Soccer request failed (${response.status})`)
-  return response.json() as Promise<T>
-}
 
 type EspnCompetitor = {
   homeAway?: string
@@ -145,7 +139,7 @@ function toMatch(event: EspnEvent, league: string, leagueName: string): SoccerMa
 
 async function fetchBoard(slug: string, date?: string): Promise<EspnBoard> {
   const query = date ? `?dates=${date.replaceAll('-', '')}` : ''
-  return getJson<EspnBoard>(`/apis/site/v2/sports/soccer/${slug}/scoreboard${query}`)
+  return getEspnJson<EspnBoard>(`/apis/site/v2/sports/soccer/${slug}/scoreboard${query}`)
 }
 
 export async function fetchSoccerSlate(): Promise<SoccerMatch[]> {
@@ -183,7 +177,7 @@ export async function fetchSoccerMatch(league: string, eventId: string): Promise
   match: SoccerMatch
   events: SoccerEvent[]
 }> {
-  const data = await getJson<{
+  const data = await getEspnJson<{
     header?: {
       id?: string
       league?: { name?: string; slug?: string; midsizeName?: string }

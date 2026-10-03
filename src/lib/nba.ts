@@ -1,4 +1,4 @@
-const ESPN = '/espn'
+import { getEspnJson } from './espn'
 
 export type ThreeLine = {
   made: number
@@ -41,11 +41,6 @@ export type ThreePlay = {
   team?: string
 }
 
-async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${ESPN}${path}`)
-  if (!response.ok) throw new Error(`NBA request failed (${response.status})`)
-  return response.json() as Promise<T>
-}
 
 function emptyRecord(value?: string): string | undefined {
   if (!value || value === '0-0') return undefined
@@ -131,7 +126,7 @@ function teamThreesFromBox(stats: Array<{ name?: string; displayValue?: string }
 
 export async function fetchNbaSlate(date: string): Promise<NbaGame[]> {
   const compact = date.replaceAll('-', '')
-  const board = await getJson<{
+  const board = await getEspnJson<{
     events?: Array<{
       id: string
       date: string
@@ -207,14 +202,14 @@ function boxFromSummary(boxscore?: EspnBox): Record<string, { threes?: ThreeLine
 }
 
 async function fetchNbaBox(eventId: string): Promise<Record<string, { threes?: ThreeLine; shooters: ThreeShooter[] }>> {
-  const data = await getJson<{ boxscore?: EspnBox }>(
+  const data = await getEspnJson<{ boxscore?: EspnBox }>(
     `/apis/site/v2/sports/basketball/nba/summary?event=${eventId}`,
   )
   return boxFromSummary(data.boxscore)
 }
 
 export async function fetchNbaGame(eventId: string): Promise<{ game: NbaGame; plays: ThreePlay[] }> {
-  const data = await getJson<{
+  const data = await getEspnJson<{
     header?: {
       competitions?: Array<{
         date?: string
