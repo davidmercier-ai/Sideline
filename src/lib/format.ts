@@ -57,6 +57,7 @@ export function lastName(person: Named | undefined): string {
 
 export function recordText(wins?: number, losses?: number, pct?: string): string {
   if (wins == null || losses == null) return ''
+  if (wins === 0 && losses === 0) return ''
   return pct ? `${wins}–${losses} · ${pct}` : `${wins}–${losses}`
 }
 

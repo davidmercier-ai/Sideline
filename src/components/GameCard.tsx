@@ -25,8 +25,8 @@ export function GameCard({ game, watched, onWatch, pitchers = {}, lines = {} }: 
   const line = lineFor(lines, away.team.abbreviation, home.team.abbreviation)
   const live = isLive(game.status)
   const final = isFinal(game.status)
-  const awayScore = away.score ?? game.linescore?.teams?.away?.runs
-  const homeScore = home.score ?? game.linescore?.teams?.home?.runs
+  const awayScore = postedRuns(game, away.score ?? game.linescore?.teams?.away?.runs)
+  const homeScore = postedRuns(game, home.score ?? game.linescore?.teams?.home?.runs)
   const series = seriesLine(game)
 
   return (
@@ -81,6 +81,11 @@ export function GameCard({ game, watched, onWatch, pitchers = {}, lines = {} }: 
       />
     </article>
   )
+}
+
+function postedRuns(game: ScheduleGame, runs?: number): number | undefined {
+  if (isLive(game.status) || isFinal(game.status)) return runs ?? 0
+  return runs && runs > 0 ? runs : undefined
 }
 
 function TeamLine({
