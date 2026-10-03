@@ -87,6 +87,15 @@ export function inningLabel(game: {
   return formatGameTime(game.gameDate)
 }
 
+export function seriesLine(game: ScheduleGame): string {
+  const desc = game.seriesDescription
+  if (!desc || desc === 'Regular Season') return ''
+  if (game.seriesGameNumber && game.gamesInSeries) {
+    return `${desc} · Game ${game.seriesGameNumber} of ${game.gamesInSeries}`
+  }
+  return desc
+}
+
 export function outsDots(outs = 0): boolean[] {
   return [0, 1, 2].map((index) => index < outs)
 }

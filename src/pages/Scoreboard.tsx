@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { GameCard } from '../components/GameCard'
 import { fetchSchedule } from '../lib/api'
-import { filterGames, formatLongDate, isLive, shiftDate, sortGames, todayET } from '../lib/format'
+import { filterGames, formatLongDate, isLive, seriesLine, shiftDate, sortGames, todayET } from '../lib/format'
 import type { Filter } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
 import { readWatched, toggleWatched, writeWatched } from '../lib/watch'
@@ -31,6 +31,7 @@ export function ScoreboardPage() {
     [games, filter, watched],
   )
   const liveCount = games.filter((game) => isLive(game.status)).length
+  const postseason = games.some((game) => Boolean(seriesLine(game)))
 
   function onWatch(gamePk: number) {
     const next = toggleWatched(watched, gamePk)
@@ -62,12 +63,18 @@ export function ScoreboardPage() {
           <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, 1))}>
             Next
           </button>
+          {date !== todayET() ? (
+            <button type="button" className="date-btn" onClick={() => setDate(todayET())}>
+              Today
+            </button>
+          ) : null}
         </div>
       </section>
 
       <div className="row" style={{ marginBottom: 12 }}>
         <p className="muted">{formatLongDate(date)}</p>
         <p className="meta">
+          {postseason ? 'Postseason · ' : ''}
           {liveCount} live · {games.length} games
         </p>
       </div>

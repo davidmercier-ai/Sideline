@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { lastName, inningLabel, isFinal, isLive, recordText } from '../lib/format'
+import { lastName, inningLabel, isFinal, isLive, recordText, seriesLine } from '../lib/format'
 import { sidelineLean } from '../lib/lean'
 import type { ScheduleGame } from '../lib/types'
 import { LeanMeter } from './LeanMeter'
@@ -18,6 +18,7 @@ export function GameCard({ game, watched, onWatch }: Props) {
   const final = isFinal(game.status)
   const awayScore = away.score ?? game.linescore?.teams?.away?.runs
   const homeScore = home.score ?? game.linescore?.teams?.home?.runs
+  const series = seriesLine(game)
 
   return (
     <article className="card game-card">
@@ -56,6 +57,7 @@ export function GameCard({ game, watched, onWatch }: Props) {
       </Link>
 
       <div className="muted" style={{ fontSize: 13 }}>
+        {series ? `${series} · ` : ''}
         {lastName(away.probablePitcher)} vs {lastName(home.probablePitcher)}
         {game.venue?.name ? ` · ${game.venue.name}` : ''}
       </div>
