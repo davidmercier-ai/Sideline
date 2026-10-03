@@ -3,7 +3,7 @@ import { Diamond } from '../components/Diamond'
 import { LeanMeter } from '../components/LeanMeter'
 import { LinescoreTable } from '../components/Linescore'
 import { TeamMark } from '../components/TeamMark'
-import { fetchLiveGame } from '../lib/api'
+import { fetchLiveGame, fetchPitcherStats, fetchPublicLines, lineKey } from '../lib/api'
 import {
   inningLabel,
   isFinal,
@@ -11,11 +11,12 @@ import {
   lastName,
   personName,
   recordText,
+  seasonFromDate,
   statNum,
   teamAbbr,
 } from '../lib/format'
 import { sidelineLean } from '../lib/lean'
-import type { BoxTeam, LiveFeed, Named, WinRecord } from '../lib/types'
+import type { BoxTeam, LiveFeed, Named, PitcherSeason, PublicLine, WinRecord } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
 
 export function GamePage() {
@@ -25,6 +26,26 @@ export function GamePage() {
     () => fetchLiveGame(id),
     String(id),
     12000,
+  )
+  const officialDate = data?.gameData.datetime?.officialDate ?? ''
+  const extraKey = `${id}-${officialDate}-${data?.gameData.probablePitchers?.away?.id ?? ''}-${data?.gameData.probablePitchers?.home?.id ?? ''}`
+  const extras = usePoll(
+    async () => {
+      if (!officialDate) return { pitchers: {} as Record<number, PitcherSeason>, line: undefined as PublicLine | undefined }
+      const ids = [
+        data?.gameData.probablePitchers?.away?.id,
+        data?.gameData.probablePitchers?.home?.id,
+      ].filter((n): n is number => typeof n === 'number')
+      const [pitchers, lines] = await Promise.all([
+        fetchPitcherStats(ids, seasonFromDate(officialDate)),
+        fetchPublicLines(officialDate),
+      ])
+      const awayAbbr = data?.gameData.teams?.away?.abbreviation
+      const homeAbbr = data?.gameData.teams?.home?.abbreviation
+      return { pitchers, line: lines[lineKey(awayAbbr, homeAbbr)] }
+    },
+    extraKey,
+    60000,
   )
 
   if (!Number.isFinite(id)) return <p className="error">Missing game.</p>
@@ -42,7 +63,12 @@ export function GamePage() {
   const final = isFinal(status)
   const awayScore = linescore?.teams?.away?.runs ?? 0
   const homeScore = linescore?.teams?.home?.runs ?? 0
-  const lean = sidelineLean(away.record, home.record)
+  const lean = sidelineLean({
+    awayRecord: away.record,
+    homeRecord: home.record,
+    awayPitcher: extras.data?.pitchers?.[data.gameData.probablePitchers?.away?.id ?? 0],
+    homePitcher: extras.data?.pitchers?.[data.gameData.probablePitchers?.home?.id ?? 0],
+  })
   const plays = [...(data.liveData.plays?.allPlays ?? [])].reverse().slice(0, 12)
   const current =
     data.liveData.plays?.currentPlay?.result?.description
@@ -99,10 +125,17 @@ export function GamePage() {
           <h2 className="section-title" style={{ fontSize: 28, marginBottom: 12 }}>
             The lean
           </h2>
-          <LeanMeter away={away} home={home} awayPct={lean.away} homePct={lean.home} />
+          <LeanMeter
+            away={away}
+            home={home}
+            awayPct={lean.away}
+            homePct={lean.home}
+            notes={lean.notes}
+            line={extras.data?.line}
+          />
           <p className="muted" style={{ marginTop: 14 }}>
-            Log5 from season records plus a 4-point home edge. This is the
-            placeholder until the Sideline MLB model lands.
+            Comparison only. No bet slip. The public number is the DraftKings
+            moneyline ESPN is showing, de-vigged.
           </p>
           {data.liveData.decisions ? (
             <p className="muted" style={{ marginTop: 14 }}>

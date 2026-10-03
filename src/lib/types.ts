@@ -218,3 +218,22 @@ export type TeamRecord = {
 }
 
 export type Filter = 'all' | 'live' | 'final' | 'preview' | 'watched'
+
+export type PitcherSeason = {
+  id: number
+  fullName: string
+  era?: number | string
+  whip?: number | string
+  inningsPitched?: number | string
+  gamesStarted?: number
+}
+
+export type PublicLine = {
+  provider: string
+  awayAbbr: string
+  homeAbbr: string
+  awayOdds: number
+  homeOdds: number
+  details: string
+  overUnder?: number
+}
