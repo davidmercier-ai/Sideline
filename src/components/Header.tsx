@@ -11,7 +11,7 @@ export function Header() {
         </span>
         <span>
           <span className="brand-name">Sideline</span>
-          <span className="brand-kicker">Field-level MLB</span>
+          <span className="brand-kicker">Field-level sports</span>
         </span>
       </NavLink>
       <nav className="nav" aria-label="Primary">
@@ -19,6 +19,7 @@ export function Header() {
           Scoreboard
         </NavLink>
         <NavLink to="/standings">Standings</NavLink>
+        <NavLink to="/nba">NBA threes</NavLink>
       </nav>
     </header>
   )
