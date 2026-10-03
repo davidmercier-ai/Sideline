@@ -19,7 +19,8 @@ export function Header() {
           Scoreboard
         </NavLink>
         <NavLink to="/standings">Standings</NavLink>
-        <NavLink to="/soccer">Soccer goals</NavLink>
+        <NavLink to="/soccer">Soccer</NavLink>
+        <NavLink to="/nba">NBA</NavLink>
       </nav>
     </header>
   )

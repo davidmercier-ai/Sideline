@@ -4,6 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import { GamePage } from './pages/Game.tsx'
+import { NbaBoardPage } from './pages/NbaBoard.tsx'
+import { NbaGamePage } from './pages/NbaGame.tsx'
 import { ScoreboardPage } from './pages/Scoreboard.tsx'
 import { SoccerBoardPage } from './pages/SoccerBoard.tsx'
 import { SoccerMatchPage } from './pages/SoccerMatch.tsx'
@@ -21,6 +23,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/team/:teamId" element={<TeamPage />} />
           <Route path="/soccer" element={<SoccerBoardPage />} />
           <Route path="/soccer/:league/:eventId" element={<SoccerMatchPage />} />
+          <Route path="/nba" element={<NbaBoardPage />} />
+          <Route path="/nba/:eventId" element={<NbaGamePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

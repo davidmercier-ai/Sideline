@@ -128,6 +128,7 @@ img {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -303,6 +304,25 @@ img {
 
 .runs.muted {
   color: var(--chalk-faint);
+}
+
+.three-score {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+
+.three-stat {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.shooter-line {
+  margin: 6px 0 0 46px;
+  color: var(--gold);
+  font-size: 13px;
 }
 
 .lean-track {
