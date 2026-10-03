@@ -12,6 +12,11 @@ import { SoccerMatchPage } from './pages/SoccerMatch.tsx'
 import { StandingsPage } from './pages/Standings.tsx'
 import { TeamPage } from './pages/Team.tsx'
 
+const standalone =
+  window.matchMedia('(display-mode: standalone)').matches ||
+  ('standalone' in navigator && Boolean((navigator as Navigator & { standalone?: boolean }).standalone))
+if (standalone) document.documentElement.classList.add('standalone')
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
