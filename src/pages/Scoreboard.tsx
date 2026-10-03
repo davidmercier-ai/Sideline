@@ -15,10 +15,26 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: 'watched', label: 'Watching' },
 ]
 
+function dateFromUrl(): string {
+  const query = new URLSearchParams(window.location.search).get('date')
+  return query && /^\d{4}-\d{2}-\d{2}$/.test(query) ? query : todayET()
+}
+
+function writeDateUrl(next: string): void {
+  const url = new URL(window.location.href)
+  url.searchParams.set('date', next)
+  window.history.replaceState(null, '', `${url.pathname}${url.search}`)
+}
+
 export function ScoreboardPage() {
-  const [date, setDate] = useState(todayET)
+  const [date, setDateState] = useState(dateFromUrl)
   const [filter, setFilter] = useState<Filter>('all')
   const [watched, setWatched] = useState(readWatched)
+
+  function setDate(next: string) {
+    setDateState(next)
+    writeDateUrl(next)
+  }
 
   const { data, error, loading } = usePoll(
     () => fetchSchedule(date),
