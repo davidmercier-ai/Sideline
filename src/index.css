@@ -128,6 +128,7 @@ img {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -178,8 +179,10 @@ img {
 
 .date-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .date-nav input[type='date'] {
@@ -305,6 +308,25 @@ img {
   color: var(--chalk-faint);
 }
 
+.three-score {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+
+.three-stat {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.shooter-line {
+  margin: 6px 0 0 46px;
+  color: var(--gold);
+  font-size: 13px;
+}
+
 .lean-track {
   height: 6px;
   border-radius: 99px;
@@ -328,6 +350,12 @@ img {
 
 .muted {
   color: var(--chalk-dim);
+}
+
+.goal-scorers {
+  margin: 6px 0 0 46px;
+  color: var(--gold);
+  font-size: 13px;
 }
 
 .icon-btn {
@@ -512,6 +540,12 @@ img {
 
   .page-hero {
     padding-top: 24px;
+    min-width: 0;
+  }
+
+  .date-nav input[type='date'] {
+    min-width: 0;
+    flex: 1 1 140px;
   }
 
   .scorebug .runs {
