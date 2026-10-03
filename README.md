@@ -11,6 +11,8 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
+On an iPhone, open that URL in Safari and use **Share → Add to Home Screen**. The phone build is a standalone sheet: bottom tabs, notch/home-indicator padding, and no desktop lede. Desktop layout is unchanged.
+
 ```bash
 npm run build
 npm run preview
