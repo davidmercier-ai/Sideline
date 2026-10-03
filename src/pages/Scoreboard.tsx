@@ -95,7 +95,19 @@ export function ScoreboardPage() {
       {loading && !data ? <p className="loading">Walking out to the first-base line…</p> : null}
       {error ? <p className="error">{error}</p> : null}
       {!loading && !error && visible.length === 0 ? (
-        <p className="empty">No games in this view. Try another filter or date.</p>
+        <p className="empty">
+          {filter === 'all'
+            ? 'No MLB games on this date.'
+            : 'No games in this view. Try another filter or date.'}
+          {filter === 'all' ? (
+            <>
+              {' '}
+              <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, 1))}>
+                Next slate
+              </button>
+            </>
+          ) : null}
+        </p>
       ) : null}
 
       <div className="game-grid">
