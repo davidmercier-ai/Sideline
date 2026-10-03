@@ -1,4 +1,4 @@
-const ESPN = import.meta.env.DEV ? '/espn' : 'https://site.api.espn.com'
+const ESPN = '/espn'
 
 export type ThreeLine = {
   made: number
@@ -47,6 +47,11 @@ async function getJson<T>(path: string): Promise<T> {
   return response.json() as Promise<T>
 }
 
+function emptyRecord(value?: string): string | undefined {
+  if (!value || value === '0-0') return undefined
+  return value
+}
+
 function parsePair(value?: string): ThreeLine | undefined {
   if (!value || !value.includes('-')) return undefined
   const [made, attempted] = value.split('-').map(Number)
@@ -71,6 +76,7 @@ type EspnCompetitor = {
     displayName?: string
     shortDisplayName?: string
     abbreviation?: string
+    name?: string
     logo?: string
     logos?: Array<{ href?: string }>
   }
@@ -86,10 +92,10 @@ function sideFrom(comp: EspnCompetitor | undefined, extras?: { threes?: ThreeLin
   return {
     id: team?.id || '',
     name: team?.displayName || 'Team',
-    short: team?.shortDisplayName || team?.abbreviation || team?.displayName || 'Team',
+    short: team?.shortDisplayName || team?.name || team?.abbreviation || team?.displayName || 'Team',
     logo: team?.logo || team?.logos?.[0]?.href,
     score: comp?.score,
-    record: comp?.records?.[0]?.summary,
+    record: emptyRecord(comp?.records?.[0]?.summary),
     winner: comp?.winner,
     threes: extras?.threes ?? fromBoard,
     shooters: extras?.shooters ?? [],
@@ -157,14 +163,21 @@ export async function fetchNbaSlate(date: string): Promise<NbaGame[]> {
     const away = comp?.competitors?.find((c) => c.homeAway === 'away')
     const home = comp?.competitors?.find((c) => c.homeAway === 'home')
     const extra = extraMap[event.id] || {}
+    const state = event.status?.type?.state || 'pre'
+    const awaySide = sideFrom(away, extra[away?.team?.id || ''])
+    const homeSide = sideFrom(home, extra[home?.team?.id || ''])
+    if (state === 'pre') {
+      awaySide.score = undefined
+      homeSide.score = undefined
+    }
     return {
       id: event.id,
       date: event.date,
       venue: comp?.venue?.fullName,
-      state: event.status?.type?.state || 'pre',
+      state,
       status: event.status?.type?.shortDetail || event.status?.type?.detail || 'Scheduled',
-      away: sideFrom(away, extra[away?.team?.id || '']),
-      home: sideFrom(home, extra[home?.team?.id || '']),
+      away: awaySide,
+      home: homeSide,
     }
   })
 }
@@ -210,19 +223,14 @@ export async function fetchNbaGame(eventId: string): Promise<{ game: NbaGame; pl
         status?: { type?: { state?: string; shortDetail?: string; detail?: string } }
       }>
     }
-    boxscore?: {
-      teams?: Array<{ team?: { id?: string }; statistics?: Array<{ name?: string; displayValue?: string }> }>
-      players?: Array<{
-        team?: { id?: string }
-        statistics?: Array<{ keys?: string[]; athletes?: Array<{ athlete?: { displayName?: string; shortName?: string }; stats?: string[] }> }>
-      }>
-    }
+    boxscore?: EspnBox
+    gameInfo?: { venue?: { fullName?: string } }
     plays?: Array<{
       text?: string
       scoringPlay?: boolean
       clock?: { displayValue?: string }
       period?: { displayValue?: string; number?: number }
-      team?: { displayName?: string; abbreviation?: string }
+      team?: { id?: string; displayName?: string; abbreviation?: string }
     }>
   }>(`/apis/site/v2/sports/basketball/nba/summary?event=${eventId}`)
 
@@ -230,14 +238,21 @@ export async function fetchNbaGame(eventId: string): Promise<{ game: NbaGame; pl
   const comp = data.header?.competitions?.[0]
   const away = comp?.competitors?.find((c) => c.homeAway === 'away')
   const home = comp?.competitors?.find((c) => c.homeAway === 'home')
+  const state = comp?.status?.type?.state || 'pre'
+  const awaySide = sideFrom(away, extras[away?.team?.id || ''])
+  const homeSide = sideFrom(home, extras[home?.team?.id || ''])
+  if (state === 'pre') {
+    awaySide.score = undefined
+    homeSide.score = undefined
+  }
   const game: NbaGame = {
     id: eventId,
     date: comp?.date || new Date().toISOString(),
-    venue: comp?.venue?.fullName,
-    state: comp?.status?.type?.state || 'pre',
+    venue: data.gameInfo?.venue?.fullName || comp?.venue?.fullName,
+    state,
     status: comp?.status?.type?.shortDetail || comp?.status?.type?.detail || 'Scheduled',
-    away: sideFrom(away, extras[away?.team?.id || '']),
-    home: sideFrom(home, extras[home?.team?.id || '']),
+    away: awaySide,
+    home: homeSide,
   }
 
   const plays: ThreePlay[] = (data.plays ?? [])
@@ -249,7 +264,10 @@ export async function fetchNbaGame(eventId: string): Promise<{ game: NbaGame; pl
       clock: play.clock?.displayValue || '',
       period: play.period?.displayValue || (play.period?.number ? `Q${play.period.number}` : ''),
       text: play.text || '',
-      team: play.team?.abbreviation || play.team?.displayName,
+      team:
+        play.team?.abbreviation ||
+        play.team?.displayName ||
+        (play.team?.id === awaySide.id ? awaySide.short : play.team?.id === homeSide.id ? homeSide.short : undefined),
     }))
     .reverse()
 

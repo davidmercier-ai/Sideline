@@ -30,7 +30,7 @@ Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
 ## Data
 
-[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, and roster. Team marks come from MLB’s public logo CDN. Soccer and NBA feeds come from ESPN’s public scoreboard/summary via the Vite `/espn` proxy.
+[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, and roster. Team marks come from MLB’s public logo CDN. Soccer and NBA feeds come from ESPN’s public scoreboard/summary via the Vite `/espn` proxy (`npm run dev` or `npm run preview`).
 
 The lean is a placeholder. When `-prs-mlb-model` is ready, swap `src/lib/lean.ts`.
 
