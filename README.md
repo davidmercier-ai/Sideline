@@ -22,15 +22,16 @@ npm run preview
 - **Game** — live scorebug, diamond + count, linescore, recent plays, abbreviated box
 - **Standings** — AL / NL divisions with games back and run differential
 - **Team** — next games, recent results, active roster
-- **Sideline lean** — Bill James log5 from season records plus a 4-point home edge
+- **Sideline lean** — team log5 + 3-point home edge, then a starter ERA tilt (thin samples down-weighted)
+- **Public number** — ESPN/DraftKings moneyline, shown de-vigged for comparison only. No bet slip.
 
-Live pages poll the MLB Stats API while games are on. No API key. No backend.
+Live pages poll while games are on. No API key. No backend.
 
 ## Data
 
-[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, and roster. Team marks come from MLB’s public logo CDN.
+[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Public moneylines come from ESPN’s scoreboard feed.
 
-The lean is a placeholder. When `-prs-mlb-model` is ready, swap `src/lib/lean.ts`.
+When a real model is ready, swap `src/lib/lean.ts`. The UI already accepts `{ home, away }` plus an optional public line.
 
 ## Stack
 

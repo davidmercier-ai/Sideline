@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { GameCard } from '../components/GameCard'
 import { fetchSchedule } from '../lib/api'
+import { loadSidelineContext } from '../lib/context'
 import { filterGames, formatLongDate, isLive, seriesLine, shiftDate, sortGames, todayET } from '../lib/format'
 import type { Filter } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
@@ -23,6 +24,11 @@ export function ScoreboardPage() {
     () => fetchSchedule(date),
     date,
     20000,
+  )
+  const extras = usePoll(
+    () => loadSidelineContext(data ?? []),
+    `${date}-${(data ?? []).map((game) => game.gamePk).join(',')}`,
+    60000,
   )
 
   const games = useMemo(() => sortGames(data ?? []), [data])
@@ -47,7 +53,8 @@ export function ScoreboardPage() {
           <h1>Scoreboard</h1>
           <p className="lede">
             Live MLB, a clean scorebug, and a Sideline lean on every game — the
-            first surface for the model sitting in the next repo.
+            first surface for the model sitting in the next repo. Starter ERA
+            tilts the lean; the public number is comparison only.
           </p>
         </div>
         <div className="date-nav">
@@ -117,6 +124,8 @@ export function ScoreboardPage() {
             game={game}
             watched={watched.includes(game.gamePk)}
             onWatch={onWatch}
+            pitchers={extras.data?.pitchers}
+            lines={extras.data?.lines}
           />
         ))}
       </div>

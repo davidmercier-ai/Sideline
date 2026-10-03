@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { GameCard } from '../components/GameCard'
 import { TeamMark } from '../components/TeamMark'
 import { fetchRoster, fetchTeam, fetchTeamSchedule } from '../lib/api'
+import { loadSidelineContext } from '../lib/context'
 import { isFinal, seasonFromDate, sortGames, todayET } from '../lib/format'
 import type { RosterPlayer, ScheduleGame } from '../lib/types'
 import { usePoll } from '../lib/usePoll'
@@ -24,6 +25,11 @@ export function TeamPage() {
       return { team, roster, games }
     },
     `${id}-${season}`,
+    0,
+  )
+  const extras = usePoll(
+    () => loadSidelineContext(data?.games ?? []),
+    `${id}-${season}-${data?.games.length ?? 0}`,
     0,
   )
 
@@ -76,6 +82,8 @@ export function TeamPage() {
               game={game}
               watched={watched.includes(game.gamePk)}
               onWatch={onWatch}
+              pitchers={extras.data?.pitchers}
+              lines={extras.data?.lines}
             />
           ))}
         </div>
@@ -93,6 +101,8 @@ export function TeamPage() {
               game={game}
               watched={watched.includes(game.gamePk)}
               onWatch={onWatch}
+              pitchers={extras.data?.pitchers}
+              lines={extras.data?.lines}
             />
           ))}
         </div>
