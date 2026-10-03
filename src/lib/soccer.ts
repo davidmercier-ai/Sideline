@@ -93,6 +93,11 @@ type EspnBoard = {
   events?: EspnEvent[]
 }
 
+function emptyRecord(value?: string): string | undefined {
+  if (!value || /^0-0(-0)?$/.test(value)) return undefined
+  return value
+}
+
 function sideFrom(comp: EspnCompetitor | undefined): SoccerSide {
   const team = comp?.team
   return {
@@ -101,7 +106,7 @@ function sideFrom(comp: EspnCompetitor | undefined): SoccerSide {
     short: team?.shortDisplayName || team?.abbreviation || team?.displayName || 'Team',
     score: comp?.score,
     logo: team?.logo || team?.logos?.[0]?.href,
-    record: comp?.records?.[0]?.summary,
+    record: emptyRecord(comp?.records?.[0]?.summary),
     winner: comp?.winner,
   }
 }
@@ -123,16 +128,23 @@ function toMatch(event: EspnEvent, league: string, leagueName: string): SoccerMa
   const away = comp?.competitors?.find((c) => c.homeAway === 'away')
   const home = comp?.competitors?.find((c) => c.homeAway === 'home')
   const type = event.status?.type
+  const state = type?.state || 'pre'
+  const awaySide = sideFrom(away)
+  const homeSide = sideFrom(home)
+  if (state === 'pre') {
+    awaySide.score = undefined
+    homeSide.score = undefined
+  }
   return {
     id: event.id,
     league,
     leagueName,
     date: event.date,
     venue: comp?.venue?.fullName,
-    state: type?.state || 'pre',
+    state,
     status: type?.shortDetail || type?.detail || 'Scheduled',
-    away: sideFrom(away),
-    home: sideFrom(home),
+    away: awaySide,
+    home: homeSide,
     goals: goalsFrom(comp?.details),
   }
 }

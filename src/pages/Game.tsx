@@ -61,8 +61,9 @@ export function GamePage() {
   const status = data.gameData.status
   const live = isLive(status)
   const final = isFinal(status)
-  const awayScore = linescore?.teams?.away?.runs ?? 0
-  const homeScore = linescore?.teams?.home?.runs ?? 0
+  const started = live || final
+  const awayScore = started ? (linescore?.teams?.away?.runs ?? 0) : undefined
+  const homeScore = started ? (linescore?.teams?.home?.runs ?? 0) : undefined
   const lean = sidelineLean({
     awayRecord: away.record,
     homeRecord: home.record,
@@ -102,8 +103,8 @@ export function GamePage() {
 
       <div className="layout-2">
         <section className="card scorebug">
-          <ScoreTeam team={away} score={awayScore} dim={final && awayScore < homeScore} />
-          <ScoreTeam team={home} score={homeScore} dim={final && homeScore < awayScore} />
+          <ScoreTeam team={away} score={awayScore} dim={final && (awayScore ?? 0) < (homeScore ?? 0)} />
+          <ScoreTeam team={home} score={homeScore} dim={final && (homeScore ?? 0) < (awayScore ?? 0)} />
           {live ? <Diamond linescore={linescore} /> : null}
           {current?.result?.description ? (
             <p>
@@ -202,7 +203,7 @@ function ScoreTeam({
   dim,
 }: {
   team: Named & { record?: WinRecord }
-  score: number
+  score?: number
   dim?: boolean
 }) {
   return (
@@ -211,7 +212,7 @@ function ScoreTeam({
         team={team}
         record={recordText(team.record?.wins, team.record?.losses, team.record?.pct)}
       />
-      <div className={`runs ${dim ? 'muted' : ''}`}>{score}</div>
+      <div className={`runs ${dim || score == null ? 'muted' : ''}`}>{score ?? '–'}</div>
     </div>
   )
 }
