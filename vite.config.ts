@@ -12,10 +12,22 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/mlb/, ''),
       },
+      '/espn': {
+        target: 'https://site.api.espn.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/espn/, ''),
+      },
     },
   },
   preview: {
     host: true,
     port: 4173,
+    proxy: {
+      '/espn': {
+        target: 'https://site.api.espn.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/espn/, ''),
+      },
+    },
   },
 })

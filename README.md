@@ -23,12 +23,13 @@ npm run preview
 - **Standings** — AL / NL divisions with games back and run differential
 - **Team** — next games, recent results, active roster
 - **Sideline lean** — Bill James log5 from season records plus a 4-point home edge
+- **Soccer goals** — `/soccer` board plus match timeline (scorers, pens, own goals) for EPL, LaLiga, Bundesliga, Serie A, Ligue 1, MLS, UCL, UEL
 
 Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
 ## Data
 
-[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, and roster. Team marks come from MLB’s public logo CDN.
+[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, and roster. Team marks come from MLB’s public logo CDN. Soccer scores and goal events come from ESPN’s public scoreboard/summary feeds.
 
 The lean is a placeholder. When `-prs-mlb-model` is ready, swap `src/lib/lean.ts`.
 
