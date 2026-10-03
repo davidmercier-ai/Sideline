@@ -330,6 +330,12 @@ img {
   color: var(--chalk-dim);
 }
 
+.goal-scorers {
+  margin: 6px 0 0 46px;
+  color: var(--gold);
+  font-size: 13px;
+}
+
 .icon-btn {
   padding: 6px 10px;
 }
