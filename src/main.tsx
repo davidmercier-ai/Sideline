@@ -6,6 +6,8 @@ import './index.css'
 import { GamePage } from './pages/Game.tsx'
 import { NbaBoardPage } from './pages/NbaBoard.tsx'
 import { NbaGamePage } from './pages/NbaGame.tsx'
+import { NhlBoardPage } from './pages/NhlBoard.tsx'
+import { NhlGamePage } from './pages/NhlGame.tsx'
 import { ScoreboardPage } from './pages/Scoreboard.tsx'
 import { SoccerBoardPage } from './pages/SoccerBoard.tsx'
 import { SoccerMatchPage } from './pages/SoccerMatch.tsx'
@@ -25,6 +27,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/soccer/:league/:eventId" element={<SoccerMatchPage />} />
           <Route path="/nba" element={<NbaBoardPage />} />
           <Route path="/nba/:eventId" element={<NbaGamePage />} />
+          <Route path="/nhl" element={<NhlBoardPage />} />
+          <Route path="/nhl/:eventId" element={<NhlGamePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
