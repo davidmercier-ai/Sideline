@@ -1,6 +1,6 @@
 # Sideline
 
-Field-level sports companion. MLB scores and a first-pass lean, soccer goals, and NBA threes — the front end for the model that will live beside this repo.
+Field-level sports companion. MLB scores and a first-pass lean, soccer goals, NBA threes, and NHL goals and saves — the front end for the model that will live beside this repo.
 
 ## Run it
 
@@ -26,6 +26,7 @@ npm run preview
 - **Public number** — ESPN/DraftKings moneyline, shown de-vigged for comparison only. No bet slip.
 - **Soccer goals** — `/soccer` board plus match timeline (scorers, pens, own goals) for EPL, LaLiga, Bundesliga, Serie A, Ligue 1, MLS, UCL, UEL
 - **NBA threes** — `/nba` board plus game timeline (team 3PT, top shooters, made threes)
+- **NHL goals** — `/nhl` board plus game timeline (scorers, goalie saves, goal plays)
 
 Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
