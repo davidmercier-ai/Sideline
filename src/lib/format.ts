@@ -23,6 +23,12 @@ export function formatLongDate(isoDate: string): string {
   }).format(new Date(Date.UTC(year, month - 1, day)))
 }
 
+export function dateInET(iso: string): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/New_York',
+  }).format(new Date(iso))
+}
+
 export function formatGameTime(iso: string): string {
   return new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/New_York',
@@ -30,6 +36,18 @@ export function formatGameTime(iso: string): string {
     minute: '2-digit',
     timeZoneName: 'short',
   }).format(new Date(iso))
+}
+
+export function formatKickoff(iso: string): string {
+  const time = formatGameTime(iso)
+  if (dateInET(iso) === todayET()) return time
+  const day = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  }).format(new Date(iso))
+  return `${day} · ${time}`
 }
 
 export function seasonFromDate(isoDate: string): number {
