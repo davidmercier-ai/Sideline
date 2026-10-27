@@ -625,8 +625,8 @@ img {
     justify-content: center;
     gap: 3px;
     color: var(--chalk-faint);
-    font-size: 11px;
-    letter-spacing: 0.04em;
+    font-size: 10px;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
   }
 

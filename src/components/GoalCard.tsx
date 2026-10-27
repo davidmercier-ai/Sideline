@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { formatGameTime } from '../lib/format'
+import { formatKickoff } from '../lib/format'
 import { scorersFor, type SoccerMatch } from '../lib/soccer'
 
 type Props = {
@@ -13,7 +13,7 @@ export function GoalCard({ match }: Props) {
     <article className="card game-card">
       <div className="card-top">
         <div className={live ? 'live-pill' : final ? 'status-pill final-pill' : 'status-pill muted'}>
-          {live || final ? match.status : formatGameTime(match.date)}
+          {live || final ? match.status : formatKickoff(match.date)}
         </div>
         <span className="meta">{match.leagueName}</span>
       </div>

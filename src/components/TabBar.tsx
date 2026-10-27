@@ -42,6 +42,17 @@ const TABS = [
       </svg>
     ),
   },
+  {
+    to: '/nhl',
+    label: 'NHL',
+    match: (path: string) => path.startsWith('/nhl'),
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="7" />
+        <path d="M8 12h8" />
+      </svg>
+    ),
+  },
 ] as const
 
 export function TabBar() {

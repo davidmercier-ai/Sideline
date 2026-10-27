@@ -34,7 +34,7 @@ Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
 ## Data
 
-[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Soccer, NBA, and public MLB moneylines come from ESPN via the Vite `/espn` proxy (`npm run dev` or `npm run preview`).
+[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Soccer, NBA, NHL, and public MLB moneylines come from ESPN via the Vite `/espn` proxy (`npm run dev` or `npm run preview`). Dated ESPN boards that return an empty body fall back to the default scoreboard and keep the requested ET date.
 
 When a real model is ready, swap `src/lib/lean.ts`. The UI already accepts `{ home, away }` plus an optional public line.
 

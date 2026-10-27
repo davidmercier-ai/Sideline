@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { GoalCard } from '../components/GoalCard'
+import { dateInET, todayET } from '../lib/format'
 import { fetchSoccerSlate, SOCCER_LEAGUES, type SoccerMatch } from '../lib/soccer'
 import { usePoll } from '../lib/usePoll'
 
@@ -29,6 +30,7 @@ export function SoccerBoardPage() {
   )
   const liveCount = matches.filter((match) => match.state === 'in').length
   const goalCount = matches.reduce((sum, match) => sum + match.goals.length, 0)
+  const todayCount = matches.filter((match) => dateInET(match.date) === todayET()).length
 
   return (
     <main>
@@ -44,7 +46,11 @@ export function SoccerBoardPage() {
       </section>
 
       <div className="row" style={{ marginBottom: 12 }}>
-        <p className="muted">{matches.length} matches on the slate</p>
+        <p className="muted">
+          {todayCount === matches.length
+            ? `${matches.length} matches on the slate`
+            : `${todayCount} today · ${matches.length} on the board`}
+        </p>
         <p className="meta">
           {liveCount} live · {goalCount} goals logged
         </p>
