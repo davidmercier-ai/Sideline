@@ -1,0 +1,24 @@
+name: Sideline isolated build verification
+on:
+  push:
+    branches: [recovery/ci-build-20261027]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Typecheck and production bundle
+        run: npm run build
+      - name: Static lint
+        run: npm run lint
