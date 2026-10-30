@@ -17,6 +17,7 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/public-consensus.mjs` | Covers handicapper counts and the ESPN Matchup Predictor. Separate from the models and the books. |
 | `scripts/backtest-slate.mjs` | Walk-forward record on completed NFL, NBA, and NHL games. |
 | `docs/projections/BACKTEST.md` | The latest backtest record. |
+| `docs/projections/PREMADE-PARLAYS.md` | Where FanDuel and DraftKings premade parlays were looked up, and that the priced legs were not in the payload. |
 | `docs/projections/COMMANDMENTS.md` | The ten rules that govern every slate. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
