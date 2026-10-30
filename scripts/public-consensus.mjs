@@ -11,9 +11,16 @@ import { namesMatch } from './book-prices.mjs'
 const COVERS = 'https://contests.covers.com/consensus/topconsensus'
 const ESPN = 'https://site.api.espn.com'
 
-const COVERS_LEAGUES = ['nba', 'nhl', 'ncaaf']
+const COVERS_LEAGUES = ['nfl', 'nba', 'nhl', 'ncaaf']
 
 const COVERS_NAMES = {
+  nfl: {
+    bal: 'Ravens', buf: 'Bills', ten: 'Titans', cin: 'Bengals', lac: 'Chargers', la: 'Rams',
+    lv: 'Raiders', nyj: 'Jets', ne: 'Patriots', mia: 'Dolphins', ind: 'Colts', jac: 'Jaguars',
+    ari: 'Cardinals', dal: 'Cowboys', cle: 'Browns', pit: 'Steelers', atl: 'Falcons', tb: 'Buccaneers',
+    phi: 'Eagles', was: 'Commanders', kc: 'Chiefs', den: 'Broncos', min: 'Vikings', det: 'Lions',
+    chi: 'Bears', sea: 'Seahawks',
+  },
   nba: {
     cha: 'Hornets', was: 'Wizards', orl: 'Magic', tor: 'Raptors', den: 'Nuggets', pho: 'Suns',
     det: 'Pistons', bk: 'Nets', lac: 'Clippers', min: 'Timberwolves', ind: 'Pacers', mia: 'Heat',
@@ -123,6 +130,13 @@ function etMonthDay(iso) {
   }).format(parsed)
 }
 
+function coversMonthDay(dateText) {
+  const match = String(dateText).match(/([A-Za-z]{3})\.?\s+0?(\d{1,2})\b/)
+  if (!match) return null
+  const month = match[1].slice(0, 1).toUpperCase() + match[1].slice(1).toLowerCase()
+  return `${month} ${Number(match[2])}`
+}
+
 export async function loadCoversConsensus() {
   const picks = []
   const errors = []
@@ -144,7 +158,7 @@ export function matchCovers(game, picks, league) {
     pick.league === league
     && teamHits(pick.awayName, game.away)
     && teamHits(pick.homeName, game.home)
-    && (!monthDay || pick.dateText.includes(monthDay))
+    && (!monthDay || coversMonthDay(pick.dateText) === monthDay)
   ))
   return matched[0] ?? null
 }
@@ -167,6 +181,6 @@ export async function espnPredictor(sportPath, eventId) {
 }
 
 export function coversLeagueFor(sportKey) {
-  if (sportKey === 'nba' || sportKey === 'nhl' || sportKey === 'ncaaf') return sportKey
+  if (sportKey === 'nfl' || sportKey === 'nba' || sportKey === 'nhl' || sportKey === 'ncaaf') return sportKey
   return null
 }
