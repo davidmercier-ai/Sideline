@@ -20,6 +20,9 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/premade-parlays.mjs` | Pulls priced premade parlays from the FanDuel Ohio card and the DraftKings Ohio prepacks widget. |
 | `docs/projections/PREMADE-PARLAYS.md` | The latest premade-parlay snapshot: legs, combined American price, and a point comparison where a retrieved slate already has the game. |
 | `docs/projections/premade-parlays.json` | Those parlays as rows. |
+| `scripts/export-premade-parlays.py` | Writes that snapshot to a spreadsheet and a CSV. It does not fetch prices. |
+| `docs/projections/sideline-premade-parlays-2026-10-30.xlsx` | One workbook: a parlays sheet and a legs sheet. |
+| `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The parlays sheet alone, one row per card. |
 | `scripts/book-access.mjs` | Pulls the FanDuel Ohio board and the DraftKings prop feeds. |
 | `docs/projections/BOOK-ACCESS.md` | The latest access check and row counts. |
 | `docs/projections/book-access.json` | The prices from that check. |
@@ -39,6 +42,7 @@ node scripts/projection-math.test.mjs
 node scripts/project-slate.mjs docs/projections/2026-10-30-today.md --date 2026-10-30
 node scripts/project-slate.mjs docs/projections/YYYY-MM-DD-slate.md
 python3 scripts/export-slate-workbook.py
+python3 scripts/export-premade-parlays.py
 ```
 
 The last command reads the all-sports markdown already on disk and writes `docs/projections/sideline-all-sports-2026-10-30.xlsx` and `docs/projections/sideline-games-2026-10-30.csv`. It needs Python 3 and openpyxl. It does not call ESPN, FanDuel, or DraftKings.

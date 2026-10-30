@@ -1128,5 +1128,5 @@ These are the remaining cards: cross-game parlays and same-game cards whose even
 - **+406** PARLAY ORGANIC. New Jersey Devils @ Vegas Golden Knights; Winnipeg Jets @ Florida Panthers; Seattle Kraken @ Calgary Flames. Over 1.5 (1st Period Total Goals) + Over 1.5 (1st Period Total Goals) + Over 1.5 (1st Period Total Goals)
 - **+5000** PARLAY ORGANIC. New Jersey Devils @ Vegas Golden Knights; Winnipeg Jets @ Florida Panthers; Seattle Kraken @ Calgary Flames. Timo Meier (Anytime Goal Scorer) + Cole Perfetti (Anytime Goal Scorer) + Matvei Gridin (Anytime Goal Scorer)
 
-The rows are in `docs/projections/premade-parlays.json`.
+The rows are in `docs/projections/premade-parlays.json`, `docs/projections/sideline-premade-parlays-2026-10-30.xlsx`, and `docs/projections/sideline-premade-parlays-2026-10-30.csv`.
 

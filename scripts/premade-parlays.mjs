@@ -471,7 +471,7 @@ async function main() {
     '',
     ...other.map(parlayLine),
     '',
-    'The rows are in `docs/projections/premade-parlays.json`.',
+    'The rows are in `docs/projections/premade-parlays.json`, `docs/projections/sideline-premade-parlays-2026-10-30.xlsx`, and `docs/projections/sideline-premade-parlays-2026-10-30.csv`.',
     '',
   ]
   await writeFile('docs/projections/PREMADE-PARLAYS.md', `${lines.join('\n')}\n`)
