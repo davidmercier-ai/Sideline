@@ -10,6 +10,7 @@
  */
 
 import { writeFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
 import { loadBooks } from './book-prices.mjs'
 import {
   asNumber,
@@ -328,6 +329,38 @@ const YARD_FIELDS = [
 function fmt(value) {
   if (!Number.isFinite(value)) return 'missing'
   return String(round1(value))
+}
+
+export function modelCall(game, convergence) {
+  const { home, away, tie } = convergence.counts
+  if (convergence.side === 'home') return `${game.home.name}, ${home}–0`
+  if (convergence.side === 'away') return `${game.away.name}, ${away}–0`
+  if (convergence.side === 'tie') return `tie, ${tie}–0`
+  const ranked = [
+    [home, game.home.name],
+    [away, game.away.name],
+    [tie, null],
+  ].filter(([count]) => count > 0).sort((left, right) => right[0] - left[0])
+  if (ranked.length < 2) return 'split'
+  if (ranked[0][0] === ranked[1][0]) return `split, ${ranked[0][0]}–${ranked[1][0]}`
+  return `split, ${ranked[0][0]}–${ranked[1][0]} ${ranked[0][1] ?? 'tie'}`
+}
+
+export function simCall(game, sim) {
+  if (!sim?.ok) return 'not run'
+  const awayRate = sim.awayWinRate
+  const homeRate = sim.homeWinRate
+  let leader = 'even'
+  let rate = homeRate
+  if (homeRate > awayRate) {
+    leader = game.home.name
+    rate = homeRate
+  } else if (awayRate > homeRate) {
+    leader = game.away.name
+    rate = awayRate
+  }
+  const thin = sim.thin ? ', thin' : ''
+  return `${fmt(sim.awayMedian)}–${fmt(sim.homeMedian)}, ${leader} ${fmt(rate * 100)}%${thin}`
 }
 
 function historyLines(name, rows, field, label) {
@@ -782,7 +815,7 @@ async function section(title, sportPath, games, football, unit) {
   if (games.length === 0) {
     header.push('No upcoming games were in the retrieved scoreboard. Nothing was projected for this section.')
     header.push('')
-    return header.join('\n')
+    return { markdown: header.join('\n'), predictions: [] }
   }
   const teamIds = [...new Set(games.flatMap((game) => [game.away.id, game.home.id]))]
   const logs = new Map()
@@ -801,10 +834,21 @@ async function section(title, sportPath, games, football, unit) {
       side: quotePosition(margin, margins),
       total: quotePosition(total, totals),
     }]))
+    const sim = gameSimulation(game, awayLog.rows, homeLog.rows)
     return {
       scoring,
       convergence,
       spots,
+      prediction: {
+        date: game.date ?? '',
+        when: game.when ?? 'Scheduled',
+        away: game.away.name,
+        home: game.home.name,
+        score: `${fmt(scoring.away.value)}–${fmt(scoring.home.value)}`,
+        total: fmt(scoring.total),
+        models: modelCall(game, convergence),
+        sim: simCall(game, sim),
+      },
       markdown: renderGame(game, awayLog, homeLog, football, scoring),
     }
   })
@@ -837,7 +881,25 @@ async function section(title, sportPath, games, football, unit) {
     }),
     '',
   ]
-  return [...header, ...table, ...rendered.map((item) => item.markdown)].join('\n')
+  return {
+    markdown: [...header, ...table, ...rendered.map((item) => item.markdown)].join('\n'),
+    predictions: rendered.map((item) => item.prediction),
+  }
+}
+
+function predictedSlate(rows) {
+  if (!rows.length) return ''
+  const sorted = [...rows].sort((left, right) => String(left.date).localeCompare(String(right.date)) || left.away.localeCompare(right.away))
+  return [
+    '## Predicted slate',
+    '',
+    'This is the prediction. The score is the venue-matched mean. The four models are not averaged. The sim is a separate 2,000-draw read. A sim percentage is the share of the draws. Thin means a venue slice has fewer than 3 games. Book prices are in each game’s market section.',
+    '',
+    '| Time | Game | Predicted score | Total | Models | Sim |',
+    '| --- | --- | --- | --- | --- | --- |',
+    ...sorted.map((row) => `| ${row.when} | ${row.away} at ${row.home} | ${row.score} | ${row.total} | ${row.models} | ${row.sim} |`),
+    '',
+  ].join('\n')
 }
 
 async function load(sportPath, query) {
@@ -874,7 +936,7 @@ async function main() {
   blocks.push(`Retrieved ${retrievedAt.toISOString()} (UTC). This is one retrieved snapshot, not a live feed.`)
   if (slateDate) blocks.push(`Included games start on ${slateDate} in America/New_York. Other dates on the source boards are left out.`)
   blocks.push('')
-  blocks.push('Each game has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
+  blocks.push('The predicted slate is the first table. That score is the venue-matched mean. Each game then has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
   blocks.push('Status: not complete. This pass compares projections with FanDuel and DraftKings only. DraftKings open and latest come from ESPN. FanDuel latest comes from the Ohio board for NFL, college football, NBA, and NHL. Player props and team totals were not on those two feeds.')
   blocks.push('')
@@ -896,6 +958,8 @@ async function main() {
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
   blocks.push('')
 
+  const sportBlocks = []
+  const predictions = []
   const boards = [
     ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
     ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points', 'ncaaf'],
@@ -913,7 +977,7 @@ async function main() {
     process.stderr.write(`loading ${title}\n`)
     const events = await load(sportPath, query)
     if (events.error) {
-      blocks.push(`## ${title}`, '', `Blocked: ${events.error}`, '')
+      sportBlocks.push(`## ${title}\n\nBlocked: ${events.error}\n`)
       continue
     }
     const games = gamesFromEvents(events, title).filter((game) => !slateDate || dateET(game.date) === slateDate)
@@ -923,8 +987,14 @@ async function main() {
       }
     }
     process.stderr.write(`${title}: ${games.length} upcoming\n`)
-    blocks.push(await section(title, sportPath, games, football, unit))
+    const result = await section(title, sportPath, games, football, unit)
+    sportBlocks.push(result.markdown)
+    predictions.push(...result.predictions)
   }
+
+  const predicted = predictedSlate(predictions)
+  if (predicted) blocks.push(predicted)
+  blocks.push(...sportBlocks)
 
   blocks.push('## Player props')
   blocks.push('')
@@ -946,7 +1016,10 @@ async function main() {
   process.stderr.write(`wrote ${outputPath} (${markdown.length} chars)\n`)
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+const entry = process.argv[1]
+if (entry && import.meta.url === pathToFileURL(entry).href) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

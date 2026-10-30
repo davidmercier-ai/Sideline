@@ -144,6 +144,19 @@ Do not fit a model to either book. Do not treat one retrieved snapshot as a clos
 
 Outside-pick consensus is unavailable. Do not average the four models and call the average consensus.
 
+## Predicted slate
+
+The report opens with the predicted slate. That table is the prediction, and it comes before the book prices.
+
+| Column | What it is |
+| --- | --- |
+| Predicted score | Venue-matched mean, away then home. |
+| Total | Those two figures added. |
+| Models | The side when all four models agree, with the vote. A split stays a split and names the side with more votes. The four models are not averaged. |
+| Sim | Median score from 2,000 draws, then the share of draws won by the leader. Thin means a venue slice has fewer than 3 games. The percentage is the share of the draws. |
+
+Book prices stay in each game’s market section. A price is the book’s number. It is not the prediction.
+
 ## What each game block contains
 
 1. Independent projection. The venue-matched mean, the other three models, convergence, synergy, and the sim. Football games also list rushing, gross passing, net passing, sack yards lost, and total offense, with overall, home, and away histories.
