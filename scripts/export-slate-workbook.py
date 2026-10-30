@@ -96,6 +96,8 @@ def section_name(line):
         return "market"
     if title.startswith("3."):
         return "comparison"
+    if title.startswith("4.") or title.startswith("Public consensus"):
+        return "consensus"
     if title == "Props":
         return "props"
     return None
@@ -377,6 +379,9 @@ def parse_game(block, sport, retrieved, order):
             game["market_notes"].append(line[2:])
             continue
         if section == "comparison" and consume_comparison(game, line):
+            continue
+        if section == "consensus":
+            game.setdefault("consensus_notes", []).append(line[2:])
             continue
         if section == "props":
             continue
@@ -1119,7 +1124,7 @@ def write_open_gaps(ws):
         ("DraftKings website", "Access denied. Open and latest prices are the ESPN quote."),
         ("FanDuel soccer", "No public Ohio board for the Premier League or MLS. Those games are DraftKings only."),
         ("Team totals", "Unavailable at FanDuel and DraftKings on these feeds."),
-        ("Outside consensus", "No outside-pick source was retrieved."),
+        ("Outside consensus", "Covers handicapper counts and the ESPN Matchup Predictor, in their own view. A missing row stays missing."),
         ("Our win probability", "Not calculated. A score is not turned into a probability."),
         ("Priced edge", "Not labeled. A gap versus the no-vig price is recorded and is not called an edge."),
         ("Novig", "Left out of this file. The pass compares FanDuel and DraftKings only."),

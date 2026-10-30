@@ -14,6 +14,7 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/projection-math.test.mjs` | Checks for the formulas, including a fixed sim seed. |
 | `scripts/project-slate.mjs` | Pulls ESPN logs and FanDuel/DraftKings prices, then writes a report. |
 | `scripts/book-prices.mjs` | FanDuel Ohio board. DraftKings is read from ESPN inside `project-slate.mjs`. |
+| `scripts/public-consensus.mjs` | Covers handicapper counts and the ESPN Matchup Predictor. Separate from the models and the books. |
 | `docs/projections/COMMANDMENTS.md` | The ten rules that govern every slate. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
@@ -145,7 +146,7 @@ A priced edge is not labeled. The sim win frequency can be subtracted from a no-
 
 Do not fit a model to either book. Do not treat one retrieved snapshot as a closing line. A thin sample, diverging inputs, or a quote inside the method range means the gap is not stable.
 
-Outside-pick consensus is unavailable. Do not average the four models and call the average consensus.
+Public consensus is a separate view. Covers supplies the handicapper count on each side. The ESPN Matchup Predictor supplies a public-model win chance. A missing row stays missing. Do not average the four models and call that average consensus, and do not blend the public count into the models or the book prices.
 
 ## Predicted slate
 

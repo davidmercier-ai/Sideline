@@ -12,6 +12,7 @@
 import { writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { loadBooks } from './book-prices.mjs'
+import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
   asNumber,
   difference,
@@ -682,7 +683,32 @@ function comparisonSection(game, scoring, methods) {
   lines.push('- Our win probability: not calculated. A projected score is not a probability.')
   lines.push('- Priced edge: not supported. A point gap against FanDuel or DraftKings is line value only. An edge still needs a validated win probability.')
   lines.push('- System refinement: compare the two books only when the number matches; do not fit the baseline to either posted number; treat a quote inside the method range as no separation from the market.')
-  lines.push('- Outside-pick consensus: unavailable, and not used as a tie-break.')
+  lines.push('- Outside-pick consensus: recorded in the public-consensus section. Not used as a tie-break.')
+  return lines
+}
+
+function consensusSection(game) {
+  const lines = []
+  lines.push('**4. Public consensus — handicappers, sports media, and public models**')
+  lines.push('')
+  lines.push('This view is not one of the four models and it is not a sportsbook price. It is not averaged, and it is not used as a tie-break.')
+  lines.push('')
+  const covers = game.covers
+  if (!covers) {
+    lines.push('- Covers handicapper consensus: unavailable. No matching row on the Covers overall board.')
+  } else {
+    const total = covers.awayPicks + covers.homePicks
+    const leader = covers.homePct > covers.awayPct ? game.home.name : covers.awayPct > covers.homePct ? game.away.name : 'even'
+    const figure = covers.numberKind === 'moneyline' ? 'moneyline' : 'spread'
+    lines.push(`- Covers handicappers: ${game.away.name} ${covers.awayPct}% (${covers.awayPicks} picks) ${covers.awayNumber}, ${game.home.name} ${covers.homePct}% (${covers.homePicks} picks) ${covers.homeNumber}. ${total} picks. Consensus side: ${leader}. The number beside each side is the ${figure} Covers posted with that pick.`)
+  }
+  const predictor = game.predictor
+  if (!predictor) {
+    lines.push('- ESPN Matchup Predictor: unavailable.')
+  } else {
+    lines.push(`- ESPN Matchup Predictor, a public model: ${game.away.name} ${fmt(predictor.awayWin)}%, ${game.home.name} ${fmt(predictor.homeWin)}%. This is a win chance, not a spread pick.`)
+  }
+  lines.push('- A source that did not send a machine-readable pick stays missing. No pick is invented.')
   return lines
 }
 
@@ -741,7 +767,7 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push(`- Synergy, visitor scoring inputs: ${synergyText(teamSynergy(awayLog.rows, 'away', homeLog.rows, 'home'))}.`)
   lines.push(`- Synergy, home scoring inputs: ${synergyText(teamSynergy(homeLog.rows, 'home', awayLog.rows, 'away'))}.`)
   lines.push('- Synergy means the team’s own venue rate and the opponent’s venue allowance sit on the same side of their overall rates. A diverging pair is left visible. The two rates are not collapsed.')
-  lines.push('- Outside consensus: unavailable. No outside-pick source was retrieved. These methods are not averaged and then called consensus.')
+  lines.push('- Outside consensus: recorded in its own section. These four methods are not that consensus, and they are not averaged.')
   const sim = gameSimulation(game, awayLog.rows, homeLog.rows)
   lines.push('')
   lines.push('**Simulation**')
@@ -806,6 +832,8 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push('')
   lines.push(...comparisonSection(game, scoring, methods))
   lines.push('')
+  lines.push(...consensusSection(game))
+  lines.push('')
   lines.push(...propsSection(game))
   return lines.join('\n')
 }
@@ -817,6 +845,9 @@ async function section(title, sportPath, games, football, unit) {
     header.push('')
     return { markdown: header.join('\n'), predictions: [] }
   }
+  await pool(games, 4, async (game) => {
+    game.predictor = await espnPredictor(sportPath, game.id)
+  })
   const teamIds = [...new Set(games.flatMap((game) => [game.away.id, game.home.id]))]
   const logs = new Map()
   await pool(teamIds, 3, async (teamId) => {
@@ -878,6 +909,21 @@ async function section(title, sportPath, games, football, unit) {
     ...rendered.map(({ spots }, index) => {
       const game = games[index]
       return `| ${game.away.name} at ${game.home.name} | ${spots.FanDuel.side} | ${spots.DraftKings.side} | ${spots.FanDuel.total} | ${spots.DraftKings.total} |`
+    }),
+    '',
+    'Public consensus. Handicapper picks are the Covers count. The ESPN figure is a public-model win chance. Neither is one of the four models, and neither is a book price.',
+    '',
+    '| Game | Covers consensus | Covers picks | ESPN Matchup Predictor |',
+    '| --- | --- | --- | --- |',
+    ...games.map((game) => {
+      const covers = game.covers
+      const predictor = game.predictor
+      const coversText = covers
+        ? `${covers.homePct > covers.awayPct ? game.home.name : game.away.name} ${Math.max(covers.awayPct, covers.homePct)}%`
+        : 'unavailable'
+      const picksText = covers ? `${covers.awayPicks + covers.homePicks}` : 'unavailable'
+      const modelText = predictor ? `${game.away.name} ${fmt(predictor.awayWin)} / ${game.home.name} ${fmt(predictor.homeWin)}` : 'unavailable'
+      return `| ${game.away.name} at ${game.home.name} | ${coversText} | ${picksText} | ${modelText} |`
     }),
     '',
   ]
@@ -950,12 +996,17 @@ async function main() {
   blocks.push('- Team totals: unavailable at both FanDuel and DraftKings on these feeds.')
   blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
   blocks.push('- Priced edge: not labeled. A resampling sim is reported separately from the four base models, and a gap versus the no-vig price is not called an edge.')
+  blocks.push('- Public consensus: Covers handicapper picks and the ESPN Matchup Predictor when those sources send a row. A missing row stays missing. This is not blended into the four models or the book prices.')
   blocks.push('')
 
   const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
   blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
   const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
+  blocks.push('')
+
+  const covers = await loadCoversConsensus()
+  blocks.push(`Public consensus loaded at ${retrievedAt.toISOString()} UTC. Covers handicapper rows: ${covers.picks.length}.${covers.errors.length ? ` Notes: ${covers.errors.join(' | ')}` : ''}`)
   blocks.push('')
 
   const sportBlocks = []
@@ -986,6 +1037,7 @@ async function main() {
         game.extra = books.match(sportKey, [game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name])
       }
     }
+    for (const game of games) game.covers = matchCovers(game, covers.picks, coversLeagueFor(sportKey))
     process.stderr.write(`${title}: ${games.length} upcoming\n`)
     const result = await section(title, sportPath, games, football, unit)
     sportBlocks.push(result.markdown)

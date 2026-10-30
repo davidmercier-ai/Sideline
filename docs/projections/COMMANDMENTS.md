@@ -12,3 +12,4 @@ These govern every slate. The prediction comes first. The books' prices stay in 
 8. Rank a price only when both books post the same number. The better price is the higher American odds.
 9. A book number outside every model is line value, a point gap. Leave a priced edge unlabeled.
 10. Do not fill a prop, a team total, an opening price, or an outside pick that the source did not send. Do not fit a model to a book. One snapshot is not a closing line.
+11. Record public consensus from handicappers, sports media, and public models in its own view. Name the source, the side, and the count. Do not blend that view into the four models or the book prices.
