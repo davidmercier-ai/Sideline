@@ -76,12 +76,16 @@ async function novigPages(path, query) {
     for (const [key, value] of new URLSearchParams(query)) url.searchParams.set(key, value)
     url.searchParams.set('limit', '500')
     if (after) url.searchParams.set('after', after)
-    let data
-    try {
-      data = await getJson(url)
-    } catch {
-      break
+    let data = null
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      try {
+        data = await getJson(url)
+        break
+      } catch {
+        await new Promise((resolve) => setTimeout(resolve, 400 * (attempt + 1)))
+      }
     }
+    if (!data) break
     items.push(...(data.items ?? []))
     after = data.next
     if (!after) break
@@ -249,25 +253,27 @@ export async function loadBooks(sportKeys, retrievedAt) {
     } else {
       entry.errors.push(`FanDuel ${sport}: no public Ohio board for this league`)
     }
-    const league = NOVIG_LEAGUES[sport]
-    if (league) {
-      try {
-        const events = await novigPages('/events', `league=${encodeURIComponent(league)}`)
-        const types = ['SPREAD', 'MONEY', 'TOTAL', 'TEAM_TOTAL', ...(PROP_TYPES[sport] ?? [])]
-        const markets = []
-        for (const type of types) {
-          markets.push(...await novigPages('/markets', `league=${encodeURIComponent(league)}&marketType=${type}`))
-        }
-        const built = novigQuotes(events, markets.filter((market) => ['SPREAD', 'MONEY', 'TOTAL', 'TEAM_TOTAL'].includes(market.marketType)), retrievedAt)
-        entry.novig = built.index
-        entry.novigMarkets = markets
-        entry.novigEvents = built.eventById
-      } catch (error) {
-        entry.errors.push(`Novig ${sport}: ${error instanceof Error ? error.message : error}`)
-      }
-    }
     books[sport] = entry
   }))
+  for (const sport of sportKeys) {
+    const entry = books[sport]
+    const league = NOVIG_LEAGUES[sport]
+    if (!league) continue
+    const events = await novigPages('/events', `league=${encodeURIComponent(league)}`)
+    if (events.length === 0) entry.errors.push(`Novig ${sport}: event catalog came back empty`)
+    const types = ['SPREAD', 'MONEY', 'TOTAL', 'TEAM_TOTAL', ...(PROP_TYPES[sport] ?? [])]
+    const markets = []
+    for (const type of types) {
+      markets.push(...await novigPages('/markets', `league=${encodeURIComponent(league)}&marketType=${type}`))
+    }
+    const built = novigQuotes(events, markets.filter((market) => ['SPREAD', 'MONEY', 'TOTAL', 'TEAM_TOTAL'].includes(market.marketType)), retrievedAt)
+    entry.novig = built.index
+    entry.novigMarkets = markets
+    entry.novigEvents = built.eventById
+    if (events.length > 0 && entry.novig.size === 0) {
+      entry.errors.push(`Novig ${sport}: ${events.length} events did not match an away @ home name`)
+    }
+  }
   return {
     retrievedAt,
     books,
