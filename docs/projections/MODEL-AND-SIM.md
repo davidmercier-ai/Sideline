@@ -13,8 +13,8 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/project-slate.mjs` | Pulls ESPN logs and FanDuel/DraftKings prices, then writes a report. |
 | `scripts/book-prices.mjs` | FanDuel Ohio board. DraftKings is read from ESPN inside `project-slate.mjs`. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
-| `docs/projections/2026-10-30-today.md` | Every Friday game: four models, sim, FanDuel, DraftKings, comparison, props flag. |
-| `docs/projections/2026-10-30-slate.md` | The wider board from the earlier run (weekend football plus October 30). It does not include the resampling sim. |
+| `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
+| `docs/projections/2026-10-30-slate.md` | All sports on the retrieved boards: NFL week, Friday and Saturday FBS and FCS, October 30 NBA and NHL, Premier League, MLS. Same models and sim. MLB had no upcoming game. |
 
 ## Run it
 
@@ -144,4 +144,4 @@ History lines show sample size, mean, median, mode, high, and low. If no value r
 
 Seventeen games. No NFL, Premier League, MLS, or MLB game starts on that date.
 
-The game-by-game models, sims, prices, and flags are in `docs/projections/2026-10-30-today.md`.
+Friday-only numbers are in `docs/projections/2026-10-30-today.md`. Every sport on the retrieved boards, including the NFL week and Saturday football and soccer, is in `docs/projections/2026-10-30-slate.md`.
