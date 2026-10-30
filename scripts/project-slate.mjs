@@ -1014,7 +1014,7 @@ async function main() {
   const dated = slateDate ? slateDate.replaceAll('-', '') : null
   const boards = dated
     ? [
-        ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
+        ['NFL', 'football/nfl', `?dates=${dated}`, true, 'points', 'nfl'],
         [`FBS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=80&limit=300`, true, 'points', 'ncaaf'],
         [`FCS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=81&limit=300`, true, 'points', 'ncaaf'],
         [`NBA ${slateDate}`, 'basketball/nba', `?dates=${dated}`, false, 'points', 'nba'],
