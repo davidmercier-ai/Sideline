@@ -20,10 +20,12 @@ import {
   marketHomeMargin,
   medianPair,
   methodConvergence,
+  mulberry32,
   noVigPair,
   overallComparison,
   projectRate,
   quotePosition,
+  simulateMatch,
   projectedOutcome,
   reconcileTotal,
   round1,
@@ -438,6 +440,48 @@ function synergyText(result) {
   return `diverge (own venue vs overall ${own}; opponent allowance vs overall ${allowance})`
 }
 
+function seedFor(id) {
+  return [...String(id)].reduce((sum, char) => ((sum * 33) + char.charCodeAt(0)) >>> 0, 20261030)
+}
+
+function gameSimulation(game, awayRows, homeRows) {
+  const input = {
+    awayFor: values(awayRows, 'away', 'pointsFor'),
+    homeAgainst: values(homeRows, 'home', 'pointsAgainst'),
+    homeFor: values(homeRows, 'home', 'pointsFor'),
+    awayAgainst: values(awayRows, 'away', 'pointsAgainst'),
+    random: mulberry32(seedFor(game.id)),
+    draws: 2000,
+  }
+  const base = simulateMatch(input)
+  if (!base.ok) return base
+  const fanduelMargin = Number.isFinite(game.extra?.fanduel?.homeSpread) ? -game.extra.fanduel.homeSpread : null
+  const fanduelTotal = Number.isFinite(game.extra?.fanduel?.total) ? game.extra.fanduel.total : null
+  const sameSeed = () => mulberry32(seedFor(game.id))
+  const dk = simulateMatch({ ...input, random: sameSeed(), homeMarginLine: game.market.marketHomeMargin, totalLine: game.market.total })
+  const fd = simulateMatch({ ...input, random: sameSeed(), homeMarginLine: fanduelMargin, totalLine: fanduelTotal })
+  const fdPrice = noVigPair(game.extra?.fanduel?.awayMoneyline, game.extra?.fanduel?.homeMoneyline)
+  const dkPrice = noVigPair(game.market.moneyline?.awayClose, game.market.moneyline?.homeClose)
+  const gaps = []
+  if (fdPrice) gaps.push(Math.abs(base.homeWinRate - fdPrice.home))
+  if (dkPrice) gaps.push(Math.abs(base.homeWinRate - dkPrice.home))
+  const pricedGap = gaps.length ? Math.min(...gaps) : null
+  let edge = 'Priced edge: not supported. The sim frequency is not a validated win probability.'
+  if (!base.thin && pricedGap != null && pricedGap >= 0.08) {
+    edge = `Price gap: the sim home-win frequency differs from the nearer no-vig price by ${fmt(pricedGap * 100)} percentage points. Recorded as a gap. Not labeled an edge, because this resampling model has not been validated.`
+  }
+  return {
+    ...base,
+    fdCover: fd.coverRate,
+    fdCoverPush: fd.coverPushRate,
+    dkCover: dk.coverRate,
+    dkCoverPush: dk.coverPushRate,
+    fdOver: fd.overRate,
+    dkOver: dk.overRate,
+    edge,
+  }
+}
+
 function projectYards(awayLog, homeLog, forField, againstField) {
   return {
     away: projectRate(values(awayLog, 'away', forField), values(homeLog, 'home', againstField)),
@@ -659,6 +703,23 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push(`- Synergy, home scoring inputs: ${synergyText(teamSynergy(homeLog.rows, 'home', awayLog.rows, 'away'))}.`)
   lines.push('- Synergy means the team’s own venue rate and the opponent’s venue allowance sit on the same side of their overall rates. A diverging pair is left visible. The two rates are not collapsed.')
   lines.push('- Outside consensus: unavailable. No outside-pick source was retrieved. These methods are not averaged and then called consensus.')
+  const sim = gameSimulation(game, awayLog.rows, homeLog.rows)
+  lines.push('')
+  lines.push('**Simulation**')
+  lines.push('')
+  lines.push('Each draw takes one completed venue game from the team and one from the opponent, then averages those two results. Two thousand draws. The seed is fixed, so the same logs reproduce the same sim. The sim does not use a sportsbook price.')
+  if (!sim.ok) {
+    lines.push(`- Sim: not run. ${sim.reason}.`)
+  } else {
+    lines.push(`- Sim median score: ${game.away.name} ${fmt(sim.awayMedian)}, ${game.home.name} ${fmt(sim.homeMedian)}.`)
+    lines.push(`- Sim frequencies: ${game.home.name} wins ${fmt(sim.homeWinRate * 100)}%, ${game.away.name} wins ${fmt(sim.awayWinRate * 100)}%, ties ${fmt(sim.tieRate * 100)}%.`)
+    lines.push(sim.thin ? '- Sim sample: thin. At least one venue slice has fewer than 3 games, so this frequency is not a stable probability.' : '- Sim sample: each venue slice has at least 3 games.')
+    if (sim.fdCover != null) lines.push(`- Sim home-cover rate versus FanDuel: ${fmt(sim.fdCover * 100)}% (pushes ${fmt(sim.fdCoverPush * 100)}%).`)
+    if (sim.dkCover != null) lines.push(`- Sim home-cover rate versus DraftKings: ${fmt(sim.dkCover * 100)}% (pushes ${fmt(sim.dkCoverPush * 100)}%).`)
+    if (sim.fdOver != null) lines.push(`- Sim over rate versus FanDuel total: ${fmt(sim.fdOver * 100)}%.`)
+    if (sim.dkOver != null) lines.push(`- Sim over rate versus DraftKings total: ${fmt(sim.dkOver * 100)}%.`)
+    lines.push(`- ${sim.edge}`)
+  }
   if (football) {
     const specs = [
       ['rushFor', 'rushAgainst', 'rushing yards'],
@@ -781,12 +842,31 @@ async function load(sportPath, query) {
   }
 }
 
+function dateET(iso) {
+  if (!iso) return null
+  const parsed = new Date(iso)
+  if (Number.isNaN(parsed.getTime())) return null
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(parsed)
+}
+
 async function main() {
-  const outputPath = process.argv[2] ?? 'docs/projections/2026-10-30-slate.md'
+  const args = process.argv.slice(2)
+  let slateDate = null
+  const positional = []
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === '--date') {
+      slateDate = args[i + 1]
+      i += 1
+      continue
+    }
+    positional.push(args[i])
+  }
+  const outputPath = positional[0] ?? (slateDate ? `docs/projections/${slateDate}-today.md` : 'docs/projections/2026-10-30-slate.md')
   const blocks = []
-  blocks.push('# Slate projection snapshot')
+  blocks.push(slateDate ? `# Slate for ${slateDate}` : '# Slate projection snapshot')
   blocks.push('')
   blocks.push(`Retrieved ${retrievedAt.toISOString()} (UTC). This is one retrieved snapshot, not a live feed.`)
+  if (slateDate) blocks.push(`Included games start on ${slateDate} in America/New_York. Other dates on the source boards are left out.`)
   blocks.push('')
   blocks.push('Each game has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
@@ -801,7 +881,7 @@ async function main() {
   blocks.push('- FanDuel soccer: no public Ohio board for Premier League or MLS, so those games have DraftKings only.')
   blocks.push('- Team totals: unavailable at both FanDuel and DraftKings on these feeds.')
   blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
-  blocks.push('- Edge: not supported on any game in this snapshot.')
+  blocks.push('- Priced edge: not labeled. A resampling sim is reported separately from the four base models, and a gap versus the no-vig price is not called an edge.')
   blocks.push('')
 
   const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
@@ -830,7 +910,7 @@ async function main() {
       blocks.push(`## ${title}`, '', `Blocked: ${events.error}`, '')
       continue
     }
-    const games = gamesFromEvents(events, title)
+    const games = gamesFromEvents(events, title).filter((game) => !slateDate || dateET(game.date) === slateDate)
     if (sportKey) {
       for (const game of games) {
         game.extra = books.match(sportKey, [game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name])

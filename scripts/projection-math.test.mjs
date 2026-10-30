@@ -10,6 +10,8 @@ import {
   quotePosition,
   medianPair,
   methodConvergence,
+  mulberry32,
+  simulateMatch,
   projectRate,
   projectedOutcome,
   reconcileTotal,
@@ -96,6 +98,32 @@ assert.ok(priced.hold > 0)
 assert.equal(quotePosition(3, [-5, -1.2, 2, 3.5]), 'inside-method-range')
 assert.equal(quotePosition(12.5, [1, 2, 4, 7]), 'outside-method-range')
 assert.equal(quotePosition(null, [1, 2]), 'missing-input')
+
+const sim = simulateMatch({
+  awayFor: [10, 20],
+  homeAgainst: [10, 20],
+  homeFor: [30, 40],
+  awayAgainst: [30, 40],
+  random: mulberry32(20261030),
+  draws: 200,
+  homeMarginLine: 0,
+  totalLine: 50,
+})
+assert.equal(sim.ok, true)
+assert.equal(sim.draws, 200)
+assert.ok(sim.homeWinRate > 0.9)
+const again = simulateMatch({
+  awayFor: [10, 20],
+  homeAgainst: [10, 20],
+  homeFor: [30, 40],
+  awayAgainst: [30, 40],
+  random: mulberry32(20261030),
+  draws: 200,
+  homeMarginLine: 0,
+  totalLine: 50,
+})
+assert.equal(again.homeWinRate, sim.homeWinRate)
+assert.equal(simulateMatch({ awayFor: [], homeAgainst: [1], homeFor: [1], awayAgainst: [1], random: mulberry32(1), draws: 10 }).ok, false)
 
 function roundPct(value) {
   return Math.round(value * 1000) / 10

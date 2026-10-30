@@ -161,6 +161,75 @@ export function inputSynergy(ownVenue, ownOverall, allowanceVenue, allowanceOver
   return { status: 'diverge', own, allowance }
 }
 
+export function mulberry32(seed) {
+  let state = seed >>> 0
+  return function random() {
+    state = (state + 0x6d2b79f5) >>> 0
+    let t = state
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+export function resampleScore(forValues, againstValues, random) {
+  if (!forValues.length || !againstValues.length) return null
+  const own = forValues[Math.floor(random() * forValues.length)]
+  const allowed = againstValues[Math.floor(random() * againstValues.length)]
+  return (own + allowed) / 2
+}
+
+/**
+ * Resample completed games. This is a simulation, separate from the four
+ * point estimates and from the sportsbook price.
+ */
+export function simulateMatch({ awayFor, homeAgainst, homeFor, awayAgainst, random, draws, homeMarginLine, totalLine }) {
+  if (!awayFor.length || !homeAgainst.length || !homeFor.length || !awayAgainst.length) {
+    return { ok: false, reason: 'missing venue games' }
+  }
+  let homeWins = 0
+  let ties = 0
+  let covers = 0
+  let coverPushes = 0
+  let overs = 0
+  let overPushes = 0
+  const awayScores = []
+  const homeScores = []
+  for (let i = 0; i < draws; i += 1) {
+    const away = resampleScore(awayFor, homeAgainst, random)
+    const home = resampleScore(homeFor, awayAgainst, random)
+    awayScores.push(away)
+    homeScores.push(home)
+    const margin = home - away
+    if (margin > 0) homeWins += 1
+    else if (margin === 0) ties += 1
+    if (Number.isFinite(homeMarginLine)) {
+      if (margin > homeMarginLine) covers += 1
+      else if (margin === homeMarginLine) coverPushes += 1
+    }
+    if (Number.isFinite(totalLine)) {
+      const total = home + away
+      if (total > totalLine) overs += 1
+      else if (total === totalLine) overPushes += 1
+    }
+  }
+  const median = (values) => [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)]
+  return {
+    ok: true,
+    draws,
+    awayMedian: median(awayScores),
+    homeMedian: median(homeScores),
+    homeWinRate: homeWins / draws,
+    tieRate: ties / draws,
+    awayWinRate: (draws - homeWins - ties) / draws,
+    coverRate: Number.isFinite(homeMarginLine) ? covers / draws : null,
+    coverPushRate: Number.isFinite(homeMarginLine) ? coverPushes / draws : null,
+    overRate: Number.isFinite(totalLine) ? overs / draws : null,
+    overPushRate: Number.isFinite(totalLine) ? overPushes / draws : null,
+    thin: awayFor.length < 3 || homeAgainst.length < 3 || homeFor.length < 3 || awayAgainst.length < 3,
+  }
+}
+
 export function round1(value) {
   if (!Number.isFinite(value)) return null
   return Math.round(value * 10) / 10
