@@ -1,6 +1,10 @@
 /**
  * Latest prices from FanDuel Ohio and Novig's public catalog.
  * DraftKings still comes from the ESPN quote. Direct DraftKings denied this run.
+ *
+ * FanDuel Ohio is the working public board for nfl, ncaaf, nba, and nhl.
+ * Each spread has two runners. Keep the away handicap and the away price
+ * with the home handicap and the home price. One side is only half the number.
  */
 
 const FANDUEL = 'https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page'
@@ -132,6 +136,7 @@ function fanduelQuotes(payload, retrievedAt) {
       home: parts[1],
       homeSpread: homeRunner ? Number(homeRunner.handicap) : null,
       homeSpreadPrice: price(homeRunner),
+      awaySpread: awayRunner ? Number(awayRunner.handicap) : null,
       awaySpreadPrice: price(awayRunner),
       total: over ? Number(over.handicap) : null,
       overPrice: price(over),

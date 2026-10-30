@@ -569,6 +569,12 @@ function marketSection(game) {
   } else if (Number.isFinite(fanduel?.total) && Number.isFinite(market.total)) {
     lines.push(`- Totals differ: FanDuel ${fanduel.total}, DraftKings ${market.total}. Prices are not ranked across different numbers.`)
   }
+  if (fanduel && (Number.isFinite(fanduel.homeSpread) || Number.isFinite(fanduel.awaySpread))) {
+    lines.push(`- FanDuel spread, both sides: home ${spreadCell(fanduel.homeSpread, fanduel.homeSpreadPrice)}; away ${spreadCell(fanduel.awaySpread, fanduel.awaySpreadPrice)}.`)
+  }
+  if (draftKings && (market.spread?.homeCloseLine != null || market.spread?.awayCloseLine != null)) {
+    lines.push(`- DraftKings spread, both sides: home ${priceCell(market.spread?.homeCloseLine, market.spread?.homeClosePrice)}; away ${priceCell(market.spread?.awayCloseLine, market.spread?.awayClosePrice)}.`)
+  }
   if (!draftKings) lines.push(`- DraftKings: ${market.note ?? 'no DraftKings quote in the ESPN payload'}`)
   if (!fanduel) lines.push('- FanDuel: no matching Ohio board game.')
   return lines

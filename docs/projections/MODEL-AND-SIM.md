@@ -103,12 +103,20 @@ If any of the four venue lists has fewer than 3 games, the sim is marked thin. T
 
 ## Books
 
-This pass uses FanDuel and DraftKings only.
+This pass uses FanDuel and DraftKings only. A price in the report is that book’s number and the American odds on it. Confirmed October 30, 2026: these two sources return the prices. Use them again. Keep Novig off unless it is asked for.
 
 | Book | What is retrieved | What is missing |
 | --- | --- | --- |
-| FanDuel | Latest spread, moneyline, and total from the Ohio board for NFL, college football, NBA, and NHL. | Opening price. Premier League and MLS boards. Team totals. Player props. |
-| DraftKings | Open and latest spread, moneyline, and total from the ESPN quote. | The DraftKings website itself (access denied). Team totals. Player props. |
+| FanDuel | Latest spread, moneyline, and total from the Ohio board for NFL, college football, NBA, and NHL. Both sides of the spread, both sides of the moneyline, and the over and the under. | Opening price. Premier League and MLS boards. Team totals. Player props. |
+| DraftKings | Open and latest spread, moneyline, and total from the ESPN quote. Both sides of each. | The DraftKings website itself (access denied). Team totals. Player props. |
+
+FanDuel Ohio board, public, no login:
+
+`https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId={nfl|ncaaf|nba|nhl}&_ak=FhMFpcPWXMeyZxOx`
+
+The event name is `Away @ Home`. The spread market is `MATCH_HANDICAP_(2-WAY)`. The home runner’s handicap is the home spread: negative means the home team is favored. The away runner has its own handicap and its own American price. The total market is `TOTAL_POINTS_(OVER/UNDER)`. The moneyline market is `MONEY_LINE`. Report the price on each side. The home price alone is only half of the number. This board sends no opening price.
+
+DraftKings’ own site returns access denied. Stop there. Open and latest prices are the ESPN scoreboard quote whose provider is DraftKings. `pointSpread.home.close` and `pointSpread.away.close` each carry a line and an American price. The moneyline and the total are the same way, open and latest. The older cards printed the home spread price and left the other side in the payload. Print both.
 
 Home margin for a book = the number of points by which the home team is favored. FanDuel’s home handicap is stored on the home runner, so the margin is the handicap multiplied by −1. DraftKings’ ESPN `spread` is the same sign convention.
 
