@@ -10,6 +10,7 @@
  */
 
 import { writeFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
 import { compareLeg, formatAmerican, loadStoredSlates } from './premade-parlays.mjs'
 
 const OH = 'https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent'
@@ -183,7 +184,7 @@ function bandLabel(price) {
   return 'Over +10000'
 }
 
-async function main() {
+export async function collectDraftKings() {
   const retrievedAt = new Date().toISOString()
   const retrievedET = new Date(retrievedAt).toLocaleString('en-US', {
     timeZone: 'America/New_York',
@@ -244,6 +245,13 @@ async function main() {
   const oregonAway = oregon?.data?.prePacks?.length ?? null
   const ohioAway = steelers.filter((row) => row.venueRole === 'Away').length
 
+  return { retrievedAt, retrievedET, rows, leagueStats, gaps, oregonAway, ohioAway, steelers: steelers.length }
+
+}
+
+async function main() {
+  const collected = await collectDraftKings()
+  const { retrievedAt, retrievedET, rows, leagueStats, gaps, oregonAway, ohioAway, steelers } = collected
   const snapshot = {
     retrievedAt,
     site: 'US-OH-SB',
@@ -287,7 +295,7 @@ async function main() {
     '| --- | --- |',
     ...[...bands.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([band, count]) => `| ${band} | ${count} |`),
     '',
-    `Browns at Steelers: ${steelers.length} prebuilt cards. The event filters list 29. Away tab on Ohio: ${ohioAway}. The same Away request on the Oregon host returned ${oregonAway ?? 'no row'}.`,
+    `Browns at Steelers: ${steelers} prebuilt cards. The event filters list 29. Away tab on Ohio: ${ohioAway}. The same Away request on the Oregon host returned ${oregonAway ?? 'no row'}.`,
     '',
     '## Longer NFL prices',
     '',
@@ -306,7 +314,10 @@ async function main() {
   process.stdout.write(`draftkings ${rows.length}\ngaps ${gaps.length}\n`)
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+const entry = process.argv[1]
+if (entry && import.meta.url === pathToFileURL(entry).href) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

@@ -1,6 +1,6 @@
 # FanDuel and DraftKings access
 
-Retrieved 2026-10-30T21:14:07.888Z UTC. These are the book numbers. They are not a model and they are not a priced edge.
+Retrieved 2026-10-30T21:36:10.257Z UTC. These are the book numbers. They are not a model and they are not a priced edge.
 
 ## DraftKings
 
@@ -10,11 +10,11 @@ League ids: NFL `88808`, NBA `42648`, NHL `42133`.
 
 | Board | Rows |
 | --- | --- |
-| NFL Touchdown scorer | 1135 |
+| NFL Touchdown scorer | 1131 |
 | NFL Receiving yards | 286 |
 | NFL Receptions | 286 |
-| NBA Points | 260 |
-| NBA Rebounds | 246 |
+| NBA Points | 264 |
+| NBA Rebounds | 250 |
 | NBA Assists | 180 |
 | NFL Game lines | 156 |
 | NFL Rush yards | 148 |
@@ -28,7 +28,7 @@ Sample: CLE Browns @ PIT Steelers, Aaron Rodgers Passing Yards O/U, Over 219.5 -
 
 Feed: `https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId={nfl|nba|nhl}&_ak=FhMFpcPWXMeyZxOx`
 
-| Game-line prices | 372 |
+| Game-line prices | 386 |
 | Player-market prices on that page | 568 |
 
 Sample: Chicago Bears @ Seattle Seahawks, Any Time Touchdown Scorer, D'Andre Swift -115.

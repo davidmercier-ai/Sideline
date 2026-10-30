@@ -339,7 +339,25 @@ function sameGameNotes(parlay, games) {
   return lines.join('\n')
 }
 
-async function fetchFanDuel() {
+function storeFanDuel(byId, opportunity, attachments, league, source) {
+  const row = readFanDuelOpportunity(opportunity, attachments, league, source)
+  if (!row.id) return false
+  const existing = byId.get(row.id)
+  if (existing) {
+    const resolved = (item) => item.legs.filter((leg) => leg.market && leg.selection).length
+    if (resolved(row) > resolved(existing)) {
+      row.source = existing.source.includes(source) ? existing.source : `${existing.source}+${source}`
+      byId.set(row.id, row)
+    } else if (!existing.source.includes(source)) {
+      existing.source = `${existing.source}+${source}`
+    }
+    return false
+  }
+  byId.set(row.id, row)
+  return true
+}
+
+export async function fetchFanDuel() {
   const byId = new Map()
   for (const [league, eventTypeId, competitionIds] of FD_BOARDS) {
     let leagueRows = 0
@@ -361,40 +379,53 @@ async function fetchFanDuel() {
           throw new Error(`FanDuel returned no same-game parlays for ${league}`)
         }
         for (const opportunity of rows) {
-          const row = readFanDuelOpportunity(opportunity, payload.attachments, league, source)
-          if (!row.id) continue
-          const existing = byId.get(row.id)
-          if (existing) {
-            const resolved = (item) => item.legs.filter((leg) => leg.market && leg.selection).length
-            if (resolved(row) > resolved(existing)) {
-              row.source = existing.source.includes(source) ? existing.source : `${existing.source}+${source}`
-              byId.set(row.id, row)
-            } else if (!existing.source.includes(source)) {
-              existing.source = `${existing.source}+${source}`
-            }
-            continue
-          }
-          byId.set(row.id, row)
-          leagueRows += 1
+          if (storeFanDuel(byId, opportunity, payload.attachments, league, source)) leagueRows += 1
         }
       }
     }
+    const nextUrl = `https://boapi.sportsbook.fanduel.com/betting-opportunities/next-to-start?cardVersion=1&_ak=${FD_KEY}&eventTypeId=${eventTypeId}&competitionIds=${competitionIds}`
+    process.stderr.write(`fanduel ${league} next-to-start\n`)
+    const nextPayload = await getJson(nextUrl, FD_HEADERS)
+    for (const opportunity of nextPayload.popularBettingOpportunities ?? []) {
+      if (storeFanDuel(byId, opportunity, nextPayload.attachments, league, 'next')) leagueRows += 1
+    }
     if (leagueRows === 0) throw new Error(`FanDuel returned no premade parlays for ${league}`)
   }
+
+  const jobs = []
+  for (const [page, league] of [['nfl', 'NFL'], ['ncaaf', 'NCAAF'], ['nba', 'NBA'], ['nhl', 'NHL']]) {
+    const payload = await getJson(`${'https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page'}?page=CUSTOM&customPageId=${page}&_ak=${FD_KEY}`, FD_HEADERS)
+    for (const event of Object.values(payload.attachments?.events ?? {})) {
+      if (!String(event.name ?? '').includes(' @ ')) continue
+      jobs.push({ id: event.eventId, league })
+    }
+  }
+  process.stderr.write(`fanduel event cards ${jobs.length}\n`)
+  let cursor = 0
+  async function eventWorker() {
+    while (cursor < jobs.length) {
+      const job = jobs[cursor]
+      cursor += 1
+      const payload = await getJson(`https://boapi.sportsbook.fanduel.com/popular/events/${job.id}?cardVersion=1&_ak=${FD_KEY}`, FD_HEADERS)
+      for (const opportunity of payload.popularBettingOpportunities ?? []) {
+        storeFanDuel(byId, opportunity, payload.attachments, job.league, 'event')
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: 8 }, () => eventWorker()))
+  const home = await getJson(`https://boapi.sportsbook.fanduel.com/popular/home?cardVersion=1&_ak=${FD_KEY}`, FD_HEADERS)
+  for (const opportunity of home.popularBettingOpportunities ?? []) {
+    storeFanDuel(byId, opportunity, home.attachments, 'Home', 'home')
+  }
+  if (byId.size === 0) throw new Error('FanDuel returned no premade parlays')
   return [...byId.values()]
 }
 
 async function fetchDraftKings() {
-  const rows = []
-  for (const [league, leagueId] of DK_LEAGUES) {
-    const url = `${DK_PREPACKS}?leagueId=${leagueId}&includeFilters=true&locale=en-us`
-    process.stderr.write(`draftkings ${league}\n`)
-    const payload = await getJson(url, { Accept: 'application/json', 'User-Agent': 'SidelineProjection/0.1' })
-    const packs = payload.data?.prePacks ?? []
-    if (packs.length === 0) throw new Error(`DraftKings returned no premade parlays for ${league}`)
-    for (const pack of packs) rows.push(readDraftKingsPack(pack, payload.data?.events ?? [], league))
-  }
-  return rows
+  const { collectDraftKings } = await import('./dk-prebuilt.mjs')
+  const collected = await collectDraftKings()
+  if (collected.rows.length === 0) throw new Error('DraftKings returned no premade parlays')
+  return collected
 }
 
 function countBy(rows, field) {
@@ -424,43 +455,47 @@ async function main() {
     dateStyle: 'medium',
     timeStyle: 'short',
   })
-  const [fanDuel, draftKings] = await Promise.all([fetchFanDuel(), fetchDraftKings()])
+  const [fanDuel, collected] = await Promise.all([fetchFanDuel(), fetchDraftKings()])
+  const draftKings = collected.rows
+  if (fanDuel.length === 0 || draftKings.length === 0) {
+    throw new Error('FanDuel and DraftKings both have to return parlays')
+  }
+  if (draftKings.filter((row) => row.league === 'NFL').length <= 49) {
+    throw new Error('DraftKings NFL stayed on the Under +200 tab')
+  }
   const games = []
   for (const file of SLATES) {
     const markdown = await readFile(file, 'utf8')
     games.push(...loadGames(markdown, file))
   }
+  for (const row of fanDuel) {
+    for (const leg of row.legs) leg.slate = compareLeg(games, leg)
+  }
 
-  const snapshot = { retrievedAt, fanDuel, draftKings }
+  const snapshot = { retrievedAt, fanDuel, draftKings, leagueStats: collected.leagueStats }
   await writeFile('docs/projections/premade-parlays.json', JSON.stringify(snapshot))
 
-  const sameGame = [...draftKings, ...fanDuel].filter((row) => row.type === 'SGP' && row.event)
-  const other = [...draftKings, ...fanDuel].filter((row) => !(row.type === 'SGP' && row.event))
+  const sameGame = fanDuel.filter((row) => row.type === 'SGP' && row.event)
+  const other = fanDuel.filter((row) => !(row.type === 'SGP' && row.event))
   const lines = [
     '# Premade parlays',
     '',
-    `Retrieved ${retrievedAt} UTC (${retrievedET} ET). These are the books' combined prices. They are not a model and they are not a priced edge.`,
+    `Retrieved ${retrievedAt} UTC (${retrievedET} ET). Both books were read on this pass. These are the books' combined prices. They are not a model and they are not a priced edge.`,
     '',
-    'A premade parlay is a fixed set of legs with one combined American price. The earlier game-line feeds did not send these. The website cards did.',
+    'A premade parlay is a fixed set of legs with one combined American price.',
     '',
     '## Access',
     '',
-    'FanDuel Ohio. The site calls `https://boapi.sportsbook.fanduel.com/betting-opportunities/all` with `cardVersion`, `_ak=FhMFpcPWXMeyZxOx`, `eventTypeId`, `competitionIds`, and `source`. The request needs header `x-sportsbook-region: OH`.',
+    'FanDuel Ohio. Header `x-sportsbook-region: OH`. The league card is `https://boapi.sportsbook.fanduel.com/betting-opportunities/all`. The event card is `https://boapi.sportsbook.fanduel.com/popular/events/{eventId}`. The league card returns at most 50 rows, so each Ohio NFL, college, NBA, and NHL game is also read.',
     '',
-    'Event type ids: NFL and college football `6423`, NBA `7522`, NHL `7524`. Competition ids: NFL `12282733`, NCAA Football Games `12529073`, NBA `10547864`, NHL `12550521`. Each request is read for `ORGANIC` and `MANUAL`, and again with `type=SGP`. The card returns at most 50 rows per request. Duplicate ids are dropped.',
-    '',
-    'DraftKings Ohio. The sportsbook page loads the prepacks widget, which calls:',
-    '',
-    '`https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks?leagueId={id}&includeFilters=true&locale=en-us`',
-    '',
-    'League ids: NFL `88808`, NBA `42648`, NHL `42133`, NCAAF `87637`. A league request with no odds range returns the default Under +200 tab. The other price tabs are in `docs/projections/DK-PREBUILT.md`.',
+    'DraftKings Ohio. `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks`. A league request with no odds range is the Under +200 tab. This pass reads the Away, Home, and Mixed tabs on every league the Ohio nav tags PrePack.',
     '',
     '## Counts',
     '',
     '| Book | Board | Rows |',
     '| --- | --- | --- |',
     ...countBy(fanDuel, 'type').map(([key, count]) => `| FanDuel | ${key} | ${count} |`),
-    ...countBy(draftKings, 'type').map(([key, count]) => `| DraftKings | ${key} | ${count} |`),
+    ...collected.leagueStats.map((stat) => `| DraftKings | ${stat.name} | ${stat.parlays} |`),
     '',
     `FanDuel rows: ${fanDuel.length}. DraftKings rows: ${draftKings.length}.`,
     '',
@@ -468,20 +503,20 @@ async function main() {
     '',
     'The combined price belongs to the whole parlay. A player leg has no projection, so that leg stays missing. A moneyline, game total, or team total is set next to the venue-matched score only when that game is already on a retrieved slate from October 30 through November 5. The four models are not refit to the parlay. A point gap is not a priced edge. A sim percentage is the share of the draws.',
     '',
-    '## Same-game parlays',
+    '## FanDuel same-game parlays',
     '',
     ...sameGame.flatMap((parlay) => [sameGameNotes(parlay, games), '']),
-    '## Other priced parlays',
-    '',
-    'These are the remaining cards: cross-game parlays and same-game cards whose event name was not attached. Player legs stay missing.',
+    '## FanDuel other priced parlays',
     '',
     ...other.map(parlayLine),
     '',
-    'The rows are in `docs/projections/premade-parlays.json`, `docs/projections/sideline-premade-parlays-2026-10-30.xlsx`, and `docs/projections/sideline-premade-parlays-2026-10-30.csv`.',
+    'DraftKings cards are in the counts above and in the spreadsheet. The markdown does not repeat every DraftKings leg.',
+    '',
+    'The rows are in `docs/projections/premade-parlays.json`, `docs/projections/sideline-both-books-2026-10-30.xlsx`, and `docs/projections/sideline-both-books-2026-10-30.csv`.',
     '',
   ]
   await writeFile('docs/projections/PREMADE-PARLAYS.md', `${lines.join('\n')}\n`)
-  process.stdout.write(`fanduel ${fanDuel.length}\ndraftkings ${draftKings.length}\nsame-game ${sameGame.length}\nother ${other.length}\n`)
+  process.stdout.write(`fanduel ${fanDuel.length}\ndraftkings ${draftKings.length}\n`)
 }
 
 const entry = process.argv[1]

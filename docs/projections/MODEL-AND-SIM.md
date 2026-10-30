@@ -17,12 +17,14 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/public-consensus.mjs` | Covers handicapper counts and the ESPN Matchup Predictor. Separate from the models and the books. |
 | `scripts/backtest-slate.mjs` | Walk-forward record on completed NFL, NBA, and NHL games. |
 | `docs/projections/BACKTEST.md` | The latest backtest record. |
-| `scripts/premade-parlays.mjs` | Pulls priced premade parlays from the FanDuel Ohio card and the DraftKings Ohio prepacks widget. |
+| `scripts/premade-parlays.mjs` | Pulls FanDuel and DraftKings together. FanDuel is the Ohio card plus each event page. DraftKings is every PrePack tab, not only Under +200. The run stops if either book comes back empty. |
 | `docs/projections/PREMADE-PARLAYS.md` | The latest premade-parlay snapshot: legs, combined American price, and a point comparison where a retrieved slate already has the game. |
 | `docs/projections/premade-parlays.json` | Those parlays as rows. |
 | `scripts/export-premade-parlays.py` | Writes that snapshot to a spreadsheet and a CSV. It does not fetch prices. |
 | `docs/projections/sideline-premade-parlays-2026-10-30.xlsx` | One workbook: a parlays sheet and a legs sheet. |
-| `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The parlays sheet alone, one row per card. |
+| `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The earlier parlays sheet, one row per card. |
+| `docs/projections/sideline-both-books-2026-10-30.xlsx` | FanDuel and DraftKings prebuilt cards from the same retrieval. |
+| `docs/projections/sideline-both-books-2026-10-30.csv` | That same retrieval, one row per card. |
 | `scripts/dk-prebuilt.mjs` | Walks every DraftKings Ohio PrePack league, including the price tabs past Under +200. |
 | `docs/projections/DK-PREBUILT.md` | The counts from that search. |
 | `docs/projections/dk-prebuilt-parlays.json` | Every DraftKings prebuilt card from that search. |
