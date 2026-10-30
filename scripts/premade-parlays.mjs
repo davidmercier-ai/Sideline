@@ -200,6 +200,136 @@ function teamFromMarket(marketName) {
   return match ? match[1] : null
 }
 
+function bookNumber(leg) {
+  if (leg.line != null && leg.line !== '') {
+    const number = Number(leg.line)
+    if (Number.isFinite(number)) return number
+  }
+  const match = String(leg.selection ?? '').match(/(\d+(?:\.\d+)?)/)
+  return match ? Number(match[1]) : null
+}
+
+function overUnder(leg) {
+  const text = `${leg.selection ?? ''} ${leg.outcome ?? ''}`
+  if (/\bover\b/i.test(text)) return 'over'
+  if (/\bunder\b/i.test(text)) return 'under'
+  return null
+}
+
+function modelVote(game, teamText) {
+  const models = String(game.models ?? '')
+  const unanimous = models.match(/^(.+), (\d+)[–-]0$/)
+  const legSide = sideOf(game, teamText)
+  if (unanimous) {
+    const voteSide = sideOf(game, unanimous[1])
+    if (!legSide || !voteSide) return { stance: 'even', weight: 0, label: 'side did not match' }
+    if (legSide === voteSide) return { stance: 'with', weight: 2, label: `unanimous ${unanimous[1]}` }
+    return { stance: 'against', weight: -2, label: `unanimous the other way, ${unanimous[1]}` }
+  }
+  const split = models.match(/^split, (\d+)[–-](\d+)(?: (.+))?$/)
+  if (split && split[3]) {
+    const voteSide = sideOf(game, split[3])
+    if (!legSide || !voteSide) return { stance: 'even', weight: 0, label: 'side did not match' }
+    if (legSide === voteSide) return { stance: 'with', weight: 1, label: `split leader ${split[3]}` }
+    return { stance: 'against', weight: -1, label: `split, other side, leader ${split[3]}` }
+  }
+  if (split) return { stance: 'even', weight: 0, label: 'split even' }
+  return { stance: 'even', weight: 0, label: 'vote missing' }
+}
+
+function numberStance(direction, ourNumber, bookLine) {
+  if (!Number.isFinite(ourNumber) || !Number.isFinite(bookLine) || !direction) {
+    return { stance: 'even', weight: 0, label: 'number missing' }
+  }
+  const gap = Math.round((ourNumber - bookLine) * 10) / 10
+  const above = gap >= 1
+  const below = gap <= -1
+  const withNumber = direction === 'over' ? above : below
+  const againstNumber = direction === 'over' ? below : above
+  if (withNumber) return { stance: 'with', weight: 1, label: `venue-matched ${ourNumber} is ${direction} ${bookLine}` }
+  if (againstNumber) return { stance: 'against', weight: -1, label: `venue-matched ${ourNumber} is not ${direction} ${bookLine}` }
+  return { stance: 'even', weight: 0, label: `venue-matched ${ourNumber} is level with ${bookLine}` }
+}
+
+export function rateLeg(games, leg) {
+  const line = bookNumber(leg)
+  if (isPlayerMarket(leg.marketType, leg.market)) {
+    const name = norm(leg.selection)
+    return {
+      status: 'unrated',
+      kind: 'player',
+      stance: null,
+      weight: 0,
+      label: 'Player projection missing.',
+      signature: `player|${name}|${line ?? ''}`,
+      game: null,
+    }
+  }
+  const game = findGame(games, leg.event, leg.start)
+  if (!game) {
+    return {
+      status: 'unrated',
+      kind: 'missing-game',
+      stance: null,
+      weight: 0,
+      label: 'Game is not on a retrieved slate.',
+      signature: null,
+      game: null,
+    }
+  }
+  if (isMoneyline(leg.market, leg.marketType)) {
+    const vote = modelVote(game, leg.selection)
+    const side = sideOf(game, leg.selection)
+    return {
+      status: side ? 'rated' : 'unrated',
+      kind: 'moneyline',
+      stance: side ? vote.stance : null,
+      weight: side ? vote.weight : 0,
+      label: `${game.game}. ${vote.label}. Models: ${game.models}. Sim: ${game.sim}.`,
+      signature: side ? `${norm(game.game)}|ml|${side}` : null,
+      game: game.game,
+    }
+  }
+  if (isGameTotal(leg.market, leg.marketType)) {
+    const direction = overUnder(leg)
+    const vote = numberStance(direction, game.total, line)
+    return {
+      status: direction && line != null ? 'rated' : 'unrated',
+      kind: 'total',
+      stance: direction && line != null ? vote.stance : null,
+      weight: direction && line != null ? vote.weight : 0,
+      label: `${game.game}. ${vote.label}.`,
+      signature: direction && line != null ? `${norm(game.game)}|total|${direction}|${line}` : null,
+      game: game.game,
+    }
+  }
+  if (isTeamTotal(leg.market)) {
+    const team = teamFromMarket(leg.market) || leg.selection
+    const side = sideOf(game, team)
+    const score = side === 'home' ? game.homeScore : side === 'away' ? game.awayScore : null
+    const direction = overUnder(leg)
+    const vote = numberStance(direction, score, line)
+    return {
+      status: side && direction && line != null ? 'rated' : 'unrated',
+      kind: 'team-total',
+      stance: side && direction && line != null ? vote.stance : null,
+      weight: side && direction && line != null ? vote.weight : 0,
+      label: `${game.game}. ${vote.label}.`,
+      signature: side && direction && line != null ? `${norm(game.game)}|team|${side}|${direction}|${line}` : null,
+      game: game.game,
+    }
+  }
+  return {
+    status: 'unrated',
+    kind: 'other',
+    stance: null,
+    weight: 0,
+    label: `${game.game} is on a retrieved slate. No projection is attached to this market.`,
+    signature: `${norm(game.game)}|other|${norm(leg.market)}|${norm(leg.selection)}|${line ?? ''}`,
+    game: game.game,
+  }
+}
+
 export function compareLeg(games, leg) {
   if (isPlayerMarket(leg.marketType, leg.market)) {
     return 'Player projection missing.'

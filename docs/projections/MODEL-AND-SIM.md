@@ -25,6 +25,9 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The earlier parlays sheet, one row per card. |
 | `docs/projections/sideline-both-books-2026-10-30.xlsx` | FanDuel and DraftKings prebuilt cards from the same retrieval. |
 | `docs/projections/sideline-both-books-2026-10-30.csv` | That same retrieval, one row per card. |
+| `scripts/rank-parlays.mjs` | Rates those parlays against the slates already predicted and ranks a price only when both books post the same card. |
+| `docs/projections/PARLAY-RANK.md` | The rank: with the projection, mixed, against, and the same-card price order. |
+| `docs/projections/sideline-parlay-rank-2026-10-30.xlsx` | The full rank in a workbook. |
 | `scripts/dk-prebuilt.mjs` | Walks every DraftKings Ohio PrePack league, including the price tabs past Under +200. |
 | `docs/projections/DK-PREBUILT.md` | The counts from that search. |
 | `docs/projections/dk-prebuilt-parlays.json` | Every DraftKings prebuilt card from that search. |
