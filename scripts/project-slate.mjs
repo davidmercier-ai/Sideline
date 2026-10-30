@@ -1011,18 +1011,30 @@ async function main() {
 
   const sportBlocks = []
   const predictions = []
-  const boards = [
-    ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
-    ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points', 'ncaaf'],
-    ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true, 'points', 'ncaaf'],
-    ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true, 'points', 'ncaaf'],
-    ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points', 'ncaaf'],
-    ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points', 'nba'],
-    ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals', 'nhl'],
-    ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
-    ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
-    ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
-  ]
+  const dated = slateDate ? slateDate.replaceAll('-', '') : null
+  const boards = dated
+    ? [
+        ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
+        [`FBS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=80&limit=300`, true, 'points', 'ncaaf'],
+        [`FCS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=81&limit=300`, true, 'points', 'ncaaf'],
+        [`NBA ${slateDate}`, 'basketball/nba', `?dates=${dated}`, false, 'points', 'nba'],
+        [`NHL ${slateDate}`, 'hockey/nhl', `?dates=${dated}`, false, 'goals', 'nhl'],
+        ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
+        ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
+        ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
+      ]
+    : [
+        ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
+        ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points', 'ncaaf'],
+        ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true, 'points', 'ncaaf'],
+        ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true, 'points', 'ncaaf'],
+        ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points', 'ncaaf'],
+        ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points', 'nba'],
+        ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals', 'nhl'],
+        ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
+        ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
+        ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
+      ]
 
   for (const [title, sportPath, query, football, unit, sportKey] of boards) {
     process.stderr.write(`loading ${title}\n`)
