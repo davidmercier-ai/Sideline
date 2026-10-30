@@ -33,21 +33,22 @@ export async function fetchTonight(date = todayET()): Promise<TonightSlate> {
 }
 
 export async function findSimSlateDate(from = todayET()): Promise<string> {
-  const dates = Array.from({ length: 6 }, (_, i) => shiftDate(from, -(i + 1)))
-  const rows = await Promise.all(
-    dates.map(async (date) => {
-      const [mlb, nba, nhl] = await Promise.all([
-        fetchSchedule(date).catch(() => [] as ScheduleGame[]),
-        fetchNbaSlate(date).catch(() => [] as NbaGame[]),
-        fetchNhlSlate(date).catch(() => [] as NhlGame[]),
-      ])
-      const games = mlb.length + nba.length + nhl.length
-      const sports = [mlb, nba, nhl].filter((list) => list.length > 0).length
-      return { date, sports, games }
-    }),
-  )
-  rows.sort((a, b) => b.sports - a.sports || b.games - a.games)
-  return rows[0]?.date ?? shiftDate(from, -1)
+  let best: { date: string; sports: number; games: number } | undefined
+  for (let i = 1; i <= 6; i += 1) {
+    const date = shiftDate(from, -i)
+    const [mlb, nba, nhl] = await Promise.all([
+      fetchSchedule(date).catch(() => [] as ScheduleGame[]),
+      fetchNbaSlate(date).catch(() => [] as NbaGame[]),
+      fetchNhlSlate(date).catch(() => [] as NhlGame[]),
+    ])
+    const games = mlb.length + nba.length + nhl.length
+    const sports = [mlb, nba, nhl].filter((list) => list.length > 0).length
+    if (!best || sports > best.sports || (sports === best.sports && games > best.games)) {
+      best = { date, sports, games }
+    }
+    if (sports >= 3 && games >= 8) return date
+  }
+  return best?.date ?? shiftDate(from, -1)
 }
 
 export function boardPath(path: string, date: string): string {
