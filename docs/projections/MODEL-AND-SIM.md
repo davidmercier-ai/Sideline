@@ -17,11 +17,13 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/public-consensus.mjs` | Covers handicapper counts and the ESPN Matchup Predictor. Separate from the models and the books. |
 | `scripts/backtest-slate.mjs` | Walk-forward record on completed NFL, NBA, and NHL games. |
 | `docs/projections/BACKTEST.md` | The latest backtest record. |
-| `docs/projections/PREMADE-PARLAYS.md` | Where FanDuel and DraftKings premade parlays were looked up, and that the priced legs were not in the payload. |
+| `scripts/premade-parlays.mjs` | Pulls priced premade parlays from the FanDuel Ohio card and the DraftKings Ohio prepacks widget. |
+| `docs/projections/PREMADE-PARLAYS.md` | The latest premade-parlay snapshot: legs, combined American price, and a point comparison where a retrieved slate already has the game. |
+| `docs/projections/premade-parlays.json` | Those parlays as rows. |
 | `scripts/book-access.mjs` | Pulls the FanDuel Ohio board and the DraftKings prop feeds. |
 | `docs/projections/BOOK-ACCESS.md` | The latest access check and row counts. |
 | `docs/projections/book-access.json` | The prices from that check. |
-| `docs/projections/COMMANDMENTS.md` | The ten rules that govern every slate. |
+| `docs/projections/COMMANDMENTS.md` | The eleven rules that govern every slate. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
 | `docs/projections/2026-10-30-slate.md` | All sports on the retrieved boards: NFL week, Friday and Saturday FBS and FCS, October 30 NBA and NHL, Premier League, MLS. Same models and sim. MLB had no upcoming game. |
@@ -126,7 +128,9 @@ FanDuel Ohio board, public, no login:
 
 The event name is `Away @ Home`. The spread market is `MATCH_HANDICAP_(2-WAY)`. The home runner’s handicap is the home spread: negative means the home team is favored. The away runner has its own handicap and its own American price. The total market is `TOTAL_POINTS_(OVER/UNDER)`. The moneyline market is `MONEY_LINE`. Report the price on each side. The home price alone is only half of the number. This board sends no opening price.
 
-DraftKings game lines and the main player over/unders come from `https://sportsbook-nash.draftkings.com/api/sportscontent/prepack/v1/leagues/{league}`. League ids are NFL `88808`, NBA `42648`, and NHL `42133`. Pass yards are category `1000` subcategory `9524`. Rush yards are `1001` / `9514`. Receiving yards are `1342` / `14114`. Points, rebounds, and assists are `12488`, `12492`, and `12495`. The ESPN scoreboard quote is still a DraftKings game line, with open and latest, when that quote is present. The DraftKings website itself is not the feed.
+DraftKings game lines and the main player over/unders come from `https://sportsbook-nash.draftkings.com/api/sportscontent/prepack/v1/leagues/{league}`. League ids are NFL `88808`, NBA `42648`, and NHL `42133`. Pass yards are category `1000` subcategory `9524`. Rush yards are `1001` / `9514`. Receiving yards are `1342` / `14114`. Points, rebounds, and assists are `12488`, `12492`, and `12495`. The ESPN scoreboard quote is still a DraftKings game line, with open and latest, when that quote is present.
+
+Priced premade parlays are a separate pull. FanDuel’s Ohio card is `https://boapi.sportsbook.fanduel.com/betting-opportunities/all` with header `x-sportsbook-region: OH`. DraftKings’ Ohio prepacks widget is `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks`. The combined American price is the book’s number for the whole parlay. A player leg stays missing. Run `node scripts/premade-parlays.mjs`.
 
 Home margin for a book = the number of points by which the home team is favored. FanDuel’s home handicap is stored on the home runner, so the margin is the handicap multiplied by −1. DraftKings’ ESPN `spread` is the same sign convention.
 

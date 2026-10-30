@@ -3,7 +3,7 @@
  *
  * FanDuel: Ohio content page. Game lines, plus the player markets that page attaches.
  * DraftKings: sportsbook-nash content feed. Game lines and the main prop over/unders.
- * Neither feed sends a priced premade parlay.
+ * Neither of these feeds sends a priced premade parlay. Those are in scripts/premade-parlays.mjs.
  *
  * Run: node scripts/book-access.mjs
  */
@@ -192,7 +192,7 @@ async function main() {
     '',
     fdTd ? `Sample: ${fdTd.event}, ${fdTd.market}, ${fdTd.selection} ${fdTd.american}.` : 'Anytime-touchdown sample missing.',
     '',
-    'The Ohio NBA page did not attach player points, rebounds, or assists. DraftKings did. Premade parlays, a fixed set of legs with one combined price, were not in either of these feeds.',
+    'The Ohio NBA page did not attach player points, rebounds, or assists. DraftKings did. Premade parlays are not in these line and prop feeds. They are in `docs/projections/PREMADE-PARLAYS.md`.',
     '',
     'The rows are in `docs/projections/book-access.json`.',
     '',

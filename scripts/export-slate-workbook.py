@@ -1097,7 +1097,7 @@ def write_commandments(ws, text):
         body = ws.cell(row, 2, match.group(2))
         body.font = Font(name="Calibri", size=12)
         body.alignment = Alignment(wrap_text=True, vertical="center")
-        ws.row_dimensions[row].height = 36
+        ws.row_dimensions[row].height = 52
         row += 1
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = f"A1:B{max(2, row - 1)}"

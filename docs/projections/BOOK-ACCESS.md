@@ -33,6 +33,6 @@ Feed: `https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUS
 
 Sample: Chicago Bears @ Seattle Seahawks, Any Time Touchdown Scorer, D'Andre Swift -115.
 
-The Ohio NBA page did not attach player points, rebounds, or assists. DraftKings did. Premade parlays, a fixed set of legs with one combined price, were not in either of these feeds.
+The Ohio NBA page did not attach player points, rebounds, or assists. DraftKings did. Premade parlays are not in these line and prop feeds. They are in `docs/projections/PREMADE-PARLAYS.md`.
 
 The rows are in `docs/projections/book-access.json`.
