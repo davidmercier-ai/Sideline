@@ -8,7 +8,7 @@ These govern every slate. The prediction comes first. The books' prices stay in 
 4. Name a side only when every available model agrees. A split stays a split. Synergy stays visible as reinforce or diverge.
 5. Run the sim on its own: 2,000 draws, a fixed seed, and no price read while the draws run. Mark it thin when any venue slice has fewer than 3 games.
 6. Leave a missing number missing. Do not build a median, a mode, a high, a low, or a win probability out of an average.
-7. Report FanDuel and DraftKings prices as their numbers, with the American price on both sides. FanDuel comes from the Ohio board. DraftKings comes from the ESPN quote.
+7. Report FanDuel and DraftKings prices as their numbers, with the American price on both sides. FanDuel game lines, and the NFL props that board attaches, come from the Ohio page. DraftKings game lines and player over/unders come from the sportsbook-nash feed. The ESPN quote remains a DraftKings game line when that quote is present.
 8. Rank a price only when both books post the same number. The better price is the higher American odds.
 9. A book number outside every model is line value, a point gap. Leave a priced edge unlabeled.
 10. Do not fill a prop, a team total, an opening price, or an outside pick that the source did not send. Do not fit a model to a book. One snapshot is not a closing line.

@@ -18,6 +18,9 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/backtest-slate.mjs` | Walk-forward record on completed NFL, NBA, and NHL games. |
 | `docs/projections/BACKTEST.md` | The latest backtest record. |
 | `docs/projections/PREMADE-PARLAYS.md` | Where FanDuel and DraftKings premade parlays were looked up, and that the priced legs were not in the payload. |
+| `scripts/book-access.mjs` | Pulls the FanDuel Ohio board and the DraftKings prop feeds. |
+| `docs/projections/BOOK-ACCESS.md` | The latest access check and row counts. |
+| `docs/projections/book-access.json` | The prices from that check. |
 | `docs/projections/COMMANDMENTS.md` | The ten rules that govern every slate. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
@@ -123,7 +126,7 @@ FanDuel Ohio board, public, no login:
 
 The event name is `Away @ Home`. The spread market is `MATCH_HANDICAP_(2-WAY)`. The home runner’s handicap is the home spread: negative means the home team is favored. The away runner has its own handicap and its own American price. The total market is `TOTAL_POINTS_(OVER/UNDER)`. The moneyline market is `MONEY_LINE`. Report the price on each side. The home price alone is only half of the number. This board sends no opening price.
 
-DraftKings’ own site returns access denied. Stop there. Open and latest prices are the ESPN scoreboard quote whose provider is DraftKings. `pointSpread.home.close` and `pointSpread.away.close` each carry a line and an American price. The moneyline and the total are the same way, open and latest. The older cards printed the home spread price and left the other side in the payload. Print both.
+DraftKings game lines and the main player over/unders come from `https://sportsbook-nash.draftkings.com/api/sportscontent/prepack/v1/leagues/{league}`. League ids are NFL `88808`, NBA `42648`, and NHL `42133`. Pass yards are category `1000` subcategory `9524`. Rush yards are `1001` / `9514`. Receiving yards are `1342` / `14114`. Points, rebounds, and assists are `12488`, `12492`, and `12495`. The ESPN scoreboard quote is still a DraftKings game line, with open and latest, when that quote is present. The DraftKings website itself is not the feed.
 
 Home margin for a book = the number of points by which the home team is favored. FanDuel’s home handicap is stored on the home runner, so the margin is the handicap multiplied by −1. DraftKings’ ESPN `spread` is the same sign convention.
 
