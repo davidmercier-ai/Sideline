@@ -1,6 +1,6 @@
 # Sideline
 
-Field-level sports companion. MLB scores and a first-pass lean, soccer goals, and NBA threes — the front end for the model that will live beside this repo.
+Field-level sports companion. MLB scores and a first-pass lean, soccer goals, NBA threes, and NHL goals and saves — the front end for the model that will live beside this repo.
 
 ## Run it
 
@@ -11,6 +11,8 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
+On an iPhone, open that URL in Safari and use **Share → Add to Home Screen**. The phone build is a standalone sheet: bottom tabs, notch/home-indicator padding, and no desktop lede. Desktop layout is unchanged.
+
 ```bash
 npm run build
 npm run preview
@@ -18,7 +20,8 @@ npm run preview
 
 ## What’s here
 
-- **Scoreboard** — today’s MLB slate (ET), live / upcoming / final filters, date rail, watch list
+- **Tonight** — `/` one sheet for soccer, MLB, NHL, and NBA. Date rail plus **Simulate** to replay the last stacked night (`?date=`)
+- **MLB scoreboard** — `/mlb` live / upcoming / final filters, date rail, watch list
 - **Game** — live scorebug, diamond + count, linescore, recent plays, abbreviated box
 - **Standings** — AL / NL divisions with games back and run differential
 - **Team** — next games, recent results, active roster
@@ -26,12 +29,13 @@ npm run preview
 - **Public number** — ESPN/DraftKings moneyline, shown de-vigged for comparison only. No bet slip.
 - **Soccer goals** — `/soccer` board plus match timeline (scorers, pens, own goals) for EPL, LaLiga, Bundesliga, Serie A, Ligue 1, MLS, UCL, UEL
 - **NBA threes** — `/nba` board plus game timeline (team 3PT, top shooters, made threes)
+- **NHL goals** — `/nhl` board plus game timeline (scorers, goalie saves, goal plays)
 
 Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
 ## Data
 
-[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Soccer, NBA, and public MLB moneylines come from ESPN via the Vite `/espn` proxy (`npm run dev` or `npm run preview`).
+[MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Soccer, NBA, NHL, and public MLB moneylines come from ESPN via the Vite `/espn` proxy (`npm run dev` or `npm run preview`). Dated ESPN boards that return an empty body fall back to the default scoreboard and keep the requested ET date.
 
 When a real model is ready, swap `src/lib/lean.ts`. The UI already accepts `{ home, away }` plus an optional public line.
 

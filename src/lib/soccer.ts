@@ -154,19 +154,21 @@ async function fetchBoard(slug: string, date?: string): Promise<EspnBoard> {
   return getEspnJson<EspnBoard>(`/apis/site/v2/sports/soccer/${slug}/scoreboard${query}`)
 }
 
-export async function fetchSoccerSlate(): Promise<SoccerMatch[]> {
-  const today = todayET()
+export async function fetchSoccerSlate(date = todayET()): Promise<SoccerMatch[]> {
+  const includeDefault = date === todayET()
   const results = await Promise.all(
-    SOCCER_LEAGUES.flatMap((league) => [
-      fetchBoard(league.slug).catch(() => ({ events: [] })),
-      fetchBoard(league.slug, today).catch(() => ({ events: [] })),
-    ]),
+    SOCCER_LEAGUES.flatMap((league) => {
+      const boards = [fetchBoard(league.slug, date).catch(() => ({ events: [] as EspnEvent[] }))]
+      if (includeDefault) boards.unshift(fetchBoard(league.slug).catch(() => ({ events: [] as EspnEvent[] })))
+      return boards
+    }),
   )
 
   const seen = new Set<string>()
   const matches: SoccerMatch[] = []
+  const boardsPerLeague = includeDefault ? 2 : 1
   SOCCER_LEAGUES.forEach((league, index) => {
-    const boards = [results[index * 2], results[index * 2 + 1]]
+    const boards = results.slice(index * boardsPerLeague, (index + 1) * boardsPerLeague)
     for (const board of boards) {
       for (const event of board.events ?? []) {
         const key = `${league.slug}:${event.id}`

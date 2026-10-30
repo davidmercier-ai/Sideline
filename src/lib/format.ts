@@ -6,6 +6,13 @@ export function todayET(): string {
   }).format(new Date())
 }
 
+export function parseIsoDate(value: string | null | undefined): string | null {
+  if (!value) return null
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+  if (/^\d{8}$/.test(value)) return `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`
+  return null
+}
+
 export function shiftDate(isoDate: string, days: number): string {
   const [year, month, day] = isoDate.split('-').map(Number)
   const next = new Date(Date.UTC(year, month - 1, day + days))
@@ -23,6 +30,12 @@ export function formatLongDate(isoDate: string): string {
   }).format(new Date(Date.UTC(year, month - 1, day)))
 }
 
+export function dateInET(iso: string): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/New_York',
+  }).format(new Date(iso))
+}
+
 export function formatGameTime(iso: string): string {
   return new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/New_York',
@@ -30,6 +43,18 @@ export function formatGameTime(iso: string): string {
     minute: '2-digit',
     timeZoneName: 'short',
   }).format(new Date(iso))
+}
+
+export function formatKickoff(iso: string): string {
+  const time = formatGameTime(iso)
+  if (dateInET(iso) === todayET()) return time
+  const day = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  }).format(new Date(iso))
+  return `${day} · ${time}`
 }
 
 export function seasonFromDate(isoDate: string): number {

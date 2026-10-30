@@ -27,7 +27,7 @@ export default defineConfig({
     host: true,
     port: 5173,
     proxy: {
-      '/mlb': {
+      '/mlb/api': {
         target: 'https://statsapi.mlb.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/mlb/, ''),

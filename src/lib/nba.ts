@@ -1,4 +1,4 @@
-import { getEspnJson } from './espn'
+import { fetchEspnScoreboard, getEspnJson } from './espn'
 
 export type ThreeLine = {
   made: number
@@ -125,20 +125,15 @@ function teamThreesFromBox(stats: Array<{ name?: string; displayValue?: string }
 }
 
 export async function fetchNbaSlate(date: string): Promise<NbaGame[]> {
-  const compact = date.replaceAll('-', '')
-  const board = await getEspnJson<{
-    events?: Array<{
-      id: string
-      date: string
-      status?: { type?: { state?: string; shortDetail?: string; detail?: string } }
-      competitions?: Array<{
-        venue?: { fullName?: string }
-        competitors?: EspnCompetitor[]
-      }>
+  const events = await fetchEspnScoreboard<{
+    id: string
+    date: string
+    status?: { type?: { state?: string; shortDetail?: string; detail?: string } }
+    competitions?: Array<{
+      venue?: { fullName?: string }
+      competitors?: EspnCompetitor[]
     }>
-  }>(`/apis/site/v2/sports/basketball/nba/scoreboard?dates=${compact}`)
-
-  const events = board.events ?? []
+  }>('/apis/site/v2/sports/basketball/nba/scoreboard', date)
   const extras = await Promise.all(
     events.map(async (event) => {
       const state = event.status?.type?.state
