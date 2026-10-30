@@ -20,6 +20,7 @@ from openpyxl.utils import get_column_letter
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SLATE = ROOT / "docs" / "projections" / "2026-10-30-slate.md"
 DEFAULT_MANUAL = ROOT / "docs" / "projections" / "MODEL-AND-SIM.md"
+DEFAULT_COMMANDMENTS = ROOT / "docs" / "projections" / "COMMANDMENTS.md"
 DEFAULT_OUT = ROOT / "docs" / "projections" / "sideline-all-sports-2026-10-30.xlsx"
 
 METHOD_ORDER = (
@@ -1072,6 +1073,35 @@ def write_start(ws, manual_text, games):
     ws.oddHeader.left.text = "Sideline projections — October 30, 2026 snapshot"
 
 
+def write_commandments(ws, text):
+    ws.sheet_properties.tabColor = NAVY
+    ws.column_dimensions["A"].width = 12
+    ws.column_dimensions["B"].width = 110
+    header = Font(bold=True, color=WHITE, name="Calibri", size=11)
+    ws["A1"] = "Number"
+    ws["B1"] = "Commandment"
+    for cell in (ws["A1"], ws["B1"]):
+        cell.font = header
+        cell.fill = PatternFill("solid", fgColor=NAVY)
+    row = 2
+    for line in text.splitlines():
+        match = re.fullmatch(r"(\d+)\. (.+)", line.strip())
+        if not match:
+            continue
+        ws.cell(row, 1, int(match.group(1))).font = Font(bold=True, name="Calibri", size=12)
+        body = ws.cell(row, 2, match.group(2))
+        body.font = Font(name="Calibri", size=12)
+        body.alignment = Alignment(wrap_text=True, vertical="center")
+        ws.row_dimensions[row].height = 36
+        row += 1
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = f"A1:B{max(2, row - 1)}"
+    ws.page_setup.orientation = "landscape"
+    ws.page_setup.fitToPage = True
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 1
+
+
 def write_open_gaps(ws):
     ws.sheet_properties.tabColor = CLAY
     ws.column_dimensions["A"].width = 42
@@ -1318,8 +1348,10 @@ def build(slate_path, manual_path, out_path):
         raise SystemExit("\n".join(errors))
 
     wb = Workbook()
-    start = wb.active
-    start.title = "Start here"
+    commandments = wb.active
+    commandments.title = "Commandments"
+    write_commandments(commandments, DEFAULT_COMMANDMENTS.read_text())
+    start = wb.create_sheet("Start here")
     write_start(start, manual, games)
 
     game_sheet = wb.create_sheet("Games")

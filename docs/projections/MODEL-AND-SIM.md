@@ -1,5 +1,7 @@
 # Base models, simulation, and how to read the slate
 
+The commandments in `docs/projections/COMMANDMENTS.md` govern this manual. The prediction comes first. Book prices stay in their own view.
+
 This is the operating manual for the projection snapshot. It is a transparent baseline, not a validated predictive model. Sportsbook prices never enter the models or the sim.
 
 Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10-30 17:41 UTC (1:41 PM ET).
@@ -12,6 +14,7 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/projection-math.test.mjs` | Checks for the formulas, including a fixed sim seed. |
 | `scripts/project-slate.mjs` | Pulls ESPN logs and FanDuel/DraftKings prices, then writes a report. |
 | `scripts/book-prices.mjs` | FanDuel Ohio board. DraftKings is read from ESPN inside `project-slate.mjs`. |
+| `docs/projections/COMMANDMENTS.md` | The ten rules that govern every slate. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
 | `docs/projections/2026-10-30-slate.md` | All sports on the retrieved boards: NFL week, Friday and Saturday FBS and FCS, October 30 NBA and NHL, Premier League, MLS. Same models and sim. MLB had no upcoming game. |
