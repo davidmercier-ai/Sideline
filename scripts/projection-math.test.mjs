@@ -3,8 +3,11 @@ import {
   difference,
   grossPassingYards,
   homeMargin,
+  impliedFromAmerican,
   inputSynergy,
   marketHomeMargin,
+  noVigPair,
+  quotePosition,
   medianPair,
   methodConvergence,
   projectRate,
@@ -84,5 +87,18 @@ assert.equal(converged.totalRange, 2)
 assert.equal(inputSynergy(12, 10, 11, 9).status, 'reinforce')
 assert.equal(inputSynergy(12, 10, 8, 9).status, 'diverge')
 assert.equal(inputSynergy(null, 10, 8, 9).status, 'missing-input')
+
+assert.equal(roundPct(impliedFromAmerican(-175)), 63.6)
+assert.equal(roundPct(impliedFromAmerican(145)), 40.8)
+const priced = noVigPair('+145', '-175')
+assert.ok(Math.abs(priced.away + priced.home - 1) < 1e-9)
+assert.ok(priced.hold > 0)
+assert.equal(quotePosition(3, [-5, -1.2, 2, 3.5]), 'inside-method-range')
+assert.equal(quotePosition(12.5, [1, 2, 4, 7]), 'outside-method-range')
+assert.equal(quotePosition(null, [1, 2]), 'missing-input')
+
+function roundPct(value) {
+  return Math.round(value * 1000) / 10
+}
 
 console.log('projection math ok')

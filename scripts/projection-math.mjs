@@ -207,6 +207,32 @@ export function difference(projection, market) {
   return projection - market
 }
 
+export function impliedFromAmerican(odds) {
+  const parsed = typeof odds === 'number' ? odds : Number(String(odds ?? '').replace('+', ''))
+  if (!Number.isFinite(parsed) || parsed === 0) return null
+  if (parsed > 0) return 100 / (parsed + 100)
+  return Math.abs(parsed) / (Math.abs(parsed) + 100)
+}
+
+export function noVigPair(awayOdds, homeOdds) {
+  const away = impliedFromAmerican(awayOdds)
+  const home = impliedFromAmerican(homeOdds)
+  if (away == null || home == null) return null
+  const sum = away + home
+  if (sum <= 0) return null
+  return { away: away / sum, home: home / sum, hold: sum - 1 }
+}
+
+/** Where a book number sits relative to the independent methods. */
+export function quotePosition(quote, values) {
+  const nums = values.filter((value) => Number.isFinite(value))
+  if (!Number.isFinite(quote) || nums.length === 0) return 'missing-input'
+  const low = Math.min(...nums)
+  const high = Math.max(...nums)
+  if (quote < low || quote > high) return 'outside-method-range'
+  return 'inside-method-range'
+}
+
 export function totalDirection(diff) {
   if (!Number.isFinite(diff)) return 'unavailable'
   if (Math.abs(diff) < 0.05) return 'baseline equals the posted total'

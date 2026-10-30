@@ -185,7 +185,7 @@ Compare FanDuel, DraftKings, and Novig, with Ohio availability in mind. Show ope
 
 Outside-pick consensus is its own layer and is not blended in.
 
-**Status:** Every game on the slate, in every sport, is presented as three views. Sides, moneyline, O/U, team totals, and props each have a row. Opening and latest prices and the retrieval timestamp sit only in the market view. The comparison shows the numeric difference and says when cross-book variance is unavailable. Edge is withheld unless a validated probability and verified prices support it.
+**Status:** Every game on the slate, in every sport, is presented as three views. Sides, moneyline, O/U, team totals, and props each have a row. Opening and latest prices and the retrieval timestamp sit only in the market view. The comparison shows each method minus the DraftKings number. Line value is marked only when that quote sits outside every method’s range. A point gap is not a priced edge. A priced edge stays unsupported until a validated win probability exists alongside a verified price. FanDuel and Novig remain unavailable, so there is no cross-book value check.
 
 The independent view now has four reads of the same logs: venue-matched mean, overall mean, the average of the two venue medians, and the last three completed games. Agreement among those reads is convergence. It is counted, not averaged into a new projection. Synergy says whether a team’s own venue rate and the opponent’s venue allowance sit on the same side of their overall rates. Outside-pick consensus stays unavailable until a separate source is retrieved. It is not the average of these methods.
 

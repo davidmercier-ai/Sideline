@@ -19,8 +19,10 @@ import {
   marketHomeMargin,
   medianPair,
   methodConvergence,
+  noVigPair,
   overallComparison,
   projectRate,
+  quotePosition,
   projectedOutcome,
   reconcileTotal,
   round1,
@@ -476,28 +478,53 @@ function marketSection(game) {
   return lines
 }
 
-function comparisonSection(game, scoring) {
+function lineValue(position, quote, values) {
+  if (position === 'missing-input') return 'missing-input'
+  const nums = values.filter((value) => Number.isFinite(value))
+  const low = Math.min(...nums)
+  const high = Math.max(...nums)
+  if (position === 'inside-method-range') {
+    return `no line value — DraftKings ${fmt(quote)} sits inside the method range ${fmt(low)} to ${fmt(high)}`
+  }
+  const direction = quote > high ? 'above every method' : 'below every method'
+  return `line-value candidate — DraftKings ${fmt(quote)} is ${direction} (${fmt(low)} to ${fmt(high)}). This is a point gap, not a priced edge.`
+}
+
+function comparisonSection(game, scoring, methods) {
   const market = game.market
-  const sideDiff = difference(scoring.margin, market.marketHomeMargin)
-  const totalDiff = difference(scoring.total, market.total)
+  const margins = methods.map((method) => method.margin)
+  const totals = methods.map((method) => method.total)
+  const sideSpot = quotePosition(market.marketHomeMargin, margins)
+  const totalSpot = quotePosition(market.total, totals)
+  const priced = noVigPair(market.moneyline?.awayClose, market.moneyline?.homeClose)
   const lines = []
-  lines.push('**3. Comparison**')
+  lines.push('**3. Comparison — value, edge, and refinement**')
   lines.push('')
-  lines.push('This view only subtracts a verified quote from the independent baseline. It does not feed prices back into the projection.')
+  lines.push('Each method is subtracted from the DraftKings quote on its own. The methods are not averaged first. Prices are not written back into the projection.')
   lines.push('')
-  lines.push('| View | Home margin | Game total | Away team total | Home team total |')
+  lines.push('| Method | Home margin | Margin minus DraftKings | Combined | Combined minus DraftKings |')
   lines.push('| --- | --- | --- | --- | --- |')
-  lines.push(`| Independent baseline | ${fmt(scoring.margin)} | ${fmt(scoring.total)} | ${fmt(scoring.away.value)} | ${fmt(scoring.home.value)} |`)
-  lines.push(`| DraftKings latest | ${fmt(market.marketHomeMargin)} | ${fmt(market.total)} | unavailable | unavailable |`)
-  lines.push('| FanDuel latest | unavailable | unavailable | unavailable | unavailable |')
-  lines.push('| Novig latest | unavailable | unavailable | unavailable | unavailable |')
-  lines.push(`| Difference versus DraftKings | ${fmt(sideDiff)} | ${fmt(totalDiff)} | missing-input | missing-input |`)
+  for (const method of methods) {
+    lines.push(`| ${method.name} | ${fmt(method.margin)} | ${fmt(difference(method.margin, market.marketHomeMargin))} | ${fmt(method.total)} | ${fmt(difference(method.total, market.total))} |`)
+  }
+  lines.push(`| DraftKings latest | ${fmt(market.marketHomeMargin)} | — | ${fmt(market.total)} | — |`)
+  lines.push('| FanDuel latest | unavailable | missing-input | unavailable | missing-input |')
+  lines.push('| Novig latest | unavailable | missing-input | unavailable | missing-input |')
   lines.push('')
-  lines.push(`- Side variance versus DraftKings: ${fmt(sideDiff)} (baseline home margin minus market home margin).`)
-  lines.push(`- Total variance versus DraftKings: ${fmt(totalDiff)} (${totalDirection(totalDiff)}).`)
-  lines.push('- Cross-book variance: unavailable. Only DraftKings returned a quote, so FanDuel and Novig cannot be compared.')
-  lines.push('- Outside-pick consensus: not used.')
-  lines.push('- Edge: not supported. No validated win probability was calculated, and a single retrieved quote is not validation. The difference stays a difference.')
+  lines.push(`- Venue-mean side gap: ${fmt(difference(scoring.margin, market.marketHomeMargin))}. Venue-mean total gap: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
+  lines.push(`- Side line value: ${lineValue(sideSpot, market.marketHomeMargin, margins)}`)
+  lines.push(`- Total line value: ${lineValue(totalSpot, market.total, totals)}`)
+  lines.push('- Team-total value: missing-input. No book posted a team total.')
+  lines.push('- Cross-book value: unavailable. FanDuel and Novig were not retrieved, so there is no second price to compare.')
+  if (priced) {
+    lines.push(`- DraftKings no-vig price, from the moneyline only: ${game.away.name} ${fmt(priced.away * 100)}%, ${game.home.name} ${fmt(priced.home * 100)}%, hold ${fmt(priced.hold * 100)} percentage points. This is the book’s price, not our probability.`)
+  } else {
+    lines.push('- DraftKings no-vig price: missing-input. Both moneyline prices are required.')
+  }
+  lines.push('- Our win probability: not calculated. A projected score is not a probability.')
+  lines.push('- Priced edge: not supported. Line value above is a point gap. An edge would also need a validated win probability and a verified price. This snapshot has the price from one book and no validated probability.')
+  lines.push('- System refinement: keep the four methods separate while the margin range is wide; do not fit the baseline to the posted number; do not treat a single-book snapshot as a closing line; revisit games with a thin sample, diverging inputs, or a quote that sits inside the method range before treating the gap as stable.')
+  lines.push('- Outside-pick consensus: unavailable, and not used as a tie-break.')
   return lines
 }
 
@@ -597,7 +624,7 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push('')
   lines.push(...marketSection(game))
   lines.push('')
-  lines.push(...comparisonSection(game, scoring))
+  lines.push(...comparisonSection(game, scoring, methods))
   lines.push('')
   lines.push(...propsSection(game))
   return lines.join('\n')
@@ -619,10 +646,15 @@ async function section(title, sportPath, games, football, unit) {
     const awayLog = logs.get(game.away.id)
     const homeLog = logs.get(game.home.id)
     const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
-    const convergence = methodConvergence(scoringMethods(awayLog.rows, homeLog.rows))
+    const methods = scoringMethods(awayLog.rows, homeLog.rows)
+    const convergence = methodConvergence(methods)
+    const sideSpot = quotePosition(game.market.marketHomeMargin, methods.map((method) => method.margin))
+    const totalSpot = quotePosition(game.market.total, methods.map((method) => method.total))
     return {
       scoring,
       convergence,
+      sideSpot,
+      totalSpot,
       markdown: renderGame(game, awayLog, homeLog, football, scoring),
     }
   })
@@ -643,6 +675,15 @@ async function section(title, sportPath, games, football, unit) {
     ...rendered.map(({ convergence }, index) => {
       const game = games[index]
       return `| ${game.away.name} at ${game.home.name} | ${convergence.counts.home} | ${convergence.counts.away} | ${convergence.counts.tie} | ${convergence.side} | ${fmt(convergence.marginRange)} | ${fmt(convergence.totalRange)} |`
+    }),
+    '',
+    'Line value against DraftKings. A candidate means the quote sits outside every method. That is a point gap, not a priced edge.',
+    '',
+    '| Game | Side versus methods | Total versus methods |',
+    '| --- | --- | --- |',
+    ...rendered.map(({ sideSpot, totalSpot }, index) => {
+      const game = games[index]
+      return `| ${game.away.name} at ${game.home.name} | ${sideSpot} | ${totalSpot} |`
     }),
     '',
   ]
