@@ -15,6 +15,7 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
 | `docs/projections/2026-10-30-slate.md` | All sports on the retrieved boards: NFL week, Friday and Saturday FBS and FCS, October 30 NBA and NHL, Premier League, MLS. Same models and sim. MLB had no upcoming game. |
+| `docs/projections/sideline-all-sports-2026-10-30.xlsx` | The same all-sports snapshot in one spreadsheet: instructions, one row per game, the four models, the sim, FanDuel, DraftKings, and the game-log histories. |
 
 ## Run it
 
@@ -24,7 +25,10 @@ From the repo root:
 node scripts/projection-math.test.mjs
 node scripts/project-slate.mjs docs/projections/2026-10-30-today.md --date 2026-10-30
 node scripts/project-slate.mjs docs/projections/YYYY-MM-DD-slate.md
+python3 scripts/export-slate-workbook.py
 ```
+
+The last command reads the all-sports markdown already on disk and writes `docs/projections/sideline-all-sports-2026-10-30.xlsx`. It needs Python 3 and openpyxl. It does not call ESPN, FanDuel, or DraftKings.
 
 `--date` keeps games whose start falls on that calendar day in America/New_York. Omit it to keep every upcoming game on the source boards.
 
