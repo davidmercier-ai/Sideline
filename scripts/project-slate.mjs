@@ -475,37 +475,58 @@ function teamTotalCell(total) {
   return `${total.line} over ${total.over ?? 'price missing'} / under ${total.under ?? 'price missing'}`
 }
 
+function americanRank(price) {
+  const n = Number(String(price ?? '').replace('+', ''))
+  return Number.isFinite(n) && n !== 0 ? n : null
+}
+
+function betterBook(fanduelPrice, draftKingsPrice) {
+  const left = americanRank(fanduelPrice)
+  const right = americanRank(draftKingsPrice)
+  if (left == null || right == null) return 'unavailable'
+  if (left === right) return 'same price'
+  return left > right ? 'FanDuel' : 'DraftKings'
+}
+
 function marketSection(game) {
   const market = game.market
   const fanduel = game.extra?.fanduel
-  const novig = game.extra?.novig
   const draftKings = /draft\s*kings/i.test(market.book ?? '')
+  const dkSideLatest = market.spread?.homeCloseLine ?? (market.homeSpread != null ? String(market.homeSpread) : null)
   const lines = []
-  lines.push('**2. Sportsbook lines and prices**')
+  lines.push('**2. Sportsbook lines and prices — FanDuel and DraftKings**')
   lines.push('')
-  lines.push(`Retrieved ${retrievedAt.toISOString()} UTC. Snapshot, not a live feed. Public betting splits: unavailable.`)
-  lines.push('DraftKings open and latest come from the ESPN quote. FanDuel latest comes from the Ohio sportsbook board. Novig latest is the public bid, converted from a probability to American odds. Opening prices are unavailable unless the source sent them.')
+  lines.push(`Retrieved ${retrievedAt.toISOString()} UTC. Snapshot, not a live feed. This pass uses FanDuel and DraftKings only.`)
+  lines.push('DraftKings open and latest come from the ESPN quote. The DraftKings site returned access denied. FanDuel latest comes from the Ohio board. FanDuel did not send an opening price.')
   lines.push('Prices and timestamps stay in this section. They are not inputs to the projection above.')
   lines.push('')
-  lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Novig open | Novig latest | Flag |')
-  lines.push('| --- | --- | --- | --- | --- | --- | --- | --- |')
-  const dkSide = bookFlag(draftKings, market.spread?.homeCloseLine != null || market.homeSpread != null, market.spread?.homeClosePrice != null)
+  lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Flag |')
+  lines.push('| --- | --- | --- | --- | --- | --- |')
+  const dkSide = bookFlag(draftKings, dkSideLatest != null, market.spread?.homeClosePrice != null)
   const fdSide = fanduel && Number.isFinite(fanduel.homeSpread) ? 'verified-retrieved' : 'unavailable'
-  const nvSide = novig && Number.isFinite(novig.homeSpread) ? 'verified-retrieved' : 'unavailable'
-  lines.push(`| Side | unavailable | ${spreadCell(fanduel?.homeSpread, fanduel?.homeSpreadPrice)} | ${priceCell(market.spread?.homeOpenLine, market.spread?.homeOpenPrice)} | ${priceCell(market.spread?.homeCloseLine ?? (market.homeSpread != null ? String(market.homeSpread) : null), market.spread?.homeClosePrice)} | unavailable | ${spreadCell(novig?.homeSpread, novig?.homeSpreadPrice)} | FD ${fdSide}; DK ${dkSide}; NV ${nvSide} |`)
+  lines.push(`| Side | unavailable | ${spreadCell(fanduel?.homeSpread, fanduel?.homeSpreadPrice)} | ${priceCell(market.spread?.homeOpenLine, market.spread?.homeOpenPrice)} | ${priceCell(dkSideLatest, market.spread?.homeClosePrice)} | FD ${fdSide}; DK ${dkSide} |`)
   const fdMl = fanduel?.awayMoneyline && fanduel?.homeMoneyline ? 'verified-retrieved' : 'unavailable'
-  const dkMl = bookFlag(draftKings, market.moneyline?.homeClose != null || market.moneyline?.awayClose != null, market.moneyline?.homeClose != null && market.moneyline?.awayClose != null)
-  const nvMl = novig?.awayMoneyline && novig?.homeMoneyline ? 'verified-retrieved' : 'unavailable'
-  lines.push(`| Moneyline | unavailable | ${fanduel ? `${fanduel.awayMoneyline ?? 'unavailable'} / ${fanduel.homeMoneyline ?? 'unavailable'}` : 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayOpen ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeOpen ?? 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayClose ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeClose ?? 'unavailable'} | unavailable | ${novig ? `${novig.awayMoneyline ?? 'unavailable'} / ${novig.homeMoneyline ?? 'unavailable'}` : 'unavailable'} | FD ${fdMl}; DK ${dkMl}; NV ${nvMl} |`)
+  const dkMl = bookFlag(draftKings, market.moneyline?.homeClose != null && market.moneyline?.awayClose != null, true)
+  lines.push(`| Moneyline | unavailable | ${fanduel ? `${fanduel.awayMoneyline ?? 'unavailable'} / ${fanduel.homeMoneyline ?? 'unavailable'}` : 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayOpen ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeOpen ?? 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayClose ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeClose ?? 'unavailable'} | FD ${fdMl}; DK ${dkMl} |`)
   const fdTotal = fanduel && Number.isFinite(fanduel.total) ? 'verified-retrieved' : 'unavailable'
   const dkTotal = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
-  const nvTotal = novig && Number.isFinite(novig.total) ? 'verified-retrieved' : 'unavailable'
-  lines.push(`| O/U | unavailable | ${totalCell(fanduel?.total, fanduel?.overPrice, fanduel?.underPrice)} | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | unavailable | ${totalCell(novig?.total, novig?.overPrice, novig?.underPrice)} | FD ${fdTotal}; DK ${dkTotal}; NV ${nvTotal} |`)
-  lines.push(`| Team total, away | unavailable | unavailable | unavailable | unavailable | unavailable | ${teamTotalCell(novig?.awayTeamTotal)} | FD unavailable; DK unavailable; NV ${novig?.awayTeamTotal ? 'verified-retrieved' : 'unavailable'} |`)
-  lines.push(`| Team total, home | unavailable | unavailable | unavailable | unavailable | unavailable | ${teamTotalCell(novig?.homeTeamTotal)} | FD unavailable; DK unavailable; NV ${novig?.homeTeamTotal ? 'verified-retrieved' : 'unavailable'} |`)
+  lines.push(`| O/U | unavailable | ${totalCell(fanduel?.total, fanduel?.overPrice, fanduel?.underPrice)} | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | FD ${fdTotal}; DK ${dkTotal} |`)
+  lines.push('| Team total, away | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
+  lines.push('| Team total, home | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
+  const sameSide = Number.isFinite(fanduel?.homeSpread) && Number.isFinite(market.homeSpread) && fanduel.homeSpread === market.homeSpread
+  if (sameSide) {
+    lines.push(`- Home-side price, same number ${fanduel.homeSpread}: better book is ${betterBook(fanduel.homeSpreadPrice, market.spread?.homeClosePrice)}.`)
+  } else if (Number.isFinite(fanduel?.homeSpread) && Number.isFinite(market.homeSpread)) {
+    lines.push(`- Home spread numbers differ: FanDuel ${fanduel.homeSpread}, DraftKings ${market.homeSpread}. Prices are not ranked across different numbers.`)
+  }
+  const sameTotal = Number.isFinite(fanduel?.total) && Number.isFinite(market.total) && fanduel.total === market.total
+  if (sameTotal) {
+    lines.push(`- Over price, same total ${fanduel.total}: better book is ${betterBook(fanduel.overPrice, market.totalPrices?.overClosePrice)}.`)
+  } else if (Number.isFinite(fanduel?.total) && Number.isFinite(market.total)) {
+    lines.push(`- Totals differ: FanDuel ${fanduel.total}, DraftKings ${market.total}. Prices are not ranked across different numbers.`)
+  }
   if (!draftKings) lines.push(`- DraftKings: ${market.note ?? 'no DraftKings quote in the ESPN payload'}`)
-  if (novig?.note) lines.push(`- ${novig.note}`)
-  if (!fanduel) lines.push('- FanDuel: no matching Ohio board game. Soccer boards were not on the public Ohio page ids tried.')
+  if (!fanduel) lines.push('- FanDuel: no matching Ohio board game.')
   return lines
 }
 
@@ -523,11 +544,9 @@ function lineValue(book, position, quote, values) {
 
 function bookMargins(game) {
   const fanduel = game.extra?.fanduel
-  const novig = game.extra?.novig
   return [
     ['DraftKings', game.market.marketHomeMargin, game.market.total],
     ['FanDuel', Number.isFinite(fanduel?.homeSpread) ? -fanduel.homeSpread : null, fanduel?.total ?? null],
-    ['Novig', Number.isFinite(novig?.homeSpread) ? -novig.homeSpread : null, Number.isFinite(novig?.total) ? novig.total : null],
   ]
 }
 
@@ -540,43 +559,46 @@ function comparisonSection(game, scoring, methods) {
   const lines = []
   lines.push('**3. Comparison — value, edge, and refinement**')
   lines.push('')
-  lines.push('Each method is subtracted from the DraftKings quote on its own. The methods are not averaged first. Prices are not written back into the projection.')
+  const fanduelMargin = Number.isFinite(game.extra?.fanduel?.homeSpread) ? -game.extra.fanduel.homeSpread : null
+  const fanduelTotal = game.extra?.fanduel?.total ?? null
+  lines.push('Each method is subtracted from FanDuel and from DraftKings on its own. The methods are not averaged first. Prices are not written back into the projection.')
   lines.push('')
-  lines.push('| Method | Home margin | Margin minus DraftKings | Combined | Combined minus DraftKings |')
-  lines.push('| --- | --- | --- | --- | --- |')
+  lines.push('| Method | Home margin | Minus FanDuel | Minus DraftKings | Combined | Minus FanDuel total | Minus DraftKings total |')
+  lines.push('| --- | --- | --- | --- | --- | --- | --- |')
   for (const method of methods) {
-    lines.push(`| ${method.name} | ${fmt(method.margin)} | ${fmt(difference(method.margin, market.marketHomeMargin))} | ${fmt(method.total)} | ${fmt(difference(method.total, market.total))} |`)
+    lines.push(`| ${method.name} | ${fmt(method.margin)} | ${fmt(difference(method.margin, fanduelMargin))} | ${fmt(difference(method.margin, market.marketHomeMargin))} | ${fmt(method.total)} | ${fmt(difference(method.total, fanduelTotal))} | ${fmt(difference(method.total, market.total))} |`)
   }
   for (const [name, margin, total] of quotes) {
     lines.push(`| ${name} latest | ${fmt(margin)} | — | ${fmt(total)} | — |`)
   }
   lines.push('')
-  lines.push(`- Venue-mean side gap versus DraftKings: ${fmt(difference(scoring.margin, market.marketHomeMargin))}. Venue-mean total gap versus DraftKings: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
+  lines.push(`- Venue-mean side gap versus FanDuel: ${fmt(difference(scoring.margin, fanduelMargin))}. Versus DraftKings: ${fmt(difference(scoring.margin, market.marketHomeMargin))}.`)
+  lines.push(`- Venue-mean total gap versus FanDuel: ${fmt(difference(scoring.total, fanduelTotal))} (${totalDirection(difference(scoring.total, fanduelTotal))}). Versus DraftKings: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
   for (const [name, margin, total] of quotes) {
     lines.push(`- ${name} side: ${lineValue(name, quotePosition(margin, margins), margin, margins)}`)
     lines.push(`- ${name} total: ${lineValue(name, quotePosition(total, totals), total, totals)}`)
   }
-  const novig = game.extra?.novig
-  if (novig?.awayTeamTotal || novig?.homeTeamTotal) {
-    lines.push(`- Novig team totals: ${game.away.name} ${novig.awayTeamTotal?.line ?? 'unavailable'}, ${game.home.name} ${novig.homeTeamTotal?.line ?? 'unavailable'}. Independent team projections remain the baseline scores above. FanDuel and DraftKings team totals: unavailable.`)
-  } else {
-    lines.push('- Team-total value: missing-input. No matched book posted a team total.')
-  }
+  lines.push('- Team totals: unavailable at FanDuel and DraftKings on the feeds used here.')
   const homeMargins = quotes.map(([, margin]) => margin).filter((value) => Number.isFinite(value))
-  if (homeMargins.length >= 2) {
-    const cross = Math.max(...homeMargins) - Math.min(...homeMargins)
-    lines.push(`- Cross-book home-margin variance: ${fmt(cross)} between ${homeMargins.length} verified books.`)
+  if (homeMargins.length === 2) {
+    lines.push(`- FanDuel versus DraftKings home margin: ${fmt(homeMargins[1] - homeMargins[0])} (FanDuel minus DraftKings).`)
   } else {
-    lines.push('- Cross-book value: unavailable. Fewer than two books returned a side.')
+    lines.push('- FanDuel versus DraftKings: one of the two home spreads is missing.')
   }
+  const fdPriced = noVigPair(game.extra?.fanduel?.awayMoneyline, game.extra?.fanduel?.homeMoneyline)
   if (priced) {
-    lines.push(`- DraftKings no-vig price, from the moneyline only: ${game.away.name} ${fmt(priced.away * 100)}%, ${game.home.name} ${fmt(priced.home * 100)}%, hold ${fmt(priced.hold * 100)} percentage points. This is the book’s price, not our probability.`)
+    lines.push(`- DraftKings no-vig price, from the moneyline only: ${game.away.name} ${fmt(priced.away * 100)}%, ${game.home.name} ${fmt(priced.home * 100)}%, hold ${fmt(priced.hold * 100)} percentage points.`)
   } else {
-    lines.push('- DraftKings no-vig price: missing-input. Both moneyline prices are required.')
+    lines.push('- DraftKings no-vig price: missing-input.')
+  }
+  if (fdPriced) {
+    lines.push(`- FanDuel no-vig price, from the moneyline only: ${game.away.name} ${fmt(fdPriced.away * 100)}%, ${game.home.name} ${fmt(fdPriced.home * 100)}%, hold ${fmt(fdPriced.hold * 100)} percentage points.`)
+  } else {
+    lines.push('- FanDuel no-vig price: missing-input.')
   }
   lines.push('- Our win probability: not calculated. A projected score is not a probability.')
-  lines.push('- Priced edge: not supported. Line value above is a point gap. An edge would also need a validated win probability and a verified price. This snapshot has the price from one book and no validated probability.')
-  lines.push('- System refinement: keep the four methods separate while the margin range is wide; do not fit the baseline to the posted number; do not treat a single-book snapshot as a closing line; revisit games with a thin sample, diverging inputs, or a quote that sits inside the method range before treating the gap as stable.')
+  lines.push('- Priced edge: not supported. A point gap against FanDuel or DraftKings is line value only. An edge still needs a validated win probability.')
+  lines.push('- System refinement: compare the two books only when the number matches; do not fit the baseline to either posted number; treat a quote inside the method range as no separation from the market.')
   lines.push('- Outside-pick consensus: unavailable, and not used as a tie-break.')
   return lines
 }
@@ -587,20 +609,13 @@ function propsSection(game) {
   const lines = [
     '**Props**',
     '',
-    'Separate from the team card. A Novig price is the main bid converted to American odds. The player projection is still open, so a price is not a projection.',
+    'Separate from the team card. This pass looks for FanDuel and DraftKings props only. Neither game-line feed included a verified player prop.',
     '',
-    '| Prop | Independent projection | FanDuel | DraftKings | Novig | Flag |',
-    '| --- | --- | --- | --- | --- | --- |',
+    '| Prop | Independent projection | FanDuel | DraftKings | Flag |',
+    '| --- | --- | --- | --- | --- |',
   ]
   if (shown.length === 0) {
-    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | unavailable | inventory-open; missing-input; unavailable |`)
-  }
-  for (const prop of shown) {
-    const price = prop.over || prop.under ? `o ${prop.over ?? 'missing'} / u ${prop.under ?? 'missing'}` : 'unavailable'
-    lines.push(`| ${prop.player} ${prop.type} ${prop.line} | inventory open | unavailable | unavailable | ${price} | inventory-open; verified-retrieved Novig bid; FanDuel and DraftKings unavailable |`)
-  }
-  if (props.length > shown.length) {
-    lines.push(`| ${props.length - shown.length} more Novig props on this game | inventory open | unavailable | unavailable | retrieved, not listed | inventory-open |`)
+    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | inventory-open; missing-input; unavailable |`)
   }
   lines.push('')
   return lines
@@ -745,13 +760,13 @@ async function section(title, sportPath, games, football, unit) {
       return `| ${game.away.name} at ${game.home.name} | ${convergence.counts.home} | ${convergence.counts.away} | ${convergence.counts.tie} | ${convergence.side} | ${fmt(convergence.marginRange)} | ${fmt(convergence.totalRange)} |`
     }),
     '',
-    'Line value against DraftKings. A candidate means the quote sits outside every method. That is a point gap, not a priced edge.',
+    'Line value against FanDuel and DraftKings. A candidate means that book sits outside every method. That is a point gap, not a priced edge.',
     '',
-    '| Game | DraftKings side | FanDuel side | Novig side | DraftKings total | FanDuel total | Novig total |',
-    '| --- | --- | --- | --- | --- | --- | --- |',
+    '| Game | FanDuel side | DraftKings side | FanDuel total | DraftKings total |',
+    '| --- | --- | --- | --- | --- |',
     ...rendered.map(({ spots }, index) => {
       const game = games[index]
-      return `| ${game.away.name} at ${game.home.name} | ${spots.DraftKings.side} | ${spots.FanDuel.side} | ${spots.Novig.side} | ${spots.DraftKings.total} | ${spots.FanDuel.total} | ${spots.Novig.total} |`
+      return `| ${game.away.name} at ${game.home.name} | ${spots.FanDuel.side} | ${spots.DraftKings.side} | ${spots.FanDuel.total} | ${spots.DraftKings.total} |`
     }),
     '',
   ]
@@ -775,23 +790,22 @@ async function main() {
   blocks.push('')
   blocks.push('Each game has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
-  blocks.push('Status: not complete. The player-stat inventory is still open. DraftKings comes from ESPN. FanDuel comes from the Ohio board for NFL, college football, NBA, and NHL. Novig comes from its public catalog, including team totals and the main player-prop bids. Public betting splits are unavailable. A Novig bid is kept only when both sides are near even money, so alternate numbers are not treated as the line.')
+  blocks.push('Status: not complete. This pass compares projections with FanDuel and DraftKings only. DraftKings open and latest come from ESPN. FanDuel latest comes from the Ohio board for NFL, college football, NBA, and NHL. Player props and team totals were not on those two feeds.')
   blocks.push('')
   blocks.push('## Open gaps in this snapshot')
   blocks.push('')
   blocks.push('- Player-stat projection inventory: open. Not recovered, not treated as canceled.')
-  blocks.push('- Player props: Novig main bids are listed when a game matches. The independent player projection is still open, so those prices are not projections. FanDuel and DraftKings props were not on the feeds used here.')
-  blocks.push('- FanDuel opening prices: not on the Ohio board. Latest prices are filled where a game matched.')
-  blocks.push('- Novig opening prices: not in the public catalog. Latest bids are filled where a game matched. American odds are converted from the bid.')
-  blocks.push('- DraftKings direct site: access denied. Open and latest DraftKings prices are the ESPN quote.')
-  blocks.push('- FanDuel soccer: no public Ohio board for Premier League or MLS. Novig covers those leagues.')
-  blocks.push('- Team totals: Novig when matched. FanDuel and DraftKings team totals were not on the feeds used here.')
+  blocks.push('- Player props: FanDuel and DraftKings game-line feeds did not include a verified player prop. The inventory stays open.')
+  blocks.push('- FanDuel opening prices: not on the Ohio board.')
+  blocks.push('- DraftKings direct site: access denied. Open and latest prices are the ESPN quote.')
+  blocks.push('- FanDuel soccer: no public Ohio board for Premier League or MLS, so those games have DraftKings only.')
+  blocks.push('- Team totals: unavailable at both FanDuel and DraftKings on these feeds.')
   blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
   blocks.push('- Edge: not supported on any game in this snapshot.')
   blocks.push('')
 
-  const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString())
-  blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. Novig events indexed: ${['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'].map((sport) => `${sport} ${books.books[sport]?.novig.size ?? 0}`).join(', ')}.`)
+  const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
+  blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
   const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
   blocks.push('')
@@ -834,9 +848,8 @@ async function main() {
   blocks.push('| --- | --- | --- |')
   blocks.push('| Exact player-stat inventory | Not recovered | inventory-open |')
   blocks.push('| Independent player projection | Not calculated | missing-input |')
-  blocks.push('| FanDuel player props | Not in the retrieved payload | unavailable |')
-  blocks.push('| DraftKings player props | Not in the retrieved payload | unavailable |')
-  blocks.push('| Novig player props | Not in the retrieved payload | unavailable |')
+  blocks.push('| FanDuel player props | Not on the Ohio game-line board | unavailable |')
+  blocks.push('| DraftKings player props | Not on the ESPN quote | unavailable |')
   blocks.push('| Verification | No prop line was checked against a book | unverified |')
   blocks.push('')
   blocks.push('No prop number is invented. Unrecovered player stats stay open.')

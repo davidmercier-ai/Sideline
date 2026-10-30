@@ -238,7 +238,7 @@ function findQuote(index, awayNames, homeNames) {
   return null
 }
 
-export async function loadBooks(sportKeys, retrievedAt) {
+export async function loadBooks(sportKeys, retrievedAt, options = {}) {
   const books = {}
   await Promise.all(sportKeys.map(async (sport) => {
     const entry = { fanduel: new Map(), novig: new Map(), novigMarkets: [], retrievedAt, errors: [] }
@@ -255,6 +255,11 @@ export async function loadBooks(sportKeys, retrievedAt) {
     }
     books[sport] = entry
   }))
+  if (options.novig === false) return { retrievedAt, books, match(sport, awayNames, homeNames) {
+    const entry = books[sport]
+    if (!entry) return { fanduel: null, novig: null, props: [] }
+    return { fanduel: findQuote(entry.fanduel, awayNames, homeNames), novig: null, props: [] }
+  } }
   for (const sport of sportKeys) {
     const entry = books[sport]
     const league = NOVIG_LEAGUES[sport]
