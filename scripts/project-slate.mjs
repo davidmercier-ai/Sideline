@@ -10,6 +10,7 @@
  */
 
 import { writeFile } from 'node:fs/promises'
+import { loadBooks } from './book-prices.mjs'
 import {
   asNumber,
   difference,
@@ -182,8 +183,20 @@ function gamesFromEvents(events, sport) {
       when: status.shortDetail || status.detail || event.date,
       date: event.date,
       neutral: Boolean(competition.neutralSite),
-      away: { id: String(away.team.id), name: label(away), abbr: away.team.abbreviation || '' },
-      home: { id: String(home.team.id), name: label(home), abbr: home.team.abbreviation || '' },
+      away: {
+        id: String(away.team.id),
+        name: label(away),
+        full: away.team.displayName || away.team.name || label(away),
+        short: away.team.shortDisplayName || away.team.name || label(away),
+        abbr: away.team.abbreviation || '',
+      },
+      home: {
+        id: String(home.team.id),
+        name: label(home),
+        full: home.team.displayName || home.team.name || label(home),
+        short: home.team.shortDisplayName || home.team.name || label(home),
+        abbr: home.team.abbreviation || '',
+      },
       market: readMarket(competition),
     })
   }
@@ -446,56 +459,83 @@ function priceCell(line, price) {
   return `${line ?? 'line missing'} ${price ?? 'price missing'}`
 }
 
+function spreadCell(homeSpread, price) {
+  if (!Number.isFinite(homeSpread) && price == null) return 'unavailable'
+  const line = Number.isFinite(homeSpread) ? homeSpread : 'line missing'
+  return `${line} ${price ?? 'price missing'}`
+}
+
+function totalCell(total, overPrice, underPrice) {
+  if (!Number.isFinite(total) && overPrice == null && underPrice == null) return 'unavailable'
+  return `o${total ?? '?'} ${overPrice ?? 'price missing'} / u${total ?? '?'} ${underPrice ?? 'price missing'}`
+}
+
+function teamTotalCell(total) {
+  if (!total || !Number.isFinite(total.line)) return 'unavailable'
+  return `${total.line} over ${total.over ?? 'price missing'} / under ${total.under ?? 'price missing'}`
+}
+
 function marketSection(game) {
   const market = game.market
+  const fanduel = game.extra?.fanduel
+  const novig = game.extra?.novig
   const draftKings = /draft\s*kings/i.test(market.book ?? '')
-  const retrieved = `${retrievedAt.toISOString()} UTC`
   const lines = []
   lines.push('**2. Sportsbook lines and prices**')
   lines.push('')
-  lines.push(`Retrieved ${retrieved}. This is one snapshot, not a live feed. Ohio availability is not stated by the feed. Public betting splits: unavailable.`)
+  lines.push(`Retrieved ${retrievedAt.toISOString()} UTC. Snapshot, not a live feed. Public betting splits: unavailable.`)
+  lines.push('DraftKings open and latest come from the ESPN quote. FanDuel latest comes from the Ohio sportsbook board. Novig latest is the public bid, converted from a probability to American odds. Opening prices are unavailable unless the source sent them.')
   lines.push('Prices and timestamps stay in this section. They are not inputs to the projection above.')
   lines.push('')
   lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Novig open | Novig latest | Flag |')
   lines.push('| --- | --- | --- | --- | --- | --- | --- | --- |')
-  const sideFlag = bookFlag(
-    draftKings,
-    market.spread?.homeCloseLine != null || market.homeSpread != null,
-    market.spread?.homeClosePrice != null,
-  )
-  lines.push(`| Side | unavailable | unavailable | ${priceCell(market.spread?.homeOpenLine, market.spread?.homeOpenPrice)} | ${priceCell(market.spread?.homeCloseLine ?? (market.homeSpread != null ? String(market.homeSpread) : null), market.spread?.homeClosePrice)} | unavailable | unavailable | ${sideFlag} |`)
-  const mlFlag = bookFlag(draftKings, market.moneyline?.homeClose != null || market.moneyline?.awayClose != null, market.moneyline?.homeClose != null && market.moneyline?.awayClose != null)
-  lines.push(`| Moneyline | unavailable | unavailable | ${game.away.abbr || 'away'} ${market.moneyline?.awayOpen ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeOpen ?? 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayClose ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeClose ?? 'unavailable'} | unavailable | unavailable | ${mlFlag} |`)
-  const totalFlag = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
-  lines.push(`| O/U | unavailable | unavailable | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | unavailable | unavailable | ${totalFlag} |`)
-  lines.push('| Team total, away | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable |')
-  lines.push('| Team total, home | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable |')
-  if (!draftKings) {
-    lines.push('')
-    lines.push(`- DraftKings flag detail: ${market.note ?? 'no DraftKings quote in this payload'}`)
-  }
-  lines.push(`- ${market.teamTotalNote ?? 'Team totals were not posted.'}`)
+  const dkSide = bookFlag(draftKings, market.spread?.homeCloseLine != null || market.homeSpread != null, market.spread?.homeClosePrice != null)
+  const fdSide = fanduel && Number.isFinite(fanduel.homeSpread) ? 'verified-retrieved' : 'unavailable'
+  const nvSide = novig && Number.isFinite(novig.homeSpread) ? 'verified-retrieved' : 'unavailable'
+  lines.push(`| Side | unavailable | ${spreadCell(fanduel?.homeSpread, fanduel?.homeSpreadPrice)} | ${priceCell(market.spread?.homeOpenLine, market.spread?.homeOpenPrice)} | ${priceCell(market.spread?.homeCloseLine ?? (market.homeSpread != null ? String(market.homeSpread) : null), market.spread?.homeClosePrice)} | unavailable | ${spreadCell(novig?.homeSpread, novig?.homeSpreadPrice)} | FD ${fdSide}; DK ${dkSide}; NV ${nvSide} |`)
+  const fdMl = fanduel?.awayMoneyline && fanduel?.homeMoneyline ? 'verified-retrieved' : 'unavailable'
+  const dkMl = bookFlag(draftKings, market.moneyline?.homeClose != null || market.moneyline?.awayClose != null, market.moneyline?.homeClose != null && market.moneyline?.awayClose != null)
+  const nvMl = novig?.awayMoneyline && novig?.homeMoneyline ? 'verified-retrieved' : 'unavailable'
+  lines.push(`| Moneyline | unavailable | ${fanduel ? `${fanduel.awayMoneyline ?? 'unavailable'} / ${fanduel.homeMoneyline ?? 'unavailable'}` : 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayOpen ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeOpen ?? 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayClose ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeClose ?? 'unavailable'} | unavailable | ${novig ? `${novig.awayMoneyline ?? 'unavailable'} / ${novig.homeMoneyline ?? 'unavailable'}` : 'unavailable'} | FD ${fdMl}; DK ${dkMl}; NV ${nvMl} |`)
+  const fdTotal = fanduel && Number.isFinite(fanduel.total) ? 'verified-retrieved' : 'unavailable'
+  const dkTotal = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
+  const nvTotal = novig && Number.isFinite(novig.total) ? 'verified-retrieved' : 'unavailable'
+  lines.push(`| O/U | unavailable | ${totalCell(fanduel?.total, fanduel?.overPrice, fanduel?.underPrice)} | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | unavailable | ${totalCell(novig?.total, novig?.overPrice, novig?.underPrice)} | FD ${fdTotal}; DK ${dkTotal}; NV ${nvTotal} |`)
+  lines.push(`| Team total, away | unavailable | unavailable | unavailable | unavailable | unavailable | ${teamTotalCell(novig?.awayTeamTotal)} | FD unavailable; DK unavailable; NV ${novig?.awayTeamTotal ? 'verified-retrieved' : 'unavailable'} |`)
+  lines.push(`| Team total, home | unavailable | unavailable | unavailable | unavailable | unavailable | ${teamTotalCell(novig?.homeTeamTotal)} | FD unavailable; DK unavailable; NV ${novig?.homeTeamTotal ? 'verified-retrieved' : 'unavailable'} |`)
+  if (!draftKings) lines.push(`- DraftKings: ${market.note ?? 'no DraftKings quote in the ESPN payload'}`)
+  if (novig?.note) lines.push(`- ${novig.note}`)
+  if (!fanduel) lines.push('- FanDuel: no matching Ohio board game. Soccer boards were not on the public Ohio page ids tried.')
   return lines
 }
 
-function lineValue(position, quote, values) {
-  if (position === 'missing-input') return 'missing-input'
+function lineValue(book, position, quote, values) {
+  if (position === 'missing-input') return `${book}: missing-input`
   const nums = values.filter((value) => Number.isFinite(value))
   const low = Math.min(...nums)
   const high = Math.max(...nums)
   if (position === 'inside-method-range') {
-    return `no line value — DraftKings ${fmt(quote)} sits inside the method range ${fmt(low)} to ${fmt(high)}`
+    return `${book}: no line value — ${fmt(quote)} sits inside the method range ${fmt(low)} to ${fmt(high)}`
   }
   const direction = quote > high ? 'above every method' : 'below every method'
-  return `line-value candidate — DraftKings ${fmt(quote)} is ${direction} (${fmt(low)} to ${fmt(high)}). This is a point gap, not a priced edge.`
+  return `${book}: line-value candidate — ${fmt(quote)} is ${direction} (${fmt(low)} to ${fmt(high)}). This is a point gap, not a priced edge.`
+}
+
+function bookMargins(game) {
+  const fanduel = game.extra?.fanduel
+  const novig = game.extra?.novig
+  return [
+    ['DraftKings', game.market.marketHomeMargin, game.market.total],
+    ['FanDuel', Number.isFinite(fanduel?.homeSpread) ? -fanduel.homeSpread : null, fanduel?.total ?? null],
+    ['Novig', Number.isFinite(novig?.homeSpread) ? -novig.homeSpread : null, Number.isFinite(novig?.total) ? novig.total : null],
+  ]
 }
 
 function comparisonSection(game, scoring, methods) {
   const market = game.market
   const margins = methods.map((method) => method.margin)
   const totals = methods.map((method) => method.total)
-  const sideSpot = quotePosition(market.marketHomeMargin, margins)
-  const totalSpot = quotePosition(market.total, totals)
+  const quotes = bookMargins(game)
   const priced = noVigPair(market.moneyline?.awayClose, market.moneyline?.homeClose)
   const lines = []
   lines.push('**3. Comparison — value, edge, and refinement**')
@@ -507,15 +547,28 @@ function comparisonSection(game, scoring, methods) {
   for (const method of methods) {
     lines.push(`| ${method.name} | ${fmt(method.margin)} | ${fmt(difference(method.margin, market.marketHomeMargin))} | ${fmt(method.total)} | ${fmt(difference(method.total, market.total))} |`)
   }
-  lines.push(`| DraftKings latest | ${fmt(market.marketHomeMargin)} | — | ${fmt(market.total)} | — |`)
-  lines.push('| FanDuel latest | unavailable | missing-input | unavailable | missing-input |')
-  lines.push('| Novig latest | unavailable | missing-input | unavailable | missing-input |')
+  for (const [name, margin, total] of quotes) {
+    lines.push(`| ${name} latest | ${fmt(margin)} | — | ${fmt(total)} | — |`)
+  }
   lines.push('')
-  lines.push(`- Venue-mean side gap: ${fmt(difference(scoring.margin, market.marketHomeMargin))}. Venue-mean total gap: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
-  lines.push(`- Side line value: ${lineValue(sideSpot, market.marketHomeMargin, margins)}`)
-  lines.push(`- Total line value: ${lineValue(totalSpot, market.total, totals)}`)
-  lines.push('- Team-total value: missing-input. No book posted a team total.')
-  lines.push('- Cross-book value: unavailable. FanDuel and Novig were not retrieved, so there is no second price to compare.')
+  lines.push(`- Venue-mean side gap versus DraftKings: ${fmt(difference(scoring.margin, market.marketHomeMargin))}. Venue-mean total gap versus DraftKings: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
+  for (const [name, margin, total] of quotes) {
+    lines.push(`- ${name} side: ${lineValue(name, quotePosition(margin, margins), margin, margins)}`)
+    lines.push(`- ${name} total: ${lineValue(name, quotePosition(total, totals), total, totals)}`)
+  }
+  const novig = game.extra?.novig
+  if (novig?.awayTeamTotal || novig?.homeTeamTotal) {
+    lines.push(`- Novig team totals: ${game.away.name} ${novig.awayTeamTotal?.line ?? 'unavailable'}, ${game.home.name} ${novig.homeTeamTotal?.line ?? 'unavailable'}. Independent team projections remain the baseline scores above. FanDuel and DraftKings team totals: unavailable.`)
+  } else {
+    lines.push('- Team-total value: missing-input. No matched book posted a team total.')
+  }
+  const homeMargins = quotes.map(([, margin]) => margin).filter((value) => Number.isFinite(value))
+  if (homeMargins.length >= 2) {
+    const cross = Math.max(...homeMargins) - Math.min(...homeMargins)
+    lines.push(`- Cross-book home-margin variance: ${fmt(cross)} between ${homeMargins.length} verified books.`)
+  } else {
+    lines.push('- Cross-book value: unavailable. Fewer than two books returned a side.')
+  }
   if (priced) {
     lines.push(`- DraftKings no-vig price, from the moneyline only: ${game.away.name} ${fmt(priced.away * 100)}%, ${game.home.name} ${fmt(priced.home * 100)}%, hold ${fmt(priced.hold * 100)} percentage points. This is the book’s price, not our probability.`)
   } else {
@@ -529,16 +582,28 @@ function comparisonSection(game, scoring, methods) {
 }
 
 function propsSection(game) {
-  return [
+  const props = game.extra?.props ?? []
+  const shown = props.slice(0, 8)
+  const lines = [
     '**Props**',
     '',
-    'Separate from the team card. Flags: `verified-retrieved`, `unavailable`, `unverified`, `missing-input`, `inventory-open`.',
+    'Separate from the team card. A Novig price is the main bid converted to American odds. The player projection is still open, so a price is not a projection.',
     '',
     '| Prop | Independent projection | FanDuel | DraftKings | Novig | Flag |',
     '| --- | --- | --- | --- | --- | --- |',
-    `| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | unavailable | inventory-open; missing-input; unverified; no line invented |`,
-    '',
   ]
+  if (shown.length === 0) {
+    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | unavailable | inventory-open; missing-input; unavailable |`)
+  }
+  for (const prop of shown) {
+    const price = prop.over || prop.under ? `o ${prop.over ?? 'missing'} / u ${prop.under ?? 'missing'}` : 'unavailable'
+    lines.push(`| ${prop.player} ${prop.type} ${prop.line} | inventory open | unavailable | unavailable | ${price} | inventory-open; verified-retrieved Novig bid; FanDuel and DraftKings unavailable |`)
+  }
+  if (props.length > shown.length) {
+    lines.push(`| ${props.length - shown.length} more Novig props on this game | inventory open | unavailable | unavailable | retrieved, not listed | inventory-open |`)
+  }
+  lines.push('')
+  return lines
 }
 
 function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')) {
@@ -648,13 +713,16 @@ async function section(title, sportPath, games, football, unit) {
     const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
     const methods = scoringMethods(awayLog.rows, homeLog.rows)
     const convergence = methodConvergence(methods)
-    const sideSpot = quotePosition(game.market.marketHomeMargin, methods.map((method) => method.margin))
-    const totalSpot = quotePosition(game.market.total, methods.map((method) => method.total))
+    const margins = methods.map((method) => method.margin)
+    const totals = methods.map((method) => method.total)
+    const spots = Object.fromEntries(bookMargins(game).map(([name, margin, total]) => [name, {
+      side: quotePosition(margin, margins),
+      total: quotePosition(total, totals),
+    }]))
     return {
       scoring,
       convergence,
-      sideSpot,
-      totalSpot,
+      spots,
       markdown: renderGame(game, awayLog, homeLog, football, scoring),
     }
   })
@@ -679,11 +747,11 @@ async function section(title, sportPath, games, football, unit) {
     '',
     'Line value against DraftKings. A candidate means the quote sits outside every method. That is a point gap, not a priced edge.',
     '',
-    '| Game | Side versus methods | Total versus methods |',
-    '| --- | --- | --- |',
-    ...rendered.map(({ sideSpot, totalSpot }, index) => {
+    '| Game | DraftKings side | FanDuel side | Novig side | DraftKings total | FanDuel total | Novig total |',
+    '| --- | --- | --- | --- | --- | --- | --- |',
+    ...rendered.map(({ spots }, index) => {
       const game = games[index]
-      return `| ${game.away.name} at ${game.home.name} | ${sideSpot} | ${totalSpot} |`
+      return `| ${game.away.name} at ${game.home.name} | ${spots.DraftKings.side} | ${spots.FanDuel.side} | ${spots.Novig.side} | ${spots.DraftKings.total} | ${spots.FanDuel.total} | ${spots.Novig.total} |`
     }),
     '',
   ]
@@ -707,7 +775,7 @@ async function main() {
   blocks.push('')
   blocks.push('Each game has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
-  blocks.push('Status: not complete. The player-stat inventory is still open. FanDuel, Novig, public betting splits, and team totals were not in the ESPN payload. Distribution fields come only from completed games.')
+  blocks.push('Status: not complete. The player-stat inventory is still open. DraftKings comes from ESPN. FanDuel comes from the Ohio board for NFL, college football, NBA, and NHL. Novig comes from its public catalog, including team totals and the main player-prop bids. Public betting splits are unavailable. A Novig bid is kept only when both sides are near even money, so alternate numbers are not treated as the line.')
   blocks.push('')
   blocks.push('## Open gaps in this snapshot')
   blocks.push('')
@@ -719,20 +787,26 @@ async function main() {
   blocks.push('- Edge: not supported on any game in this snapshot.')
   blocks.push('')
 
+  const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString())
+  blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. Novig events indexed: ${['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'].map((sport) => `${sport} ${books.books[sport]?.novig.size ?? 0}`).join(', ')}.`)
+  const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
+  if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
+  blocks.push('')
+
   const boards = [
-    ['NFL', 'football/nfl', '', true, 'points'],
-    ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points'],
-    ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true, 'points'],
-    ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true, 'points'],
-    ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points'],
-    ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points'],
-    ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals'],
-    ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals'],
-    ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals'],
-    ['MLB scoreboard', 'baseball/mlb', '', false, 'runs'],
+    ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
+    ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points', 'ncaaf'],
+    ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true, 'points', 'ncaaf'],
+    ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true, 'points', 'ncaaf'],
+    ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points', 'ncaaf'],
+    ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points', 'nba'],
+    ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals', 'nhl'],
+    ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
+    ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
+    ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
   ]
 
-  for (const [title, sportPath, query, football, unit] of boards) {
+  for (const [title, sportPath, query, football, unit, sportKey] of boards) {
     process.stderr.write(`loading ${title}\n`)
     const events = await load(sportPath, query)
     if (events.error) {
@@ -740,6 +814,11 @@ async function main() {
       continue
     }
     const games = gamesFromEvents(events, title)
+    if (sportKey) {
+      for (const game of games) {
+        game.extra = books.match(sportKey, [game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name])
+      }
+    }
     process.stderr.write(`${title}: ${games.length} upcoming\n`)
     blocks.push(await section(title, sportPath, games, football, unit))
   }
