@@ -27,7 +27,6 @@ import {
 } from './projection-math.mjs'
 
 const ESPN = 'https://site.api.espn.com'
-const SEASON = 2026
 const retrievedAt = new Date()
 
 const cache = new Map()
@@ -86,12 +85,6 @@ function label(competitor) {
   const rank = rankOf(competitor)
   const name = teamName(competitor?.team)
   return rank ? `#${rank} ${name}` : name
-}
-
-function isRegular(event) {
-  const type = event?.seasonType?.type ?? event?.season?.type?.type ?? event?.season?.type
-  if (type == null) return { keep: true, known: false }
-  return { keep: Number(type) === 2, known: true }
 }
 
 function statMap(statistics) {
@@ -194,20 +187,26 @@ function gamesFromEvents(events, sport) {
 
 async function teamLog(sportPath, teamId, football) {
   const schedule = await getJson(`/apis/site/v2/sports/${sportPath}/teams/${teamId}/schedule`)
+  const season = schedule.requestedSeason ?? schedule.season ?? {}
+  const seasonYear = season.year ?? null
+  const seasonType = season.type ?? null
+  const seasonLabel = season.displayName || season.name || (seasonYear ? String(seasonYear) : 'unspecified season')
   const rows = []
-  const skipped = { nonRegular: 0, unknownSeasonType: 0 }
+  const skipped = { otherSeason: 0, otherType: 0 }
   for (const event of schedule.events ?? []) {
     const competition = event.competitions?.[0]
     const status = competition?.status?.type
     if (!status?.completed) continue
-    const seasonYear = event.season?.year ?? schedule.season?.year
-    if (seasonYear && Number(seasonYear) !== SEASON) continue
-    const regular = isRegular(event)
-    if (regular.known && !regular.keep) {
-      skipped.nonRegular += 1
+    const eventYear = event.season?.year
+    if (seasonYear != null && eventYear != null && Number(eventYear) !== Number(seasonYear)) {
+      skipped.otherSeason += 1
       continue
     }
-    if (!regular.known) skipped.unknownSeasonType += 1
+    const eventType = event.seasonType?.type ?? event.season?.type?.type ?? event.season?.type
+    if (seasonType != null && eventType != null && Number(eventType) !== Number(seasonType)) {
+      skipped.otherType += 1
+      continue
+    }
     const sides = competition.competitors ?? []
     const me = sides.find((side) => String(side.team?.id) === String(teamId))
     const opp = sides.find((side) => String(side.team?.id) !== String(teamId))
@@ -240,7 +239,12 @@ async function teamLog(sportPath, teamId, football) {
       }
     })
   }
-  return { rows, skipped, source: `${ESPN}/apis/site/v2/sports/${sportPath}/teams/${teamId}/schedule` }
+  return {
+    rows,
+    skipped,
+    seasonLabel,
+    source: `${ESPN}/apis/site/v2/sports/${sportPath}/teams/${teamId}/schedule`,
+  }
 }
 
 function yardsFromBox(mine, theirs) {
@@ -305,6 +309,15 @@ function fmt(value) {
   return String(round1(value))
 }
 
+function historyLines(name, rows, field, label) {
+  const block = historyBlock(rows, field)
+  return [
+    `- ${name} ${label}, overall: ${fmtSummary(block.overall)}`,
+    `- ${name} ${label}, home: ${fmtSummary(block.home)}`,
+    `- ${name} ${label}, away: ${fmtSummary(block.away)}`,
+  ]
+}
+
 function fmtSummary(summary) {
   if (summary.missing) return 'missing game-level history (n=0)'
   const mode = summary.modes?.length ? summary.modes.map((value) => round1(value)).join(' or ') : summary.modeNote
@@ -356,33 +369,86 @@ function projectYards(awayLog, homeLog, forField, againstField) {
   }
 }
 
-function marketSection(game, projection) {
+function bookFlag(isDraftKings, hasLine, hasPrice) {
+  if (!isDraftKings) return 'unavailable'
+  if (!hasLine) return 'unavailable'
+  if (!hasPrice) return 'unverified'
+  return 'verified-retrieved'
+}
+
+function priceCell(line, price) {
+  if (line == null && price == null) return 'unavailable'
+  return `${line ?? 'line missing'} ${price ?? 'price missing'}`
+}
+
+function marketSection(game) {
   const market = game.market
+  const draftKings = /draft\s*kings/i.test(market.book ?? '')
+  const retrieved = `${retrievedAt.toISOString()} UTC`
   const lines = []
-  lines.push(`- Book retrieved: ${market.book ?? 'none'}`)
-  lines.push('- FanDuel: unavailable in this ESPN payload')
-  lines.push('- Novig: unavailable in this ESPN payload')
-  lines.push('- Ohio availability: not stated by the feed')
-  lines.push('- Public betting splits: unavailable')
-  lines.push('- Team total: unavailable')
-  if (!market.book) {
-    lines.push(`- ${market.note}`)
-    return lines
+  lines.push('**2. Sportsbook lines and prices**')
+  lines.push('')
+  lines.push(`Retrieved ${retrieved}. This is one snapshot, not a live feed. Ohio availability is not stated by the feed. Public betting splits: unavailable.`)
+  lines.push('Prices and timestamps stay in this section. They are not inputs to the projection above.')
+  lines.push('')
+  lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Novig open | Novig latest | Flag |')
+  lines.push('| --- | --- | --- | --- | --- | --- | --- | --- |')
+  const sideFlag = bookFlag(
+    draftKings,
+    market.spread?.homeCloseLine != null || market.homeSpread != null,
+    market.spread?.homeClosePrice != null,
+  )
+  lines.push(`| Side | unavailable | unavailable | ${priceCell(market.spread?.homeOpenLine, market.spread?.homeOpenPrice)} | ${priceCell(market.spread?.homeCloseLine ?? (market.homeSpread != null ? String(market.homeSpread) : null), market.spread?.homeClosePrice)} | unavailable | unavailable | ${sideFlag} |`)
+  const mlFlag = bookFlag(draftKings, market.moneyline?.homeClose != null || market.moneyline?.awayClose != null, market.moneyline?.homeClose != null && market.moneyline?.awayClose != null)
+  lines.push(`| Moneyline | unavailable | unavailable | ${game.away.abbr || 'away'} ${market.moneyline?.awayOpen ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeOpen ?? 'unavailable'} | ${game.away.abbr || 'away'} ${market.moneyline?.awayClose ?? 'unavailable'} / ${game.home.abbr || 'home'} ${market.moneyline?.homeClose ?? 'unavailable'} | unavailable | unavailable | ${mlFlag} |`)
+  const totalFlag = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
+  lines.push(`| O/U | unavailable | unavailable | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | unavailable | unavailable | ${totalFlag} |`)
+  lines.push('| Team total, away | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable |')
+  lines.push('| Team total, home | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable | unavailable |')
+  if (!draftKings) {
+    lines.push('')
+    lines.push(`- DraftKings flag detail: ${market.note ?? 'no DraftKings quote in this payload'}`)
   }
-  const sideDiff = difference(projection.margin, market.marketHomeMargin)
-  const totalDiff = difference(projection.total, market.total)
-  lines.push(`- Spread close: home ${market.spread.homeCloseLine ?? 'missing'} ${market.spread.homeClosePrice ?? 'price missing'}; away ${market.spread.awayCloseLine ?? 'missing'} ${market.spread.awayClosePrice ?? 'price missing'}`)
-  lines.push(`- Spread open: home ${market.spread.homeOpenLine ?? 'missing'} ${market.spread.homeOpenPrice ?? 'price missing'}; away ${market.spread.awayOpenLine ?? 'missing'} ${market.spread.awayOpenPrice ?? 'price missing'}`)
-  lines.push(`- Market home margin: ${fmt(market.marketHomeMargin)} (positive means the home team is favored)`)
-  lines.push(`- Baseline home margin minus market home margin: ${fmt(sideDiff)}`)
-  lines.push(`- Moneyline close: ${game.away.abbr || 'away'} ${market.moneyline.awayClose ?? 'missing'}, ${game.home.abbr || 'home'} ${market.moneyline.homeClose ?? 'missing'}`)
-  lines.push(`- Moneyline open: ${game.away.abbr || 'away'} ${market.moneyline.awayOpen ?? 'missing'}, ${game.home.abbr || 'home'} ${market.moneyline.homeOpen ?? 'missing'}`)
-  lines.push('- Model win probability: not calculated. A projected score is not a probability.')
-  lines.push(`- Total close: over ${market.totalPrices.overCloseLine ?? 'missing'} ${market.totalPrices.overClosePrice ?? 'price missing'}; under ${market.totalPrices.underCloseLine ?? 'missing'} ${market.totalPrices.underClosePrice ?? 'price missing'}`)
-  lines.push(`- Total open: over ${market.totalPrices.overOpenLine ?? 'missing'} ${market.totalPrices.overOpenPrice ?? 'price missing'}; under ${market.totalPrices.underOpenLine ?? 'missing'} ${market.totalPrices.underOpenPrice ?? 'price missing'}`)
-  lines.push(`- Baseline total minus posted total: ${fmt(totalDiff)} (${totalDirection(totalDiff)})`)
-  lines.push(`- ${market.teamTotalNote}`)
+  lines.push(`- ${market.teamTotalNote ?? 'Team totals were not posted.'}`)
   return lines
+}
+
+function comparisonSection(game, scoring) {
+  const market = game.market
+  const sideDiff = difference(scoring.margin, market.marketHomeMargin)
+  const totalDiff = difference(scoring.total, market.total)
+  const lines = []
+  lines.push('**3. Comparison**')
+  lines.push('')
+  lines.push('This view only subtracts a verified quote from the independent baseline. It does not feed prices back into the projection.')
+  lines.push('')
+  lines.push('| View | Home margin | Game total | Away team total | Home team total |')
+  lines.push('| --- | --- | --- | --- | --- |')
+  lines.push(`| Independent baseline | ${fmt(scoring.margin)} | ${fmt(scoring.total)} | ${fmt(scoring.away.value)} | ${fmt(scoring.home.value)} |`)
+  lines.push(`| DraftKings latest | ${fmt(market.marketHomeMargin)} | ${fmt(market.total)} | unavailable | unavailable |`)
+  lines.push('| FanDuel latest | unavailable | unavailable | unavailable | unavailable |')
+  lines.push('| Novig latest | unavailable | unavailable | unavailable | unavailable |')
+  lines.push(`| Difference versus DraftKings | ${fmt(sideDiff)} | ${fmt(totalDiff)} | missing-input | missing-input |`)
+  lines.push('')
+  lines.push(`- Side variance versus DraftKings: ${fmt(sideDiff)} (baseline home margin minus market home margin).`)
+  lines.push(`- Total variance versus DraftKings: ${fmt(totalDiff)} (${totalDirection(totalDiff)}).`)
+  lines.push('- Cross-book variance: unavailable. Only DraftKings returned a quote, so FanDuel and Novig cannot be compared.')
+  lines.push('- Outside-pick consensus: not used.')
+  lines.push('- Edge: not supported. No validated win probability was calculated, and a single retrieved quote is not validation. The difference stays a difference.')
+  return lines
+}
+
+function propsSection(game) {
+  return [
+    '**Props**',
+    '',
+    'Separate from the team card. Flags: `verified-retrieved`, `unavailable`, `unverified`, `missing-input`, `inventory-open`.',
+    '',
+    '| Prop | Independent projection | FanDuel | DraftKings | Novig | Flag |',
+    '| --- | --- | --- | --- | --- | --- |',
+    `| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | unavailable | inventory-open; missing-input; unverified; no line invented |`,
+    '',
+  ]
 }
 
 function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')) {
@@ -391,12 +457,12 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push('')
   lines.push(`- When: ${game.when}`)
   lines.push(`- Site: ${game.neutral ? 'neutral (venue split not applied)' : 'home team listed second'}`)
-  lines.push(`- Source: ESPN team schedules and, for football yardage, ESPN box scores. Retrieved ${retrievedAt.toISOString()} (snapshot, not a live feed).`)
-  lines.push(`- Sample filter: ${SEASON} completed games. Non-regular games skipped: away ${awayLog.skipped.nonRegular}, home ${homeLog.skipped.nonRegular}. Events with no season type kept and counted: away ${awayLog.skipped.unknownSeasonType}, home ${homeLog.skipped.unknownSeasonType}.`)
   lines.push('')
-  lines.push('**Layer A — baseline projection**')
+  lines.push('**1. Independent projection**')
   lines.push('')
-  lines.push('Method: venue-matched mean. Visiting production uses the visitor’s away games. Home production uses the home team’s home games. The opponent input is that team’s matching venue allowance. Overall means are shown and are not substituted when both venue samples exist. This is a transparent baseline, not a validated model.')
+  lines.push(`Statistical source: ESPN team schedules for ${awayLog.seasonLabel} and ${homeLog.seasonLabel}.${football ? ' Football yardage adds ESPN box scores.' : ''} No sportsbook price, open line, or quote timestamp enters this calculation.`)
+  lines.push(`Sample filter: current season on each team schedule. Other seasons skipped: away ${awayLog.skipped.otherSeason}, home ${homeLog.skipped.otherSeason}. Other season types skipped: away ${awayLog.skipped.otherType}, home ${homeLog.skipped.otherType}.`)
+  lines.push('Method: venue-matched mean. Visiting production uses the visitor’s away games. Home production uses the home team’s home games. The opponent input is that team’s matching venue allowance. Overall means are shown beside that and are not substituted when both venue samples exist. This is a transparent baseline, not a validated model.')
   lines.push('')
   lines.push(line(`${game.away.name} ${scoring.unit}`, scoring.away))
   lines.push(line(`${game.home.name} ${scoring.unit}`, scoring.home))
@@ -435,35 +501,28 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push('')
   lines.push('**Historical for / against**')
   lines.push('')
-  lines.push(`- ${game.away.name} ${scoring.unit} scored, overall: ${fmtSummary(historyBlock(awayLog.rows, 'pointsFor').overall)}`)
-  lines.push(`- ${game.away.name} ${scoring.unit} scored, away: ${fmtSummary(historyBlock(awayLog.rows, 'pointsFor').away)}`)
-  lines.push(`- ${game.away.name} ${scoring.unit} allowed, overall: ${fmtSummary(historyBlock(awayLog.rows, 'pointsAgainst').overall)}`)
-  lines.push(`- ${game.away.name} ${scoring.unit} allowed, away: ${fmtSummary(historyBlock(awayLog.rows, 'pointsAgainst').away)}`)
-  lines.push(`- ${game.home.name} ${scoring.unit} scored, overall: ${fmtSummary(historyBlock(homeLog.rows, 'pointsFor').overall)}`)
-  lines.push(`- ${game.home.name} ${scoring.unit} scored, home: ${fmtSummary(historyBlock(homeLog.rows, 'pointsFor').home)}`)
-  lines.push(`- ${game.home.name} ${scoring.unit} allowed, overall: ${fmtSummary(historyBlock(homeLog.rows, 'pointsAgainst').overall)}`)
-  lines.push(`- ${game.home.name} ${scoring.unit} allowed, home: ${fmtSummary(historyBlock(homeLog.rows, 'pointsAgainst').home)}`)
+  for (const [teamName, rows] of [[game.away.name, awayLog.rows], [game.home.name, homeLog.rows]]) {
+    lines.push(...historyLines(teamName, rows, 'pointsFor', `${scoring.unit} for`))
+    lines.push(...historyLines(teamName, rows, 'pointsAgainst', `${scoring.unit} against`))
+  }
   if (football) {
     for (const [field, name] of YARD_FIELDS) {
-      lines.push(`- ${game.away.name} ${name}, overall: ${fmtSummary(historyBlock(awayLog.rows, field).overall)}`)
-      lines.push(`- ${game.away.name} ${name}, away: ${fmtSummary(historyBlock(awayLog.rows, field).away)}`)
-      lines.push(`- ${game.home.name} ${name}, overall: ${fmtSummary(historyBlock(homeLog.rows, field).overall)}`)
-      lines.push(`- ${game.home.name} ${name}, home: ${fmtSummary(historyBlock(homeLog.rows, field).home)}`)
+      lines.push(...historyLines(game.away.name, awayLog.rows, field, name))
+      lines.push(...historyLines(game.home.name, homeLog.rows, field, name))
     }
     const missingYards = [...awayLog.rows, ...homeLog.rows].filter((row) => !row.yards || row.yards.missing).length
     if (missingYards) lines.push(`- Games missing a box score: ${missingYards}. Those games stay in the points sample and drop out of the yardage sample.`)
   }
   lines.push('')
-  lines.push('**Layer B and Layer C — posted market and the numeric difference**')
+  lines.push(...marketSection(game))
   lines.push('')
-  lines.push(...marketSection(game, scoring))
+  lines.push(...comparisonSection(game, scoring))
   lines.push('')
-  lines.push('The margin difference and the total difference are not betting edges. No price was converted into a probability.')
-  lines.push('')
+  lines.push(...propsSection(game))
   return lines.join('\n')
 }
 
-async function section(title, sportPath, games, football) {
+async function section(title, sportPath, games, football, unit) {
   const header = [`## ${title}`, '', `Games on this retrieved board: ${games.length}.`, '']
   if (games.length === 0) {
     header.push('No upcoming games were in the retrieved scoreboard. Nothing was projected for this section.')
@@ -478,13 +537,15 @@ async function section(title, sportPath, games, football) {
   const rendered = games.map((game) => {
     const awayLog = logs.get(game.away.id)
     const homeLog = logs.get(game.home.id)
-    const scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')
+    const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
     return {
       scoring,
       markdown: renderGame(game, awayLog, homeLog, football, scoring),
     }
   })
   const table = [
+    'Comparison summary. Prices and timestamps are in each game’s market section, not here.',
+    '',
     '| Game | Baseline score | Home margin | Market home margin | Margin difference | Baseline total | Posted total | Total difference |',
     '| --- | --- | --- | --- | --- | --- | --- | --- |',
     ...rendered.map(({ scoring }, index) => {
@@ -511,32 +572,34 @@ async function main() {
   blocks.push('')
   blocks.push(`Retrieved ${retrievedAt.toISOString()} (UTC). This is one retrieved snapshot, not a live feed.`)
   blocks.push('')
-  blocks.push('Status of this snapshot: not complete. Player props, FanDuel, Novig, public betting splits, and team totals are requested and were not available here. Distribution fields are reported only from completed games. A blank history stays flagged.')
+  blocks.push('Each game has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
+  blocks.push('')
+  blocks.push('Status: not complete. The player-stat inventory is still open. FanDuel, Novig, public betting splits, and team totals were not in the ESPN payload. Distribution fields come only from completed games.')
   blocks.push('')
   blocks.push('## Open gaps in this snapshot')
   blocks.push('')
   blocks.push('- Player-stat projection inventory: open. Not recovered, not treated as canceled.')
-  blocks.push('- Player props: requested, not implemented.')
-  blocks.push('- FanDuel and Novig: requested, not in the ESPN payload used here.')
-  blocks.push('- Team totals: requested, not posted on the ESPN team-odds object.')
-  blocks.push('- Model win probability: not calculated, on purpose.')
-  blocks.push('- FCS is requested. It is included only when the ESPN group=81 scoreboard returns games.')
+  blocks.push('- Player props: present on every game as a flagged section. No prop number is filled in.')
+  blocks.push('- FanDuel and Novig: requested books. Flagged unavailable on every market row.')
+  blocks.push('- Team totals: requested. Flagged unavailable.')
+  blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
+  blocks.push('- Edge: not supported on any game in this snapshot.')
   blocks.push('')
 
   const boards = [
-    ['NFL', 'football/nfl', '', true],
-    ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true],
-    ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true],
-    ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true],
-    ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true],
-    ['NBA, October 30', 'basketball/nba', '?dates=20261030', false],
-    ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false],
-    ['Premier League scoreboard', 'soccer/eng.1', '', false],
-    ['MLS scoreboard', 'soccer/usa.1', '', false],
-    ['MLB scoreboard', 'baseball/mlb', '', false],
+    ['NFL', 'football/nfl', '', true, 'points'],
+    ['FBS Friday, October 30', 'football/college-football', '?dates=20261030&groups=80&limit=200', true, 'points'],
+    ['FBS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=80&limit=300', true, 'points'],
+    ['FCS Friday, October 30', 'football/college-football', '?dates=20261030&groups=81&limit=200', true, 'points'],
+    ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points'],
+    ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points'],
+    ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals'],
+    ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals'],
+    ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals'],
+    ['MLB scoreboard', 'baseball/mlb', '', false, 'runs'],
   ]
 
-  for (const [title, sportPath, query, football] of boards) {
+  for (const [title, sportPath, query, football, unit] of boards) {
     process.stderr.write(`loading ${title}\n`)
     const events = await load(sportPath, query)
     if (events.error) {
@@ -545,12 +608,23 @@ async function main() {
     }
     const games = gamesFromEvents(events, title)
     process.stderr.write(`${title}: ${games.length} upcoming\n`)
-    blocks.push(await section(title, sportPath, games, football))
+    blocks.push(await section(title, sportPath, games, football, unit))
   }
 
   blocks.push('## Player props')
   blocks.push('')
-  blocks.push('Requested and not implemented. The sport-by-sport player-stat inventory is still open. No prop line, price, or player projection is invented in this snapshot.')
+  blocks.push('This section is separate from the team cards. Every game above also has its own props block.')
+  blocks.push('')
+  blocks.push('| Check | Status | Flag |')
+  blocks.push('| --- | --- | --- |')
+  blocks.push('| Exact player-stat inventory | Not recovered | inventory-open |')
+  blocks.push('| Independent player projection | Not calculated | missing-input |')
+  blocks.push('| FanDuel player props | Not in the retrieved payload | unavailable |')
+  blocks.push('| DraftKings player props | Not in the retrieved payload | unavailable |')
+  blocks.push('| Novig player props | Not in the retrieved payload | unavailable |')
+  blocks.push('| Verification | No prop line was checked against a book | unverified |')
+  blocks.push('')
+  blocks.push('No prop number is invented. Unrecovered player stats stay open.')
   blocks.push('')
 
   const markdown = `${blocks.join('\n')}\n`

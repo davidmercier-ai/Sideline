@@ -185,7 +185,7 @@ Compare FanDuel, DraftKings, and Novig, with Ohio availability in mind. Show ope
 
 Outside-pick consensus is its own layer and is not blended in.
 
-**Status:** A, B, and C are separated. Consensus is not used. No consensus number is invented.
+**Status:** Every game on the slate, in every sport, is presented as three views. Sides, moneyline, O/U, team totals, and props each have a row. Opening and latest prices and the retrieval timestamp sit only in the market view. The comparison shows the numeric difference and says when cross-book variance is unavailable. Edge is withheld unless a validated probability and verified prices support it. Consensus is not used.
 
 ### 3.8 Output integrity
 
