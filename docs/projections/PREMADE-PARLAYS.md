@@ -14,7 +14,7 @@ DraftKings Ohio. The sportsbook page loads the prepacks widget, which calls:
 
 `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks?leagueId={id}&includeFilters=true&locale=en-us`
 
-League ids: NFL `88808`, NBA `42648`, NHL `42133`, NCAAF `87637`.
+League ids: NFL `88808`, NBA `42648`, NHL `42133`, NCAAF `87637`. A league request with no odds range returns the default Under +200 tab. The other price tabs are in `docs/projections/DK-PREBUILT.md`.
 
 ## Counts
 

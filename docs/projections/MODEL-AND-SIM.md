@@ -23,6 +23,11 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/export-premade-parlays.py` | Writes that snapshot to a spreadsheet and a CSV. It does not fetch prices. |
 | `docs/projections/sideline-premade-parlays-2026-10-30.xlsx` | One workbook: a parlays sheet and a legs sheet. |
 | `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The parlays sheet alone, one row per card. |
+| `scripts/dk-prebuilt.mjs` | Walks every DraftKings Ohio PrePack league, including the price tabs past Under +200. |
+| `docs/projections/DK-PREBUILT.md` | The counts from that search. |
+| `docs/projections/dk-prebuilt-parlays.json` | Every DraftKings prebuilt card from that search. |
+| `docs/projections/sideline-dk-prebuilt-2026-10-30.xlsx` | Those DraftKings cards in a spreadsheet. |
+| `docs/projections/sideline-dk-prebuilt-2026-10-30.csv` | One row per DraftKings card. |
 | `scripts/book-access.mjs` | Pulls the FanDuel Ohio board and the DraftKings prop feeds. |
 | `docs/projections/BOOK-ACCESS.md` | The latest access check and row counts. |
 | `docs/projections/book-access.json` | The prices from that check. |

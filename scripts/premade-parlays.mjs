@@ -97,7 +97,7 @@ export function teamMatches(bookSide, ourName) {
   return rest !== 'state' && !rest.startsWith('state ')
 }
 
-function loadGames(markdown, file) {
+export function loadGames(markdown, file) {
   const start = markdown.indexOf('## Predicted slate')
   if (start < 0) return []
   const rest = markdown.slice(start)
@@ -135,6 +135,12 @@ function etDate(iso) {
 
 function slateDate(game) {
   return game.file.match(/(\d{4}-\d{2}-\d{2})/)?.[1] ?? null
+}
+
+export async function loadStoredSlates() {
+  const games = []
+  for (const file of SLATES) games.push(...loadGames(await readFile(file, 'utf8'), file))
+  return games
 }
 
 function findGame(games, eventName, start) {
@@ -447,7 +453,7 @@ async function main() {
     '',
     '`https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks?leagueId={id}&includeFilters=true&locale=en-us`',
     '',
-    'League ids: NFL `88808`, NBA `42648`, NHL `42133`, NCAAF `87637`.',
+    'League ids: NFL `88808`, NBA `42648`, NHL `42133`, NCAAF `87637`. A league request with no odds range returns the default Under +200 tab. The other price tabs are in `docs/projections/DK-PREBUILT.md`.',
     '',
     '## Counts',
     '',

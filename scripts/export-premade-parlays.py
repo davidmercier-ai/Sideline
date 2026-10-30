@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -49,6 +50,7 @@ LEG_COLUMNS = (
     "Selection",
     "Line",
     "Outcome",
+    "Slate",
 )
 
 
@@ -108,6 +110,7 @@ def leg_rows(snapshot: dict) -> list[dict]:
                 "Selection": leg.get("selection") or "",
                 "Line": "" if leg.get("line") is None else leg.get("line"),
                 "Outcome": leg.get("outcome") or "",
+                "Slate": leg.get("slate") or "",
             })
     return rows
 
@@ -136,7 +139,10 @@ def write_sheet(ws, columns: tuple[str, ...], rows: list[dict]) -> None:
 
 
 def main() -> None:
-    snapshot = json.loads(SOURCE.read_text())
+    source = Path(sys.argv[1]) if len(sys.argv) > 1 else SOURCE
+    xlsx = Path(sys.argv[2]) if len(sys.argv) > 2 else XLSX
+    csv_path = Path(sys.argv[3]) if len(sys.argv) > 3 else CSV
+    snapshot = json.loads(source.read_text())
     parlays = parlay_rows(snapshot)
     legs = leg_rows(snapshot)
     if len(parlays) != len(snapshot["draftKings"]) + len(snapshot["fanDuel"]):
@@ -161,16 +167,16 @@ def main() -> None:
     write_sheet(parlays_sheet, PARLAY_COLUMNS, parlays)
     legs_sheet = workbook.create_sheet("Legs")
     write_sheet(legs_sheet, LEG_COLUMNS, legs)
-    workbook.save(XLSX)
+    workbook.save(xlsx)
 
-    with CSV.open("w", newline="") as handle:
+    with csv_path.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=PARLAY_COLUMNS)
         writer.writeheader()
         writer.writerows(parlays)
 
     print(f"parlays {len(parlays)} legs {len(legs)}")
-    print(XLSX)
-    print(CSV)
+    print(xlsx)
+    print(csv_path)
 
 
 if __name__ == "__main__":
