@@ -212,6 +212,11 @@ img {
   color-scheme: dark;
 }
 
+.date-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;

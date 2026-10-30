@@ -1,18 +1,21 @@
 import { useState, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { GameCard } from '../components/GameCard'
 import { GoalCard } from '../components/GoalCard'
 import { NhlCard } from '../components/NhlCard'
 import { ThreeCard } from '../components/ThreeCard'
 import { loadSidelineContext } from '../lib/context'
-import { formatLongDate, todayET } from '../lib/format'
-import { fetchTonight, tonightCounts } from '../lib/tonight'
+import { formatLongDate, parseIsoDate, shiftDate, todayET } from '../lib/format'
+import { boardPath, fetchTonight, findSimSlateDate, tonightCounts } from '../lib/tonight'
 import { usePoll } from '../lib/usePoll'
 import { readWatched, toggleWatched, writeWatched } from '../lib/watch'
 
 export function TonightPage() {
-  const date = todayET()
+  const [params, setParams] = useSearchParams()
+  const date = parseIsoDate(params.get('date')) ?? todayET()
+  const simulated = date !== todayET()
   const [watched, setWatched] = useState(readWatched)
+  const [simulating, setSimulating] = useState(false)
   const { data, error, loading } = usePoll(() => fetchTonight(date), date, 20000)
   const extras = usePoll(
     () => loadSidelineContext(data?.mlb ?? []),
@@ -21,6 +24,22 @@ export function TonightPage() {
   )
 
   const counts = data ? tonightCounts(data) : { games: 0, live: 0 }
+
+  function setDate(next: string) {
+    const nextParams = new URLSearchParams(params)
+    if (next === todayET()) nextParams.delete('date')
+    else nextParams.set('date', next)
+    setParams(nextParams, { replace: true })
+  }
+
+  async function simulate() {
+    setSimulating(true)
+    try {
+      setDate(await findSimSlateDate(todayET()))
+    } finally {
+      setSimulating(false)
+    }
+  }
 
   function onWatch(gamePk: number) {
     const next = toggleWatched(watched, gamePk)
@@ -32,12 +51,35 @@ export function TonightPage() {
     <main>
       <section className="page-hero">
         <div>
-          <p className="meta">Whatever’s on the grass</p>
+          <p className="meta">{simulated ? 'Simulated sheet' : 'Whatever’s on the grass'}</p>
           <h1>Tonight</h1>
           <p className="lede">
-            One sheet for today’s MLB, soccer, NBA, and NHL. Each sport still
-            has its own board when you want the full slate.
+            One sheet for MLB, soccer, NBA, and NHL. Simulate jumps to the
+            last stacked night so you can read scores before first pitch today.
           </p>
+        </div>
+        <div className="date-nav">
+          <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, -1))}>
+            Prev
+          </button>
+          <input
+            type="date"
+            value={date}
+            aria-label="Tonight date"
+            onChange={(event) => setDate(event.target.value)}
+          />
+          <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, 1))}>
+            Next
+          </button>
+          {simulated ? (
+            <button type="button" className="date-btn" onClick={() => setDate(todayET())}>
+              Today
+            </button>
+          ) : (
+            <button type="button" className="date-btn" onClick={() => void simulate()} disabled={simulating}>
+              {simulating ? 'Finding…' : 'Simulate'}
+            </button>
+          )}
         </div>
       </section>
 
@@ -55,8 +97,8 @@ export function TonightPage() {
         <>
           <SportSection
             title="Soccer"
-            to="/soccer"
-            empty="No matches in ET today."
+            to={boardPath('/soccer', date)}
+            empty="No matches on this date."
             count={data.soccer.length}
           >
             {data.soccer.map((match) => (
@@ -66,8 +108,8 @@ export function TonightPage() {
 
           <SportSection
             title="MLB"
-            to="/mlb"
-            empty="No MLB games today."
+            to={boardPath('/mlb', date)}
+            empty="No MLB games on this date."
             count={data.mlb.length}
           >
             {data.mlb.map((game) => (
@@ -84,8 +126,8 @@ export function TonightPage() {
 
           <SportSection
             title="NHL"
-            to="/nhl"
-            empty="No NHL games today."
+            to={boardPath('/nhl', date)}
+            empty="No NHL games on this date."
             count={data.nhl.length}
           >
             {data.nhl.map((game) => (
@@ -95,8 +137,8 @@ export function TonightPage() {
 
           <SportSection
             title="NBA"
-            to="/nba"
-            empty="No NBA games today."
+            to={boardPath('/nba', date)}
+            empty="No NBA games on this date."
             count={data.nba.length}
           >
             {data.nba.map((game) => (
