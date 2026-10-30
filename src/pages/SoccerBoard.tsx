@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { GoalCard } from '../components/GoalCard'
-import { dateInET, todayET } from '../lib/format'
+import { dateInET, formatLongDate, parseIsoDate, shiftDate, todayET } from '../lib/format'
 import { fetchSoccerSlate, SOCCER_LEAGUES, type SoccerMatch } from '../lib/soccer'
 import { usePoll } from '../lib/usePoll'
 
@@ -14,23 +15,37 @@ const FILTERS: { id: Filter; label: string }[] = [
 ]
 
 export function SoccerBoardPage() {
+  const [params, setParams] = useSearchParams()
+  const date = parseIsoDate(params.get('date')) ?? todayET()
+  const dated = date !== todayET()
   const [filter, setFilter] = useState<Filter>('all')
   const [league, setLeague] = useState('all')
-  const { data, error, loading } = usePoll(fetchSoccerSlate, 'soccer-slate', 30000)
+  const { data, error, loading } = usePoll(() => fetchSoccerSlate(date), date, 30000)
 
-  const matches = data ?? []
+  const matches = useMemo(() => {
+    const list = data ?? []
+    if (!dated) return list
+    return list.filter((match) => dateInET(match.date) === date)
+  }, [data, date, dated])
   const visible = useMemo(
     () =>
-      (data ?? []).filter((match) => {
+      matches.filter((match) => {
         if (filter !== 'all' && match.state !== filter) return false
         if (league !== 'all' && match.league !== league) return false
         return true
       }),
-    [data, filter, league],
+    [matches, filter, league],
   )
   const liveCount = matches.filter((match) => match.state === 'in').length
   const goalCount = matches.reduce((sum, match) => sum + match.goals.length, 0)
   const todayCount = matches.filter((match) => dateInET(match.date) === todayET()).length
+
+  function setDate(next: string) {
+    const nextParams = new URLSearchParams(params)
+    if (next === todayET()) nextParams.delete('date')
+    else nextParams.set('date', next)
+    setParams(nextParams, { replace: true })
+  }
 
   return (
     <main>
@@ -43,12 +58,31 @@ export function SoccerBoardPage() {
             the table.
           </p>
         </div>
+        <div className="date-nav">
+          <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, -1))}>
+            Prev
+          </button>
+          <input
+            type="date"
+            value={date}
+            aria-label="Soccer date"
+            onChange={(event) => setDate(event.target.value)}
+          />
+          <button type="button" className="date-btn" onClick={() => setDate(shiftDate(date, 1))}>
+            Next
+          </button>
+          {dated ? (
+            <button type="button" className="date-btn" onClick={() => setDate(todayET())}>
+              Today
+            </button>
+          ) : null}
+        </div>
       </section>
 
       <div className="row" style={{ marginBottom: 12 }}>
         <p className="muted">
-          {todayCount === matches.length
-            ? `${matches.length} matches on the slate`
+          {dated || todayCount === matches.length
+            ? `${formatLongDate(date)} · ${matches.length} matches`
             : `${todayCount} today · ${matches.length} on the board`}
         </p>
         <p className="meta">

@@ -1,5 +1,5 @@
 import { fetchSchedule } from './api'
-import { dateInET, sortGames, todayET } from './format'
+import { dateInET, shiftDate, sortGames, todayET } from './format'
 import { fetchNbaSlate, sortNbaGames, type NbaGame } from './nba'
 import { fetchNhlSlate, sortNhlGames, type NhlGame } from './nhl'
 import { fetchSoccerSlate, type SoccerMatch } from './soccer'
@@ -18,7 +18,7 @@ export async function fetchTonight(date = todayET()): Promise<TonightSlate> {
     fetchSchedule(date).catch(() => [] as ScheduleGame[]),
     fetchNbaSlate(date).catch(() => [] as NbaGame[]),
     fetchNhlSlate(date).catch(() => [] as NhlGame[]),
-    fetchSoccerSlate()
+    fetchSoccerSlate(date)
       .then((matches) => matches.filter((match) => dateInET(match.date) === date))
       .catch(() => [] as SoccerMatch[]),
   ])
@@ -30,6 +30,29 @@ export async function fetchTonight(date = todayET()): Promise<TonightSlate> {
     nhl: sortNhlGames(nhl),
     soccer,
   }
+}
+
+export async function findSimSlateDate(from = todayET()): Promise<string> {
+  const dates = Array.from({ length: 6 }, (_, i) => shiftDate(from, -(i + 1)))
+  const rows = await Promise.all(
+    dates.map(async (date) => {
+      const [mlb, nba, nhl] = await Promise.all([
+        fetchSchedule(date).catch(() => [] as ScheduleGame[]),
+        fetchNbaSlate(date).catch(() => [] as NbaGame[]),
+        fetchNhlSlate(date).catch(() => [] as NhlGame[]),
+      ])
+      const games = mlb.length + nba.length + nhl.length
+      const sports = [mlb, nba, nhl].filter((list) => list.length > 0).length
+      return { date, sports, games }
+    }),
+  )
+  rows.sort((a, b) => b.sports - a.sports || b.games - a.games)
+  return rows[0]?.date ?? shiftDate(from, -1)
+}
+
+export function boardPath(path: string, date: string): string {
+  if (date === todayET()) return path
+  return `${path}?date=${date}`
 }
 
 export function tonightCounts(slate: TonightSlate): {

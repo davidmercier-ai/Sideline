@@ -6,6 +6,13 @@ export function todayET(): string {
   }).format(new Date())
 }
 
+export function parseIsoDate(value: string | null | undefined): string | null {
+  if (!value) return null
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+  if (/^\d{8}$/.test(value)) return `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`
+  return null
+}
+
 export function shiftDate(isoDate: string, days: number): string {
   const [year, month, day] = isoDate.split('-').map(Number)
   const next = new Date(Date.UTC(year, month - 1, day + days))
