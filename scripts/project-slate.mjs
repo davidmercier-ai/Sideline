@@ -207,7 +207,7 @@ function gamesFromEvents(events, sport) {
   return games
 }
 
-async function teamLog(sportPath, teamId, football) {
+export async function teamLog(sportPath, teamId, football) {
   const schedule = await getJson(`/apis/site/v2/sports/${sportPath}/teams/${teamId}/schedule`)
   const season = schedule.requestedSeason ?? schedule.season ?? {}
   const seasonYear = season.year ?? null
@@ -516,7 +516,7 @@ function gameSimulation(game, awayRows, homeRows) {
   }
 }
 
-function projectYards(awayLog, homeLog, forField, againstField) {
+export function projectYards(awayLog, homeLog, forField, againstField) {
   return {
     away: projectRate(values(awayLog, 'away', forField), values(homeLog, 'home', againstField)),
     home: projectRate(values(homeLog, 'home', forField), values(awayLog, 'away', againstField)),
