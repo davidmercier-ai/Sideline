@@ -3,7 +3,10 @@ import {
   difference,
   grossPassingYards,
   homeMargin,
+  inputSynergy,
   marketHomeMargin,
+  medianPair,
+  methodConvergence,
   projectRate,
   projectedOutcome,
   reconcileTotal,
@@ -54,5 +57,32 @@ const gameTotals = [300, 400, 500]
 const rushMedians = summarize([100, 110, 90]).median
 const passMedians = summarize([200, 210, 190]).median
 assert.notEqual(summarize(gameTotals).median, rushMedians + passMedians)
+
+const medians = medianPair([10, 30, 20], [12, 18])
+assert.equal(medians.value, (20 + 15) / 2)
+assert.equal(medians.basis, 'average of the two venue medians')
+assert.equal(medianPair([], [1, 2]).incomplete, true)
+
+const agreement = methodConvergence([
+  { margin: 2, total: 40 },
+  { margin: 1, total: 42 },
+  { margin: -3, total: 39 },
+])
+assert.equal(agreement.side, 'split')
+assert.equal(agreement.counts.home, 2)
+assert.equal(agreement.counts.away, 1)
+assert.equal(agreement.marginRange, 5)
+
+const converged = methodConvergence([
+  { margin: 2, total: 10 },
+  { margin: 4, total: 12 },
+])
+assert.equal(converged.unanimous, true)
+assert.equal(converged.side, 'home')
+assert.equal(converged.totalRange, 2)
+
+assert.equal(inputSynergy(12, 10, 11, 9).status, 'reinforce')
+assert.equal(inputSynergy(12, 10, 8, 9).status, 'diverge')
+assert.equal(inputSynergy(null, 10, 8, 9).status, 'missing-input')
 
 console.log('projection math ok')

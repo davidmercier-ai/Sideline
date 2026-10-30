@@ -89,6 +89,78 @@ export function overallComparison(forValues, againstValues) {
   return projectRate(forValues, againstValues, 'overall means')
 }
 
+/** Average of two medians. This is not a median of added components. */
+export function medianPair(forValues, againstValues) {
+  const produced = summarize(forValues)
+  const allowed = summarize(againstValues)
+  if (produced.median == null || allowed.median == null) {
+    return {
+      value: null,
+      basis: 'venue medians',
+      nFor: produced.n,
+      nAgainst: allowed.n,
+      thin: true,
+      incomplete: true,
+    }
+  }
+  return {
+    value: (produced.median + allowed.median) / 2,
+    basis: 'average of the two venue medians',
+    nFor: produced.n,
+    nAgainst: allowed.n,
+    thin: produced.n < 3 || allowed.n < 3,
+    incomplete: false,
+  }
+}
+
+export function sideOf(margin) {
+  if (!Number.isFinite(margin)) return 'unavailable'
+  if (Math.abs(margin) < 0.05) return 'tie'
+  return margin > 0 ? 'home' : 'away'
+}
+
+export function rangeOf(values) {
+  const nums = values.filter((value) => Number.isFinite(value))
+  if (nums.length === 0) return null
+  return Math.max(...nums) - Math.min(...nums)
+}
+
+/**
+ * Agreement among independent methods. This is not outside consensus.
+ * Unavailable methods are not counted as a vote.
+ */
+export function methodConvergence(methods) {
+  const known = methods.filter((method) => sideOf(method.margin) !== 'unavailable')
+  const counts = { home: 0, away: 0, tie: 0 }
+  for (const method of known) counts[sideOf(method.margin)] += 1
+  const votes = Object.entries(counts).filter(([, count]) => count > 0)
+  const unanimous = known.length > 0 && votes.length === 1
+  return {
+    known: known.length,
+    counts,
+    unanimous,
+    side: unanimous ? votes[0][0] : known.length ? 'split' : 'unavailable',
+    marginRange: rangeOf(known.map((method) => method.margin)),
+    totalRange: rangeOf(known.map((method) => method.total)),
+  }
+}
+
+/**
+ * The two inputs inside one matchup, each compared with that team's own overall rate.
+ * Reinforce means both inputs sit on the same side of their overall rate.
+ * This is not a blend and it is not a market comparison.
+ */
+export function inputSynergy(ownVenue, ownOverall, allowanceVenue, allowanceOverall) {
+  if (![ownVenue, ownOverall, allowanceVenue, allowanceOverall].every((value) => Number.isFinite(value))) {
+    return { status: 'missing-input' }
+  }
+  const own = ownVenue - ownOverall
+  const allowance = allowanceVenue - allowanceOverall
+  if (Math.abs(own) < 0.05 && Math.abs(allowance) < 0.05) return { status: 'flat', own, allowance }
+  if (own * allowance > 0) return { status: 'reinforce', own, allowance }
+  return { status: 'diverge', own, allowance }
+}
+
 export function round1(value) {
   if (!Number.isFinite(value)) return null
   return Math.round(value * 10) / 10

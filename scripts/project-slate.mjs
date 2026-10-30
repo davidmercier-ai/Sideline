@@ -15,7 +15,10 @@ import {
   difference,
   grossPassingYards,
   homeMargin,
+  inputSynergy,
   marketHomeMargin,
+  medianPair,
+  methodConvergence,
   overallComparison,
   projectRate,
   projectedOutcome,
@@ -216,6 +219,7 @@ async function teamLog(sportPath, teamId, football) {
     if (pointsFor == null || pointsAgainst == null) continue
     rows.push({
       eventId: event.id,
+      date: event.date || competition.date || '',
       venue: competition.neutralSite ? 'neutral' : me.homeAway,
       pointsFor,
       pointsAgainst,
@@ -360,6 +364,65 @@ function projectScoring(awayLog, homeLog, scoring) {
   }
 }
 
+function lastRows(rows, count = 3) {
+  return [...rows].sort((a, b) => String(a.date).localeCompare(String(b.date))).slice(-count)
+}
+
+function packMethod(name, away, home) {
+  return {
+    name,
+    away,
+    home,
+    total: Number.isFinite(away.value) && Number.isFinite(home.value) ? away.value + home.value : null,
+    margin: homeMargin(home.value, away.value),
+  }
+}
+
+function scoringMethods(awayRows, homeRows) {
+  const recentAway = lastRows(awayRows)
+  const recentHome = lastRows(homeRows)
+  return [
+    packMethod(
+      'Venue-matched mean',
+      projectRate(values(awayRows, 'away', 'pointsFor'), values(homeRows, 'home', 'pointsAgainst')),
+      projectRate(values(homeRows, 'home', 'pointsFor'), values(awayRows, 'away', 'pointsAgainst')),
+    ),
+    packMethod(
+      'Overall mean',
+      projectRate(values(awayRows, 'overall', 'pointsFor'), values(homeRows, 'overall', 'pointsAgainst'), 'overall means'),
+      projectRate(values(homeRows, 'overall', 'pointsFor'), values(awayRows, 'overall', 'pointsAgainst'), 'overall means'),
+    ),
+    packMethod(
+      'Venue-matched median',
+      medianPair(values(awayRows, 'away', 'pointsFor'), values(homeRows, 'home', 'pointsAgainst')),
+      medianPair(values(homeRows, 'home', 'pointsFor'), values(awayRows, 'away', 'pointsAgainst')),
+    ),
+    packMethod(
+      'Last 3 games',
+      projectRate(recentAway.map((row) => row.pointsFor), recentHome.map((row) => row.pointsAgainst), 'last 3 games'),
+      projectRate(recentHome.map((row) => row.pointsFor), recentAway.map((row) => row.pointsAgainst), 'last 3 games'),
+    ),
+  ]
+}
+
+function teamSynergy(ownRows, ownVenue, allowanceRows, allowanceVenue) {
+  return inputSynergy(
+    summarize(values(ownRows, ownVenue, 'pointsFor')).mean,
+    summarize(values(ownRows, 'overall', 'pointsFor')).mean,
+    summarize(values(allowanceRows, allowanceVenue, 'pointsAgainst')).mean,
+    summarize(values(allowanceRows, 'overall', 'pointsAgainst')).mean,
+  )
+}
+
+function synergyText(result) {
+  if (result.status === 'missing-input') return 'missing-input'
+  if (result.status === 'flat') return 'flat (both inputs are within 0.05 of that team’s overall rate)'
+  const own = fmt(result.own)
+  const allowance = fmt(result.allowance)
+  if (result.status === 'reinforce') return `reinforce (own venue vs overall ${own}; opponent allowance vs overall ${allowance})`
+  return `diverge (own venue vs overall ${own}; opponent allowance vs overall ${allowance})`
+}
+
 function projectYards(awayLog, homeLog, forField, againstField) {
   return {
     away: projectRate(values(awayLog, 'away', forField), values(homeLog, 'home', againstField)),
@@ -471,6 +534,24 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push(`- Projected outcome: ${projectedOutcome(game.home.name, game.away.name, scoring.home.value, scoring.away.value)}`)
   lines.push(line(`Overall comparison, ${game.away.name}`, scoring.awayOverall))
   lines.push(line(`Overall comparison, ${game.home.name}`, scoring.homeOverall))
+  const methods = scoringMethods(awayLog.rows, homeLog.rows)
+  const convergence = methodConvergence(methods)
+  lines.push('')
+  lines.push('Four independent reads of the same logs. They are listed separately and are not averaged into a single projection.')
+  lines.push('')
+  lines.push('| Method | Away | Home | Home margin | Combined |')
+  lines.push('| --- | --- | --- | --- | --- |')
+  for (const method of methods) {
+    lines.push(`| ${method.name} | ${fmt(method.away.value)} | ${fmt(method.home.value)} | ${fmt(method.margin)} | ${fmt(method.total)} |`)
+  }
+  lines.push('')
+  lines.push(`- Convergence: ${convergence.known} methods available; home ${convergence.counts.home}, away ${convergence.counts.away}, tie ${convergence.counts.tie}. Result: ${convergence.side}.`)
+  lines.push(`- Margin range across methods: ${fmt(convergence.marginRange)}. Combined range across methods: ${fmt(convergence.totalRange)}.`)
+  lines.push('- Convergence is agreement among these methods. It is not outside consensus.')
+  lines.push(`- Synergy, visitor scoring inputs: ${synergyText(teamSynergy(awayLog.rows, 'away', homeLog.rows, 'home'))}.`)
+  lines.push(`- Synergy, home scoring inputs: ${synergyText(teamSynergy(homeLog.rows, 'home', awayLog.rows, 'away'))}.`)
+  lines.push('- Synergy means the team’s own venue rate and the opponent’s venue allowance sit on the same side of their overall rates. A diverging pair is left visible. The two rates are not collapsed.')
+  lines.push('- Outside consensus: unavailable. No outside-pick source was retrieved. These methods are not averaged and then called consensus.')
   if (football) {
     const specs = [
       ['rushFor', 'rushAgainst', 'rushing yards'],
@@ -538,8 +619,10 @@ async function section(title, sportPath, games, football, unit) {
     const awayLog = logs.get(game.away.id)
     const homeLog = logs.get(game.home.id)
     const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
+    const convergence = methodConvergence(scoringMethods(awayLog.rows, homeLog.rows))
     return {
       scoring,
+      convergence,
       markdown: renderGame(game, awayLog, homeLog, football, scoring),
     }
   })
@@ -551,6 +634,15 @@ async function section(title, sportPath, games, football, unit) {
     ...rendered.map(({ scoring }, index) => {
       const game = games[index]
       return `| ${game.away.name} at ${game.home.name} | ${fmt(scoring.away.value)}–${fmt(scoring.home.value)} | ${fmt(scoring.margin)} | ${fmt(game.market.marketHomeMargin)} | ${fmt(difference(scoring.margin, game.market.marketHomeMargin))} | ${fmt(scoring.total)} | ${fmt(game.market.total)} | ${fmt(difference(scoring.total, game.market.total))} |`
+    }),
+    '',
+    'Agreement among the four statistical methods. This is not outside consensus, and it is not a blend.',
+    '',
+    '| Game | Home votes | Away votes | Tie votes | Agreement | Margin range | Total range |',
+    '| --- | --- | --- | --- | --- | --- | --- |',
+    ...rendered.map(({ convergence }, index) => {
+      const game = games[index]
+      return `| ${game.away.name} at ${game.home.name} | ${convergence.counts.home} | ${convergence.counts.away} | ${convergence.counts.tie} | ${convergence.side} | ${fmt(convergence.marginRange)} | ${fmt(convergence.totalRange)} |`
     }),
     '',
   ]
