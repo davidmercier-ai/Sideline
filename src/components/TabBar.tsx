@@ -3,21 +3,23 @@ import { NavLink, useLocation } from 'react-router-dom'
 const TABS = [
   {
     to: '/',
-    label: 'MLB',
-    match: (path: string) => path === '/' || path.startsWith('/game') || path.startsWith('/team'),
+    label: 'Today',
+    match: (path: string) => path === '/',
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3.5 20 12l-8 8.5L4 12l8-8.5Z" />
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 3v2M12 19v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M3 12h2M19 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5" />
       </svg>
     ),
   },
   {
-    to: '/standings',
-    label: 'Table',
-    match: (path: string) => path.startsWith('/standings'),
+    to: '/mlb',
+    label: 'MLB',
+    match: (path: string) =>
+      path.startsWith('/mlb') || path.startsWith('/game') || path.startsWith('/team') || path.startsWith('/standings'),
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 7h14M5 12h14M5 17h10" />
+        <path d="M12 3.5 20 12l-8 8.5L4 12l8-8.5Z" />
       </svg>
     ),
   },

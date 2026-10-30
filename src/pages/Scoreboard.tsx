@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { GameCard } from '../components/GameCard'
 import { fetchSchedule } from '../lib/api'
 import { loadSidelineContext } from '../lib/context'
@@ -115,6 +115,14 @@ export function ScoreboardPage() {
           {filter === 'all'
             ? 'No MLB games on this date.'
             : 'No games in this view. Try another filter or date.'}
+          {filter === 'all' && date === todayET() ? (
+            <>
+              {' '}
+              <Link className="back-link" to="/">
+                See tonight
+              </Link>
+            </>
+          ) : null}
           {filter === 'all' ? (
             <>
               {' '}

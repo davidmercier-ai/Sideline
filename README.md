@@ -20,7 +20,8 @@ npm run preview
 
 ## What’s here
 
-- **Scoreboard** — today’s MLB slate (ET), live / upcoming / final filters, date rail, watch list
+- **Tonight** — `/` one sheet for today’s soccer, MLB, NHL, and NBA
+- **MLB scoreboard** — `/mlb` live / upcoming / final filters, date rail, watch list
 - **Game** — live scorebug, diamond + count, linescore, recent plays, abbreviated box
 - **Standings** — AL / NL divisions with games back and run differential
 - **Team** — next games, recent results, active roster

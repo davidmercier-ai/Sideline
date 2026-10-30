@@ -84,8 +84,8 @@ export function GamePage() {
   return (
     <main>
       <p style={{ marginTop: 20 }}>
-        <Link className="back-link" to="/">
-          ← Scoreboard
+        <Link className="back-link" to="/mlb">
+          ← MLB
         </Link>
       </p>
 
