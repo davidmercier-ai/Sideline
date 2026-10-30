@@ -8,6 +8,7 @@ It does not refetch prices and it does not invent a number the snapshot left bla
 
 from __future__ import annotations
 
+import csv
 import re
 import sys
 from pathlib import Path
@@ -1322,7 +1323,10 @@ def build(slate_path, manual_path, out_path):
     write_start(start, manual, games)
 
     game_sheet = wb.create_sheet("Games")
-    write_table(game_sheet, GAME_COLUMNS, [game_row(game) for game in games])
+    game_rows = [game_row(game) for game in games]
+    write_table(game_sheet, GAME_COLUMNS, game_rows)
+    csv_path = out_path.with_name("sideline-games-2026-10-30.csv")
+    write_games_csv(csv_path, game_rows)
 
     methods = wb.create_sheet("Methods")
     method_data = []
@@ -1356,7 +1360,19 @@ def build(slate_path, manual_path, out_path):
         "history": len(history_data),
         "yards": len(yard_data),
         "path": out_path,
+        "csv": csv_path,
     }
+
+
+def write_games_csv(path, rows):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow([header for _key, header, _width, _color, _help in GAME_COLUMNS])
+        for row in rows:
+            writer.writerow(
+                ["" if row.get(key) is None else row.get(key) for key, _header, _width, _color, _help in GAME_COLUMNS]
+            )
 
 
 def main():
@@ -1364,7 +1380,7 @@ def main():
     out = Path(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_OUT
     summary = build(slate, DEFAULT_MANUAL, out)
     print(
-        f"wrote {summary['path']} games={summary['games']} "
+        f"wrote {summary['path']} and {summary['csv']} games={summary['games']} "
         f"methods={summary['methods']} history={summary['history']} yards={summary['yards']}"
     )
 
