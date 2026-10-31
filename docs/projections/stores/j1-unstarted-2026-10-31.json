@@ -1,0 +1,928 @@
+{
+  "id": "j1-unstarted-2026-10-31",
+  "title": "J1 unstarted games",
+  "sportPath": "soccer/jpn.1",
+  "retrievedAt": "2026-10-31T21:46:51.826Z",
+  "games": [
+    {
+      "when": "Sun, Nov 1, 12:00 AM",
+      "id": "401877580",
+      "match": "Kawasaki @ Yokohama FM",
+      "venue": {
+        "away": 1.36,
+        "home": 1.25,
+        "gap": -0.11,
+        "n": "14/14 / 14/14",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.36,
+          "home": 1.25,
+          "margin": -0.11
+        },
+        {
+          "name": "overall",
+          "away": 1.48,
+          "home": 1.48,
+          "margin": 0
+        },
+        {
+          "name": "median",
+          "away": 1.25,
+          "home": 1,
+          "margin": -0.25
+        },
+        {
+          "name": "last3",
+          "away": 1.83,
+          "home": 1.17,
+          "margin": -0.67
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 0,
+        "away": 3,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1.5,
+        "homeMedian": 1,
+        "away": 42.3,
+        "draw": 17.9,
+        "home": 39.9,
+      "over25": 43.1,
+      "under35": 74.2,
+      "push35": 12.5,
+      "over35": 13.4,
+      "thin": false
+    },
+      "synergy": {
+        "away": "diverge",
+        "home": "reinforce"
+      },
+      "ml": {
+        "away": "+120",
+        "home": "+195",
+        "draw": "+275",
+        "details": "KAW +120",
+        "spread": null,
+        "total": 3.5
+      },
+      "call": "under 3.5",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 1, 1:00 AM",
+      "id": "401877582",
+      "match": "A Fukuoka @ JEF Utd Chiba",
+      "venue": {
+        "away": 1.21,
+        "home": 1.32,
+        "gap": 0.11,
+        "n": "14/14 / 14/14",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.21,
+          "home": 1.32,
+          "margin": 0.11
+        },
+        {
+          "name": "overall",
+          "away": 1.42,
+          "home": 1.3,
+          "margin": -0.12
+        },
+        {
+          "name": "median",
+          "away": 1.5,
+          "home": 1.5,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 1.17,
+          "home": 2,
+          "margin": 0.83
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 2,
+        "away": 1,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 35.6,
+        "draw": 19.6,
+        "home": 44.9,
+        "over25": 38.9,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": {
+        "away": "+135",
+        "home": "+205",
+        "draw": "+230",
+        "details": "AVF +135",
+        "spread": null,
+        "total": 2.5
+      },
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 1, 1:00 AM",
+      "id": "401877578",
+      "match": "Tokyo Verdy @ V-Varen",
+      "venue": {
+        "away": 1.16,
+        "home": 1.39,
+        "gap": 0.23,
+        "n": "13/15 / 15/13",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.16,
+          "home": 1.39,
+          "margin": 0.23
+        },
+        {
+          "name": "overall",
+          "away": 1.25,
+          "home": 1.35,
+          "margin": 0.1
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 1.33,
+          "home": 1.83,
+          "margin": 0.5
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 3,
+        "away": 0,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 31.9,
+        "draw": 19.2,
+        "home": 49,
+        "over25": 42.2,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": {
+        "away": "+195",
+        "home": "+145",
+        "draw": "+220",
+        "details": "VVN +145",
+        "spread": null,
+        "total": 2.5
+      },
+      "call": "pass",
+      "side": "pass",
+      "note": "Open ticket already has V-Varen. Venue gap 0.23 is under a quarter goal and the median is a tie.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 1, 1:00 AM",
+      "id": "401877581",
+      "match": "Gamba Osaka @ Machida Zelvia",
+      "venue": {
+        "away": 1.2,
+        "home": 1.5,
+        "gap": 0.29,
+        "n": "16/14 / 14/16",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.2,
+          "home": 1.5,
+          "margin": 0.29
+        },
+        {
+          "name": "overall",
+          "away": 1.15,
+          "home": 1.6,
+          "margin": 0.45
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1.75,
+          "margin": 0.75
+        },
+        {
+          "name": "last3",
+          "away": 1,
+          "home": 2.17,
+          "margin": 1.17
+        }
+      ],
+      "vote": "home",
+      "votes": {
+        "home": 4,
+        "away": 0,
+        "tie": 0
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 26.1,
+        "draw": 18.9,
+        "home": 55.1,
+        "over25": 46.3,
+        "thin": false
+      },
+      "synergy": {
+        "away": "diverge",
+        "home": "diverge"
+      },
+      "ml": {
+        "away": "+340",
+        "home": "-130",
+        "draw": "+280",
+        "details": "ZEL -130",
+        "spread": null,
+        "total": 2.5
+      },
+      "call": "Machida Zelvia",
+      "side": "home",
+      "note": "Open ticket already has Machida ML / -0.5 at -140. Current quote is -130.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Fri, Nov 6, 11:00 PM",
+      "id": "401877557",
+      "match": "Tokyo Verdy @ Shimizu",
+      "venue": {
+        "away": 1.15,
+        "home": 1.19,
+        "gap": 0.04,
+        "n": "13/16 / 16/13",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.15,
+          "home": 1.19,
+          "margin": 0.04
+        },
+        {
+          "name": "overall",
+          "away": 1.16,
+          "home": 1.23,
+          "margin": 0.07
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 2.67,
+          "home": 1.17,
+          "margin": -1.5
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 1,
+        "away": 1,
+        "tie": 2
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1,
+        "away": 37.7,
+        "draw": 19.5,
+        "home": 42.9,
+        "over25": 32.4,
+        "thin": false
+      },
+      "synergy": {
+        "away": "flat",
+        "home": "diverge"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sat, Nov 7, 12:00 AM",
+      "id": "401877536",
+      "match": "Kyoto Sanga @ Nagoya",
+      "venue": {
+        "away": 1.07,
+        "home": 1.61,
+        "gap": 0.54,
+        "n": "16/15 / 15/16",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.07,
+          "home": 1.61,
+          "margin": 0.54
+        },
+        {
+          "name": "overall",
+          "away": 1.37,
+          "home": 1.53,
+          "margin": 0.16
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1.25,
+          "margin": 0.25
+        },
+        {
+          "name": "last3",
+          "away": 1.83,
+          "home": 1.17,
+          "margin": -0.67
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 3,
+        "away": 1,
+        "tie": 0
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 18.5,
+        "draw": 17.2,
+        "home": 64.3,
+        "over25": 45.6,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "reinforce"
+      },
+      "ml": {
+        "away": "+285",
+        "home": "-125",
+        "draw": "+275",
+        "details": "NAG -125",
+        "spread": null,
+        "total": 2.5
+      },
+      "call": "pass",
+      "side": "pass",
+      "note": "Venue gap is 0.54 and the sim home share is the loudest on the board, but last 3 flips to Kyoto. Split.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sat, Nov 7, 12:00 AM",
+      "id": "401877558",
+      "match": "Okayama @ Yokohama FM",
+      "venue": {
+        "away": 1.49,
+        "home": 1.51,
+        "gap": 0.03,
+        "n": "15/14 / 14/15",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.49,
+          "home": 1.51,
+          "margin": 0.03
+        },
+        {
+          "name": "overall",
+          "away": 1.31,
+          "home": 1.48,
+          "margin": 0.16
+        },
+        {
+          "name": "median",
+          "away": 1.25,
+          "home": 1,
+          "margin": -0.25
+        },
+        {
+          "name": "last3",
+          "away": 1,
+          "home": 1.5,
+          "margin": 0.5
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 2,
+        "away": 1,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1.5,
+        "homeMedian": 1.5,
+        "away": 40.1,
+        "draw": 20.8,
+        "home": 39.1,
+        "over25": 56.7,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sat, Nov 7, 1:00 AM",
+      "id": "401877535",
+      "match": "V-Varen @ A Fukuoka",
+      "venue": {
+        "away": 1.22,
+        "home": 1.43,
+        "gap": 0.21,
+        "n": "15/16 / 16/15",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.22,
+          "home": 1.43,
+          "margin": 0.21
+        },
+        {
+          "name": "overall",
+          "away": 1.38,
+          "home": 1.28,
+          "margin": -0.1
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 2,
+          "home": 0.83,
+          "margin": -1.17
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 1,
+        "away": 2,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 27.9,
+        "draw": 20.8,
+        "home": 51.3,
+        "over25": 43.3,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "reinforce"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sat, Nov 7, 1:00 AM",
+      "id": "401877556",
+      "match": "Kashima @ Tokyo",
+      "venue": {
+        "away": 1.44,
+        "home": 1.61,
+        "gap": 0.17,
+        "n": "15/16 / 16/15",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.44,
+          "home": 1.61,
+          "margin": 0.17
+        },
+        {
+          "name": "overall",
+          "away": 1.32,
+          "home": 1.45,
+          "margin": 0.13
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1.25,
+          "margin": 0.25
+        },
+        {
+          "name": "last3",
+          "away": 1.33,
+          "home": 2.67,
+          "margin": 1.33
+        }
+      ],
+      "vote": "home",
+      "votes": {
+        "home": 4,
+        "away": 0,
+        "tie": 0
+      },
+      "sim": {
+        "awayMedian": 1.5,
+        "homeMedian": 1.5,
+        "away": 38.1,
+        "draw": 15.7,
+        "home": 46.3,
+        "over25": 54,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": {
+        "away": "+230",
+        "home": "+105",
+        "draw": "+250",
+        "details": "TOK +105",
+        "spread": null,
+        "total": 2.5
+      },
+      "call": "pass",
+      "side": "pass",
+      "note": "All four models lean home, but the venue gap is 0.17, under a quarter goal.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sat, Nov 7, 2:00 AM",
+      "id": "401877560",
+      "match": "Kawasaki @ Kashiwa",
+      "venue": {
+        "away": 1.24,
+        "home": 1.47,
+        "gap": 0.23,
+        "n": "14/15 / 15/14",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.24,
+          "home": 1.47,
+          "margin": 0.23
+        },
+        {
+          "name": "overall",
+          "away": 1.49,
+          "home": 1.56,
+          "margin": 0.06
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 1.67,
+          "home": 1.83,
+          "margin": 0.17
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 3,
+        "away": 0,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 36.1,
+        "draw": 15.5,
+        "home": 48.5,
+        "over25": 48.7,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 8, 12:00 AM",
+      "id": "401877559",
+      "match": "Sanfreece @ Machida Zelvia",
+      "venue": {
+        "away": 1.45,
+        "home": 1.34,
+        "gap": -0.11,
+        "n": "16/14 / 14/16",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.45,
+          "home": 1.34,
+          "margin": -0.11
+        },
+        {
+          "name": "overall",
+          "away": 1.47,
+          "home": 1.38,
+          "margin": -0.08
+        },
+        {
+          "name": "median",
+          "away": 1.25,
+          "home": 1.25,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 1.17,
+          "home": 2,
+          "margin": 0.83
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 1,
+        "away": 2,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1.5,
+        "homeMedian": 1,
+        "away": 45.7,
+        "draw": 16.6,
+        "home": 37.7,
+        "over25": 48,
+        "thin": false
+      },
+      "synergy": {
+        "away": "diverge",
+        "home": "diverge"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 8, 12:00 AM",
+      "id": "401877554",
+      "match": "Urawa Reds @ Vissel Kobe",
+      "venue": {
+        "away": 1.12,
+        "home": 1.58,
+        "gap": 0.46,
+        "n": "16/15 / 15/16",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.12,
+          "home": 1.58,
+          "margin": 0.46
+        },
+        {
+          "name": "overall",
+          "away": 1.27,
+          "home": 1.5,
+          "margin": 0.23
+        },
+        {
+          "name": "median",
+          "away": 1,
+          "home": 1.5,
+          "margin": 0.5
+        },
+        {
+          "name": "last3",
+          "away": 1.17,
+          "home": 1.67,
+          "margin": 0.5
+        }
+      ],
+      "vote": "home",
+      "votes": {
+        "home": 4,
+        "away": 0,
+        "tie": 0
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 27.5,
+        "draw": 15.7,
+        "home": 56.9,
+        "over25": 45,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "reinforce"
+      },
+      "ml": null,
+      "call": "Vissel Kobe",
+      "side": "home",
+      "note": "No moneyline on this retrieval.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 8, 1:00 AM",
+      "id": "401877555",
+      "match": "Cerezo Osaka @ Gamba Osaka",
+      "venue": {
+        "away": 1.11,
+        "home": 1.62,
+        "gap": 0.51,
+        "n": "15/14 / 14/15",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.11,
+          "home": 1.62,
+          "margin": 0.51
+        },
+        {
+          "name": "overall",
+          "away": 1.35,
+          "home": 1.34,
+          "margin": 0
+        },
+        {
+          "name": "median",
+          "away": 1.25,
+          "home": 1.25,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 1.5,
+          "home": 2.17,
+          "margin": 0.67
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 2,
+        "away": 0,
+        "tie": 2
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 29.8,
+        "draw": 15.7,
+        "home": 54.5,
+        "over25": 45.7,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "reinforce"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "note": "Venue gap is 0.51, but overall and the median are ties. Split.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    },
+    {
+      "when": "Sun, Nov 8, 3:00 AM",
+      "id": "401877577",
+      "match": "Mito Hollyhock @ JEF Utd Chiba",
+      "venue": {
+        "away": 1.25,
+        "home": 1.66,
+        "gap": 0.41,
+        "n": "15/14 / 14/15",
+        "thin": false
+      },
+      "methods": [
+        {
+          "name": "venue",
+          "away": 1.25,
+          "home": 1.66,
+          "margin": 0.41
+        },
+        {
+          "name": "overall",
+          "away": 1.42,
+          "home": 1.47,
+          "margin": 0.05
+        },
+        {
+          "name": "median",
+          "away": 1.5,
+          "home": 1.5,
+          "margin": 0
+        },
+        {
+          "name": "last3",
+          "away": 0.83,
+          "home": 2.5,
+          "margin": 1.67
+        }
+      ],
+      "vote": "split",
+      "votes": {
+        "home": 3,
+        "away": 0,
+        "tie": 1
+      },
+      "sim": {
+        "awayMedian": 1,
+        "homeMedian": 1.5,
+        "away": 29,
+        "draw": 17.1,
+        "home": 53.9,
+        "over25": 53.4,
+        "thin": false
+      },
+      "synergy": {
+        "away": "reinforce",
+        "home": "diverge"
+      },
+      "ml": null,
+      "call": "pass",
+      "side": "pass",
+      "note": "Venue gap is 0.41, but the median is a tie. Split.",
+      "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
+      "draws": 2000
+    }
+  ]
+}
