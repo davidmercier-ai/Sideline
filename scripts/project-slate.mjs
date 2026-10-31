@@ -966,10 +966,16 @@ function dateET(iso) {
 async function main() {
   const args = process.argv.slice(2)
   let slateDate = null
+  let only = null
   const positional = []
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--date') {
       slateDate = args[i + 1]
+      i += 1
+      continue
+    }
+    if (args[i] === '--only') {
+      only = args[i + 1]
       i += 1
       continue
     }
@@ -1036,7 +1042,10 @@ async function main() {
         ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
       ]
 
-  for (const [title, sportPath, query, football, unit, sportKey] of boards) {
+  const selected = only ? boards.filter(([title]) => title.toLowerCase().includes(only.toLowerCase())) : boards
+  if (only && selected.length === 0) throw new Error(`No board title matches ${only}`)
+
+  for (const [title, sportPath, query, football, unit, sportKey] of selected) {
     process.stderr.write(`loading ${title}\n`)
     const events = await load(sportPath, query)
     if (events.error) {
