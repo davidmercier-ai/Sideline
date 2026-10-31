@@ -1,8 +1,10 @@
 {
   "id": "j1-mixed-2026-10-31",
-  "title": "J1 mixed card",
+  "title": "J-League weekend picks",
   "sportPath": "soccer/jpn.1",
-  "retrievedAt": "2026-10-31T20:36:00.000Z",
+  "boardAsOf": "2026-10-28",
+  "zone": "America/New_York",
+  "retrievedAt": "2026-10-31T20:40:00.000Z",
   "placedAt": "2026-10-30T14:23:56.000Z",
   "ticket": {
     "book": "DraftKings",
@@ -12,89 +14,95 @@
     "wager": 0.1,
     "toPay": 22.52
   },
-  "method": "Venue-matched goals. A side is named when the gap is at least a quarter of a goal. Games on the card date are not in the sample. A share of a sim is not a book price.",
+  "edges": [
+    { "side": "FC Tokyo", "book": "DraftKings", "edge": "+19%" },
+    { "side": "Kyoto Sanga", "book": "DraftKings", "edge": "+14%" }
+  ],
+  "pass": [
+    "KAW@YOK coin board",
+    "AVF@JEF coin board",
+    "Blind home dogs, including Mito +500"
+  ],
   "games": [
     {
+      "order": 1,
+      "play": "TOK ML",
+      "game": "TOK@OKA",
       "when": "Sat 1:00 AM ET",
-      "away": "FC Tokyo",
-      "home": "Fagiano Okayama",
       "side": "FC Tokyo",
       "price": 100,
-      "venue": "1.53-0.96",
       "final": "4-0",
       "result": "hit"
     },
     {
+      "order": 2,
+      "play": "KYO ML",
+      "game": "SHI@KYO",
       "when": "Sat 1:00 AM ET",
-      "away": "Shimizu S-Pulse",
-      "home": "Kyoto Sanga",
       "side": "Kyoto Sanga",
       "price": 165,
-      "venue": "1.37-1.47",
       "final": "0-2",
-      "result": "hit",
-      "note": "Gap under a quarter of a goal. The higher side still won."
-    },
-    {
-      "when": "Sat 1:00 AM ET",
-      "away": "Sanfrecce Hiroshima",
-      "home": "Mito Hollyhock",
-      "side": "Sanfrecce Hiroshima",
-      "price": -230,
-      "venue": "1.47-1.16",
-      "final": "3-0",
       "result": "hit"
     },
     {
+      "order": 3,
+      "play": "ZEL ML / -0.5",
+      "game": "GAM@ZEL",
+      "when": "Sun 2:00 AM ET",
+      "side": "Machida Zelvia",
+      "price": -140,
+      "final": null,
+      "result": "open"
+    },
+    {
+      "order": 4,
+      "play": "KAN ML / -0.5",
+      "game": "CER@KAN",
       "when": "Sat 2:00 AM ET",
-      "away": "Cerezo Osaka",
-      "home": "Kashima Antlers",
       "side": "Kashima Antlers",
       "price": -140,
-      "venue": "0.81-1.61",
       "final": "1-4",
       "result": "hit"
     },
     {
+      "order": 5,
+      "play": "VIS ML / -0.5",
+      "game": "NAG@VIS",
       "when": "Sat 2:00 AM ET",
-      "away": "Nagoya Grampus",
-      "home": "Vissel Kobe",
       "side": "Vissel Kobe",
       "price": 100,
-      "venue": "1.15-1.81",
       "final": "1-3",
       "result": "hit"
     },
     {
+      "order": 6,
+      "play": "KRE ML / -0.5",
+      "game": "URA@KRE",
       "when": "Sat 3:00 AM ET",
-      "away": "Urawa Red Diamonds",
-      "home": "Kashiwa Reysol",
       "side": "Kashiwa Reysol",
       "price": 110,
-      "venue": "1.39-1.46",
       "final": "0-4",
-      "result": "hit",
-      "note": "Gap under a quarter of a goal. The higher side still won."
+      "result": "hit"
     },
     {
+      "order": 7,
+      "play": "VVN ML / -0.5",
+      "game": "TYKV@VVN",
       "when": "Sun 1:00 AM ET",
-      "away": "Tokyo Verdy",
-      "home": "V-Varen Nagasaki",
       "side": "V-Varen Nagasaki",
       "price": 140,
-      "venue": "1.12-1.37",
       "final": null,
       "result": "open"
     },
     {
-      "when": "Sun 2:00 AM ET",
-      "away": "Gamba Osaka",
-      "home": "Machida Zelvia",
-      "side": "Machida Zelvia",
-      "price": -140,
-      "venue": "1.28-1.53",
-      "final": null,
-      "result": "open"
+      "order": 8,
+      "play": "SAN ML",
+      "game": "SAN@MITO",
+      "when": "Sat 1:00 AM ET",
+      "side": "Sanfrecce Hiroshima",
+      "price": -230,
+      "final": "3-0",
+      "result": "hit"
     }
   ]
 }
