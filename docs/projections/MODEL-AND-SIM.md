@@ -12,7 +12,8 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | --- | --- |
 | `scripts/projection-math.mjs` | The formulas. |
 | `scripts/projection-math.test.mjs` | Checks for the formulas, including a fixed sim seed. |
-| `scripts/project-slate.mjs` | Pulls ESPN logs and FanDuel/DraftKings prices, then writes a report. |
+| `scripts/project-slate.mjs` | Pulls ESPN logs and FanDuel/DraftKings prices, then writes a report and a store for each board. |
+| `scripts/board-store.mjs` | Reads and writes `docs/projections/stores/<board-id>.json`. The index lists every board. |
 | `scripts/book-prices.mjs` | FanDuel Ohio board. DraftKings is read from ESPN inside `project-slate.mjs`. |
 | `scripts/public-consensus.mjs` | Covers handicapper counts and the ESPN Matchup Predictor. Separate from the models and the books. |
 | `scripts/backtest-slate.mjs` | Walk-forward record on completed NFL, NBA, and NHL games. |
