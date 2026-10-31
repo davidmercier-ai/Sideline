@@ -10,5 +10,11 @@
     "title": "J1 unstarted games",
     "retrievedAt": "2026-10-31T21:46:51.826Z",
     "games": 14
+  },
+  {
+    "id": "playable-unstarted-2026-10-31",
+    "title": "Playable unstarted plays",
+    "retrievedAt": "2026-10-31T22:01:00.000Z",
+    "games": 7
   }
 ]
