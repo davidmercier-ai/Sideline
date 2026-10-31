@@ -174,6 +174,18 @@ Do not fit a model to either book. Do not treat one retrieved snapshot as a clos
 
 Public consensus is a separate view. Covers supplies the handicapper count on each side. The ESPN Matchup Predictor supplies a public-model win chance. A missing row stays missing. Do not average the four models and call that average consensus, and do not blend the public count into the models or the book prices.
 
+## Game log against the posted number
+
+The four models compress the schedule into means. The next step lists the games those means came from and places the matching slice against the number retrieved for that slate.
+
+- One row per completed game: date, site, opponent, score, margin, and combined points.
+- The matching slice is the visitor’s away games and the home team’s home games. Games outside that slice stay on the list and are left out of the count.
+- A neutral site uses every completed game. The home/away split is the wrong site for that game.
+- A home margin covers when it is greater than the book’s home margin. An away margin covers when it is greater than the negative of that home margin. An equal margin is a push.
+- A combined score over the posted total is an over. An equal combined score is a push.
+- Each book is counted on its own number. A missing number stays missing.
+- The count is a read of past games. It does not enter the four models or the sim, and it is not an edge.
+
 ## Predicted slate
 
 The report opens with the predicted slate. That table is the prediction, and it comes before the book prices.
@@ -192,7 +204,9 @@ Book prices stay in each game’s market section. A price is the book’s number
 1. Independent projection. The venue-matched mean, the other three models, convergence, synergy, and the sim. Football games also list rushing, gross passing, net passing, sack yards lost, and total offense, with overall, home, and away histories.
 2. FanDuel and DraftKings prices. Open and latest where the source sent them, with a retrieval timestamp.
 3. Comparison. Each model minus each book, line-value flags, no-vig prices, and the sim-versus-price note.
-4. Props. Present and flagged. No player prop number is filled in from FanDuel or DraftKings. The player-stat inventory is still open.
+4. Public consensus, when the source sent a row.
+5. Game log against the posted number. Each completed game is listed with the opponent, the score, and the margin. The matching slice is then counted against each book's spread and total. On a neutral site that slice is every completed game. The count is not a fifth model and not an edge.
+6. Props. Present and flagged. No player prop number is filled in from FanDuel or DraftKings. The player-stat inventory is still open.
 
 History lines show sample size, mean, median, mode, high, and low. If no value repeats, the mode is “no repeated value.” If the sample is empty, the field says missing. Highs and lows describe the past. They are not a forecast bound. The mode is not the projection.
 

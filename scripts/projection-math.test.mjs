@@ -20,6 +20,7 @@ import {
   sackYardsLost,
   summarize,
   totalDirection,
+  gradeLog,
 } from './projection-math.mjs'
 
 const yards = summarize([100, 120, 120, 80, 150])
@@ -160,8 +161,65 @@ const binary = comparePlayerReads(
 assert.equal(binary.stance, 'with')
 assert.equal(comparePlayerReads(playerReads([], 'home'), 10).status, 'unrated')
 
+const homeGames = [
+  { date: '2026-09-12T18:00:00Z', venue: 'home', opponent: 'SDSU', pointsFor: 28, pointsAgainst: 10 },
+  { date: '2026-09-20T18:00:00Z', venue: 'home', opponent: 'PUR', pointsFor: 52, pointsAgainst: 38 },
+  { date: '2026-10-17T18:00:00Z', venue: 'home', opponent: 'WIS', pointsFor: 17, pointsAgainst: 7 },
+  { date: '2026-10-24T18:00:00Z', venue: 'home', opponent: 'MSU', pointsFor: 28, pointsAgainst: 10 },
+  { date: '2026-09-06T18:00:00Z', venue: 'away', opponent: 'CAL', pointsFor: 45, pointsAgainst: 20 },
+]
+const homeGrade = gradeLog(homeGames, { matchVenue: 'home', spread: 22.5, total: 42.5, side: 'home' })
+assert.equal(homeGrade.matched, 4)
+assert.deepEqual(homeGrade.spread, { cover: 0, miss: 4, push: 0 })
+assert.equal(homeGrade.games.find((game) => game.opponent === 'CAL').spreadResult, null)
+
+const awayGrade = gradeLog(
+  [
+    { date: '2026-09-19', venue: 'away', opponent: 'MTSU', pointsFor: 20, pointsAgainst: 27 },
+    { date: '2026-10-10', venue: 'away', opponent: 'UTEP', pointsFor: 30, pointsAgainst: 13 },
+    { date: '2026-10-17', venue: 'away', opponent: 'NDSU', pointsFor: 17, pointsAgainst: 31 },
+  ],
+  { matchVenue: 'away', spread: 22.5, total: 42.5, side: 'away' },
+)
+assert.deepEqual(awayGrade.spread, { cover: 3, miss: 0, push: 0 })
+assert.deepEqual(awayGrade.total, { over: 3, under: 0, push: 0 })
+
+const push = gradeLog(
+  [{ date: '2026-10-01', venue: 'home', opponent: 'X', pointsFor: 30, pointsAgainst: 7.5 }],
+  { matchVenue: 'home', spread: 22.5, total: 37.5, side: 'home' },
+)
+assert.equal(push.spread.push, 1)
+assert.equal(push.total.push, 1)
+assert.equal(gradeLog(homeGames, { matchVenue: 'home', side: 'home' }).spread, null)
+
+const neutral = gradeLog(homeGames, { matchVenue: 'overall', spread: 22.5, side: 'home' })
+assert.equal(neutral.matched, 5)
+assert.equal(neutral.spread.cover, 1)
+
 function roundPct(value) {
   return Math.round(value * 1000) / 10
 }
+
+const { gameLogSection } = await import('./project-slate.mjs')
+const section = gameLogSection(
+  {
+    neutral: false,
+    away: { name: 'Nevada' },
+    home: { name: 'UCLA' },
+    market: { marketHomeMargin: 22.5, total: 42.5 },
+    extra: {},
+  },
+  [
+    { date: '2026-09-19T18:00:00Z', venue: 'away', opponent: 'MTSU', pointsFor: 20, pointsAgainst: 27 },
+    { date: '2026-10-10T18:00:00Z', venue: 'home', opponent: 'WKU', pointsFor: 49, pointsAgainst: 14 },
+  ],
+  homeGames,
+).join('\n')
+assert.ok(section.includes('**5. Game log against the posted number**'))
+assert.ok(section.includes('| 2026-09-19 | away | MTSU | 20-27 | -7 | 47 | yes |'))
+assert.ok(section.includes('| 2026-09-06 | away | CAL | 45-20 | +25 | 65 | no |'))
+assert.ok(section.includes('Nevada away: cover 1, miss 0, push 0'))
+assert.ok(section.includes('UCLA home: cover 0, miss 4, push 0'))
+assert.ok(section.includes('FanDuel spread. Nevada away: missing, so no count'))
 
 console.log('projection math ok')

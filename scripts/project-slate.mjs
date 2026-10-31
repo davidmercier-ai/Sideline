@@ -27,6 +27,7 @@ import {
   overallComparison,
   projectRate,
   quotePosition,
+  gradeLog,
   simulateMatch,
   projectedOutcome,
   reconcileTotal,
@@ -240,6 +241,7 @@ export async function teamLog(sportPath, teamId, football) {
       eventId: event.id,
       date: event.date || competition.date || '',
       venue: competition.neutralSite ? 'neutral' : me.homeAway,
+      opponent: opp.team?.abbreviation || opp.team?.shortDisplayName || opp.team?.displayName || '',
       pointsFor,
       pointsAgainst,
       yards: null,
@@ -687,6 +689,62 @@ function comparisonSection(game, scoring, methods) {
   return lines
 }
 
+function logDate(value) {
+  if (!value) return 'date missing'
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+  return dateET(value) || value
+}
+
+function signed(value) {
+  if (!Number.isFinite(value)) return 'missing'
+  return value > 0 ? `+${fmt(value)}` : fmt(value)
+}
+
+function logRows(name, rows, matchVenue) {
+  const graded = gradeLog(rows, { matchVenue, side: 'home' })
+  const lines = []
+  lines.push(`**${name}** — matching slice: ${matchVenue}`)
+  lines.push('')
+  lines.push('| Date | Site | Opponent | Score | Margin | Combined | Matching slice |')
+  lines.push('| --- | --- | --- | --- | --- | --- | --- |')
+  const ordered = [...graded.games].sort((left, right) => String(left.date).localeCompare(String(right.date)))
+  if (ordered.length === 0) {
+    lines.push('| — | — | — | — | — | — | no completed games |')
+  }
+  for (const game of ordered) {
+    const opponent = game.opponent || 'not on the schedule row'
+    lines.push(`| ${logDate(game.date)} | ${game.venue || '—'} | ${opponent} | ${game.pointsFor}-${game.pointsAgainst} | ${signed(game.margin)} | ${fmt(game.combined)} | ${game.matched ? 'yes' : 'no'} |`)
+  }
+  lines.push('')
+  return lines
+}
+
+function countText(tally, keys) {
+  if (!tally) return 'missing, so no count'
+  return keys.map((key) => `${key} ${tally[key]}`).join(', ')
+}
+
+export function gameLogSection(game, awayRows, homeRows) {
+  const awayVenue = game.neutral ? 'overall' : 'away'
+  const homeVenue = game.neutral ? 'overall' : 'home'
+  const lines = []
+  lines.push('**5. Game log against the posted number**')
+  lines.push('')
+  lines.push('The four models compress these games into means. This step lists each completed game and counts the matching slice against the posted number. The matching slice is the visitor’s away games and the home team’s home games. On a neutral site the matching slice is every completed game, because the home/away split is the wrong site. A home margin covers when it is greater than the book’s home margin. An away margin covers when it is greater than the negative of that number. An equal margin is a push. The count is not a model and not an edge.')
+  lines.push('')
+  lines.push(...logRows(game.away.name, awayRows, awayVenue))
+  lines.push(...logRows(game.home.name, homeRows, homeVenue))
+  for (const [book, spread, total] of bookMargins(game)) {
+    const away = gradeLog(awayRows, { matchVenue: awayVenue, spread, total, side: 'away' })
+    const home = gradeLog(homeRows, { matchVenue: homeVenue, spread, total, side: 'home' })
+    const spreadLabel = Number.isFinite(spread) ? `${book} spread, home margin ${signed(spread)}` : `${book} spread`
+    lines.push(`- ${spreadLabel}. ${game.away.name} ${awayVenue}: ${countText(away.spread, ['cover', 'miss', 'push'])}. ${game.home.name} ${homeVenue}: ${countText(home.spread, ['cover', 'miss', 'push'])}.`)
+    const totalLabel = Number.isFinite(total) ? `${book} total ${fmt(total)}` : `${book} total`
+    lines.push(`- ${totalLabel}. ${game.away.name} ${awayVenue}: ${countText(away.total, ['over', 'under', 'push'])}. ${game.home.name} ${homeVenue}: ${countText(home.total, ['over', 'under', 'push'])}.`)
+  }
+  return lines
+}
+
 function consensusSection(game) {
   const lines = []
   lines.push('**4. Public consensus — handicappers, sports media, and public models**')
@@ -833,6 +891,8 @@ function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(a
   lines.push(...comparisonSection(game, scoring, methods))
   lines.push('')
   lines.push(...consensusSection(game))
+  lines.push('')
+  lines.push(...gameLogSection(game, awayLog.rows, homeLog.rows))
   lines.push('')
   lines.push(...propsSection(game))
   return lines.join('\n')
@@ -988,7 +1048,7 @@ async function main() {
   blocks.push(`Retrieved ${retrievedAt.toISOString()} (UTC). This is one retrieved snapshot, not a live feed.`)
   if (slateDate) blocks.push(`Included games start on ${slateDate} in America/New_York. Other dates on the source boards are left out.`)
   blocks.push('')
-  blocks.push('The commandments in docs/projections/COMMANDMENTS.md govern this slate. The predicted slate is the first table. That score is the venue-matched mean. Each game then has three views: an independent projection, sportsbook lines and prices, and a comparison. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
+  blocks.push('The commandments in docs/projections/COMMANDMENTS.md govern this slate. The predicted slate is the first table. That score is the venue-matched mean. Each game then has an independent projection, sportsbook lines and prices, a comparison, and the game log against the posted number. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
   blocks.push('Status: not complete. This pass compares projections with FanDuel and DraftKings only. DraftKings open and latest come from ESPN. FanDuel latest comes from the Ohio board for NFL, college football, NBA, and NHL. Player props and team totals were not on those two feeds.')
   blocks.push('')

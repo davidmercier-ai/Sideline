@@ -308,6 +308,60 @@ export function totalDirection(diff) {
   return diff > 0 ? 'baseline is above the posted total' : 'baseline is below the posted total'
 }
 
+function placeAgainst(actual, line) {
+  if (!Number.isFinite(actual) || !Number.isFinite(line)) return null
+  if (actual > line) return 'cover'
+  if (actual < line) return 'miss'
+  return 'push'
+}
+
+function placeTotal(actual, line) {
+  if (!Number.isFinite(actual) || !Number.isFinite(line)) return null
+  if (actual > line) return 'over'
+  if (actual < line) return 'under'
+  return 'push'
+}
+
+/**
+ * List completed games and place the matching slice against a posted spread and total.
+ * `spread` is the market home margin: positive means the home team is favored.
+ * A home row covers when its margin is greater than that number.
+ * An away row covers when its margin is greater than the negative of that number.
+ * The count is a read of past games. It is not a model and not an edge.
+ */
+export function gradeLog(rows, { matchVenue = 'overall', spread = null, total = null, side = 'home' } = {}) {
+  const games = (rows ?? []).map((row) => {
+    const margin = Number(row.pointsFor) - Number(row.pointsAgainst)
+    const combined = Number(row.pointsFor) + Number(row.pointsAgainst)
+    const matched = matchVenue === 'overall' || row.venue === matchVenue
+    const line = side === 'away' ? (Number.isFinite(spread) ? -spread : null) : spread
+    return {
+      date: row.date || '',
+      venue: row.venue || '',
+      opponent: row.opponent || '',
+      pointsFor: row.pointsFor,
+      pointsAgainst: row.pointsAgainst,
+      margin,
+      combined,
+      matched,
+      spreadResult: matched ? placeAgainst(margin, line) : null,
+      totalResult: matched ? placeTotal(combined, total) : null,
+    }
+  })
+  const matched = games.filter((game) => game.matched)
+  const tally = (key, value) => matched.filter((game) => game[key] === value).length
+  return {
+    games,
+    matched: matched.length,
+    spread: Number.isFinite(spread)
+      ? { cover: tally('spreadResult', 'cover'), miss: tally('spreadResult', 'miss'), push: tally('spreadResult', 'push') }
+      : null,
+    total: Number.isFinite(total)
+      ? { over: tally('totalResult', 'over'), under: tally('totalResult', 'under'), push: tally('totalResult', 'push') }
+      : null,
+  }
+}
+
 export function projectedOutcome(homeName, awayName, homeScore, awayScore) {
   if (!Number.isFinite(homeScore) || !Number.isFinite(awayScore)) return 'unavailable'
   if (homeScore === awayScore) return 'projected tie'
