@@ -49,7 +49,7 @@ FanDuel rows: 421. DraftKings rows: 4882.
 
 ## How to read a leg
 
-The combined price belongs to the whole parlay. A player leg has no projection, so that leg stays missing. A moneyline, game total, or team total is set next to the venue-matched score only when that game is already on a retrieved slate from October 30 through November 5. The four models are not refit to the parlay. A point gap is not a priced edge. A sim percentage is the share of the draws.
+The combined price belongs to the whole parlay. A player leg is rated only from a saved regular-season log, and stays missing when that log is absent. A moneyline, game total, or team total is set next to the venue-matched score only when that game is already on a retrieved slate from October 30 through November 5. The four models are not refit to the parlay. A point gap is not a priced edge. A sim percentage is the share of the draws.
 
 ## FanDuel same-game parlays
 

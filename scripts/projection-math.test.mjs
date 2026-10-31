@@ -12,8 +12,10 @@ import {
   methodConvergence,
   mulberry32,
   simulateMatch,
+  playerReads,
   projectRate,
   projectedOutcome,
+  comparePlayerReads,
   reconcileTotal,
   sackYardsLost,
   summarize,
@@ -124,6 +126,39 @@ const again = simulateMatch({
 })
 assert.equal(again.homeWinRate, sim.homeWinRate)
 assert.equal(simulateMatch({ awayFor: [], homeAgainst: [1], homeFor: [1], awayAgainst: [1], random: mulberry32(1), draws: 10 }).ok, false)
+
+const games = [
+  { date: '2026-10-01', venue: 'home', value: 30 },
+  { date: '2026-10-08', venue: 'away', value: 22 },
+  { date: '2026-10-15', venue: 'home', value: 28 },
+  { date: '2026-10-22', venue: 'away', value: 24 },
+]
+const homeReads = playerReads(games, 'home')
+assert.equal(homeReads[0].name, 'Venue mean')
+assert.equal(homeReads[0].value, 29)
+assert.equal(homeReads[1].value, 26)
+assert.equal(homeReads[2].value, 29)
+assert.equal(playerReads(games, null)[0].missing, true)
+const over = comparePlayerReads(homeReads, 20, { direction: 'over' })
+assert.equal(over.stance, 'with')
+assert.equal(over.weight, 1)
+const under = comparePlayerReads(homeReads, 40, { direction: 'over' })
+assert.equal(under.stance, 'against')
+const binary = comparePlayerReads(
+  playerReads(
+    [
+      { date: '2026-10-01', venue: 'home', value: 1 },
+      { date: '2026-10-08', venue: 'home', value: 1 },
+      { date: '2026-10-15', venue: 'home', value: 0 },
+      { date: '2026-10-22', venue: 'away', value: 0 },
+    ],
+    'home',
+  ),
+  0.5,
+  { binary: true },
+)
+assert.equal(binary.stance, 'with')
+assert.equal(comparePlayerReads(playerReads([], 'home'), 10).status, 'unrated')
 
 function roundPct(value) {
   return Math.round(value * 1000) / 10

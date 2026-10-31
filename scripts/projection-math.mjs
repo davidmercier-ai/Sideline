@@ -313,3 +313,81 @@ export function projectedOutcome(homeName, awayName, homeScore, awayScore) {
   if (homeScore === awayScore) return 'projected tie'
   return homeScore > awayScore ? homeName : awayName
 }
+
+function readOf(name, values, pick) {
+  const summary = summarize(values)
+  return {
+    name,
+    value: summary.missing ? null : pick(summary),
+    n: summary.n,
+    thin: summary.n > 0 && summary.n < 3,
+    missing: summary.missing,
+  }
+}
+
+/**
+ * Four reads of one player's own log. Venue is home or away for the game
+ * being projected. Opponent allowance is not applied. Overall is not copied
+ * into the venue read when the venue sample is empty.
+ */
+export function playerReads(rows, venue) {
+  const ordered = [...rows].sort((a, b) => String(a.date).localeCompare(String(b.date)))
+  const overall = ordered.map((row) => row.value).filter((value) => Number.isFinite(value))
+  const venueValues = ordered
+    .filter((row) => venue && row.venue === venue)
+    .map((row) => row.value)
+    .filter((value) => Number.isFinite(value))
+  const last3 = overall.slice(-3)
+  return [
+    readOf('Venue mean', venueValues, (summary) => summary.mean),
+    readOf('Overall mean', overall, (summary) => summary.mean),
+    readOf('Venue median', venueValues, (summary) => summary.median),
+    readOf('Last 3 games', last3, (summary) => summary.mean),
+  ]
+}
+
+/**
+ * Compare the four reads with a posted number. Counting stats use the same
+ * 1-unit band as a team total. A yes/no stat compares each read with one half.
+ * Agreement of the venue read and at least three reads is the stance.
+ * The stance is not a win probability and it is not a priced edge.
+ */
+export function comparePlayerReads(reads, line, { binary = false, direction = 'over' } = {}) {
+  const venue = reads.find((read) => read.name === 'Venue mean') ?? reads[0]
+  if (!venue || venue.missing || !Number.isFinite(line)) {
+    return {
+      status: 'unrated',
+      stance: null,
+      weight: 0,
+      label: venue?.missing ? 'Venue sample missing.' : 'Player number missing.',
+    }
+  }
+  const flag = (read) => {
+    if (!read || read.missing || !Number.isFinite(read.value)) return 'missing'
+    if (binary) return read.value >= 0.5 ? 'yes' : 'no'
+    const gap = direction === 'under' ? line - read.value : read.value - line
+    if (gap >= 1) return 'yes'
+    if (gap <= -1) return 'no'
+    return 'even'
+  }
+  const flags = reads.map(flag)
+  const venueFlag = flag(venue)
+  const yes = flags.filter((item) => item === 'yes').length
+  const no = flags.filter((item) => item === 'no').length
+  let stance = 'even'
+  if (venueFlag === 'yes' && yes >= 3) stance = 'with'
+  else if (venueFlag === 'no' && no >= 3) stance = 'against'
+  const shown = reads
+    .map((read) => {
+      if (read.missing) return `${read.name} missing`
+      const thin = read.thin ? `, n=${read.n}` : ''
+      return `${read.name} ${round1(read.value)}${thin}`
+    })
+    .join(', ')
+  return {
+    status: 'rated',
+    stance,
+    weight: stance === 'with' ? 1 : stance === 'against' ? -1 : 0,
+    label: `${shown}.`,
+  }
+}

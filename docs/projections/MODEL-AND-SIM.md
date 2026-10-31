@@ -25,7 +25,9 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `docs/projections/sideline-premade-parlays-2026-10-30.csv` | The earlier parlays sheet, one row per card. |
 | `docs/projections/sideline-both-books-2026-10-30.xlsx` | FanDuel and DraftKings prebuilt cards from the same retrieval. |
 | `docs/projections/sideline-both-books-2026-10-30.csv` | That same retrieval, one row per card. |
-| `scripts/rank-parlays.mjs` | Rates those parlays against the slates already predicted and ranks a price only when both books post the same card. |
+| `scripts/player-logs.mjs` | Reads a regular-season ESPN gamelog into home, away, and neutral rows. | 
+| `scripts/project-players.mjs` | Projects the NFL and NBA names on the saved prop boards and writes the player baseline. | 
+| `scripts/rank-parlays.mjs` | Rates those parlays against the slates already predicted and ranks a price only when both books post the same card. A saved player log rates a player leg. |
 | `docs/projections/PARLAY-RANK.md` | The rank: with the projection, mixed, against, and the same-card price order. |
 | `docs/projections/sideline-parlay-rank-2026-10-30.xlsx` | The full rank in a workbook. |
 | `scripts/dk-prebuilt.mjs` | Walks every DraftKings Ohio PrePack league, including the price tabs past Under +200. |
@@ -144,7 +146,7 @@ The event name is `Away @ Home`. The spread market is `MATCH_HANDICAP_(2-WAY)`. 
 
 DraftKings game lines and the main player over/unders come from `https://sportsbook-nash.draftkings.com/api/sportscontent/prepack/v1/leagues/{league}`. League ids are NFL `88808`, NBA `42648`, and NHL `42133`. Pass yards are category `1000` subcategory `9524`. Rush yards are `1001` / `9514`. Receiving yards are `1342` / `14114`. Points, rebounds, and assists are `12488`, `12492`, and `12495`. The ESPN scoreboard quote is still a DraftKings game line, with open and latest, when that quote is present.
 
-Priced premade parlays are a separate pull. FanDuel’s Ohio card is `https://boapi.sportsbook.fanduel.com/betting-opportunities/all` with header `x-sportsbook-region: OH`. DraftKings’ Ohio prepacks widget is `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks`. The combined American price is the book’s number for the whole parlay. A player leg stays missing. Run `node scripts/premade-parlays.mjs`.
+Priced premade parlays are a separate pull. FanDuel’s Ohio card is `https://boapi.sportsbook.fanduel.com/betting-opportunities/all` with header `x-sportsbook-region: OH`. DraftKings’ Ohio prepacks widget is `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/prepacks/sportsdata/v2/prepacks`. The combined American price is the book’s number for the whole parlay. A player leg is rated from `docs/projections/player-baseline.json` when that log exists, and stays missing otherwise. Run `node scripts/project-players.mjs`, then `node scripts/premade-parlays.mjs`.
 
 Home margin for a book = the number of points by which the home team is favored. FanDuel’s home handicap is stored on the home runner, so the margin is the handicap multiplied by −1. DraftKings’ ESPN `spread` is the same sign convention.
 

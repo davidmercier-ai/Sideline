@@ -72,7 +72,7 @@ Project each team’s runs, the combined total, and the margin. Show runs scored
 - Do not label the specification complete until the player-stat inventory has been reconciled.
 - Clearly distinguish requested coverage from implemented coverage.
 
-**Status:** Open. Not complete.
+**Status:** Open. Not complete. The implemented slice is a separate baseline for the NFL and NBA prop stats already on the saved FanDuel and DraftKings boards: passing, rushing, and receiving yards, receptions, anytime touchdowns, points, rebounds, assists, and threes. Each read uses the player's own regular-season games. Opponent allowance is not applied. Unrecovered player stats stay open.
 
 Observed product fields already displayed elsewhere in Sideline, which are not this projection inventory:
 
@@ -169,7 +169,7 @@ Show each team’s projection and the sportsbook team total when available.
 
 Keep a separate section. Do not invent lines.
 
-**Status:** Section is present and empty. Inventory remains open.
+**Status:** The section is no longer empty for the saved NFL and NBA prop boards. `scripts/project-players.mjs` writes the baseline and the comparison. Lines that the book file does not contain are not invented. The wider player-stat inventory remains open.
 
 ### 3.6 Default sportsbooks
 

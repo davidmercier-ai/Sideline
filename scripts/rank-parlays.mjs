@@ -27,8 +27,8 @@ function legText(leg) {
   return `${shown} (${market})`
 }
 
-function rateParlay(games, parlay) {
-  const legs = parlay.legs.map((leg) => ({ ...leg, rate: rateLeg(games, leg) }))
+function rateParlay(games, parlay, players = null) {
+  const legs = parlay.legs.map((leg) => ({ ...leg, rate: rateLeg(games, leg, players) }))
   const rated = legs.filter((leg) => leg.rate.status === 'rated')
   const withCount = rated.filter((leg) => leg.rate.stance === 'with').length
   const againstCount = rated.filter((leg) => leg.rate.stance === 'against').length
@@ -129,6 +129,29 @@ function checkRates(games) {
   if (steelers.weight !== 2 || steelers.stance !== 'with') throw new Error(`Steelers moneyline rated ${steelers.weight} ${steelers.stance}`)
   if (browns.weight !== -2 || browns.stance !== 'against') throw new Error(`Browns moneyline rated ${browns.weight} ${browns.stance}`)
   if (player.status !== 'unrated' || player.kind !== 'player') throw new Error('Player leg was rated')
+  const ratedPlayer = rateLeg(games, {
+    event: 'Baltimore Ravens @ Buffalo Bills',
+    market: 'Josh Allen Passing Yards O/U',
+    selection: 'Over',
+    line: 200,
+    start: '2026-11-01T17:00:00Z',
+  }, {
+    byName: {
+      joshallen: {
+        name: 'Josh Allen',
+        team: 'Bills',
+        stats: {
+          passYds: [
+            { date: '2026-10-01', venue: 'home', value: 260 },
+            { date: '2026-10-08', venue: 'home', value: 240 },
+            { date: '2026-10-15', venue: 'away', value: 250 },
+            { date: '2026-10-22', venue: 'away', value: 255 },
+          ],
+        },
+      },
+    },
+  })
+  if (ratedPlayer.stance !== 'with' || ratedPlayer.weight !== 1) throw new Error(`Josh Allen yards rated ${ratedPlayer.stance} ${ratedPlayer.label}`)
   if (teamTotal.weight !== 1 || teamTotal.stance !== 'with') throw new Error(`Steelers team total rated ${teamTotal.weight} ${teamTotal.label}`)
 }
 
@@ -144,11 +167,21 @@ function writeCsv(path, columns, rows) {
   return writeFile(path, `${lines.join('\n')}\n`)
 }
 
+async function loadPlayers() {
+  try {
+    const baseline = JSON.parse(await readFile('docs/projections/player-baseline.json', 'utf8'))
+    return baseline.byName ? { byName: baseline.byName } : null
+  } catch {
+    return null
+  }
+}
+
 async function main() {
   const snapshot = JSON.parse(await readFile('docs/projections/premade-parlays.json', 'utf8'))
   const games = await loadStoredSlates()
   checkRates(games)
-  const parlays = [...snapshot.draftKings, ...snapshot.fanDuel].map((parlay) => rateParlay(games, parlay))
+  const players = await loadPlayers()
+  const parlays = [...snapshot.draftKings, ...snapshot.fanDuel].map((parlay) => rateParlay(games, parlay, players))
   const rated = parlays.filter((parlay) => parlay.rate !== 'unrated').sort(byAgreement)
   rated.forEach((parlay, index) => {
     parlay.rank = index + 1
@@ -183,7 +216,7 @@ async function main() {
     '',
     `Rated from the parlays retrieved ${retrievedAt} UTC (${retrievedET} ET). Both books are in this rank.`,
     '',
-    'The score counts legs that sit with the model vote or the venue-matched number. A unanimous moneyline is 2. A split leader is 1. A total or team total is 1 when the venue-matched figure is at least 1 point on the same side of the book number. A gap smaller than 1 point is even and scores 0. The other way subtracts. Player legs are unrated. The score is not a win probability and it is not a priced edge.',
+    'The score counts legs that sit with the model vote, the venue-matched number, or a saved player log. A unanimous moneyline is 2. A split leader is 1. A total, team total, or player prop is 1 when the venue read and at least three reads are at least 1 unit on the same side of the book number. An anytime touchdown uses half the games instead of a 1-unit band. A gap smaller than 1 unit is even and scores 0. The other way subtracts. A player with no saved log stays unrated. The score is not a win probability and it is not a priced edge.',
     '',
     'Order: no leg against the projection, then no even leg, then the higher score. A price is ranked only when FanDuel and DraftKings post the same legs and the same numbers. The higher American odds is the better price.',
     '',

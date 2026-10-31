@@ -6,13 +6,16 @@
  * DraftKings: the prepacks widget on sportsbook-nash, site US-OH-SB.
  *
  * Game-line legs are set beside a retrieved slate when that game is already
- * predicted. Player legs stay missing. Nothing here is a priced edge.
+ * predicted. A player leg is rated only when a saved regular-season log is
+ * passed in. Nothing here is a priced edge.
  *
  * Run: node scripts/premade-parlays.mjs
  */
 
 import { readFile, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
+import { comparePlayerReads, playerReads } from './projection-math.mjs'
+import { looseName, playerNameFromLeg, playerStat } from './player-logs.mjs'
 
 const FD_KEY = 'FhMFpcPWXMeyZxOx'
 const FD_ALL = 'https://boapi.sportsbook.fanduel.com/betting-opportunities/all'
@@ -251,18 +254,47 @@ function numberStance(direction, ourNumber, bookLine) {
   return { stance: 'even', weight: 0, label: `venue-matched ${ourNumber} is level with ${bookLine}` }
 }
 
-export function rateLeg(games, leg) {
+function playerVenue(event, team) {
+  if (!event || !team) return null
+  const parts = String(event).split('@')
+  if (parts.length !== 2) return null
+  if (teamMatches(parts[1], team)) return 'home'
+  if (teamMatches(parts[0], team)) return 'away'
+  return null
+}
+
+export function rateLeg(games, leg, players = null) {
   const line = bookNumber(leg)
   if (isPlayerMarket(leg.marketType, leg.market)) {
-    const name = norm(leg.selection)
+    const spec = playerStat(leg.market, leg.selection)
+    const name = playerNameFromLeg(leg)
+    const record = players?.byName?.[looseName(name)]
+    const rows = spec && record?.stats?.[spec.stat]
+    if (!rows) {
+      return {
+        status: 'unrated',
+        kind: 'player',
+        stance: null,
+        weight: 0,
+        label: 'Player projection missing.',
+        signature: `player|${looseName(name)}|${spec?.stat ?? ''}|${line ?? ''}`,
+        game: null,
+      }
+    }
+    const binary = spec.binary
+    const posted = binary ? 0.5 : line
+    const comparison = comparePlayerReads(playerReads(rows, playerVenue(leg.event, record.team)), posted, {
+      binary,
+      direction: overUnder(leg) || 'over',
+    })
     return {
-      status: 'unrated',
+      status: comparison.status,
       kind: 'player',
-      stance: null,
-      weight: 0,
-      label: 'Player projection missing.',
-      signature: `player|${name}|${line ?? ''}`,
-      game: null,
+      stance: comparison.stance,
+      weight: comparison.weight,
+      label: `${record.name}. ${comparison.label}`,
+      signature: `player|${looseName(record.name)}|${spec.stat}|${posted ?? ''}|${overUnder(leg) || 'over'}`,
+      game: leg.event ?? null,
     }
   }
   const game = findGame(games, leg.event, leg.start)
@@ -631,7 +663,7 @@ async function main() {
     '',
     '## How to read a leg',
     '',
-    'The combined price belongs to the whole parlay. A player leg has no projection, so that leg stays missing. A moneyline, game total, or team total is set next to the venue-matched score only when that game is already on a retrieved slate from October 30 through November 5. The four models are not refit to the parlay. A point gap is not a priced edge. A sim percentage is the share of the draws.',
+    'The combined price belongs to the whole parlay. A player leg is rated only from a saved regular-season log, and stays missing when that log is absent. A moneyline, game total, or team total is set next to the venue-matched score only when that game is already on a retrieved slate from October 30 through November 5. The four models are not refit to the parlay. A point gap is not a priced edge. A sim percentage is the share of the draws.',
     '',
     '## FanDuel same-game parlays',
     '',
