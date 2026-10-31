@@ -222,4 +222,22 @@ assert.ok(section.includes('Nevada away: cover 1, miss 0, push 0'))
 assert.ok(section.includes('UCLA home: cover 0, miss 4, push 0'))
 assert.ok(section.includes('FanDuel spread. Nevada away: missing, so no count'))
 
+const { mkdtemp, readFile } = await import('node:fs/promises')
+const { tmpdir } = await import('node:os')
+const { join } = await import('node:path')
+const { saveBoard, loadBoard } = await import('./board-store.mjs')
+const storeDir = await mkdtemp(join(tmpdir(), 'boards-'))
+const stored = await saveBoard({
+  id: 'j1-mixed-2026-10-31',
+  title: 'J1 mixed card',
+  sportPath: 'soccer/jpn.1',
+  retrievedAt: '2026-10-31T20:00:00.000Z',
+  games: [{ away: 'FC Tokyo', home: 'Okayama', final: '4-0', result: 'hit' }],
+}, storeDir)
+const loaded = await loadBoard('j1-mixed-2026-10-31', storeDir)
+assert.equal(loaded.games[0].result, 'hit')
+const index = JSON.parse(await readFile(join(storeDir, 'index.json'), 'utf8'))
+assert.equal(index[0].games, 1)
+assert.ok(stored.endsWith('j1-mixed-2026-10-31.json'))
+
 console.log('projection math ok')

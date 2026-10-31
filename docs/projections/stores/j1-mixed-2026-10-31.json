@@ -1,0 +1,100 @@
+{
+  "id": "j1-mixed-2026-10-31",
+  "title": "J1 mixed card",
+  "sportPath": "soccer/jpn.1",
+  "retrievedAt": "2026-10-31T20:36:00.000Z",
+  "placedAt": "2026-10-30T14:23:56.000Z",
+  "ticket": {
+    "book": "DraftKings",
+    "betId": "DK639289670354570139",
+    "legs": 8,
+    "price": 22426,
+    "wager": 0.1,
+    "toPay": 22.52
+  },
+  "method": "Venue-matched goals. A side is named when the gap is at least a quarter of a goal. Games on the card date are not in the sample. A share of a sim is not a book price.",
+  "games": [
+    {
+      "when": "Sat 1:00 AM ET",
+      "away": "FC Tokyo",
+      "home": "Fagiano Okayama",
+      "side": "FC Tokyo",
+      "price": 100,
+      "venue": "1.53-0.96",
+      "final": "4-0",
+      "result": "hit"
+    },
+    {
+      "when": "Sat 1:00 AM ET",
+      "away": "Shimizu S-Pulse",
+      "home": "Kyoto Sanga",
+      "side": "Kyoto Sanga",
+      "price": 165,
+      "venue": "1.37-1.47",
+      "final": "0-2",
+      "result": "hit",
+      "note": "Gap under a quarter of a goal. The higher side still won."
+    },
+    {
+      "when": "Sat 1:00 AM ET",
+      "away": "Sanfrecce Hiroshima",
+      "home": "Mito Hollyhock",
+      "side": "Sanfrecce Hiroshima",
+      "price": -230,
+      "venue": "1.47-1.16",
+      "final": "3-0",
+      "result": "hit"
+    },
+    {
+      "when": "Sat 2:00 AM ET",
+      "away": "Cerezo Osaka",
+      "home": "Kashima Antlers",
+      "side": "Kashima Antlers",
+      "price": -140,
+      "venue": "0.81-1.61",
+      "final": "1-4",
+      "result": "hit"
+    },
+    {
+      "when": "Sat 2:00 AM ET",
+      "away": "Nagoya Grampus",
+      "home": "Vissel Kobe",
+      "side": "Vissel Kobe",
+      "price": 100,
+      "venue": "1.15-1.81",
+      "final": "1-3",
+      "result": "hit"
+    },
+    {
+      "when": "Sat 3:00 AM ET",
+      "away": "Urawa Red Diamonds",
+      "home": "Kashiwa Reysol",
+      "side": "Kashiwa Reysol",
+      "price": 110,
+      "venue": "1.39-1.46",
+      "final": "0-4",
+      "result": "hit",
+      "note": "Gap under a quarter of a goal. The higher side still won."
+    },
+    {
+      "when": "Sun 1:00 AM ET",
+      "away": "Tokyo Verdy",
+      "home": "V-Varen Nagasaki",
+      "side": "V-Varen Nagasaki",
+      "price": 140,
+      "venue": "1.12-1.37",
+      "final": null,
+      "result": "open"
+    },
+    {
+      "when": "Sun 2:00 AM ET",
+      "away": "Gamba Osaka",
+      "home": "Machida Zelvia",
+      "side": "Machida Zelvia",
+      "price": -140,
+      "venue": "1.28-1.53",
+      "final": null,
+      "result": "open"
+    }
+  ]
+}

@@ -11,6 +11,7 @@
 
 import { writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
+import { boardStoreId, saveBoard } from './board-store.mjs'
 import { loadBooks } from './book-prices.mjs'
 import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
@@ -903,7 +904,7 @@ async function section(title, sportPath, games, football, unit) {
   if (games.length === 0) {
     header.push('No upcoming games were in the retrieved scoreboard. Nothing was projected for this section.')
     header.push('')
-    return { markdown: header.join('\n'), predictions: [] }
+    return { markdown: header.join('\n'), predictions: [], games: [] }
   }
   await pool(games, 4, async (game) => {
     game.predictor = await espnPredictor(sportPath, game.id)
@@ -990,6 +991,22 @@ async function section(title, sportPath, games, football, unit) {
   return {
     markdown: [...header, ...table, ...rendered.map((item) => item.markdown)].join('\n'),
     predictions: rendered.map((item) => item.prediction),
+    games: rendered.map(({ scoring, convergence, spots, prediction }, index) => {
+      const game = games[index]
+      return {
+        ...prediction,
+        sportPath,
+        awayId: game.away.id,
+        homeId: game.home.id,
+        neutral: Boolean(game.neutral),
+        homeMargin: fmt(scoring.margin),
+        agreement: convergence.side,
+        marketHomeMargin: fmt(game.market.marketHomeMargin),
+        postedTotal: fmt(game.market.total),
+        fanduel: spots.FanDuel,
+        draftkings: spots.DraftKings,
+      }
+    }),
   }
 }
 
@@ -1085,9 +1102,10 @@ async function main() {
         [`FCS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=81&limit=300`, true, 'points', 'ncaaf'],
         [`NBA ${slateDate}`, 'basketball/nba', `?dates=${dated}`, false, 'points', 'nba'],
         [`NHL ${slateDate}`, 'hockey/nhl', `?dates=${dated}`, false, 'goals', 'nhl'],
-        ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
-        ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
-        ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
+        ['Premier League scoreboard', 'soccer/eng.1', `?dates=${dated}`, false, 'goals', 'epl'],
+        ['J1', 'soccer/jpn.1', `?dates=${dated}`, false, 'goals', null],
+        ['MLS scoreboard', 'soccer/usa.1', `?dates=${dated}`, false, 'goals', 'mls'],
+        ['MLB scoreboard', 'baseball/mlb', `?dates=${dated}`, false, 'runs', null],
       ]
     : [
         ['NFL', 'football/nfl', '', true, 'points', 'nfl'],
@@ -1097,7 +1115,9 @@ async function main() {
         ['FCS Saturday, October 31', 'football/college-football', '?dates=20261031&groups=81&limit=300', true, 'points', 'ncaaf'],
         ['NBA, October 30', 'basketball/nba', '?dates=20261030', false, 'points', 'nba'],
         ['NHL, October 30', 'hockey/nhl', '?dates=20261030', false, 'goals', 'nhl'],
-        ['Premier League scoreboard', 'soccer/eng.1', '', false, 'goals', 'epl'],
+        ['Premier League scoreboard', 'soccer/eng.1', '?dates=20261031', false, 'goals', 'epl'],
+        ['J1 Saturday, October 31', 'soccer/jpn.1', '?dates=20261031', false, 'goals', null],
+        ['J1 Sunday, November 1', 'soccer/jpn.1', '?dates=20261101', false, 'goals', null],
         ['MLS scoreboard', 'soccer/usa.1', '', false, 'goals', 'mls'],
         ['MLB scoreboard', 'baseball/mlb', '', false, 'runs', null],
       ]
@@ -1123,6 +1143,15 @@ async function main() {
     const result = await section(title, sportPath, games, football, unit)
     sportBlocks.push(result.markdown)
     predictions.push(...result.predictions)
+    const storeId = boardStoreId(`${slateDate ?? 'snapshot'}-${title}`)
+    await saveBoard({
+      id: storeId,
+      title,
+      sportPath,
+      retrievedAt: retrievedAt.toISOString(),
+      games: result.games,
+    })
+    process.stderr.write(`stored ${storeId} (${result.games.length} games)\n`)
   }
 
   const predicted = predictedSlate(predictions)
