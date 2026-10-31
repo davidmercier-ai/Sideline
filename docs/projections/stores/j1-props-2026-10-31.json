@@ -1,44 +1,36 @@
 {
   "id": "j1-props-2026-10-31",
-  "title": "J1 props",
+  "title": "J1 player props",
   "sportPath": "soccer/jpn.1",
-  "retrievedAt": "2026-10-31T22:40:00.000Z",
+  "retrievedAt": "2026-10-31T22:49:15.731Z",
   "games": [
     {
       "when": "Sun Nov 1, 12:00 AM ET",
       "match": "Kawasaki @ Yokohama FM",
-      "bet": "Under 3.5 goals",
-      "price": -175
-    },
-    {
-      "when": "Sun Nov 1, 1:00 AM ET",
-      "match": "Avispa @ JEF United",
-      "bet": "Both teams to score Yes",
-      "price": -125
+      "bet": "Daiya Tono anytime goalscorer",
+      "price": 450,
+      "log": "4 of 5 home games, last 3 is 1 of 3"
     },
     {
       "when": "Sun Nov 1, 1:00 AM ET",
       "match": "Tokyo Verdy @ V-Varen",
-      "bet": "Both teams to score Yes",
-      "price": -125
+      "bet": "Matheus Jesus anytime goalscorer",
+      "price": 360,
+      "log": "7 of 14 home games, last 3 is 1 of 3"
+    },
+    {
+      "when": "Sun Nov 1, 1:00 AM ET",
+      "match": "Tokyo Verdy @ V-Varen",
+      "bet": "Kenshin Yasuda anytime goalscorer",
+      "price": 390,
+      "log": "2 of 3 home games, last 3 is 1 of 3"
     },
     {
       "when": "Sun Nov 1, 1:00 AM ET",
       "match": "Gamba @ Machida",
-      "bet": "Over 2.5 goals",
-      "price": -120
-    },
-    {
-      "when": "Sat Nov 7, 12:00 AM ET",
-      "match": "Kyoto @ Nagoya",
-      "bet": "Under 3.5 goals",
-      "price": -205
-    },
-    {
-      "when": "Sat Nov 7, 1:00 AM ET",
-      "match": "Kashima @ FC Tokyo",
-      "bet": "Both teams to score Yes",
-      "price": -185
+      "bet": "Koki Ogawa anytime goalscorer",
+      "price": 135,
+      "log": "2 of 4 home games, last 3 is 1 of 3"
     }
   ]
 }
