@@ -53,12 +53,12 @@
         "away": 42.3,
         "draw": 17.9,
         "home": 39.9,
-      "over25": 43.1,
-      "under35": 74.2,
-      "push35": 12.5,
-      "over35": 13.4,
-      "thin": false
-    },
+        "over25": 43.1,
+        "under35": 74.2,
+        "push35": 12.5,
+        "over35": 13.4,
+        "thin": false
+      },
       "synergy": {
         "away": "diverge",
         "home": "reinforce"
@@ -74,7 +74,10 @@
       "call": "under 3.5",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Kawasaki",
+      "price": 120,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 1, 1:00 AM",
@@ -143,7 +146,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "JEF United",
+      "price": 205,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 1, 1:00 AM",
@@ -213,7 +219,10 @@
       "side": "pass",
       "note": "Open ticket already has V-Varen. Venue gap 0.23 is under a quarter goal and the median is a tie.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "V-Varen",
+      "price": 145,
+      "ticket": 140
     },
     {
       "when": "Sun, Nov 1, 1:00 AM",
@@ -283,7 +292,10 @@
       "side": "home",
       "note": "Open ticket already has Machida ML / -0.5 at -140. Current quote is -130.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Machida Zelvia",
+      "price": -130,
+      "ticket": -140
     },
     {
       "when": "Fri, Nov 6, 11:00 PM",
@@ -345,7 +357,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Shimizu",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sat, Nov 7, 12:00 AM",
@@ -415,7 +430,10 @@
       "side": "pass",
       "note": "Venue gap is 0.54 and the sim home share is the loudest on the board, but last 3 flips to Kyoto. Split.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Nagoya",
+      "price": -125,
+      "ticket": null
     },
     {
       "when": "Sat, Nov 7, 12:00 AM",
@@ -477,7 +495,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Yokohama F. Marinos",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sat, Nov 7, 1:00 AM",
@@ -539,7 +560,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Avispa",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sat, Nov 7, 1:00 AM",
@@ -609,7 +633,10 @@
       "side": "pass",
       "note": "All four models lean home, but the venue gap is 0.17, under a quarter goal.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "FC Tokyo",
+      "price": 105,
+      "ticket": null
     },
     {
       "when": "Sat, Nov 7, 2:00 AM",
@@ -671,7 +698,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Kashiwa",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 8, 12:00 AM",
@@ -733,7 +763,10 @@
       "call": "pass",
       "side": "pass",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Sanfrecce Hiroshima",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 8, 12:00 AM",
@@ -796,7 +829,10 @@
       "side": "home",
       "note": "No moneyline on this retrieval.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Vissel Kobe",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 8, 1:00 AM",
@@ -859,7 +895,10 @@
       "side": "pass",
       "note": "Venue gap is 0.51, but overall and the median are ties. Split.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "Gamba Osaka",
+      "price": null,
+      "ticket": null
     },
     {
       "when": "Sun, Nov 8, 3:00 AM",
@@ -922,7 +961,11 @@
       "side": "pass",
       "note": "Venue gap is 0.41, but the median is a tie. Split.",
       "sample": "2026 league stages only (100 Year Vision League and regular season). Placement playoffs excluded.",
-      "draws": 2000
+      "draws": 2000,
+      "bet": "JEF United",
+      "price": null,
+      "ticket": null
     }
-  ]
+  ],
+  "betsRetrievedAt": "2026-10-31T22:07:10.416Z"
 }

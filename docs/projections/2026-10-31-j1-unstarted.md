@@ -8,6 +8,29 @@ The venue number is the team's own goals at that site averaged with the opponent
 
 Store: `docs/projections/stores/j1-unstarted-2026-10-31.json`.
 
+## Bets
+
+Prices rechecked Saturday, October 31, 2026, 6:07 PM ET. One moneyline per unstarted game, taken from the venue side. The two ticket legs stay on the card.
+
+| When | Bet | Price | Venue | Ticket |
+| --- | --- | --- | --- | --- |
+| Sun Nov 1, 12:00 AM | Kawasaki | +120 | 1.36–1.25 | |
+| Sun Nov 1, 1:00 AM | JEF United | +205 | 1.21–1.32 | |
+| Sun Nov 1, 1:00 AM | V-Varen | +145 | 1.16–1.39 | on the ticket at +140 |
+| Sun Nov 1, 1:00 AM | Machida Zelvia | −130 | 1.20–1.50 | on the ticket at −140 |
+| Fri Nov 6, 11:00 PM | Shimizu | not posted | 1.15–1.19 | |
+| Sat Nov 7, 12:00 AM | Nagoya | −125 | 1.07–1.61 | |
+| Sat Nov 7, 12:00 AM | Yokohama F. Marinos | not posted | 1.49–1.51 | |
+| Sat Nov 7, 1:00 AM | Avispa | not posted | 1.22–1.43 | |
+| Sat Nov 7, 1:00 AM | FC Tokyo | +105 | 1.44–1.61 | |
+| Sat Nov 7, 2:00 AM | Kashiwa | not posted | 1.24–1.47 | |
+| Sun Nov 8, 12:00 AM | Sanfrecce Hiroshima | not posted | 1.45–1.34 | |
+| Sun Nov 8, 12:00 AM | Vissel Kobe | not posted | 1.12–1.58 | |
+| Sun Nov 8, 1:00 AM | Gamba Osaka | not posted | 1.11–1.62 | |
+| Sun Nov 8, 3:00 AM | JEF United | not posted | 1.25–1.66 | |
+
+Kawasaki at Yokohama also has under 3.5 at −175. On every game that posts both, the moneyline is the better price than the half-goal.
+
 ## Named
 
 | Game | ET | Venue score | Models | Sim away / draw / home | Quote | Call |
