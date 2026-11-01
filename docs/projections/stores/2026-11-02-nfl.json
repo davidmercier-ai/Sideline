@@ -1,0 +1,37 @@
+{
+  "id": "2026-11-02-nfl",
+  "title": "NFL",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-01T06:41:28.562Z",
+  "games": [
+    {
+      "date": "2026-11-03T01:15Z",
+      "when": "11/2 - 8:15 PM EST",
+      "away": "Bears",
+      "home": "Seahawks",
+      "score": "24.7–26.7",
+      "total": "51.3",
+      "models": "Seahawks, 4–0",
+      "sim": "20.5–26.5, Seahawks 55.9%",
+      "sportPath": "football/nfl",
+      "awayId": "3",
+      "homeId": "26",
+      "neutral": false,
+      "homeMargin": "2",
+      "agreement": "home",
+      "marketHomeMargin": "3",
+      "postedTotal": "46.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Seahawks does not clear the number. Game: Bears at Seahawks, 11/2 - 8:15 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    }
+  ]
+}

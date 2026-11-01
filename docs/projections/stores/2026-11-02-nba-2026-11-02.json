@@ -1,0 +1,443 @@
+{
+  "id": "2026-11-02-nba-2026-11-02",
+  "title": "NBA 2026-11-02",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-01T06:41:28.562Z",
+  "games": [
+    {
+      "date": "2026-11-03T00:00Z",
+      "when": "11/2 - 7:00 PM EST",
+      "away": "Thunder",
+      "home": "Cavaliers",
+      "score": "111.2–119.3",
+      "total": "230.5",
+      "models": "Cavaliers, 4–0",
+      "sim": "110.5–120.5, Cavaliers 88.7%",
+      "sportPath": "basketball/nba",
+      "awayId": "25",
+      "homeId": "5",
+      "neutral": false,
+      "homeMargin": "8.2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. Cavaliers. Price missing. Game: Thunder at Cavaliers, 11/2 - 7:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T00:30Z",
+      "when": "11/2 - 7:30 PM EST",
+      "away": "Pistons",
+      "home": "Hornets",
+      "score": "111.4–102.4",
+      "total": "213.8",
+      "models": "Pistons, 4–0",
+      "sim": "110–102, Pistons 77.1%",
+      "sportPath": "basketball/nba",
+      "awayId": "8",
+      "homeId": "30",
+      "neutral": false,
+      "homeMargin": "-9",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. Pistons. Price missing. Game: Pistons at Hornets, 11/2 - 7:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T00:30Z",
+      "when": "11/2 - 7:30 PM EST",
+      "away": "Hawks",
+      "home": "Pacers",
+      "score": "117.4–109.4",
+      "total": "226.8",
+      "models": "Hawks, 4–0",
+      "sim": "115.5–113, Hawks 69.6%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "1",
+      "homeId": "11",
+      "neutral": false,
+      "homeMargin": "-8",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Hawks at Pacers, 11/2 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T00:30Z",
+      "when": "11/2 - 7:30 PM EST",
+      "away": "Nets",
+      "home": "Knicks",
+      "score": "113.6–114.7",
+      "total": "228.3",
+      "models": "split, 3–1 Knicks",
+      "sim": "113.5–113.5, Knicks 56.7%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "17",
+      "homeId": "18",
+      "neutral": false,
+      "homeMargin": "1.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Nets at Knicks, 11/2 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T00:30Z",
+      "when": "11/2 - 7:30 PM EST",
+      "away": "Wizards",
+      "home": "Magic",
+      "score": "118.1–113",
+      "total": "231.1",
+      "models": "Wizards, 4–0",
+      "sim": "119.5–107, Wizards 63.8%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "27",
+      "homeId": "19",
+      "neutral": false,
+      "homeMargin": "-5.1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Wizards at Magic, 11/2 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T00:30Z",
+      "when": "11/2 - 7:30 PM EST",
+      "away": "Bulls",
+      "home": "76ers",
+      "score": "106.9–118.9",
+      "total": "225.8",
+      "models": "76ers, 4–0",
+      "sim": "107.5–119.5, 76ers 86.5%",
+      "sportPath": "basketball/nba",
+      "awayId": "4",
+      "homeId": "20",
+      "neutral": false,
+      "homeMargin": "12",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. 76ers. Price missing. Game: Bulls at 76ers, 11/2 - 7:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T01:00Z",
+      "when": "11/2 - 8:00 PM EST",
+      "away": "Kings",
+      "home": "Mavericks",
+      "score": "107.8–121.9",
+      "total": "229.7",
+      "models": "Mavericks, 4–0",
+      "sim": "108–123, Mavericks 94.9%",
+      "sportPath": "basketball/nba",
+      "awayId": "23",
+      "homeId": "6",
+      "neutral": false,
+      "homeMargin": "14",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. Mavericks. Price missing. Game: Kings at Mavericks, 11/2 - 8:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T01:00Z",
+      "when": "11/2 - 8:00 PM EST",
+      "away": "Pelicans",
+      "home": "Grizzlies",
+      "score": "115.5–130",
+      "total": "245.5",
+      "models": "Grizzlies, 4–0",
+      "sim": "119–128, Grizzlies 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "3",
+      "homeId": "29",
+      "neutral": false,
+      "homeMargin": "14.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Pelicans at Grizzlies, 11/2 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T01:00Z",
+      "when": "11/2 - 8:00 PM EST",
+      "away": "Bucks",
+      "home": "Timberwolves",
+      "score": "110.3–123.4",
+      "total": "233.8",
+      "models": "Timberwolves, 4–0",
+      "sim": "108.5–122.5, Timberwolves 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "15",
+      "homeId": "16",
+      "neutral": false,
+      "homeMargin": "13.1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Bucks at Timberwolves, 11/2 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T01:30Z",
+      "when": "11/2 - 8:30 PM EST",
+      "away": "Celtics",
+      "home": "Rockets",
+      "score": "109.5–121.7",
+      "total": "231.2",
+      "models": "split, 3–1 Rockets",
+      "sim": "111.5–120.5, Rockets 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "2",
+      "homeId": "10",
+      "neutral": false,
+      "homeMargin": "12.2",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Celtics at Rockets, 11/2 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T01:30Z",
+      "when": "11/2 - 8:30 PM EST",
+      "away": "Jazz",
+      "home": "Spurs",
+      "score": "107–119.6",
+      "total": "226.6",
+      "models": "Spurs, 4–0",
+      "sim": "107–116.5, Spurs 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "26",
+      "homeId": "24",
+      "neutral": false,
+      "homeMargin": "12.6",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Jazz at Spurs, 11/2 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T02:00Z",
+      "when": "11/2 - 9:00 PM EST",
+      "away": "Trail Blazers",
+      "home": "Nuggets",
+      "score": "129.9–120.3",
+      "total": "250.2",
+      "models": "Trail Blazers, 4–0",
+      "sim": "131.5–121.5, Trail Blazers 79.8%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "22",
+      "homeId": "7",
+      "neutral": false,
+      "homeMargin": "-9.7",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Trail Blazers at Nuggets, 11/2 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T03:00Z",
+      "when": "11/2 - 10:00 PM EST",
+      "away": "Suns",
+      "home": "Warriors",
+      "score": "100.8–117.3",
+      "total": "218",
+      "models": "Warriors, 4–0",
+      "sim": "97–118, Warriors 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "21",
+      "homeId": "9",
+      "neutral": false,
+      "homeMargin": "16.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Suns at Warriors, 11/2 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T03:00Z",
+      "when": "11/2 - 10:00 PM EST",
+      "away": "Raptors",
+      "home": "Clippers",
+      "score": "101.3–106.8",
+      "total": "208",
+      "models": "split, 2–2",
+      "sim": "104–111.5, Clippers 61.9%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "28",
+      "homeId": "12",
+      "neutral": false,
+      "homeMargin": "5.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Raptors at Clippers, 11/2 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-03T03:00Z",
+      "when": "11/2 - 10:00 PM EST",
+      "away": "Heat",
+      "home": "Lakers",
+      "score": "119.4–121.5",
+      "total": "240.9",
+      "models": "split, 3–1 Lakers",
+      "sim": "123–122, Lakers 48%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "14",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "2.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Heat at Lakers, 11/2 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    }
+  ]
+}

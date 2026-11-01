@@ -6,6 +6,60 @@
     "games": 12
   },
   {
+    "id": "2026-11-02-fbs-2026-11-02",
+    "title": "FBS 2026-11-02",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-02-fcs-2026-11-02",
+    "title": "FCS 2026-11-02",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-02-j1",
+    "title": "J1",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-02-mlb-scoreboard",
+    "title": "MLB scoreboard",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-02-mls-scoreboard",
+    "title": "MLS scoreboard",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-02-nba-2026-11-02",
+    "title": "NBA 2026-11-02",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 15
+  },
+  {
+    "id": "2026-11-02-nfl",
+    "title": "NFL",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 1
+  },
+  {
+    "id": "2026-11-02-nhl-2026-11-02",
+    "title": "NHL 2026-11-02",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 4
+  },
+  {
+    "id": "2026-11-02-premier-league-scoreboard",
+    "title": "Premier League scoreboard",
+    "retrievedAt": "2026-11-01T06:41:28.562Z",
+    "games": 1
+  },
+  {
     "id": "j1-mixed-2026-10-31",
     "title": "J1 mixed card",
     "retrievedAt": "2026-10-31T20:36:00.000Z",

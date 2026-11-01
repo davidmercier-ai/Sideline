@@ -1,0 +1,37 @@
+{
+  "id": "2026-11-02-premier-league-scoreboard",
+  "title": "Premier League scoreboard",
+  "sportPath": "soccer/eng.1",
+  "retrievedAt": "2026-11-01T06:41:28.562Z",
+  "games": [
+    {
+      "date": "2026-11-02T20:00Z",
+      "when": "Scheduled",
+      "away": "Everton",
+      "home": "Newcastle",
+      "score": "1.1–1.4",
+      "total": "2.5",
+      "models": "split, 3–1 Newcastle",
+      "sim": "1–1.5, Newcastle 52.8%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "368",
+      "homeId": "361",
+      "neutral": false,
+      "homeMargin": "0.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Everton at Newcastle, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    }
+  ]
+}
