@@ -1,9 +1,14 @@
 import type { TicketStatus } from './ledger'
-import type { Ticket } from './tickets'
 
 export type SavedTicket = {
   status: TicketStatus
   stake: string
+}
+
+export type TicketSeed = {
+  id: string
+  defaultStatus: 'open' | 'placed'
+  defaultStake: string
 }
 
 const KEY = 'sideline.board.v1'
@@ -24,6 +29,6 @@ export function writeTicketStore(value: Record<string, SavedTicket>): void {
   localStorage.setItem(KEY, JSON.stringify(value))
 }
 
-export function ticketView(ticket: Ticket, saved: Record<string, SavedTicket>): SavedTicket {
+export function ticketView(ticket: TicketSeed, saved: Record<string, SavedTicket>): SavedTicket {
   return saved[ticket.id] ?? { status: ticket.defaultStatus, stake: ticket.defaultStake }
 }

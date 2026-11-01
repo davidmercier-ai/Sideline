@@ -1,8 +1,24 @@
-import { useMemo, useState } from 'react'
+import { useState, type FormEvent } from 'react'
+import { NAMED_CARDS, type NamedCard } from '../lib/cards'
 import { progressLine } from '../lib/boxScore'
 import { ledger, parseStake, type TicketStatus } from '../lib/ledger'
 import { loadGameSnaps, loadStats } from '../lib/nflBoard'
-import { ticketView, readTicketStore, writeTicketStore, type SavedTicket } from '../lib/ticketStore'
+import {
+  allowsBook,
+  BUILTIN_PRESETS,
+  FEATURE_LABELS,
+  matchingPreset,
+  presetNameError,
+  readPresetStore,
+  removeCustomPreset,
+  toggleFeature,
+  upsertCustomPreset,
+  writePresetStore,
+  type FeatureId,
+  type Features,
+  type Preset,
+} from '../lib/presets'
+import { readTicketStore, ticketView, writeTicketStore, type SavedTicket, type TicketSeed } from '../lib/ticketStore'
 import { BOOK_COLOR, TICKETS, type Ticket } from '../lib/tickets'
 import { usePoll } from '../lib/usePoll'
 
@@ -27,7 +43,16 @@ function statKey(ticket: Ticket): string {
   return `${ticket.eventId}:${ticket.player}:${ticket.statKey}`
 }
 
+function seeds(): TicketSeed[] {
+  return [...TICKETS, ...NAMED_CARDS.flatMap((card) => card.slips)]
+}
+
 export function BoardPage() {
+  const [store] = useState(readPresetStore)
+  const [features, setFeatures] = useState<Features>(store.features)
+  const [custom, setCustom] = useState<Preset[]>(store.custom)
+  const [presetName, setPresetName] = useState('')
+  const [presetMessage, setPresetMessage] = useState('')
   const [saved, setSaved] = useState<Record<string, SavedTicket>>(readTicketStore)
   const progress = usePoll(
     async () => {
@@ -47,9 +72,15 @@ export function BoardPage() {
     30000,
   )
 
+  function remember(nextFeatures: Features, nextCustom: Preset[] = custom) {
+    setFeatures(nextFeatures)
+    setCustom(nextCustom)
+    writePresetStore(nextFeatures, nextCustom)
+  }
+
   function update(id: string, patch: Partial<SavedTicket>) {
     setSaved((prev) => {
-      const ticket = TICKETS.find((row) => row.id === id)
+      const ticket = seeds().find((row) => row.id === id)
       if (!ticket) return prev
       const next = {
         ...prev,
@@ -60,20 +91,62 @@ export function BoardPage() {
     })
   }
 
-  const book = useMemo(
-    () =>
-      ledger(
-        TICKETS.map((ticket) => {
-          const view = ticketView(ticket, saved)
-          return { status: view.status, stake: parseStake(view.stake), american: ticket.american }
-        }),
-      ),
-    [saved],
-  )
+  const active = matchingPreset(features, custom)
+  const propTickets = TICKETS.filter((ticket) => features.props && allowsBook(features, ticket.book))
+  const cards = NAMED_CARDS.map((card) => ({
+    ...card,
+    slips: card.slips.filter((slip) => features.cards && allowsBook(features, slip.book)),
+  })).filter((card) => card.slips.length > 0)
 
-  const groups = TICKETS.filter((ticket, index) => TICKETS.findIndex((row) => row.group === ticket.group) === index)
+  const book = ledger([
+    ...propTickets.map((ticket) => {
+      const view = ticketView(ticket, saved)
+      return { status: view.status, stake: parseStake(view.stake), american: ticket.american }
+    }),
+    ...cards.flatMap((card) =>
+      card.slips.map((slip) => {
+        const view = ticketView(slip, saved)
+        return { status: view.status, stake: parseStake(view.stake), american: slip.american ?? 0 }
+      }),
+    ),
+  ])
+
+  const groups = propTickets.filter((ticket, index) => propTickets.findIndex((row) => row.group === ticket.group) === index)
   const live = groups.filter((ticket) => progress.data?.snaps[ticket.eventId]?.state !== 'pre')
   const later = groups.filter((ticket) => progress.data?.snaps[ticket.eventId]?.state === 'pre' || !progress.data)
+  const propGroups = progress.data ? live : groups
+  const nothingOn = propGroups.length === 0 && !(features.later && later.length > 0) && cards.length === 0
+
+  function onToggle(id: FeatureId) {
+    setPresetMessage('')
+    remember(toggleFeature(features, id))
+  }
+
+  function onPreset(preset: Preset) {
+    setPresetMessage('')
+    remember(preset.features)
+  }
+
+  function onSave(event: FormEvent) {
+    event.preventDefault()
+    const error = presetNameError(presetName)
+    if (error === 'empty') {
+      setPresetMessage('Type a name for this preset.')
+      return
+    }
+    if (error === 'builtin') {
+      setPresetMessage(`${presetName.trim()} is already a preset. Pick another name.`)
+      return
+    }
+    remember(features, upsertCustomPreset(custom, presetName, features))
+    setPresetName('')
+    setPresetMessage(`Saved ${presetName.trim()}.`)
+  }
+
+  function onRemove(preset: Preset) {
+    remember(features, removeCustomPreset(custom, preset.id))
+    setPresetMessage(`Removed ${preset.name}.`)
+  }
 
   return (
     <main>
@@ -81,59 +154,109 @@ export function BoardPage() {
         <div>
           <h1>Board</h1>
           <p className="lede">
-            Sunday alerts and ticket progress. A link opens in the book, outside this page. Mark Placed when the ticket is in. The mark stays in this browser.
+            Turn books, props, named cards, live progress, and exposure on or off. A preset stores that combination in this browser.
           </p>
         </div>
       </section>
 
-      <section className="board-metrics" aria-label="Exposure">
-        <article className="card board-metric">
-          <span className="meta">At risk</span>
-          <b>{dollars(book.atRisk)}</b>
-          <span>Stakes still on placed tickets.</span>
-        </article>
-        <article className="card board-metric">
-          <span className="meta">Potential gain</span>
-          <b>{dollars(book.potentialGain)}</b>
-          <span>Each placed ticket’s own to-win. Not a parlay price.</span>
-        </article>
-        <article className="card board-metric">
-          <span className="meta">Settled</span>
-          <b>{dollars(book.settled)}</b>
-          <span>Wins added, losses subtracted.</span>
-        </article>
+      <section className="card preset-panel" aria-label="Presets and features">
+        <div>
+          <h2 className="preset-label">Presets</h2>
+          <div className="filters" role="group" aria-label="Presets">
+            {[...BUILTIN_PRESETS, ...custom].map((preset) => (
+              <span key={preset.id} className="preset-pair">
+                <button type="button" className={active?.id === preset.id ? 'chip active' : 'chip'} aria-pressed={active?.id === preset.id} onClick={() => onPreset(preset)}>
+                  {preset.name}
+                </button>
+                {preset.builtin || active?.id !== preset.id ? null : (
+                  <button type="button" className="text-action" onClick={() => onRemove(preset)} aria-label={`Remove ${preset.name}`}>
+                    Remove
+                  </button>
+                )}
+              </span>
+            ))}
+          </div>
+          <form className="preset-save" onSubmit={onSave}>
+            <label>
+              Preset name
+              <input className="stake-field preset-name" value={presetName} maxLength={32} onChange={(event) => setPresetName(event.target.value)} />
+            </label>
+            <button type="submit" className="chip">
+              Save preset
+            </button>
+          </form>
+          {presetMessage ? <p className="board-note">{presetMessage}</p> : null}
+        </div>
+        <div>
+          <h2 className="preset-label">Features</h2>
+          <div className="filters" role="group" aria-label="Features">
+            {FEATURE_LABELS.map((feature) => (
+              <button key={feature.id} type="button" className={features[feature.id] ? 'chip active' : 'chip'} aria-pressed={features[feature.id]} onClick={() => onToggle(feature.id)}>
+                {feature.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
+      {features.exposure ? (
+        <section className="board-metrics" aria-label="Exposure">
+          <article className="card board-metric">
+            <span className="meta">At risk</span>
+            <b>{dollars(book.atRisk)}</b>
+            <span>Stakes still on placed tickets in this preset.</span>
+          </article>
+          <article className="card board-metric">
+            <span className="meta">Potential gain</span>
+            <b>{dollars(book.potentialGain)}</b>
+            <span>Each placed ticket’s own to-win. A card with no book price adds none.</span>
+          </article>
+          <article className="card board-metric">
+            <span className="meta">Settled</span>
+            <b>{dollars(book.settled)}</b>
+            <span>Wins added, losses subtracted.</span>
+          </article>
+        </section>
+      ) : null}
+
       {progress.error ? <p className="lede">Game progress is unavailable. Ticket marks are still saved.</p> : null}
+      {nothingOn ? <p className="empty">Nothing is on for this combination.</p> : null}
 
       <BoardList
-        title={progress.data ? 'In progress' : 'Alerts'}
-        groups={progress.data ? live : groups}
+        title={progress.data ? 'In progress' : 'Props'}
+        pool={propTickets}
+        groups={propGroups}
         saved={saved}
         snaps={progress.data?.snaps}
         stats={progress.data?.stats}
+        showProgress={features.progress}
         onUpdate={update}
       />
-      {progress.data && later.length > 0 ? (
-        <BoardList title="Later" groups={later} saved={saved} snaps={progress.data.snaps} stats={progress.data.stats} onUpdate={update} />
+      {progress.data && features.later && later.length > 0 ? (
+        <BoardList title="Later" pool={propTickets} groups={later} saved={saved} snaps={progress.data.snaps} stats={progress.data.stats} showProgress={features.progress} onUpdate={update} />
       ) : null}
+      {cards.length > 0 ? <CardList cards={cards} saved={saved} onUpdate={update} /> : null}
     </main>
   )
 }
 
 function BoardList({
   title,
+  pool,
   groups,
   saved,
   snaps,
   stats,
+  showProgress,
   onUpdate,
 }: {
   title: string
+  pool: Ticket[]
   groups: Ticket[]
   saved: Record<string, SavedTicket>
   snaps?: Record<string, { detail: string; matchup: string; score: string; state: string }>
   stats?: Record<string, number | null>
+  showProgress: boolean
   onUpdate: (id: string, patch: Partial<SavedTicket>) => void
 }) {
   if (groups.length === 0) return null
@@ -141,7 +264,7 @@ function BoardList({
     <section className="board-section">
       <h2 className="section-title">{title}</h2>
       {groups.map((lead) => {
-        const legs = TICKETS.filter((ticket) => ticket.group === lead.group)
+        const legs = pool.filter((ticket) => ticket.group === lead.group)
         const snap = snaps?.[lead.eventId]
         const stat = stats?.[statKey(lead)] ?? null
         return (
@@ -152,54 +275,109 @@ function BoardList({
                 <p>
                   {lead.market}
                   {' · '}
-                  {snap?.matchup ?? lead.game}
-                  {snap?.score ? ` · ${snap.score}` : ''}
-                  {snap?.detail ? ` · ${snap.detail}` : ` · ${lead.kickoff}`}
+                  {showProgress ? (snap?.matchup ?? lead.game) : lead.game}
+                  {showProgress && snap?.score ? ` · ${snap.score}` : ''}
+                  {showProgress && snap?.detail ? ` · ${snap.detail}` : ` · ${lead.kickoff}`}
                 </p>
               </div>
             </header>
             <ul className="board-legs">
-              {legs.map((ticket) => {
-                const view = ticketView(ticket, saved)
-                return (
-                  <li key={ticket.id}>
-                    <a className="book-link" href={ticket.href} target="_blank" rel="noopener noreferrer" style={{ color: BOOK_COLOR[ticket.book] }}>
-                      {ticket.book} {ticket.side === 'anytime' ? 'anytime' : `${ticket.side} ${ticket.line}`} {american(ticket.american)}
-                    </a>
-                    <p className="board-progress">{progressLine(ticket.side, ticket.line, stat, ticket.book)}</p>
-                    <div className="board-controls">
-                      <div className="filters" role="group" aria-label={`${ticket.book} status`}>
-                        {STATUSES.map((status) => (
-                          <button
-                            key={status.id}
-                            type="button"
-                            className={view.status === status.id ? 'chip active' : 'chip'}
-                            onClick={() => onUpdate(ticket.id, { status: status.id })}
-                          >
-                            {status.label}
-                          </button>
-                        ))}
-                      </div>
-                      <label className="stake-label">
-                        Stake
-                        <input
-                          className="stake-field"
-                          inputMode="decimal"
-                          value={view.stake}
-                          placeholder="0"
-                          aria-label={`${ticket.book} stake`}
-                          onChange={(event) => onUpdate(ticket.id, { stake: event.target.value })}
-                        />
-                      </label>
-                    </div>
-                    <p className="board-note">{ticket.note}</p>
-                  </li>
-                )
-              })}
+              {legs.map((ticket) => (
+                <SlipControls key={ticket.id} seed={ticket} label={`${ticket.book} ${ticket.side === 'anytime' ? 'anytime' : `${ticket.side} ${ticket.line}`} ${american(ticket.american)}`} href={ticket.href} color={BOOK_COLOR[ticket.book]} note={ticket.note} progress={showProgress ? progressLine(ticket.side, ticket.line, stat, ticket.book) : ''} saved={saved} onUpdate={onUpdate} />
+              ))}
             </ul>
           </article>
         )
       })}
     </section>
+  )
+}
+
+function CardList({
+  cards,
+  saved,
+  onUpdate,
+}: {
+  cards: NamedCard[]
+  saved: Record<string, SavedTicket>
+  onUpdate: (id: string, patch: Partial<SavedTicket>) => void
+}) {
+  return (
+    <section className="board-section">
+      <h2 className="section-title">Named cards</h2>
+      {cards.map((card) => (
+        <article key={card.id} className="card board-row">
+          <header className="board-head">
+            <div>
+              <h3>{card.title}</h3>
+              <p>
+                {card.game}
+                {' · '}
+                {card.kickoff}
+              </p>
+            </div>
+          </header>
+          <ul className="board-legs">
+            {card.slips.map((slip) => (
+              <SlipControls
+                key={slip.id}
+                seed={slip}
+                label={slip.american == null ? slip.book : `${slip.book} ${american(slip.american)}`}
+                href={slip.href}
+                color={BOOK_COLOR[slip.book]}
+                note={`${slip.legs} ${slip.note}`}
+                progress=""
+                saved={saved}
+                onUpdate={onUpdate}
+              />
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+  )
+}
+
+function SlipControls({
+  seed,
+  label,
+  href,
+  color,
+  note,
+  progress,
+  saved,
+  onUpdate,
+}: {
+  seed: TicketSeed
+  label: string
+  href: string
+  color: string
+  note: string
+  progress: string
+  saved: Record<string, SavedTicket>
+  onUpdate: (id: string, patch: Partial<SavedTicket>) => void
+}) {
+  const view = ticketView(seed, saved)
+  return (
+    <li>
+      <a className="book-link" href={href} target="_blank" rel="noopener noreferrer" style={{ color }}>
+        {label}
+      </a>
+      {progress ? <p className="board-progress">{progress}</p> : null}
+      <div className="board-controls">
+        <div className="filters" role="group" aria-label={`${label} status`}>
+          {STATUSES.map((status) => (
+            <button key={status.id} type="button" className={view.status === status.id ? 'chip active' : 'chip'} onClick={() => onUpdate(seed.id, { status: status.id })}>
+              {status.label}
+            </button>
+          ))}
+        </div>
+        <label className="stake-label">
+          Stake
+          <input className="stake-field" inputMode="decimal" value={view.stake} placeholder="0" aria-label={`${label} stake`} onChange={(event) => onUpdate(seed.id, { stake: event.target.value })} />
+        </label>
+      </div>
+      <p className="board-note">{note}</p>
+    </li>
   )
 }
