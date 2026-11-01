@@ -113,6 +113,158 @@ export function medianPair(forValues, againstValues) {
   }
 }
 
+export const SPORT_MARKS = {
+  'football/nfl': '🏈',
+  'football/college-football': '🏈',
+  'basketball/nba': '🏀',
+  'basketball/wnba': '🏀',
+  'hockey/nhl': '🏒',
+  'baseball/mlb': '⚾',
+  'soccer/eng.1': '⚽',
+  'soccer/jpn.1': '⚽',
+  'soccer/usa.1': '⚽',
+}
+
+const RATING_COLOR = { 5: '🟢', 4: '🟩', 3: '🔵', 2: '🟡', 1: '🔴' }
+const REASON_MARK = {
+  value: '💰',
+  venue: '🏠',
+  scar: '⚠️',
+  room: '🛡️',
+  oneScore: '⚡',
+  split: '➗',
+  thin: '📏',
+}
+
+export function sportMark(sportPath) {
+  return SPORT_MARKS[sportPath] ?? '🎟️'
+}
+
+function roomUnit(sportPath) {
+  if (String(sportPath).startsWith('soccer/') || sportPath === 'hockey/nhl') return 0.25
+  return 1
+}
+
+/**
+ * One alert for a game. Color is the log rating. The reason emoji is why.
+ * A player prop passes gameText so both teams and the kickoff stay on the line.
+ * The rating is not a win probability.
+ */
+export function buildAlert({
+  sportPath,
+  away,
+  home,
+  when,
+  kickoff,
+  now,
+  methods = [],
+  marketHomeMargin,
+  postedTotal,
+  thin = false,
+  started = false,
+  gameText,
+}) {
+  const margins = methods.map((method) => method.margin).filter((value) => Number.isFinite(value))
+  const totals = methods.map((method) => method.total).filter((value) => Number.isFinite(value))
+  const sides = margins.map(sideOf).filter((side) => side !== 'unavailable')
+  const unique = new Set(sides)
+  const venueSide = methods[0] ? sideOf(methods[0].margin) : 'unavailable'
+  const lastSide = methods.length ? sideOf(methods[methods.length - 1].margin) : 'unavailable'
+  const room = roomUnit(sportPath)
+  let rating = 2
+  let reason = 'split'
+  let action = 'Pass'
+  let bet = 'No side'
+
+  const unanimous = unique.size === 1 && !unique.has('tie') && sides.length >= 2
+  const withoutLast = sides.slice(0, -1)
+  const scar = withoutLast.length >= 1
+    && (venueSide === 'home' || venueSide === 'away')
+    && withoutLast.every((item) => item === venueSide)
+    && lastSide !== venueSide
+    && lastSide !== 'unavailable'
+  const side = scar ? venueSide : unanimous ? [...unique][0] : null
+  const sideName = side === 'home' ? home : side === 'away' ? away : null
+
+  if (thin) {
+    reason = 'thin'
+    action = 'Lean'
+    bet = 'Thin sample'
+  } else if (scar) {
+    rating = 3
+    reason = 'scar'
+    action = 'Bet'
+    bet = sideName
+  } else if (!unanimous) {
+    reason = 'split'
+    action = 'Pass'
+    bet = 'Split'
+  } else if (Number.isFinite(marketHomeMargin)) {
+    const gaps = margins.map((margin) => (side === 'home' ? margin - marketHomeMargin : marketHomeMargin - margin))
+    const closest = Math.min(...gaps)
+    if (gaps.every((gap) => gap > 0) && closest >= room) {
+      rating = margins.length >= 4 ? 5 : 4
+      reason = 'value'
+      action = 'Bet'
+      bet = sideName
+    } else if (gaps.every((gap) => gap > 0)) {
+      rating = 4
+      reason = 'value'
+      action = 'Bet'
+      bet = sideName
+    } else if (gaps.some((gap) => gap < 0)) {
+      rating = 1
+      reason = 'split'
+      action = 'Pass'
+      bet = `${sideName} does not clear the number`
+    } else {
+      rating = 3
+      reason = 'venue'
+      action = 'Bet'
+      bet = sideName
+    }
+  } else {
+    rating = 4
+    reason = 'venue'
+    action = 'Lean'
+    bet = `${sideName}. Price missing`
+  }
+
+  const totalCall = totalAlert(totals, postedTotal, room, thin)
+  if (totalCall && (action === 'Pass' || totalCall.rating > rating)) {
+    rating = totalCall.rating
+    reason = 'value'
+    action = 'Bet'
+    bet = `${totalCall.side} ${postedTotal}`
+  }
+
+  if (started && action !== 'Pass') {
+    rating = Math.min(rating, 2)
+    reason = 'oneScore'
+    action = 'Lean'
+  }
+
+  if (action === 'Bet' && kickoff && now) {
+    const wait = new Date(kickoff).getTime() - new Date(now).getTime()
+    if (wait > 0 && wait <= 15 * 60 * 1000) action = 'Bet now'
+  }
+
+  const color = RATING_COLOR[rating]
+  const why = REASON_MARK[reason]
+  const game = gameText || `${away} at ${home}`
+  const text = `${sportMark(sportPath)} ${color} ${rating} ${why} ${action}. ${game}. ${bet}. ${when ?? ''}`.trim()
+  return { sport: sportMark(sportPath), rating, color, reason, why, action, bet, text }
+}
+
+function totalAlert(totals, postedTotal, room, thin) {
+  if (thin || !Number.isFinite(postedTotal) || totals.length < 4) return null
+  if (totals.every((total) => postedTotal - total >= room)) return { side: 'Under', rating: 5 }
+  if (totals.every((total) => total - postedTotal >= room)) return { side: 'Over', rating: 5 }
+  if (totals.every((total) => total < postedTotal)) return { side: 'Under', rating: 4 }
+  if (totals.every((total) => total > postedTotal)) return { side: 'Over', rating: 4 }
+  return null
+}
+
 export function sideOf(margin) {
   if (!Number.isFinite(margin)) return 'unavailable'
   if (Math.abs(margin) < 0.05) return 'tie'

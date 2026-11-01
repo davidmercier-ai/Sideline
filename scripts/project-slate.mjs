@@ -30,6 +30,7 @@ import {
   quotePosition,
   gradeLog,
   simulateMatch,
+  buildAlert,
   projectedOutcome,
   reconcileTotal,
   round1,
@@ -189,6 +190,7 @@ function gamesFromEvents(events, sport) {
       when: status.shortDetail || status.detail || event.date,
       date: event.date,
       neutral: Boolean(competition.neutralSite),
+      started: status.state === 'in',
       away: {
         id: String(away.team.id),
         name: label(away),
@@ -789,12 +791,28 @@ function propsSection(game) {
   return lines
 }
 
-function renderGame(game, awayLog, homeLog, football, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')) {
+function renderGame(game, awayLog, homeLog, football, sportPath, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')) {
   const lines = []
   lines.push(`### ${game.away.name} at ${game.home.name}`)
   lines.push('')
   lines.push(`- When: ${game.when}`)
   lines.push(`- Site: ${game.neutral ? 'neutral (venue split not applied)' : 'home team listed second'}`)
+  const methodsForAlert = scoringMethods(awayLog.rows, homeLog.rows)
+  const alert = buildAlert({
+    sportPath,
+    away: game.away.name,
+    home: game.home.name,
+    when: game.when,
+    kickoff: game.date,
+    now: retrievedAt,
+    methods: methodsForAlert,
+    marketHomeMargin: game.market.marketHomeMargin,
+    postedTotal: game.market.total,
+    thin: Boolean(scoring.away.thin || scoring.home.thin),
+    started: Boolean(game.started),
+  })
+  game.alert = alert
+  lines.push(`- Alert: ${alert.text}`)
   lines.push('')
   lines.push('**1. Independent projection**')
   lines.push('')
@@ -918,6 +936,7 @@ async function section(title, sportPath, games, football, unit) {
     const awayLog = logs.get(game.away.id)
     const homeLog = logs.get(game.home.id)
     const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
+    const markdown = renderGame(game, awayLog, homeLog, football, sportPath, scoring)
     const methods = scoringMethods(awayLog.rows, homeLog.rows)
     const convergence = methodConvergence(methods)
     const margins = methods.map((method) => method.margin)
@@ -941,10 +960,16 @@ async function section(title, sportPath, games, football, unit) {
         models: modelCall(game, convergence),
         sim: simCall(game, sim),
       },
-      markdown: renderGame(game, awayLog, homeLog, football, scoring),
+      markdown,
     }
   })
   const table = [
+    'Alerts. The color is the log rating. The emoji after it is why. A player prop names both teams and the kickoff on this same line.',
+    '',
+    '| Alert |',
+    '| --- |',
+    ...games.map((game) => `| ${game.alert?.text ?? 'missing'} |`),
+    '',
     'Comparison summary. Prices and timestamps are in each game’s market section, not here.',
     '',
     '| Game | Baseline score | Home margin | Market home margin | Margin difference | Baseline total | Posted total | Total difference |',
@@ -1005,6 +1030,9 @@ async function section(title, sportPath, games, football, unit) {
         postedTotal: fmt(game.market.total),
         fanduel: spots.FanDuel,
         draftkings: spots.DraftKings,
+        alert: game.alert?.text ?? null,
+        alertRating: game.alert?.rating ?? null,
+        alertAction: game.alert?.action ?? null,
       }
     }),
   }

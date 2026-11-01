@@ -21,6 +21,8 @@ import {
   summarize,
   totalDirection,
   gradeLog,
+  buildAlert,
+  sportMark,
 } from './projection-math.mjs'
 
 const yards = summarize([100, 120, 120, 80, 150])
@@ -239,5 +241,71 @@ assert.equal(loaded.games[0].result, 'hit')
 const index = JSON.parse(await readFile(join(storeDir, 'index.json'), 'utf8'))
 assert.equal(index[0].games, 1)
 assert.ok(stored.endsWith('j1-mixed-2026-10-31.json'))
+
+assert.equal(sportMark('football/nfl'), '🏈')
+assert.equal(sportMark('soccer/jpn.1'), '⚽')
+assert.equal(sportMark('basketball/nba'), '🏀')
+assert.equal(sportMark('hockey/nhl'), '🏒')
+assert.equal(sportMark('baseball/mlb'), '⚾')
+
+const valueAlert = buildAlert({
+  sportPath: 'football/nfl',
+  away: 'Away',
+  home: 'Home',
+  when: 'Sun 1:00 PM ET',
+  methods: [{ margin: 8, total: 40 }, { margin: 7, total: 41 }, { margin: 6, total: 39 }, { margin: 9, total: 42 }],
+  marketHomeMargin: 3,
+  postedTotal: 44,
+})
+assert.equal(valueAlert.rating, 5)
+assert.equal(valueAlert.reason, 'value')
+assert.equal(valueAlert.action, 'Bet')
+assert.ok(valueAlert.text.startsWith('🏈 🟢 5 💰 Bet.'))
+assert.ok(valueAlert.text.includes('Away at Home'))
+
+const soon = buildAlert({
+  sportPath: 'soccer/jpn.1',
+  away: 'Kawasaki',
+  home: 'Yokohama',
+  when: 'Sun 12:00 AM ET',
+  kickoff: '2026-11-01T04:10:00.000Z',
+  now: '2026-11-01T04:00:00.000Z',
+  methods: [{ margin: -0.2, total: 2.2 }, { margin: 0.1, total: 2.4 }, { margin: -0.4, total: 2.1 }, { margin: -0.3, total: 2.6 }],
+  postedTotal: 3.5,
+})
+assert.equal(soon.action, 'Bet now')
+assert.equal(soon.bet, 'Under 3.5')
+assert.ok(soon.text.startsWith('⚽'))
+
+const split = buildAlert({
+  sportPath: 'basketball/nba',
+  away: 'Away',
+  home: 'Home',
+  methods: [{ margin: 4, total: 220 }, { margin: -3, total: 210 }, { margin: 1, total: 215 }, { margin: -2, total: 218 }],
+})
+assert.equal(split.action, 'Pass')
+assert.equal(split.reason, 'split')
+assert.ok(split.text.includes('🏀'))
+
+const prop = buildAlert({
+  sportPath: 'soccer/jpn.1',
+  away: 'Tokyo Verdy',
+  home: 'V-Varen',
+  when: 'Sun 1:00 AM ET',
+  methods: [{ margin: 0.4, total: 2 }, { margin: 0.3, total: 2 }, { margin: 0.2, total: 2 }, { margin: -0.2, total: 2 }],
+  gameText: 'Matheus Jesus anytime. Tokyo Verdy at V-Varen, Sun 1:00 AM ET',
+})
+assert.ok(prop.text.includes('Tokyo Verdy at V-Varen, Sun 1:00 AM ET'))
+
+const scar = buildAlert({
+  sportPath: 'hockey/nhl',
+  away: 'Away',
+  home: 'Home',
+  methods: [{ margin: 1.2, total: 6 }, { margin: 0.8, total: 6 }, { margin: 0.4, total: 6 }, { margin: -0.3, total: 6 }],
+  marketHomeMargin: 0.5,
+})
+assert.equal(scar.rating, 3)
+assert.equal(scar.reason, 'scar')
+assert.ok(scar.text.includes('🏒'))
 
 console.log('projection math ok')
