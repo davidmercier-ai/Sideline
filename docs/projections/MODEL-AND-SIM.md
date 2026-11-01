@@ -111,6 +111,10 @@ Synergy looks at one team at a time. Compare that team’s venue scoring rate wi
 - Both differences within 0.05: flat.
 - Any rate missing: missing-input.
 
+## Alerts
+
+Every game on every board gets one alert line. The sport mark leads it: 🏈 football, 🏀 basketball, 🏒 hockey, ⚽ soccer, ⚾ baseball. The color is the log rating. The next emoji is why. A player prop keeps both teams and the kickoff on that line. The rating is not a win probability.
+
 ## The simulation
 
 Two thousand draws. The random seed is `20261030` mixed with the ESPN game id, so the same logs always reproduce the same sim. The sim does not read a price while it is drawing scores.
