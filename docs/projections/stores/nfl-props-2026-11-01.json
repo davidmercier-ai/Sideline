@@ -1,0 +1,53 @@
+{
+  "id": "nfl-props-2026-11-01",
+  "title": "NFL player props",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-01T12:22:00.007Z",
+  "games": [
+    {
+      "when": "1:00 PM ET",
+      "match": "Browns at Steelers",
+      "bet": "Jaylen Warren over 21.5 receiving yards",
+      "book": "DraftKings",
+      "price": -109,
+      "action": "Bet",
+      "log": "Home 27, 49, 87, 36. Reads 49.8, 42, 42.5, 50.3."
+    },
+    {
+      "when": "1:00 PM ET",
+      "match": "Falcons at Buccaneers",
+      "bet": "Bucky Irving under 17.5 receiving yards",
+      "book": "DraftKings",
+      "price": -113,
+      "action": "Bet",
+      "log": "Home 1, 12, 0, 3. Reads 4, 11.1, 2, 5.7."
+    },
+    {
+      "when": "1:00 PM ET",
+      "match": "Raiders at Jets",
+      "bet": "Kirk Cousins over 233.5 passing yards",
+      "book": "DraftKings",
+      "price": -111,
+      "action": "Bet",
+      "log": "Road 253, 248, 243. Reads 248, 268.1, 248, 283.7."
+    },
+    {
+      "when": "4:05 PM ET",
+      "match": "Chargers at Rams",
+      "bet": "Quentin Johnston over 31.5 receiving yards",
+      "book": "DraftKings",
+      "price": -110,
+      "action": "Bet",
+      "log": "Road 40, 44, 57. Reads 47, 33, 44, 47."
+    },
+    {
+      "when": "1:00 PM ET",
+      "match": "Ravens at Bills",
+      "bet": "James Cook anytime touchdown",
+      "book": "FanDuel and DraftKings",
+      "price": -155,
+      "action": "Bet",
+      "log": "Home 3 of 3. Last 3 scored. Season 5 of 6."
+    }
+  ]
+}

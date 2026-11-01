@@ -130,5 +130,11 @@
     "title": "Playable unstarted plays",
     "retrievedAt": "2026-10-31T22:01:00.000Z",
     "games": 7
+  },
+  {
+    "id": "nfl-props-2026-11-01",
+    "title": "NFL player props",
+    "retrievedAt": "2026-11-01T12:22:00.007Z",
+    "games": 5
   }
 ]
