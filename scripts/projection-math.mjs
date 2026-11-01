@@ -164,6 +164,28 @@ export function draftKingsSlipLink(selectionIds, action = 'Bet') {
   return `https://sportsbook.draftkings.com/?outcomes=${outcomes}`
 }
 
+/**
+ * One FanDuel slip for several bets. FanDuel's own share link writes
+ * marketId[n] and selectionId[n] on /addToBetslip and leaves the brackets
+ * unencoded. One bet still uses betSlipLink, which writes marketId and
+ * selectionId without an index. A Lean or a Pass returns null.
+ * Opening the link does not place the bet.
+ */
+export function fanDuelSlipLink(legs, action = 'Bet') {
+  if (action !== 'Bet' && action !== 'Bet now') return null
+  const rows = (legs || [])
+    .map((leg) => ({
+      marketId: String(leg?.marketId || '').trim(),
+      selectionId: String(leg?.selectionId || '').trim(),
+    }))
+    .filter((leg) => leg.marketId && leg.selectionId)
+  if (rows.length === 0) return null
+  const query = rows
+    .map((leg, index) => `marketId[${index}]=${encodeURIComponent(leg.marketId)}&selectionId[${index}]=${encodeURIComponent(leg.selectionId)}`)
+    .join('&')
+  return `https://sportsbook.fanduel.com/addToBetslip?${query}`
+}
+
 export function betSlipLink({ book, action, eventId, selectionId, marketId } = {}) {
   if (action !== 'Bet' && action !== 'Bet now') return null
   if (book === 'DraftKings' && eventId && selectionId) {

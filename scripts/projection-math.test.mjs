@@ -24,6 +24,7 @@ import {
   buildAlert,
   betSlipLink,
   draftKingsSlipLink,
+  fanDuelSlipLink,
   sportMark,
 } from './projection-math.mjs'
 
@@ -327,6 +328,18 @@ assert.equal(
 )
 assert.equal(slip.includes('/event/'), false)
 assert.equal(draftKingsSlipLink([dkId], 'Lean'), null)
+const fdSlip = fanDuelSlipLink([
+  { marketId: '739.194644207', selectionId: '41173071' },
+  { marketId: '739.194851132', selectionId: '49541845' },
+])
+assert.equal(
+  fdSlip,
+  'https://sportsbook.fanduel.com/addToBetslip?marketId[0]=739.194644207&selectionId[0]=41173071&marketId[1]=739.194851132&selectionId[1]=49541845',
+)
+assert.equal(fdSlip.includes('%5B'), false)
+assert.equal(fanDuelSlipLink([{ marketId: '739.194644207', selectionId: '41173071' }], 'Lean'), null)
+assert.equal(fanDuelSlipLink([{ marketId: '739.194644207', selectionId: '' }]), null)
+assert.equal(fanDuelSlipLink([]), null)
 assert.equal(betSlipLink({ book: 'DraftKings', action: 'Pass', eventId: '34118052', selectionId: dkId }), null)
 
 const linked = buildAlert({
