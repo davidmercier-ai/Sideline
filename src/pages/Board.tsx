@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { messageLink, sendBetLink, shareMessage } from '../lib/shareLink'
 import { NAMED_CARDS, type NamedCard } from '../lib/cards'
 import { progressLine } from '../lib/boxScore'
 import { ledger, parseStake, type TicketStatus } from '../lib/ledger'
@@ -283,7 +284,18 @@ function BoardList({
             </header>
             <ul className="board-legs">
               {legs.map((ticket) => (
-                <SlipControls key={ticket.id} seed={ticket} label={`${ticket.book} ${ticket.side === 'anytime' ? 'anytime' : `${ticket.side} ${ticket.line}`} ${american(ticket.american)}`} href={ticket.href} color={BOOK_COLOR[ticket.book]} note={ticket.note} progress={showProgress ? progressLine(ticket.side, ticket.line, stat, ticket.book) : ''} saved={saved} onUpdate={onUpdate} />
+                <SlipControls
+                  key={ticket.id}
+                  seed={ticket}
+                  label={`${ticket.book} ${ticket.side === 'anytime' ? 'anytime' : `${ticket.side} ${ticket.line}`} ${american(ticket.american)}`}
+                  detail={`${ticket.game}, ${ticket.kickoff}`}
+                  href={ticket.href}
+                  color={BOOK_COLOR[ticket.book]}
+                  note={ticket.note}
+                  progress={showProgress ? progressLine(ticket.side, ticket.line, stat, ticket.book) : ''}
+                  saved={saved}
+                  onUpdate={onUpdate}
+                />
               ))}
             </ul>
           </article>
@@ -323,6 +335,7 @@ function CardList({
                 key={slip.id}
                 seed={slip}
                 label={slip.american == null ? slip.book : `${slip.book} ${american(slip.american)}`}
+                detail={`${card.title}. ${card.game}, ${card.kickoff}. ${slip.legs}`}
                 href={slip.href}
                 color={BOOK_COLOR[slip.book]}
                 note={`${slip.legs} ${slip.note}`}
@@ -341,6 +354,7 @@ function CardList({
 function SlipControls({
   seed,
   label,
+  detail,
   href,
   color,
   note,
@@ -350,6 +364,7 @@ function SlipControls({
 }: {
   seed: TicketSeed
   label: string
+  detail: string
   href: string
   color: string
   note: string
@@ -358,11 +373,33 @@ function SlipControls({
   onUpdate: (id: string, patch: Partial<SavedTicket>) => void
 }) {
   const view = ticketView(seed, saved)
+  const [sendNote, setSendNote] = useState('')
+  const link = messageLink(href)
+
+  async function onSend() {
+    const message = shareMessage(label, detail, href)
+    const outcome = await sendBetLink(message)
+    if (outcome === 'copied') setSendNote('Copied. Paste it into a message.')
+    else if (outcome === 'shared') setSendNote('Ready to send.')
+    else if (outcome === 'failed') setSendNote('The link could not be copied.')
+    else setSendNote('')
+  }
+
   return (
     <li>
-      <a className="book-link" href={href} target="_blank" rel="noopener noreferrer" style={{ color }}>
-        {label}
-      </a>
+      <div className="book-line">
+        <a className="book-link" href={link} target="_blank" rel="noopener noreferrer" style={{ color }}>
+          {label}
+        </a>
+        <button type="button" className="chip" onClick={onSend} aria-label={`Send ${label}`}>
+          Send
+        </button>
+      </div>
+      {sendNote ? (
+        <p className="board-note" role="status">
+          {sendNote}
+        </p>
+      ) : null}
       {progress ? <p className="board-progress">{progress}</p> : null}
       <div className="board-controls">
         <div className="filters" role="group" aria-label={`${label} status`}>

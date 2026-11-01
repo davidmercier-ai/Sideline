@@ -657,6 +657,13 @@ img {
   gap: 8px;
 }
 
+.book-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
 .book-link {
   font-weight: 650;
   text-decoration: underline;
