@@ -20,7 +20,10 @@ import {
   sackYardsLost,
   summarize,
   totalDirection,
+  decidedRate,
+  gradeClosingLine,
   gradeLog,
+  summarizeMarks,
   buildAlert,
   betSlipLink,
   draftKingsSlipLink,
@@ -175,7 +178,7 @@ const homeGames = [
 ]
 const homeGrade = gradeLog(homeGames, { matchVenue: 'home', spread: 22.5, total: 42.5, side: 'home' })
 assert.equal(homeGrade.matched, 4)
-assert.deepEqual(homeGrade.spread, { cover: 0, miss: 4, push: 0 })
+assert.deepEqual(homeGrade.spread, { cover: 0, miss: 4, push: 0, decided: 4, coverPct: 0 })
 assert.equal(homeGrade.games.find((game) => game.opponent === 'CAL').spreadResult, null)
 
 const awayGrade = gradeLog(
@@ -186,8 +189,8 @@ const awayGrade = gradeLog(
   ],
   { matchVenue: 'away', spread: 22.5, total: 42.5, side: 'away' },
 )
-assert.deepEqual(awayGrade.spread, { cover: 3, miss: 0, push: 0 })
-assert.deepEqual(awayGrade.total, { over: 3, under: 0, push: 0 })
+assert.deepEqual(awayGrade.spread, { cover: 3, miss: 0, push: 0, decided: 3, coverPct: 1 })
+assert.deepEqual(awayGrade.total, { over: 3, under: 0, push: 0, decided: 3, overPct: 1, underPct: 0 })
 
 const push = gradeLog(
   [{ date: '2026-10-01', venue: 'home', opponent: 'X', pointsFor: 30, pointsAgainst: 7.5 }],
@@ -200,6 +203,26 @@ assert.equal(gradeLog(homeGames, { matchVenue: 'home', side: 'home' }).spread, n
 const neutral = gradeLog(homeGames, { matchVenue: 'overall', spread: 22.5, side: 'home' })
 assert.equal(neutral.matched, 5)
 assert.equal(neutral.spread.cover, 1)
+assert.equal(decidedRate(1, 0), null)
+
+const homeCover = gradeClosingLine({ pointsFor: 27, pointsAgainst: 6, venue: 'home', homeSpread: -3.5, total: 38.5 })
+assert.equal(homeCover.spreadResult, 'cover')
+assert.equal(homeCover.totalResult, 'under')
+const awayMiss = gradeClosingLine({ pointsFor: 6, pointsAgainst: 27, venue: 'away', homeSpread: -3.5, total: 38.5 })
+assert.equal(awayMiss.spreadResult, 'miss')
+assert.equal(gradeClosingLine({ pointsFor: 24, pointsAgainst: 20.5, venue: 'home', homeSpread: -3.5, total: 44.5 }).spreadResult, 'push')
+assert.equal(gradeClosingLine({ pointsFor: 10, pointsAgainst: 7, venue: 'neutral', homeSpread: -3, total: 17 }).spreadResult, null)
+
+const rolled = summarizeMarks([
+  { league: 'nfl', teamId: '23', team: 'Steelers', spreadResult: 'cover', totalResult: 'under' },
+  { league: 'nfl', teamId: '23', team: 'Steelers', spreadResult: 'miss', totalResult: 'over' },
+  { league: 'nfl', teamId: '23', team: 'Steelers', spreadResult: 'push', totalResult: 'push' },
+])
+assert.equal(rolled.length, 1)
+assert.equal(rolled[0].spread.coverPct, 0.5)
+assert.equal(rolled[0].spread.decided, 2)
+assert.equal(rolled[0].total.overPct, 0.5)
+assert.equal(rolled[0].total.underPct, 0.5)
 
 function roundPct(value) {
   return Math.round(value * 1000) / 10

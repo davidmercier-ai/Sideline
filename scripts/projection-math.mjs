@@ -537,6 +537,78 @@ function placeTotal(actual, line) {
   return 'push'
 }
 
+/** Hits divided by decided games. A push is not decided. Null when nothing was decided. */
+export function decidedRate(hits, decided) {
+  if (!Number.isFinite(decided) || decided <= 0) return null
+  if (!Number.isFinite(hits)) return null
+  return hits / decided
+}
+
+function spreadRate(cover, miss, push) {
+  const decided = cover + miss
+  return { cover, miss, push, decided, coverPct: decidedRate(cover, decided) }
+}
+
+function totalRate(over, under, push) {
+  const decided = over + under
+  return {
+    over,
+    under,
+    push,
+    decided,
+    overPct: decidedRate(over, decided),
+    underPct: decidedRate(under, decided),
+  }
+}
+
+/**
+ * Grade one team against the closing home spread and the game total.
+ * `homeSpread` uses the ESPN sign: negative means the home team is favored.
+ * A push is an equal margin or an equal combined score. The result is not a model.
+ */
+export function gradeClosingLine({ pointsFor, pointsAgainst, venue, homeSpread, total }) {
+  const margin = Number(pointsFor) - Number(pointsAgainst)
+  const combined = Number(pointsFor) + Number(pointsAgainst)
+  let spreadResult = null
+  if (Number.isFinite(homeSpread) && (venue === 'home' || venue === 'away')) {
+    const teamSpread = venue === 'home' ? homeSpread : -homeSpread
+    const adjusted = margin + teamSpread
+    spreadResult = adjusted > 0 ? 'cover' : adjusted < 0 ? 'miss' : 'push'
+  }
+  return {
+    margin,
+    combined,
+    spreadResult,
+    totalResult: placeTotal(combined, total),
+  }
+}
+
+export function summarizeMarks(rows) {
+  const byTeam = new Map()
+  for (const row of rows ?? []) {
+    const key = `${row.league || ''}:${row.teamId || row.team || ''}`
+    if (!byTeam.has(key)) byTeam.set(key, [])
+    byTeam.get(key).push(row)
+  }
+  return [...byTeam.values()].map((games) => {
+    const spread = { cover: 0, miss: 0, push: 0 }
+    const total = { over: 0, under: 0, push: 0 }
+    for (const game of games) {
+      if (game.spreadResult && spread[game.spreadResult] != null) spread[game.spreadResult] += 1
+      if (game.totalResult && total[game.totalResult] != null) total[game.totalResult] += 1
+    }
+    const first = games[0]
+    return {
+      league: first.league || '',
+      teamId: first.teamId || '',
+      team: first.team || '',
+      games: games.length,
+      spread: spreadRate(spread.cover, spread.miss, spread.push),
+      total: totalRate(total.over, total.under, total.push),
+    }
+  })
+}
+
 /**
  * List completed games and place the matching slice against a posted spread and total.
  * `spread` is the market home margin: positive means the home team is favored.
@@ -569,10 +641,10 @@ export function gradeLog(rows, { matchVenue = 'overall', spread = null, total = 
     games,
     matched: matched.length,
     spread: Number.isFinite(spread)
-      ? { cover: tally('spreadResult', 'cover'), miss: tally('spreadResult', 'miss'), push: tally('spreadResult', 'push') }
+      ? spreadRate(tally('spreadResult', 'cover'), tally('spreadResult', 'miss'), tally('spreadResult', 'push'))
       : null,
     total: Number.isFinite(total)
-      ? { over: tally('totalResult', 'over'), under: tally('totalResult', 'under'), push: tally('totalResult', 'push') }
+      ? totalRate(tally('totalResult', 'over'), tally('totalResult', 'under'), tally('totalResult', 'push'))
       : null,
   }
 }

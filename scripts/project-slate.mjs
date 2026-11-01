@@ -722,9 +722,17 @@ function logRows(name, rows, matchVenue) {
   return lines
 }
 
+function percent(value) {
+  if (!Number.isFinite(value)) return 'missing'
+  return `${fmt(value * 100)}%`
+}
+
 function countText(tally, keys) {
   if (!tally) return 'missing, so no count'
-  return keys.map((key) => `${key} ${tally[key]}`).join(', ')
+  const body = keys.map((key) => `${key} ${tally[key]}`).join(', ')
+  if (Number.isFinite(tally.coverPct)) return `${body}. Cover ${percent(tally.coverPct)} of ${tally.decided} decided`
+  if (Number.isFinite(tally.overPct)) return `${body}. Over ${percent(tally.overPct)}, under ${percent(tally.underPct)} of ${tally.decided} decided`
+  return body
 }
 
 export function gameLogSection(game, awayRows, homeRows) {
