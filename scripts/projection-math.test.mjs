@@ -327,6 +327,11 @@ assert.equal(
   'https://sportsbook.draftkings.com/?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233',
 )
 assert.equal(slip.includes('/event/'), false)
+assert.equal(
+  draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118045']),
+  'https://sportsbook.draftkings.com/event/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233',
+)
+assert.equal(draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118184']).includes('/event/'), false)
 assert.equal(draftKingsSlipLink([dkId], 'Lean'), null)
 const fdSlip = fanDuelSlipLink([
   { marketId: '739.194644207', selectionId: '41173071' },
