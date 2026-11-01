@@ -146,9 +146,25 @@ function roomUnit(sportPath) {
 }
 
 /**
+ * A link that opens one selection. Only a Bet or Bet now gets one.
+ * A Lean or a Pass returns null. Opening the link does not place the bet.
+ */
+export function betSlipLink({ book, action, eventId, selectionId, marketId } = {}) {
+  if (action !== 'Bet' && action !== 'Bet now') return null
+  if (book === 'DraftKings' && eventId && selectionId) {
+    return `https://sportsbook.draftkings.com/event/${encodeURIComponent(eventId)}?outcomes=${encodeURIComponent(selectionId)}`
+  }
+  if (book === 'FanDuel' && marketId && selectionId) {
+    return `https://sportsbook.fanduel.com/addToBetslip?marketId=${encodeURIComponent(marketId)}&selectionId=${encodeURIComponent(selectionId)}`
+  }
+  return null
+}
+
+/**
  * One alert for a game. Color is the log rating. The reason emoji is why.
  * A player prop passes gameText so both teams and the kickoff stay on the line.
  * The rating is not a win probability.
+ * slip is the book ids for a Bet or Bet now. A Lean or a Pass drops it.
  */
 export function buildAlert({
   sportPath,
@@ -163,6 +179,7 @@ export function buildAlert({
   thin = false,
   started = false,
   gameText,
+  slip,
 }) {
   const margins = methods.map((method) => method.margin).filter((value) => Number.isFinite(value))
   const totals = methods.map((method) => method.total).filter((value) => Number.isFinite(value))
@@ -254,7 +271,8 @@ export function buildAlert({
   const game = gameText || `${away} at ${home}${when ? `, ${when}` : ''}`
   const call = action === 'Bet' || action === 'Bet now' ? `${action} ${bet}` : `${action}. ${bet}`
   const text = `${sportMark(sportPath)} ${color} ${rating} ${why} ${call}. Game: ${game}.`
-  return { sport: sportMark(sportPath), rating, color, reason, why, action, bet, text }
+  const link = betSlipLink({ ...slip, action })
+  return { sport: sportMark(sportPath), rating, color, reason, why, action, bet, text, link }
 }
 
 function totalAlert(totals, postedTotal, room, thin) {

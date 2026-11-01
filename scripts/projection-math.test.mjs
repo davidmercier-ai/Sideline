@@ -22,6 +22,7 @@ import {
   totalDirection,
   gradeLog,
   buildAlert,
+  betSlipLink,
   sportMark,
 } from './projection-math.mjs'
 
@@ -307,5 +308,41 @@ const scar = buildAlert({
 assert.equal(scar.rating, 3)
 assert.equal(scar.reason, 'scar')
 assert.ok(scar.text.includes('🏒'))
+
+const dkId = '0QA382657149#2341145992_13L88808Q1-549717439Q20'
+assert.equal(
+  betSlipLink({ book: 'DraftKings', action: 'Bet', eventId: '34118052', selectionId: dkId }),
+  'https://sportsbook.draftkings.com/event/34118052?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20',
+)
+assert.equal(
+  betSlipLink({ book: 'FanDuel', action: 'Bet now', marketId: '739.194351327', selectionId: '42200635' }),
+  'https://sportsbook.fanduel.com/addToBetslip?marketId=739.194351327&selectionId=42200635',
+)
+assert.equal(betSlipLink({ book: 'DraftKings', action: 'Lean', eventId: '34118052', selectionId: dkId }), null)
+assert.equal(betSlipLink({ book: 'DraftKings', action: 'Pass', eventId: '34118052', selectionId: dkId }), null)
+
+const linked = buildAlert({
+  sportPath: 'football/nfl',
+  away: 'Browns',
+  home: 'Steelers',
+  when: 'Sun 1:00 PM ET',
+  methods: [{ margin: 8, total: 40 }, { margin: 7, total: 41 }, { margin: 6, total: 39 }, { margin: 9, total: 42 }],
+  marketHomeMargin: 3,
+  slip: { book: 'DraftKings', eventId: '34118052', selectionId: dkId },
+})
+assert.equal(linked.action, 'Bet')
+assert.equal(linked.link, betSlipLink({ book: 'DraftKings', action: 'Bet', eventId: '34118052', selectionId: dkId }))
+assert.ok(!linked.text.includes('http'))
+
+const leaned = buildAlert({
+  sportPath: 'football/nfl',
+  away: 'Away',
+  home: 'Home',
+  methods: [{ margin: 1, total: 40 }],
+  thin: true,
+  slip: { book: 'DraftKings', eventId: '34118052', selectionId: dkId },
+})
+assert.equal(leaned.action, 'Lean')
+assert.equal(leaned.link, null)
 
 console.log('projection math ok')

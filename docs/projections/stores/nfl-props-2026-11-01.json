@@ -9,8 +9,9 @@
       "match": "Browns at Steelers",
       "bet": "Jaylen Warren over 21.5 receiving yards",
       "book": "DraftKings",
-      "price": -109,
+      "price": -112,
       "action": "Bet",
+      "link": "https://sportsbook.draftkings.com/event/34118052?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20",
       "log": "Home 27, 49, 87, 36. Reads 49.8, 42, 42.5, 50.3."
     },
     {
@@ -20,6 +21,7 @@
       "book": "DraftKings",
       "price": -117,
       "action": "Bet",
+      "link": "https://sportsbook.draftkings.com/event/34118133?outcomes=0QA382664235%232336254599_13L88808Q1392644849Q20",
       "log": "Home 1, 12, 0, 3. Reads 4, 11.1, 2, 5.7."
     },
     {
@@ -29,6 +31,7 @@
       "book": "DraftKings",
       "price": -112,
       "action": "Bet",
+      "link": "https://sportsbook.draftkings.com/event/34118199?outcomes=0QA382795861%232338966543_13L88808Q1-1931223858Q20",
       "log": "Road 253, 248, 243. Reads 248, 268.1, 248, 283.7."
     },
     {
@@ -38,16 +41,19 @@
       "book": "DraftKings",
       "price": -110,
       "action": "Bet",
+      "link": "https://sportsbook.draftkings.com/event/34118097?outcomes=0QA382814746%232336770711_13L88808Q1521963119Q20",
       "log": "Road 40, 44, 57. Reads 47, 33, 44, 47."
     },
     {
       "when": "1:00 PM ET",
       "match": "Ravens at Bills",
       "bet": "James Cook anytime touchdown",
-      "book": "FanDuel and DraftKings",
-      "price": -155,
+      "book": "DraftKings",
+      "price": -145,
       "action": "Bet",
-      "log": "Home 3 of 3. Last 3 scored. Season 5 of 6."
+      "link": "https://sportsbook.draftkings.com/event/34118214?outcomes=0QA382689796%232336199125_13L88808Q11826828834Q20",
+      "fanDuelLink": "https://sportsbook.fanduel.com/addToBetslip?marketId=739.194351327&selectionId=42200635",
+      "log": "Home 3 of 3. Last 3 scored. Season 5 of 6. FanDuel was -155."
     }
   ]
 }

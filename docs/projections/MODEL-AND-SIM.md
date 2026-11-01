@@ -113,7 +113,7 @@ Synergy looks at one team at a time. Compare that team’s venue scoring rate wi
 
 ## Alerts
 
-Every game on every board gets one alert line. The sport mark leads it: 🏈 football, 🏀 basketball, 🏒 hockey, ⚽ soccer, ⚾ baseball. The color is the log rating. The next emoji is why. A player prop keeps both teams and the kickoff on that line. The rating is not a win probability.
+Every game on every board gets one alert line. The sport mark leads it: 🏈 football, 🏀 basketball, 🏒 hockey, ⚽ soccer, ⚾ baseball. The color is the log rating. The next emoji is why. A player prop keeps both teams and the kickoff on that line. The rating is not a win probability. A Bet or Bet now can carry the book link that opens that one selection. A Lean or a Pass does not, and opening the link does not place the bet.
 
 ## The simulation
 
