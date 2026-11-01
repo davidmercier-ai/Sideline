@@ -1,5 +1,11 @@
 [
   {
+    "id": "2026-11-01-nfl",
+    "title": "NFL",
+    "retrievedAt": "2026-11-01T06:35:18.218Z",
+    "games": 12
+  },
+  {
     "id": "j1-mixed-2026-10-31",
     "title": "J1 mixed card",
     "retrievedAt": "2026-10-31T20:36:00.000Z",

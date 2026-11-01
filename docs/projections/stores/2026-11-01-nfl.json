@@ -1,0 +1,356 @@
+{
+  "id": "2026-11-01-nfl",
+  "title": "NFL",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-01T06:35:18.218Z",
+  "games": [
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Ravens",
+      "home": "Bills",
+      "score": "26.2–25",
+      "total": "51.2",
+      "models": "split, 2–2",
+      "sim": "28.5–24.5, Ravens 55.9%",
+      "sportPath": "football/nfl",
+      "awayId": "33",
+      "homeId": "2",
+      "neutral": false,
+      "homeMargin": "-1.2",
+      "agreement": "split",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "54.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Ravens at Bills, 11/1 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Titans",
+      "home": "Bengals",
+      "score": "20.8–21.8",
+      "total": "42.6",
+      "models": "Bengals, 4–0",
+      "sim": "22.5–22.5, Bengals 52.2%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "10",
+      "homeId": "4",
+      "neutral": false,
+      "homeMargin": "1.1",
+      "agreement": "home",
+      "marketHomeMargin": "12.5",
+      "postedTotal": "46.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Titans at Bengals, 11/1 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Cardinals",
+      "home": "Cowboys",
+      "score": "23.3–26",
+      "total": "49.3",
+      "models": "Cowboys, 4–0",
+      "sim": "24–26, Cowboys 68.8%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "22",
+      "homeId": "6",
+      "neutral": false,
+      "homeMargin": "2.8",
+      "agreement": "home",
+      "marketHomeMargin": "7",
+      "postedTotal": "54.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Cardinals at Cowboys, 11/1 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Vikings",
+      "home": "Lions",
+      "score": "21–19",
+      "total": "40",
+      "models": "split, 3–1 Vikings",
+      "sim": "20–18, Vikings 61.3%",
+      "sportPath": "football/nfl",
+      "awayId": "16",
+      "homeId": "8",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "split",
+      "marketHomeMargin": "3",
+      "postedTotal": "46.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟩 4 💰 Bet Under 46.5. Game: Vikings at Lions, 11/1 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Raiders",
+      "home": "Jets",
+      "score": "23–24.2",
+      "total": "47.2",
+      "models": "split, 3–1 Jets",
+      "sim": "23–22, Jets 52.8%",
+      "sportPath": "football/nfl",
+      "awayId": "13",
+      "homeId": "20",
+      "neutral": false,
+      "homeMargin": "1.2",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "46.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Raiders at Jets, 11/1 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Browns",
+      "home": "Steelers",
+      "score": "19.3–25.8",
+      "total": "45.1",
+      "models": "Steelers, 4–0",
+      "sim": "19.5–25.5, Steelers 79.6%",
+      "sportPath": "football/nfl",
+      "awayId": "5",
+      "homeId": "23",
+      "neutral": false,
+      "homeMargin": "6.4",
+      "agreement": "home",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "39.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Steelers does not clear the number. Game: Browns at Steelers, 11/1 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Falcons",
+      "home": "Buccaneers",
+      "score": "26.6–18.2",
+      "total": "44.8",
+      "models": "split, 2–2",
+      "sim": "29–18, Falcons 79%",
+      "sportPath": "football/nfl",
+      "awayId": "1",
+      "homeId": "27",
+      "neutral": false,
+      "homeMargin": "-8.5",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "43.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟢 5 💰 Bet Over 43.5. Game: Falcons at Buccaneers, 11/1 - 1:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Colts",
+      "home": "Jaguars",
+      "score": "14.3–31.1",
+      "total": "45.4",
+      "models": "Jaguars, 4–0",
+      "sim": "14–34, Jaguars 100%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "11",
+      "homeId": "30",
+      "neutral": false,
+      "homeMargin": "16.8",
+      "agreement": "home",
+      "marketHomeMargin": "10",
+      "postedTotal": "46.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Colts at Jaguars, 11/1 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T21:05Z",
+      "when": "11/1 - 4:05 PM EST",
+      "away": "Chargers",
+      "home": "Rams",
+      "score": "17.7–25.7",
+      "total": "43.3",
+      "models": "Rams, 4–0",
+      "sim": "17–26, Rams 79.3%",
+      "sportPath": "football/nfl",
+      "awayId": "24",
+      "homeId": "14",
+      "neutral": false,
+      "homeMargin": "8",
+      "agreement": "home",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "45.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Rams does not clear the number. Game: Chargers at Rams, 11/1 - 4:05 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T21:25Z",
+      "when": "11/1 - 4:25 PM EST",
+      "away": "Chiefs",
+      "home": "Broncos",
+      "score": "18.3–20.7",
+      "total": "39",
+      "models": "split, 3–1 Broncos",
+      "sim": "19–20, Broncos 58%",
+      "sportPath": "football/nfl",
+      "awayId": "12",
+      "homeId": "7",
+      "neutral": false,
+      "homeMargin": "2.3",
+      "agreement": "split",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "40.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Chiefs at Broncos, 11/1 - 4:25 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T21:25Z",
+      "when": "11/1 - 4:25 PM EST",
+      "away": "Patriots",
+      "home": "Dolphins",
+      "score": "22.4–21.5",
+      "total": "43.9",
+      "models": "split, 3–1 Patriots",
+      "sim": "20.5–20, Patriots 53.1%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "17",
+      "homeId": "15",
+      "neutral": false,
+      "homeMargin": "-0.9",
+      "agreement": "split",
+      "marketHomeMargin": "-7",
+      "postedTotal": "43.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Patriots at Dolphins, 11/1 - 4:25 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-02T01:20Z",
+      "when": "11/1 - 8:20 PM EST",
+      "away": "Eagles",
+      "home": "Commanders",
+      "score": "22.3–26.8",
+      "total": "49",
+      "models": "Commanders, 4–0",
+      "sim": "19–27, Commanders 76.1%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "21",
+      "homeId": "28",
+      "neutral": false,
+      "homeMargin": "4.5",
+      "agreement": "home",
+      "marketHomeMargin": "6",
+      "postedTotal": "40.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Eagles at Commanders, 11/1 - 8:20 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    }
+  ]
+}
