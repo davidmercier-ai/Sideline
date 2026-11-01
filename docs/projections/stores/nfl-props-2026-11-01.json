@@ -2,7 +2,7 @@
   "id": "nfl-props-2026-11-01",
   "title": "NFL player props",
   "sportPath": "football/nfl",
-  "retrievedAt": "2026-11-01T12:22:00.007Z",
+  "retrievedAt": "2026-11-01T13:43:26.681Z",
   "games": [
     {
       "when": "1:00 PM ET",
@@ -18,16 +18,16 @@
       "match": "Falcons at Buccaneers",
       "bet": "Bucky Irving under 17.5 receiving yards",
       "book": "DraftKings",
-      "price": -113,
+      "price": -117,
       "action": "Bet",
       "log": "Home 1, 12, 0, 3. Reads 4, 11.1, 2, 5.7."
     },
     {
       "when": "1:00 PM ET",
       "match": "Raiders at Jets",
-      "bet": "Kirk Cousins over 233.5 passing yards",
+      "bet": "Kirk Cousins over 230.5 passing yards",
       "book": "DraftKings",
-      "price": -111,
+      "price": -112,
       "action": "Bet",
       "log": "Road 253, 248, 243. Reads 248, 268.1, 248, 283.7."
     },
