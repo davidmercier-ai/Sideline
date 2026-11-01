@@ -1,0 +1,153 @@
+{
+  "id": "2026-11-01-nhl-2026-11-01",
+  "title": "NHL 2026-11-01",
+  "sportPath": "hockey/nhl",
+  "retrievedAt": "2026-11-01T06:43:23.855Z",
+  "games": [
+    {
+      "date": "2026-11-01T18:00Z",
+      "when": "11/1 - 1:00 PM EST",
+      "away": "Jets",
+      "home": "Hurricanes",
+      "score": "2.4–3.2",
+      "total": "5.6",
+      "models": "Hurricanes, 4–0",
+      "sim": "2–3, Hurricanes 64.4%",
+      "sportPath": "hockey/nhl",
+      "awayId": "28",
+      "homeId": "7",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "home",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Under 6.5. Game: Jets at Hurricanes, 11/1 - 1:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-01T20:30Z",
+      "when": "11/1 - 3:30 PM EST",
+      "away": "Wild",
+      "home": "Capitals",
+      "score": "3–3.1",
+      "total": "6.1",
+      "models": "split, 2–1 Capitals",
+      "sim": "3–3, Capitals 44.3%",
+      "sportPath": "hockey/nhl",
+      "awayId": "30",
+      "homeId": "23",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "split",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟩 4 💰 Bet Under 6.5. Game: Wild at Capitals, 11/1 - 3:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-01T21:00Z",
+      "when": "11/1 - 4:00 PM EST",
+      "away": "Mammoth",
+      "home": "Flyers",
+      "score": "3.5–2.7",
+      "total": "6.2",
+      "models": "Mammoth, 4–0",
+      "sim": "3.5–2.5, Mammoth 63.5%",
+      "sportPath": "hockey/nhl",
+      "awayId": "129764",
+      "homeId": "15",
+      "neutral": false,
+      "homeMargin": "-0.8",
+      "agreement": "away",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔴 1 ➗ Pass. Mammoth does not clear the number. Game: Mammoth at Flyers, 11/1 - 4:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-01T23:00Z",
+      "when": "11/1 - 6:00 PM EST",
+      "away": "Oilers",
+      "home": "Rangers",
+      "score": "3.7–3.4",
+      "total": "7.1",
+      "models": "split, 3–1 Oilers",
+      "sim": "3.5–3, Oilers 51.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "6",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "-0.4",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🟡 2 ➗ Pass. Split. Game: Oilers at Rangers, 11/1 - 6:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-02T01:00Z",
+      "when": "11/1 - 8:00 PM EST",
+      "away": "Senators",
+      "home": "Ducks",
+      "score": "4–3.1",
+      "total": "7.1",
+      "models": "Senators, 4–0",
+      "sim": "4–3, Senators 63.6%",
+      "sportPath": "hockey/nhl",
+      "awayId": "14",
+      "homeId": "25",
+      "neutral": false,
+      "homeMargin": "-0.9",
+      "agreement": "away",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔴 1 ➗ Pass. Senators does not clear the number. Game: Senators at Ducks, 11/1 - 8:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    }
+  ]
+}

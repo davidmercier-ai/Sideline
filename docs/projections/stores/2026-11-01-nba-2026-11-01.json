@@ -1,0 +1,124 @@
+{
+  "id": "2026-11-01-nba-2026-11-01",
+  "title": "NBA 2026-11-01",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-01T06:43:23.855Z",
+  "games": [
+    {
+      "date": "2026-11-01T20:30Z",
+      "when": "11/1 - 3:30 PM EST",
+      "away": "Celtics",
+      "home": "Magic",
+      "score": "118.3–115",
+      "total": "233.3",
+      "models": "Celtics, 4–0",
+      "sim": "122.5–123, Magic 50.6%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "2",
+      "homeId": "19",
+      "neutral": false,
+      "homeMargin": "-3.2",
+      "agreement": "away",
+      "marketHomeMargin": "-6.5",
+      "postedTotal": "222.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Celtics at Magic, 11/1 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T22:00Z",
+      "when": "11/1 - 5:00 PM EST",
+      "away": "Nets",
+      "home": "Pacers",
+      "score": "120–116",
+      "total": "236",
+      "models": "split, 2–2",
+      "sim": "119–115, Nets 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "17",
+      "homeId": "11",
+      "neutral": false,
+      "homeMargin": "-4",
+      "agreement": "split",
+      "marketHomeMargin": "4.5",
+      "postedTotal": "230.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Nets at Pacers, 11/1 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-02T01:30Z",
+      "when": "11/1 - 8:30 PM EST",
+      "away": "Clippers",
+      "home": "Warriors",
+      "score": "104.7–115",
+      "total": "219.7",
+      "models": "Warriors, 4–0",
+      "sim": "106–117.5, Warriors 94.7%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "12",
+      "homeId": "9",
+      "neutral": false,
+      "homeMargin": "10.3",
+      "agreement": "home",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "219.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Clippers at Warriors, 11/1 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-02T02:00Z",
+      "when": "11/1 - 9:00 PM EST",
+      "away": "Raptors",
+      "home": "Lakers",
+      "score": "111.2–118.3",
+      "total": "229.4",
+      "models": "split, 2–2",
+      "sim": "108.5–115.5, Lakers 72.5%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "28",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "7.1",
+      "agreement": "split",
+      "marketHomeMargin": "4.5",
+      "postedTotal": "227.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Raptors at Lakers, 11/1 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    }
+  ]
+}

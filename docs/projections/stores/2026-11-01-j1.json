@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-01-j1",
+  "title": "J1",
+  "sportPath": "soccer/jpn.1",
+  "retrievedAt": "2026-11-01T06:43:23.855Z",
+  "games": [
+    {
+      "date": "2026-11-01T05:00Z",
+      "when": "81'",
+      "away": "A Fukuoka",
+      "home": "JEF Utd Chiba",
+      "score": "1.1–1.6",
+      "total": "2.7",
+      "models": "split, 3–1 JEF Utd Chiba",
+      "sim": "1–1.5, JEF Utd Chiba 63.1%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "7107",
+      "homeId": "7111",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 ⚡ Lean. Over 2.5. Game: A Fukuoka at JEF Utd Chiba, 81'.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T05:00Z",
+      "when": "72'",
+      "away": "Tokyo Verdy",
+      "home": "V-Varen",
+      "score": "1–1.5",
+      "total": "2.5",
+      "models": "V-Varen, 4–0",
+      "sim": "1–1.5, V-Varen 61.5%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "3393",
+      "homeId": "19001",
+      "neutral": false,
+      "homeMargin": "0.6",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 ⚡ Lean. V-Varen. Price missing. Game: Tokyo Verdy at V-Varen, 72'.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-01T06:00Z",
+      "when": "Scheduled",
+      "away": "Gamba Osaka",
+      "home": "Machida Zelvia",
+      "score": "1.3–2",
+      "total": "3.3",
+      "models": "Machida Zelvia, 4–0",
+      "sim": "1–2, Machida Zelvia 74.5%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "7102",
+      "homeId": "22167",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟢 5 💰 Bet Over 2.5. Game: Gamba Osaka at Machida Zelvia, Scheduled.",
+      "alertRating": 5,
+      "alertAction": "Bet"
+    }
+  ]
+}

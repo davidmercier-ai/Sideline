@@ -1,0 +1,37 @@
+{
+  "id": "2026-11-01-premier-league-scoreboard",
+  "title": "Premier League scoreboard",
+  "sportPath": "soccer/eng.1",
+  "retrievedAt": "2026-11-01T06:43:23.855Z",
+  "games": [
+    {
+      "date": "2026-11-01T16:30Z",
+      "when": "Scheduled",
+      "away": "Arsenal",
+      "home": "Liverpool",
+      "score": "1.1–0.9",
+      "total": "2",
+      "models": "Arsenal, 4–0",
+      "sim": "1–1, Arsenal 52.7%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "359",
+      "homeId": "364",
+      "neutral": false,
+      "homeMargin": "-0.2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟩 4 🏠 Lean. Arsenal. Price missing. Game: Arsenal at Liverpool, Scheduled.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    }
+  ]
+}
