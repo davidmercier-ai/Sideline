@@ -260,8 +260,8 @@ const valueAlert = buildAlert({
 assert.equal(valueAlert.rating, 5)
 assert.equal(valueAlert.reason, 'value')
 assert.equal(valueAlert.action, 'Bet')
-assert.ok(valueAlert.text.startsWith('🏈 🟢 5 💰 Bet.'))
-assert.ok(valueAlert.text.includes('Away at Home'))
+assert.ok(valueAlert.text.startsWith('🏈 🟢 5 💰 Bet Home.'))
+assert.ok(valueAlert.text.includes('Game: Away at Home'))
 
 const soon = buildAlert({
   sportPath: 'soccer/jpn.1',

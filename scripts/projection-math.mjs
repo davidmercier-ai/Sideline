@@ -251,8 +251,9 @@ export function buildAlert({
 
   const color = RATING_COLOR[rating]
   const why = REASON_MARK[reason]
-  const game = gameText || `${away} at ${home}`
-  const text = `${sportMark(sportPath)} ${color} ${rating} ${why} ${action}. ${game}. ${bet}. ${when ?? ''}`.trim()
+  const game = gameText || `${away} at ${home}${when ? `, ${when}` : ''}`
+  const call = action === 'Bet' || action === 'Bet now' ? `${action} ${bet}` : `${action}. ${bet}`
+  const text = `${sportMark(sportPath)} ${color} ${rating} ${why} ${call}. Game: ${game}.`
   return { sport: sportMark(sportPath), rating, color, reason, why, action, bet, text }
 }
 
