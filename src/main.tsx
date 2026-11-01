@@ -6,6 +6,7 @@ import './index.css'
 import { GamePage } from './pages/Game.tsx'
 import { NbaBoardPage } from './pages/NbaBoard.tsx'
 import { NbaGamePage } from './pages/NbaGame.tsx'
+import { BoardPage } from './pages/Board.tsx'
 import { ScoreboardPage } from './pages/Scoreboard.tsx'
 import { SoccerBoardPage } from './pages/SoccerBoard.tsx'
 import { SoccerMatchPage } from './pages/SoccerMatch.tsx'
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route element={<App />}>
           <Route index element={<ScoreboardPage />} />
+          <Route path="/board" element={<BoardPage />} />
           <Route path="/game/:gamePk" element={<GamePage />} />
           <Route path="/standings" element={<StandingsPage />} />
           <Route path="/team/:teamId" element={<TeamPage />} />

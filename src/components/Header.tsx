@@ -15,6 +15,7 @@ export function Header() {
         </span>
       </NavLink>
       <nav className="nav" aria-label="Primary">
+        <NavLink to="/board">Board</NavLink>
         <NavLink to="/" end>
           Scoreboard
         </NavLink>

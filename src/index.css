@@ -548,6 +548,99 @@ img {
   }
 }
 
+.board-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.board-metric {
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+}
+
+.board-metric b {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.board-metric span:last-child,
+.board-note,
+.board-progress,
+.board-head p {
+  color: var(--chalk-dim);
+  margin: 0;
+}
+
+.board-section {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.board-row {
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.board-head h3 {
+  margin: 0;
+  font-size: 22px;
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
+.board-legs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.board-legs li {
+  display: grid;
+  gap: 8px;
+}
+
+.book-link {
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
+.board-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-controls .filters {
+  margin: 0;
+}
+
+.stake-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--chalk-dim);
+}
+
+.stake-field {
+  width: 88px;
+  background: rgba(8, 17, 13, 0.45);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
 @media (max-width: 820px) {
   .site-header,
   .page-hero,
@@ -682,5 +775,9 @@ img {
   .shooter-line,
   .goal-scorers {
     margin-left: 0;
+  }
+
+  .board-metrics {
+    grid-template-columns: 1fr;
   }
 }
