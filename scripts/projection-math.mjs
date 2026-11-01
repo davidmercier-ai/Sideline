@@ -149,6 +149,21 @@ function roomUnit(sportPath) {
  * A link that opens one selection. Only a Bet or Bet now gets one.
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
+/**
+ * One DraftKings slip for several bets. The betslip reads `outcomes` on the
+ * sportsbook home page and splits on comma, pipe, plus, or space. A link that
+ * names one game opens that game and cannot add the other picks. The hash
+ * inside a selection id is encoded so it stays part of the id.
+ * A Lean or a Pass returns null. Opening the link does not place the bet.
+ */
+export function draftKingsSlipLink(selectionIds, action = 'Bet') {
+  if (action !== 'Bet' && action !== 'Bet now') return null
+  const ids = (selectionIds || []).map((id) => String(id || '').trim()).filter(Boolean)
+  if (ids.length === 0) return null
+  const outcomes = ids.map((id) => encodeURIComponent(id)).join(',')
+  return `https://sportsbook.draftkings.com/?outcomes=${outcomes}`
+}
+
 export function betSlipLink({ book, action, eventId, selectionId, marketId } = {}) {
   if (action !== 'Bet' && action !== 'Bet now') return null
   if (book === 'DraftKings' && eventId && selectionId) {

@@ -23,6 +23,7 @@ import {
   gradeLog,
   buildAlert,
   betSlipLink,
+  draftKingsSlipLink,
   sportMark,
 } from './projection-math.mjs'
 
@@ -319,6 +320,13 @@ assert.equal(
   'https://sportsbook.fanduel.com/addToBetslip?marketId=739.194351327&selectionId=42200635',
 )
 assert.equal(betSlipLink({ book: 'DraftKings', action: 'Lean', eventId: '34118052', selectionId: dkId }), null)
+const slip = draftKingsSlipLink([dkId, '0QA2#3'], 'Bet')
+assert.equal(
+  slip,
+  'https://sportsbook.draftkings.com/?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233',
+)
+assert.equal(slip.includes('/event/'), false)
+assert.equal(draftKingsSlipLink([dkId], 'Lean'), null)
 assert.equal(betSlipLink({ book: 'DraftKings', action: 'Pass', eventId: '34118052', selectionId: dkId }), null)
 
 const linked = buildAlert({
