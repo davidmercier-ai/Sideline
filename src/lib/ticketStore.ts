@@ -9,6 +9,7 @@ export type TicketSeed = {
   id: string
   defaultStatus: 'open' | 'placed'
   defaultStake: string
+  result?: 'won' | 'lost'
 }
 
 const KEY = 'sideline.board.v1'
@@ -30,5 +31,11 @@ export function writeTicketStore(value: Record<string, SavedTicket>): void {
 }
 
 export function ticketView(ticket: TicketSeed, saved: Record<string, SavedTicket>): SavedTicket {
-  return saved[ticket.id] ?? { status: ticket.defaultStatus, stake: ticket.defaultStake }
+  const stored = saved[ticket.id]
+  const status = stored?.status ?? ticket.defaultStatus
+  const stake = stored?.stake ?? ticket.defaultStake
+  if (ticket.result && (status === 'open' || status === 'placed')) {
+    return { status: ticket.result, stake }
+  }
+  return { status, stake }
 }

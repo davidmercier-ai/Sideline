@@ -19,6 +19,7 @@ export type Ticket = {
   note: string
   defaultStatus: 'open' | 'placed'
   defaultStake: string
+  result?: 'won' | 'lost'
 }
 
 const DK = 'DraftKings' as const
@@ -39,9 +40,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'warren',
     statKey: 'receivingYards',
-    note: 'Home games 27, 49, 87, 36.',
+    note: 'Final 1 catch for 0 yards. Home games 27, 49, 87, 36.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'lost',
   },
   {
     id: 'fd-warren',
@@ -57,9 +59,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'warren',
     statKey: 'receivingYards',
-    note: 'Home games 27, 49, 87, 36.',
+    note: 'Final 1 catch for 0 yards. Home games 27, 49, 87, 36.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'lost',
   },
   {
     id: 'dk-irving',
@@ -75,9 +78,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'irving',
     statKey: 'receivingYards',
-    note: 'Home games 1, 12, 0, 3.',
+    note: 'Final 0 receiving yards. Home games 1, 12, 0, 3.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'fd-irving',
@@ -93,9 +97,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'irving',
     statKey: 'receivingYards',
-    note: 'Home games 1, 12, 0, 3.',
+    note: 'Final 0 receiving yards. Home games 1, 12, 0, 3.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'dk-cousins',
@@ -111,9 +116,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'cousins',
     statKey: 'passingYards',
-    note: 'Same number on both books. DraftKings −111 is the higher price. Road games 253, 248, 243.',
+    note: 'Final 247 passing yards. Road games 253, 248, 243.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'fd-cousins',
@@ -129,9 +135,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'cousins',
     statKey: 'passingYards',
-    note: 'Same number on both books. Road games 253, 248, 243.',
+    note: 'Final 247 passing yards. Road games 253, 248, 243.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'dk-tuten',
@@ -147,9 +154,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'tuten',
     statKey: 'receivingYards',
-    note: 'Home games 22, 17, 24, 48.',
+    note: 'Final 55 receiving yards. Home games 22, 17, 24, 48.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'fd-tuten',
@@ -165,9 +173,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'tuten',
     statKey: 'receivingYards',
-    note: 'Home games 22, 17, 24, 48.',
+    note: 'Final 55 receiving yards. Home games 22, 17, 24, 48.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'dk-cook',
@@ -183,9 +192,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'cook',
     statKey: 'anytimeTouchdowns',
-    note: 'Same market. DraftKings −155 is the higher price.',
+    note: 'Final 1 rushing touchdown. DraftKings −155 is the higher price.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'fd-cook',
@@ -201,9 +211,10 @@ export const TICKETS: Ticket[] = [
     kickoff: '1:00 PM ET',
     group: 'cook',
     statKey: 'anytimeTouchdowns',
-    note: 'Same market.',
+    note: 'Final 1 rushing touchdown.',
     defaultStatus: 'open',
     defaultStake: '',
+    result: 'won',
   },
   {
     id: 'dk-johnston',
