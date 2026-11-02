@@ -1,0 +1,93 @@
+{
+  "game": "Bears at Seahawks, 11/2 8:15 PM ET",
+  "call": "Pass. Seattle -3 and 46.5 sit inside the four reads",
+  "personnel": [
+    {
+      "name": "Charles Cross",
+      "team": "Seahawks",
+      "side": "offense",
+      "role": "LT",
+      "status": "out",
+      "source": "ESPN Monday injury list",
+      "date": "2026-11-01",
+      "quote": "Out, sprain",
+      "matchup": "Montez Sweat"
+    },
+    {
+      "name": "Montez Sweat",
+      "team": "Bears",
+      "side": "defense",
+      "role": "edge",
+      "status": "in",
+      "source": "Bears transactions, suspension lifted",
+      "date": "2026-10-23"
+    },
+    {
+      "name": "Jeffery Simmons",
+      "team": "Bears",
+      "side": "defense",
+      "role": "DT",
+      "status": "limited",
+      "source": "Ben Johnson, via Pro Football Talk",
+      "date": "2026-11-01",
+      "quote": "He might not be quite that high Week 1 for us, but he certainly has shown the ability to carry a load",
+      "matchup": "Quenton Nelson"
+    },
+    {
+      "name": "Quenton Nelson",
+      "team": "Seahawks",
+      "side": "offense",
+      "role": "LG",
+      "status": "debut",
+      "source": "Bears game preview",
+      "date": "2026-11-01",
+      "quote": "Seattle traded for Nelson. First game in a Seahawks uniform."
+    },
+    {
+      "name": "Rashid Shaheed",
+      "team": "Seahawks",
+      "side": "offense",
+      "role": "WR",
+      "status": "out",
+      "source": "ESPN Monday injury list",
+      "date": "2026-11-01",
+      "quote": "2026 targets 3, 8, 4, 3, 3, 6, 3"
+    },
+    {
+      "name": "Zach Charbonnet",
+      "team": "Seahawks",
+      "side": "offense",
+      "role": "RB",
+      "status": "debut",
+      "source": "ESPN, Oct 31",
+      "date": "2026-10-31",
+      "quote": "No game designation, healthy enough to play. No 2026 regular-season game in the log. Torn ACL last postseason."
+    },
+    {
+      "name": "Jadarian Price",
+      "team": "Seahawks",
+      "side": "offense",
+      "role": "RB",
+      "status": "debut",
+      "source": "ESPN, Oct 31, and the Bears preview",
+      "date": "2026-11-01",
+      "quote": "Healthy enough to play. Log stops Oct 4. Chest injury kept him out of the last four games."
+    },
+    {
+      "name": "Caleb Williams",
+      "team": "Bears",
+      "side": "offense",
+      "role": "QB",
+      "status": "in",
+      "source": "ESPN box scores",
+      "date": "2026-11-01",
+      "quote": "Played four games. Sat against Philadelphia, the Jets, and at Green Bay."
+    }
+  ],
+  "tendencies": [
+    { "label": "Bears road rush vs Seahawks home rush allowed", "offense": 128.3, "defense": 100 },
+    { "label": "Bears road net pass vs Seahawks home net pass allowed", "offense": 198.5, "defense": 165 },
+    { "label": "Seahawks home rush vs Bears road rush allowed", "offense": 102.6, "defense": 86 },
+    { "label": "Seahawks home net pass vs Bears road net pass allowed", "offense": 245.2, "defense": 301.7 }
+  ]
+}
