@@ -12,6 +12,7 @@
 import { writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { boardStoreId, saveBoard } from './board-store.mjs'
+import { researchLevel, thinPublicLeague } from './research-protocol.mjs'
 import { loadBooks } from './book-prices.mjs'
 import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
@@ -799,7 +800,7 @@ function propsSection(game) {
   return lines
 }
 
-function renderGame(game, awayLog, homeLog, football, sportPath, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score')) {
+function renderGame(game, awayLog, homeLog, football, sportPath, scoring = projectScoring(awayLog.rows, homeLog.rows, football ? 'points' : 'score'), thinPublic = false) {
   const lines = []
   lines.push(`### ${game.away.name} at ${game.home.name}`)
   lines.push('')
@@ -819,8 +820,11 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
     thin: Boolean(scoring.away.thin || scoring.home.thin),
     started: Boolean(game.started),
   })
+  const research = researchLevel({ action: alert.action, thinPublic, live: Boolean(game.started) })
   game.alert = alert
+  game.research = research
   lines.push(`- Alert: ${alert.text}`)
+  lines.push(`- Research: ${research.name}. ${research.reason}`)
   lines.push('')
   lines.push('**1. Independent projection**')
   lines.push('')
@@ -940,11 +944,12 @@ async function section(title, sportPath, games, football, unit) {
   await pool(teamIds, 3, async (teamId) => {
     logs.set(teamId, await teamLog(sportPath, teamId, football))
   })
+  const thinPublic = thinPublicLeague(title, sportPath)
   const rendered = games.map((game) => {
     const awayLog = logs.get(game.away.id)
     const homeLog = logs.get(game.home.id)
     const scoring = projectScoring(awayLog.rows, homeLog.rows, unit)
-    const markdown = renderGame(game, awayLog, homeLog, football, sportPath, scoring)
+    const markdown = renderGame(game, awayLog, homeLog, football, sportPath, scoring, thinPublic)
     const methods = scoringMethods(awayLog.rows, homeLog.rows)
     const convergence = methodConvergence(methods)
     const margins = methods.map((method) => method.margin)
@@ -1041,6 +1046,7 @@ async function section(title, sportPath, games, football, unit) {
         alert: game.alert?.text ?? null,
         alertRating: game.alert?.rating ?? null,
         alertAction: game.alert?.action ?? null,
+        research: game.research?.name ?? null,
       }
     }),
   }
