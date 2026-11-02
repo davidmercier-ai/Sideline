@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-04-fbs-2026-11-04",
+  "title": "FBS 2026-11-04",
+  "sportPath": "football/college-football",
+  "retrievedAt": "2026-11-02T00:28:58.253Z",
+  "games": [
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Ball State",
+      "home": "UMass",
+      "score": "18–34.2",
+      "total": "52.1",
+      "models": "split, 3–1 UMass",
+      "sim": "16.5–33.5, UMass 91.6%",
+      "sportPath": "football/college-football",
+      "awayId": "2050",
+      "homeId": "113",
+      "neutral": false,
+      "homeMargin": "16.2",
+      "agreement": "split",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "49.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟢 5 💰 Bet Over 49.5. Game: Ball State at UMass, 11/4 - 7:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Toledo",
+      "home": "Sacramento St",
+      "score": "27.9–21.9",
+      "total": "49.8",
+      "models": "Toledo, 4–0",
+      "sim": "27.5–18.5, Toledo 64.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2649",
+      "homeId": "16",
+      "neutral": false,
+      "homeMargin": "-6",
+      "agreement": "away",
+      "marketHomeMargin": "-26.5",
+      "postedTotal": "52.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Toledo does not clear the number. Game: Toledo at Sacramento St, 11/4 - 7:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "C Michigan",
+      "home": "E Michigan",
+      "score": "14.1–31.7",
+      "total": "45.8",
+      "models": "E Michigan, 4–0",
+      "sim": "15.5–30, E Michigan 99.4%",
+      "sportPath": "football/college-football",
+      "awayId": "2117",
+      "homeId": "2199",
+      "neutral": true,
+      "homeMargin": "17.5",
+      "agreement": "home",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "44.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟩 4 💰 Bet Over 44.5. Game: C Michigan at E Michigan, 11/4 - 7:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2026-11-05-fcs-2026-11-05",
+  "title": "FCS 2026-11-05",
+  "sportPath": "football/college-football",
+  "retrievedAt": "2026-11-02T00:29:03.937Z",
+  "games": [
+    {
+      "date": "2026-11-06T00:30Z",
+      "when": "11/5 - 7:30 PM EST",
+      "away": "SC State",
+      "home": "Howard",
+      "score": "28.9–25.1",
+      "total": "54",
+      "models": "SC State, 4–0",
+      "sim": "28–24, SC State 62.4%, thin",
+      "sportPath": "football/college-football",
+      "awayId": "2569",
+      "homeId": "47",
+      "neutral": false,
+      "homeMargin": "-3.7",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: SC State at Howard, 11/5 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": "2026-11-08-j1",
+  "title": "J1",
+  "sportPath": "soccer/jpn.1",
+  "retrievedAt": "2026-11-01T23:52:10.601Z",
+  "games": [
+    {
+      "date": "2026-11-08T05:00Z",
+      "when": "Scheduled",
+      "away": "Sanfreece",
+      "home": "Machida Zelvia",
+      "score": "1.4–1.5",
+      "total": "2.9",
+      "models": "split, 2–1 Sanfreece",
+      "sim": "1.5–1.5, Machida Zelvia 43.9%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "7114",
+      "homeId": "22167",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Sanfreece at Machida Zelvia, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-08T05:00Z",
+      "when": "Scheduled",
+      "away": "Urawa Reds",
+      "home": "Vissel Kobe",
+      "score": "1.1–2.1",
+      "total": "3.1",
+      "models": "Vissel Kobe, 4–0",
+      "sim": "1–2, Vissel Kobe 72.5%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "3385",
+      "homeId": "7477",
+      "neutral": false,
+      "homeMargin": "1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "⚽ 🟩 4 🏠 Lean. Vissel Kobe. Price missing. Game: Urawa Reds at Vissel Kobe, Scheduled.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-08T06:00Z",
+      "when": "Scheduled",
+      "away": "Cerezo Osaka",
+      "home": "Gamba Osaka",
+      "score": "1.1–1.9",
+      "total": "3.1",
+      "models": "split, 3–1 Gamba Osaka",
+      "sim": "1–2, Gamba Osaka 61.7%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "7109",
+      "homeId": "7102",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Cerezo Osaka at Gamba Osaka, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-08T08:00Z",
+      "when": "Scheduled",
+      "away": "Mito Hollyhock",
+      "home": "JEF Utd Chiba",
+      "score": "1–1.8",
+      "total": "2.8",
+      "models": "JEF Utd Chiba, 4–0",
+      "sim": "1–1.5, JEF Utd Chiba 65.1%",
+      "sportPath": "soccer/jpn.1",
+      "awayId": "131701",
+      "homeId": "7111",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "⚽ 🟩 4 🏠 Lean. JEF Utd Chiba. Price missing. Game: Mito Hollyhock at JEF Utd Chiba, Scheduled.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    }
+  ]
+}

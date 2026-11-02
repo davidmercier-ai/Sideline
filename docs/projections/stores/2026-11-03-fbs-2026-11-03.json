@@ -1,0 +1,66 @@
+{
+  "id": "2026-11-03-fbs-2026-11-03",
+  "title": "FBS 2026-11-03",
+  "sportPath": "football/college-football",
+  "retrievedAt": "2026-11-02T00:28:54.008Z",
+  "games": [
+    {
+      "date": "2026-11-04T00:00Z",
+      "when": "11/3 - 7:00 PM EST",
+      "away": "Ohio",
+      "home": "Akron",
+      "score": "26.9–26.4",
+      "total": "53.3",
+      "models": "Ohio, 4–0",
+      "sim": "29–26, Ohio 52.2%",
+      "sportPath": "football/college-football",
+      "awayId": "195",
+      "homeId": "2006",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "-12.5",
+      "postedTotal": "50.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Ohio does not clear the number. Game: Ohio at Akron, 11/3 - 7:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-04T01:00Z",
+      "when": "11/3 - 8:00 PM EST",
+      "away": "Buffalo",
+      "home": "Miami OH",
+      "score": "17.6–31.4",
+      "total": "49",
+      "models": "split, 3–1 Miami OH",
+      "sim": "18.5–33.5, Miami OH 85.4%",
+      "sportPath": "football/college-football",
+      "awayId": "2084",
+      "homeId": "193",
+      "neutral": false,
+      "homeMargin": "13.8",
+      "agreement": "split",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "44.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟩 4 💰 Bet Over 44.5. Game: Buffalo at Miami OH, 11/3 - 8:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet"
+    }
+  ]
+}

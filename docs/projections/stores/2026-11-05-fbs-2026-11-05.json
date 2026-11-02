@@ -1,0 +1,66 @@
+{
+  "id": "2026-11-05-fbs-2026-11-05",
+  "title": "FBS 2026-11-05",
+  "sportPath": "football/college-football",
+  "retrievedAt": "2026-11-02T00:29:01.769Z",
+  "games": [
+    {
+      "date": "2026-11-06T00:30Z",
+      "when": "11/5 - 7:30 PM EST",
+      "away": "UTSA",
+      "home": "FAU",
+      "score": "24.3–32.5",
+      "total": "56.8",
+      "models": "split, 2–2",
+      "sim": "26–34, FAU 70.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2636",
+      "homeId": "2226",
+      "neutral": false,
+      "homeMargin": "8.3",
+      "agreement": "split",
+      "marketHomeMargin": "-7",
+      "postedTotal": "72.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: UTSA at FAU, 11/5 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-06T01:00Z",
+      "when": "11/5 - 8:00 PM EST",
+      "away": "James Madison",
+      "home": "Southern Miss",
+      "score": "29.4–26",
+      "total": "55.4",
+      "models": "James Madison, 4–0",
+      "sim": "29–24, James Madison 62.2%",
+      "sportPath": "football/college-football",
+      "awayId": "256",
+      "homeId": "2572",
+      "neutral": false,
+      "homeMargin": "-3.4",
+      "agreement": "away",
+      "marketHomeMargin": "-14.5",
+      "postedTotal": "57.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. James Madison does not clear the number. Game: James Madison at Southern Miss, 11/5 - 8:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass"
+    }
+  ]
+}

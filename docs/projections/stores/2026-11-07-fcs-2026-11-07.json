@@ -1,0 +1,1777 @@
+{
+  "id": "2026-11-07-fcs-2026-11-07",
+  "title": "FCS 2026-11-07",
+  "sportPath": "football/college-football",
+  "retrievedAt": "2026-11-02T00:28:54.008Z",
+  "games": [
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "NC A&T",
+      "home": "Monmouth",
+      "score": "23.7–37.9",
+      "total": "61.6",
+      "models": "Monmouth, 4–0",
+      "sim": "25–36, Monmouth 95.6%",
+      "sportPath": "football/college-football",
+      "awayId": "2448",
+      "homeId": "2405",
+      "neutral": false,
+      "homeMargin": "14.3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Monmouth. Price missing. Game: NC A&T at Monmouth, 11/7 - 12:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Towson",
+      "home": "Sacred Heart",
+      "score": "21.5–28.8",
+      "total": "50.4",
+      "models": "split, 3–1 Sacred Heart",
+      "sim": "20.5–29.5, Sacred Heart 75.9%",
+      "sportPath": "football/college-football",
+      "awayId": "119",
+      "homeId": "2529",
+      "neutral": false,
+      "homeMargin": "7.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Sacred Heart. Game: Towson at Sacred Heart, 11/7 - 12:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Brown",
+      "home": "Yale",
+      "score": "18.2–21.8",
+      "total": "40",
+      "models": "split, 2–2",
+      "sim": "17–20.5, Yale 63.7%",
+      "sportPath": "football/college-football",
+      "awayId": "225",
+      "homeId": "43",
+      "neutral": false,
+      "homeMargin": "3.7",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Brown at Yale, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Dartmouth",
+      "home": "Princeton",
+      "score": "15.8–21.5",
+      "total": "37.3",
+      "models": "split, 3–1 Princeton",
+      "sim": "15–22, Princeton 74.2%",
+      "sportPath": "football/college-football",
+      "awayId": "159",
+      "homeId": "163",
+      "neutral": false,
+      "homeMargin": "5.7",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Princeton. Game: Dartmouth at Princeton, 11/7 - 12:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Long Island",
+      "home": "New Haven",
+      "score": "18.6–19.7",
+      "total": "38.3",
+      "models": "split, 3–1 Long Island",
+      "sim": "17.5–17, New Haven 49.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2341",
+      "homeId": "2441",
+      "neutral": false,
+      "homeMargin": "1.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Long Island at New Haven, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Robert Morris",
+      "home": "Duquesne",
+      "score": "17–35.8",
+      "total": "52.9",
+      "models": "Duquesne, 4–0",
+      "sim": "15.5–40, Duquesne 88.9%",
+      "sportPath": "football/college-football",
+      "awayId": "2523",
+      "homeId": "2184",
+      "neutral": false,
+      "homeMargin": "18.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Duquesne. Price missing. Game: Robert Morris at Duquesne, 11/7 - 12:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Wagner",
+      "home": "Mercyhurst",
+      "score": "21.7–47.5",
+      "total": "69.1",
+      "models": "Mercyhurst, 4–0",
+      "sim": "20.5–47, Mercyhurst 98.9%, thin",
+      "sportPath": "football/college-football",
+      "awayId": "2681",
+      "homeId": "2385",
+      "neutral": false,
+      "homeMargin": "25.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Wagner at Mercyhurst, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "NC Central",
+      "home": "Norfolk St",
+      "score": "14.8–44.2",
+      "total": "58.9",
+      "models": "split, 3–1 Norfolk St",
+      "sim": "15–49, Norfolk St 100%",
+      "sportPath": "football/college-football",
+      "awayId": "2428",
+      "homeId": "2450",
+      "neutral": false,
+      "homeMargin": "29.4",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Norfolk St. Game: NC Central at Norfolk St, 11/7 - 12:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Colgate",
+      "home": "Lehigh",
+      "score": "17.3–24.7",
+      "total": "42",
+      "models": "split, 3–1 Lehigh",
+      "sim": "18.5–24, Lehigh 80.2%",
+      "sportPath": "football/college-football",
+      "awayId": "2142",
+      "homeId": "2329",
+      "neutral": false,
+      "homeMargin": "7.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Lehigh. Game: Colgate at Lehigh, 11/7 - 12:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Valparaiso",
+      "home": "Dayton",
+      "score": "21.4–34.1",
+      "total": "55.5",
+      "models": "Dayton, 4–0",
+      "sim": "22–35, Dayton 84.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2674",
+      "homeId": "2168",
+      "neutral": false,
+      "homeMargin": "12.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Dayton. Price missing. Game: Valparaiso at Dayton, 11/7 - 12:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "Morehead St",
+      "home": "Marist",
+      "score": "21.1–40.3",
+      "total": "61.4",
+      "models": "split, 3–1 Marist",
+      "sim": "21.5–42, Marist 92.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2413",
+      "homeId": "2368",
+      "neutral": false,
+      "homeMargin": "19.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Marist. Game: Morehead St at Marist, 11/7 - 12:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T17:30Z",
+      "when": "11/7 - 12:30 PM EST",
+      "away": "Holy Cross",
+      "home": "Georgetown",
+      "score": "24.6–23.7",
+      "total": "48.2",
+      "models": "split, 3–1 Holy Cross",
+      "sim": "26–23.5, Holy Cross 51.2%",
+      "sportPath": "football/college-football",
+      "awayId": "107",
+      "homeId": "46",
+      "neutral": false,
+      "homeMargin": "-0.9",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Holy Cross at Georgetown, 11/7 - 12:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "UAlbany",
+      "home": "Bryant",
+      "score": "25.6–22.3",
+      "total": "47.9",
+      "models": "UAlbany, 4–0",
+      "sim": "26–21.5, UAlbany 60.8%",
+      "sportPath": "football/college-football",
+      "awayId": "399",
+      "homeId": "2803",
+      "neutral": false,
+      "homeMargin": "-3.3",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. UAlbany. Price missing. Game: UAlbany at Bryant, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Stony Brook",
+      "home": "Campbell",
+      "score": "22.8–29.6",
+      "total": "52.4",
+      "models": "Campbell, 4–0",
+      "sim": "23.5–29.5, Campbell 74.5%",
+      "sportPath": "football/college-football",
+      "awayId": "2619",
+      "homeId": "2097",
+      "neutral": false,
+      "homeMargin": "6.7",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Campbell. Price missing. Game: Stony Brook at Campbell, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Rhode Island",
+      "home": "New Hampshire",
+      "score": "29.5–27.1",
+      "total": "56.6",
+      "models": "Rhode Island, 4–0",
+      "sim": "29.5–26, Rhode Island 59.2%",
+      "sportPath": "football/college-football",
+      "awayId": "227",
+      "homeId": "160",
+      "neutral": false,
+      "homeMargin": "-2.4",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Rhode Island. Price missing. Game: Rhode Island at New Hampshire, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Columbia",
+      "home": "Harvard",
+      "score": "20–26.2",
+      "total": "46.2",
+      "models": "Harvard, 4–0",
+      "sim": "18.5–26, Harvard 79.2%",
+      "sportPath": "football/college-football",
+      "awayId": "171",
+      "homeId": "108",
+      "neutral": false,
+      "homeMargin": "6.2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Harvard. Price missing. Game: Columbia at Harvard, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Penn",
+      "home": "Cornell",
+      "score": "25.2–28.7",
+      "total": "53.8",
+      "models": "split, 3–1 Cornell",
+      "sim": "25.5–27.5, Cornell 64.4%",
+      "sportPath": "football/college-football",
+      "awayId": "219",
+      "homeId": "172",
+      "neutral": false,
+      "homeMargin": "3.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Penn at Cornell, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "C Connecticut",
+      "home": "Stonehill",
+      "score": "23.9–32.5",
+      "total": "56.3",
+      "models": "split, 2–2",
+      "sim": "24–34.5, Stonehill 76%",
+      "sportPath": "football/college-football",
+      "awayId": "2115",
+      "homeId": "284",
+      "neutral": false,
+      "homeMargin": "8.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: C Connecticut at Stonehill, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Morgan St",
+      "home": "Delaware St",
+      "score": "21.8–30.4",
+      "total": "52.2",
+      "models": "Delaware St, 4–0",
+      "sim": "22–29.5, Delaware St 68.2%",
+      "sportPath": "football/college-football",
+      "awayId": "2415",
+      "homeId": "2169",
+      "neutral": false,
+      "homeMargin": "8.6",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Delaware St. Price missing. Game: Morgan St at Delaware St, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Fordham",
+      "home": "Bucknell",
+      "score": "16.9–23",
+      "total": "39.9",
+      "models": "split, 3–1 Bucknell",
+      "sim": "10–22.5, Bucknell 74.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2230",
+      "homeId": "2083",
+      "neutral": false,
+      "homeMargin": "6.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Bucknell. Game: Fordham at Bucknell, 11/7 - 1:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Lafayette",
+      "home": "William & Mary",
+      "score": "28.5–26.3",
+      "total": "54.8",
+      "models": "Lafayette, 4–0",
+      "sim": "29.5–22, Lafayette 58.1%",
+      "sportPath": "football/college-football",
+      "awayId": "322",
+      "homeId": "2729",
+      "neutral": false,
+      "homeMargin": "-2.2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Lafayette. Price missing. Game: Lafayette at William & Mary, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Richmond",
+      "home": "Villanova",
+      "score": "24.5–31.8",
+      "total": "56.3",
+      "models": "Villanova, 4–0",
+      "sim": "24.5–27.5, Villanova 66.5%",
+      "sportPath": "football/college-football",
+      "awayId": "257",
+      "homeId": "222",
+      "neutral": false,
+      "homeMargin": "7.3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Villanova. Price missing. Game: Richmond at Villanova, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "St Thomas",
+      "home": "Butler",
+      "score": "20.9–39.3",
+      "total": "60.1",
+      "models": "split, 3–1 Butler",
+      "sim": "22–41, Butler 88.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2900",
+      "homeId": "2086",
+      "neutral": false,
+      "homeMargin": "18.4",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Butler. Game: St Thomas at Butler, 11/7 - 1:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Stetson",
+      "home": "Davidson",
+      "score": "25–39",
+      "total": "64",
+      "models": "split, 3–1 Davidson",
+      "sim": "24.5–37.5, Davidson 87.5%",
+      "sportPath": "football/college-football",
+      "awayId": "56",
+      "homeId": "2166",
+      "neutral": false,
+      "homeMargin": "14",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Davidson. Game: Stetson at Davidson, 11/7 - 1:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "San Diego",
+      "home": "Drake",
+      "score": "26.4–35.7",
+      "total": "62.1",
+      "models": "split, 2–2",
+      "sim": "25–35.5, Drake 86.8%",
+      "sportPath": "football/college-football",
+      "awayId": "301",
+      "homeId": "2181",
+      "neutral": false,
+      "homeMargin": "9.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: San Diego at Drake, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Mercer",
+      "home": "Chattanooga",
+      "score": "21.8–22.3",
+      "total": "44",
+      "models": "split, 2–2",
+      "sim": "20.5–22, Chattanooga 50.9%",
+      "sportPath": "football/college-football",
+      "awayId": "2382",
+      "homeId": "236",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Mercer at Chattanooga, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Samford",
+      "home": "ETSU",
+      "score": "18.5–30.3",
+      "total": "48.8",
+      "models": "ETSU, 4–0",
+      "sim": "18.5–29.5, ETSU 81.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2535",
+      "homeId": "2193",
+      "neutral": false,
+      "homeMargin": "11.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. ETSU. Price missing. Game: Samford at ETSU, 11/7 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T18:00Z",
+      "when": "11/7 - 1:00 PM EST",
+      "away": "Wofford",
+      "home": "W Carolina",
+      "score": "19.9–31.8",
+      "total": "51.7",
+      "models": "split, 2–2",
+      "sim": "18–34, W Carolina 81.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2747",
+      "homeId": "2717",
+      "neutral": false,
+      "homeMargin": "11.9",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Wofford at W Carolina, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T18:30Z",
+      "when": "11/7 - 1:30 PM EST",
+      "away": "Lindenwood",
+      "home": "Gardner-Webb",
+      "score": "18.9–28.5",
+      "total": "47.4",
+      "models": "split, 3–1 Gardner-Webb",
+      "sim": "20–27.5, Gardner-Webb 76.3%, thin",
+      "sportPath": "football/college-football",
+      "awayId": "2815",
+      "homeId": "2241",
+      "neutral": false,
+      "homeMargin": "9.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Lindenwood at Gardner-Webb, 11/7 - 1:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "Hampton",
+      "home": "Elon",
+      "score": "14.5–36.5",
+      "total": "51",
+      "models": "Elon, 4–0",
+      "sim": "15–39, Elon 96.9%",
+      "sportPath": "football/college-football",
+      "awayId": "2261",
+      "homeId": "2210",
+      "neutral": false,
+      "homeMargin": "22",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Elon. Price missing. Game: Hampton at Elon, 11/7 - 2:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "Illinois St",
+      "home": "North Dakota",
+      "score": "26.3–32",
+      "total": "58.3",
+      "models": "split, 2–2",
+      "sim": "27–33, North Dakota 70.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2287",
+      "homeId": "155",
+      "neutral": false,
+      "homeMargin": "5.8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Illinois St at North Dakota, 11/7 - 2:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "Youngstown St",
+      "home": "Murray St",
+      "score": "32.3–22.4",
+      "total": "54.6",
+      "models": "Youngstown St, 4–0",
+      "sim": "33–22, Youngstown St 78.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2754",
+      "homeId": "93",
+      "neutral": false,
+      "homeMargin": "-9.9",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Youngstown St. Price missing. Game: Youngstown St at Murray St, 11/7 - 2:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "UT Martin",
+      "home": "Charleston So",
+      "score": "22.2–41.4",
+      "total": "63.6",
+      "models": "Charleston So, 4–0",
+      "sim": "24.5–42, Charleston So 87.3%",
+      "sportPath": "football/college-football",
+      "awayId": "2630",
+      "homeId": "2127",
+      "neutral": false,
+      "homeMargin": "19.2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Charleston So. Price missing. Game: UT Martin at Charleston So, 11/7 - 2:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "UT Rio Grande",
+      "home": "N'Western St",
+      "score": "29.3–29.7",
+      "total": "59",
+      "models": "split, 2–2",
+      "sim": "29.5–29, UT Rio Grande 47.7%",
+      "sportPath": "football/college-football",
+      "awayId": "292",
+      "homeId": "2466",
+      "neutral": false,
+      "homeMargin": "0.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: UT Rio Grande at N'Western St, 11/7 - 2:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "Furman",
+      "home": "The Citadel",
+      "score": "21–19.9",
+      "total": "40.9",
+      "models": "Furman, 4–0",
+      "sim": "21.5–16.5, Furman 70.7%",
+      "sportPath": "football/college-football",
+      "awayId": "231",
+      "homeId": "2643",
+      "neutral": false,
+      "homeMargin": "-1.1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Furman. Price missing. Game: Furman at The Citadel, 11/7 - 2:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T19:00Z",
+      "when": "11/7 - 2:00 PM EST",
+      "away": "S Dakota St",
+      "home": "Northern Iowa",
+      "score": "19.2–30.6",
+      "total": "49.8",
+      "models": "split, 2–2",
+      "sim": "17.5–31, Northern Iowa 89.5%",
+      "sportPath": "football/college-football",
+      "awayId": "2571",
+      "homeId": "2460",
+      "neutral": false,
+      "homeMargin": "11.4",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: S Dakota St at Northern Iowa, 11/7 - 2:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T19:30Z",
+      "when": "11/7 - 2:30 PM EST",
+      "away": "VMI",
+      "home": "Tennessee Tech",
+      "score": "14.2–39.7",
+      "total": "53.8",
+      "models": "Tennessee Tech, 4–0",
+      "sim": "13.5–38, Tennessee Tech 100%",
+      "sportPath": "football/college-football",
+      "awayId": "2678",
+      "homeId": "2635",
+      "neutral": false,
+      "homeMargin": "25.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Tennessee Tech. Price missing. Game: VMI at Tennessee Tech, 11/7 - 2:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Portland St",
+      "home": "Montana",
+      "score": "19.8–43.3",
+      "total": "63.1",
+      "models": "Montana, 4–0",
+      "sim": "19.5–40.5, Montana 96.7%",
+      "sportPath": "football/college-football",
+      "awayId": "2502",
+      "homeId": "149",
+      "neutral": false,
+      "homeMargin": "23.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Montana. Price missing. Game: Portland St at Montana, 11/7 - 3:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "N Colorado",
+      "home": "Southern Utah",
+      "score": "22–32.1",
+      "total": "54.1",
+      "models": "Southern Utah, 4–0",
+      "sim": "23.5–30, Southern Utah 90.5%",
+      "sportPath": "football/college-football",
+      "awayId": "2458",
+      "homeId": "253",
+      "neutral": false,
+      "homeMargin": "10.1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Southern Utah. Price missing. Game: N Colorado at Southern Utah, 11/7 - 3:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "W Illinois",
+      "home": "E Illinois",
+      "score": "26.3–26.4",
+      "total": "52.7",
+      "models": "split, 2–2",
+      "sim": "25.5–24.5, W Illinois 51.3%",
+      "sportPath": "football/college-football",
+      "awayId": "2710",
+      "homeId": "2197",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: W Illinois at E Illinois, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Alabama A&M",
+      "home": "Prairie View",
+      "score": "33.9–25.1",
+      "total": "59",
+      "models": "Alabama A&M, 4–0",
+      "sim": "35.5–31, Alabama A&M 75.5%, thin",
+      "sportPath": "football/college-football",
+      "awayId": "2010",
+      "homeId": "2504",
+      "neutral": false,
+      "homeMargin": "-8.7",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Alabama A&M at Prairie View, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Alabama St",
+      "home": "Texas Southern",
+      "score": "21.6–26.2",
+      "total": "47.8",
+      "models": "split, 2–1 Texas Southern",
+      "sim": "21–25, Texas Southern 70.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2011",
+      "homeId": "2640",
+      "neutral": false,
+      "homeMargin": "4.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Alabama St at Texas Southern, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Florida A&M",
+      "home": "Alcorn St",
+      "score": "17.7–48.8",
+      "total": "66.5",
+      "models": "Alcorn St, 4–0",
+      "sim": "17.5–45, Alcorn St 100%",
+      "sportPath": "football/college-football",
+      "awayId": "50",
+      "homeId": "2016",
+      "neutral": false,
+      "homeMargin": "31.2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Alcorn St. Price missing. Game: Florida A&M at Alcorn St, 11/7 - 3:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "AR-Pine Bluff",
+      "home": "Grambling",
+      "score": "30.6–41",
+      "total": "71.5",
+      "models": "split, 2–2",
+      "sim": "33.5–38.5, Grambling 76.6%",
+      "sportPath": "football/college-football",
+      "awayId": "2029",
+      "homeId": "2755",
+      "neutral": false,
+      "homeMargin": "10.4",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: AR-Pine Bluff at Grambling, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Bethune",
+      "home": "Southern",
+      "score": "24.3–41.3",
+      "total": "65.5",
+      "models": "split, 3–1 Southern",
+      "sim": "24.5–41.5, Southern 83.4%",
+      "sportPath": "football/college-football",
+      "awayId": "2065",
+      "homeId": "2582",
+      "neutral": false,
+      "homeMargin": "17",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Bethune at Southern, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T20:00Z",
+      "when": "11/7 - 3:00 PM EST",
+      "away": "Miss Valley St",
+      "home": "Jackson St",
+      "score": "14.8–42.5",
+      "total": "57.3",
+      "models": "Jackson St, 4–0",
+      "sim": "13.5–41, Jackson St 100%",
+      "sportPath": "football/college-football",
+      "awayId": "2400",
+      "homeId": "2296",
+      "neutral": false,
+      "homeMargin": "27.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Jackson St. Price missing. Game: Miss Valley St at Jackson St, 11/7 - 3:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:30Z",
+      "when": "11/7 - 3:30 PM EST",
+      "away": "Merrimack",
+      "home": "#14 Wake Forest",
+      "score": "16.9–37.7",
+      "total": "54.5",
+      "models": "#14 Wake Forest, 4–0",
+      "sim": "15.5–39, #14 Wake Forest 95.6%",
+      "sportPath": "football/college-football",
+      "awayId": "2771",
+      "homeId": "154",
+      "neutral": false,
+      "homeMargin": "20.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. #14 Wake Forest. Price missing. Game: Merrimack at #14 Wake Forest, 11/7 - 3:30 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T20:30Z",
+      "when": "11/7 - 3:30 PM EST",
+      "away": "SE Missouri",
+      "home": "Tennessee St",
+      "score": "24.1–23.5",
+      "total": "47.6",
+      "models": "split, 3–1 SE Missouri",
+      "sim": "23–23, SE Missouri 49.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2546",
+      "homeId": "2634",
+      "neutral": false,
+      "homeMargin": "-0.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: SE Missouri at Tennessee St, 11/7 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T21:00Z",
+      "when": "11/7 - 4:00 PM EST",
+      "away": "SF Austin",
+      "home": "Lamar",
+      "score": "28–22.5",
+      "total": "50.5",
+      "models": "SF Austin, 4–0",
+      "sim": "26–22.5, SF Austin 68.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2617",
+      "homeId": "2320",
+      "neutral": false,
+      "homeMargin": "-5.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. SF Austin. Price missing. Game: SF Austin at Lamar, 11/7 - 4:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T21:00Z",
+      "when": "11/7 - 4:00 PM EST",
+      "away": "East Texas A&M",
+      "home": "Nicholls",
+      "score": "24.9–29.5",
+      "total": "54.4",
+      "models": "split, 2–2",
+      "sim": "26–30, Nicholls 59.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2837",
+      "homeId": "2447",
+      "neutral": false,
+      "homeMargin": "4.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: East Texas A&M at Nicholls, 11/7 - 4:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "E Kentucky",
+      "home": "Austin Peay",
+      "score": "18.3–42.1",
+      "total": "60.4",
+      "models": "Austin Peay, 4–0",
+      "sim": "18–42, Austin Peay 98.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2198",
+      "homeId": "2046",
+      "neutral": false,
+      "homeMargin": "23.8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Austin Peay. Price missing. Game: E Kentucky at Austin Peay, 11/7 - 5:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "N Arizona",
+      "home": "Cal Poly",
+      "score": "30.2–30.1",
+      "total": "60.3",
+      "models": "N Arizona, 4–0",
+      "sim": "28.5–30.5, N Arizona 52%",
+      "sportPath": "football/college-football",
+      "awayId": "2464",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "-0.1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. N Arizona. Price missing. Game: N Arizona at Cal Poly, 11/7 - 5:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "E Washington",
+      "home": "Idaho",
+      "score": "28.8–36.8",
+      "total": "65.5",
+      "models": "Idaho, 4–0",
+      "sim": "28.5–36.5, Idaho 84.5%",
+      "sportPath": "football/college-football",
+      "awayId": "331",
+      "homeId": "70",
+      "neutral": false,
+      "homeMargin": "8",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Idaho. Price missing. Game: E Washington at Idaho, 11/7 - 5:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "West Georgia",
+      "home": "C Arkansas",
+      "score": "18.7–35.9",
+      "total": "54.6",
+      "models": "C Arkansas, 4–0",
+      "sim": "20–34, C Arkansas 88.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2698",
+      "homeId": "2110",
+      "neutral": false,
+      "homeMargin": "17.3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. C Arkansas. Price missing. Game: West Georgia at C Arkansas, 11/7 - 5:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "McNeese",
+      "home": "Hou Christian",
+      "score": "11.1–43.1",
+      "total": "54.2",
+      "models": "split, 3–1 Hou Christian",
+      "sim": "8–39.5, Hou Christian 97.9%",
+      "sportPath": "football/college-football",
+      "awayId": "2377",
+      "homeId": "2277",
+      "neutral": false,
+      "homeMargin": "32",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Hou Christian. Game: McNeese at Hou Christian, 11/7 - 5:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-07T23:00Z",
+      "when": "11/7 - 6:00 PM EST",
+      "away": "S Illinois",
+      "home": "Indiana St",
+      "score": "29.2–28.6",
+      "total": "57.7",
+      "models": "split, 3–1 S Illinois",
+      "sim": "27–27.5, S Illinois 49.2%",
+      "sportPath": "football/college-football",
+      "awayId": "79",
+      "homeId": "282",
+      "neutral": false,
+      "homeMargin": "-0.6",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: S Illinois at Indiana St, 11/7 - 6:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-07T23:00Z",
+      "when": "11/7 - 6:00 PM EST",
+      "away": "Montana St",
+      "home": "Idaho St",
+      "score": "30.3–26.8",
+      "total": "57.1",
+      "models": "Montana St, 4–0",
+      "sim": "32–25.5, Montana St 60.4%",
+      "sportPath": "football/college-football",
+      "awayId": "147",
+      "homeId": "304",
+      "neutral": false,
+      "homeMargin": "-3.6",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟩 4 🏠 Lean. Montana St. Price missing. Game: Montana St at Idaho St, 11/7 - 6:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean"
+    },
+    {
+      "date": "2026-11-08T00:00Z",
+      "when": "11/7 - 7:00 PM EST",
+      "away": "Abilene Chrstn",
+      "home": "Tarleton St",
+      "score": "25–37.8",
+      "total": "62.8",
+      "models": "split, 3–1 Tarleton St",
+      "sim": "25.5–38.5, Tarleton St 91.1%",
+      "sportPath": "football/college-football",
+      "awayId": "2000",
+      "homeId": "2627",
+      "neutral": false,
+      "homeMargin": "12.8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet Tarleton St. Game: Abilene Chrstn at Tarleton St, 11/7 - 7:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-08T00:00Z",
+      "when": "11/7 - 7:00 PM EST",
+      "away": "West Florida",
+      "home": "North Alabama",
+      "score": "22.5–24",
+      "total": "46.5",
+      "models": "split, 2–2",
+      "sim": "20–22.5, North Alabama 57.5%",
+      "sportPath": "football/college-football",
+      "awayId": "110242",
+      "homeId": "2453",
+      "neutral": false,
+      "homeMargin": "1.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: West Florida at North Alabama, 11/7 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    },
+    {
+      "date": "2026-11-08T00:00Z",
+      "when": "11/7 - 7:00 PM EST",
+      "away": "Utah Tech",
+      "home": "UC Davis",
+      "score": "23.2–37.7",
+      "total": "61",
+      "models": "split, 3–1 UC Davis",
+      "sim": "24.5–37.5, UC Davis 80.8%",
+      "sportPath": "football/college-football",
+      "awayId": "3101",
+      "homeId": "302",
+      "neutral": false,
+      "homeMargin": "14.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🔵 3 ⚠️ Bet UC Davis. Game: Utah Tech at UC Davis, 11/7 - 7:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet"
+    },
+    {
+      "date": "2026-11-08T00:00Z",
+      "when": "11/7 - 7:00 PM EST",
+      "away": "Incarnate Word",
+      "home": "SE Louisiana",
+      "score": "27.4–36.2",
+      "total": "63.6",
+      "models": "split, 2–2",
+      "sim": "29.5–34, SE Louisiana 83.5%",
+      "sportPath": "football/college-football",
+      "awayId": "2916",
+      "homeId": "2545",
+      "neutral": false,
+      "homeMargin": "8.8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Incarnate Word at SE Louisiana, 11/7 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass"
+    }
+  ]
+}
