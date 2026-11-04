@@ -26,6 +26,8 @@ import {
   summarizeMarks,
   buildAlert,
   betSlipLink,
+  draftKingsEventSlug,
+  draftKingsPhoneLink,
   draftKingsSlipLink,
   fanDuelSlipLink,
   sportMark,
@@ -344,20 +346,23 @@ assert.equal(
   'https://sportsbook.fanduel.com/addToBetslip?marketId=739.194351327&selectionId=42200635',
 )
 assert.equal(betSlipLink({ book: 'DraftKings', action: 'Lean', eventId: '34118052', selectionId: dkId }), null)
-const slip = draftKingsSlipLink([dkId, '0QA2#3'], 'Bet')
+assert.equal(draftKingsSlipLink([dkId, '0QA2#3'], 'Bet'), null)
+assert.equal(draftKingsEventSlug('SJ Sharks @ LA Kings'), 'sj-sharks-%40-la-kings')
 assert.equal(
-  slip,
-  'https://sportsbook.draftkings.com/?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20%2B0QA2%233',
-)
-assert.equal(slip.includes('/event/'), false)
-assert.equal(
-  draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118045']),
-  'https://sportsbook.draftkings.com/event/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20%2B0QA2%233',
+  draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118045'], 'SJ Sharks @ LA Kings'),
+  'https://sportsbook.draftkings.com/event/sj-sharks-%40-la-kings/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233',
 )
 assert.equal(
   draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118184']),
-  'https://sportsbook.draftkings.com/event/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20%2B0QA2%233',
+  'https://sportsbook.draftkings.com/event/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233',
 )
+const webSlip = draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118045'], 'SJ Sharks @ LA Kings')
+const webOutcomes = new URL(webSlip).searchParams.get('outcomes').split(/[,|+\s]+/).filter(Boolean)
+assert.deepEqual(webOutcomes, [dkId, '0QA2#3'])
+const phone = draftKingsPhoneLink(['0OU87064453U650_3', '0HC87064453P150_3'], 'Bet')
+const deep = new URL(phone).searchParams.get('_dl')
+assert.equal(deep, 'dksb://sb/addbet/0OU87064453U650_3,0HC87064453P150_3')
+assert.equal(draftKingsPhoneLink([dkId], 'Lean'), null)
 assert.equal(draftKingsSlipLink([dkId], 'Lean'), null)
 const fdSlip = fanDuelSlipLink([
   { marketId: '739.194644207', selectionId: '41173071' },

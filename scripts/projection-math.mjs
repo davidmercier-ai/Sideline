@@ -153,21 +153,52 @@ function roomUnit(sportPath) {
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
 /**
- * One DraftKings slip for several bets. The selections are joined with %2B so a plus sign is not read as a space.
- * The link names the first event. A link with no event is the sportsbook home page.
+ * DraftKings event slug. "SJ Sharks @ LA Kings" becomes sj-sharks-%40-la-kings.
+ * The short /event/{id} address redirects, and the phone app drops the picks on that redirect.
+ */
+export function draftKingsEventSlug(eventName) {
+  const name = String(eventName || '').trim().toLowerCase()
+  if (!name) return ''
+  return name.replaceAll(/\s+@\s+/g, '-%40-').replaceAll(/\s+/g, '-')
+}
+
+function draftKingsSelectionIds(selectionIds) {
+  return (selectionIds || []).map((id) => String(id || '').trim()).filter(Boolean)
+}
+
+/**
+ * The phone app adds a bet from dksb://sb/addbet/{id}. A sportsbook.draftkings.com
+ * event link opens the game and leaves the slip empty. The https wrapper is the
+ * Singular address the DraftKings app is registered to open, so a tap from a
+ * message reaches that add path. Several ids are comma-separated. A hash in an
+ * id is %23. A Lean or a Pass returns null. Opening the link does not place the bet.
+ */
+export function draftKingsPhoneLink(selectionIds, action = 'Bet') {
+  if (action !== 'Bet' && action !== 'Bet now') return null
+  const ids = draftKingsSelectionIds(selectionIds)
+  if (ids.length === 0) return null
+  const deep = `dksb://sb/addbet/${ids.map((id) => encodeURIComponent(id)).join(',')}`
+  return `https://dksb.sng.link/As9kz/mjk7?_dl=${encodeURIComponent(deep)}`
+}
+
+/**
+ * One DraftKings web slip. The site's betslip reads outcomes and splits on a
+ * comma, a plus, or a space. The ids are joined with a comma. The link names
+ * the first event. A slug is included when the event name is passed. A link
+ * with no event is dropped, because the homepage outcomes link fails on the phone.
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
-export function draftKingsSlipLink(selectionIds, action = 'Bet', eventIds) {
+export function draftKingsSlipLink(selectionIds, action = 'Bet', eventIds, eventName) {
   if (action !== 'Bet' && action !== 'Bet now') return null
-  const ids = (selectionIds || []).map((id) => String(id || '').trim()).filter(Boolean)
+  const ids = draftKingsSelectionIds(selectionIds)
   if (ids.length === 0) return null
-  const outcomes = ids.map((id) => encodeURIComponent(id)).join('%2B')
+  const outcomes = ids.map((id) => encodeURIComponent(id)).join(',')
   const events = (eventIds || []).map((id) => String(id || '').trim())
   const named = [...new Set(events.filter(Boolean))]
-  if (named.length >= 1 && events.length === ids.length) {
-    return `https://sportsbook.draftkings.com/event/${encodeURIComponent(named[0])}?outcomes=${outcomes}`
-  }
-  return `https://sportsbook.draftkings.com/?outcomes=${outcomes}`
+  if (named.length < 1 || events.length !== ids.length) return null
+  const slug = draftKingsEventSlug(eventName)
+  const eventPath = slug ? `${slug}/${encodeURIComponent(named[0])}` : encodeURIComponent(named[0])
+  return `https://sportsbook.draftkings.com/event/${eventPath}?outcomes=${outcomes}`
 }
 
 /**

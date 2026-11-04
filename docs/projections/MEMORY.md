@@ -16,6 +16,6 @@ NHL had two bets. Blackhawks at Panthers over 5.5, both books, DraftKings −135
 
 Soccer was the Champions League only. Every venue slice was 1 or 2 games. No bet. Premier League, MLS, and J1 had no games.
 
-The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. A multi link names the first event and joins the selection ids with %2B. A raw plus sign becomes a space. FanDuel brackets in a message are %5B and %5D.
+The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. A sportsbook.draftkings.com event link opens the game on the phone and does not add the legs. The phone link is https://dksb.sng.link/As9kz/mjk7?_dl=dksb://sb/addbet/ with the selection ids comma-separated. A hash in a selection id is %23. FanDuel brackets in a message are %5B and %5D.
 
 A number already on a ticket stays that number. Grizzlies −5.5 is in the FanDuel parlay. DraftKings later showed −6.5. That is a worse number. A worse number does not get a link. The other side is not a hedge. For a favorite, laying more points is worse. For an under, the lower total is worse. For an over, the higher total is worse. Hawks under 230.5 is worse than 231.5. This is the same mistake as the soccer card: a second, worse number after the first one was already bet.
