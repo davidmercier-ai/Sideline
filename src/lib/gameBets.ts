@@ -48,10 +48,10 @@ export const BOOSTS: BoostSlip[] = [
   {
     id: 'dk-nba-25',
     book: DK,
-    href: 'https://sportsbook.draftkings.com/?outcomes=0OU87027687U23050_3,0OU87027691U23350_3,0OU87027692O22850_1',
+    href: 'https://sportsbook.draftkings.com/event/34936984?outcomes=0OU87027687U23050_3%2B0OU87027691U23350_3%2B0OU87027692O22850_1',
     title: 'DraftKings 25% NBA',
     legs: 'Hawks at Wizards under 230.5, Bulls at Knicks under 233.5, Grizzlies over 228.5',
-    note: '3 legs across three games. Open in Safari. The boost needs +300 or longer and a $10 max. A two-leg of these prices stays short of +300. The slip price is whatever DraftKings shows.',
+    note: '3 legs. Opens the Hawks game and carries the other two selections. The boost needs +300 or longer and a $10 max. The slip price is whatever DraftKings shows.',
     defaultStatus: 'open',
     defaultStake: '',
   },

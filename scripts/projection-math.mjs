@@ -154,21 +154,18 @@ function roomUnit(sportPath) {
  */
 /**
  * One DraftKings slip for several bets. The betslip reads `outcomes` and
- * splits on comma, pipe, plus, or space. The hash inside a selection id is
- * encoded so it stays part of the id.
- * When every leg is the same game, the link names that event. A link with no
- * event leaves the phone on the game already open, and that game rejects the
- * other legs. A slip that crosses games uses the sportsbook home page.
+ * The selections are joined with %2B so a plus sign is not read as a space.
+ * The link names the first event. A link with no event is the sportsbook home page.
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
 export function draftKingsSlipLink(selectionIds, action = 'Bet', eventIds) {
   if (action !== 'Bet' && action !== 'Bet now') return null
   const ids = (selectionIds || []).map((id) => String(id || '').trim()).filter(Boolean)
   if (ids.length === 0) return null
-  const outcomes = ids.map((id) => encodeURIComponent(id)).join(',')
+  const outcomes = ids.map((id) => encodeURIComponent(id)).join('%2B')
   const events = (eventIds || []).map((id) => String(id || '').trim())
   const named = [...new Set(events.filter(Boolean))]
-  if (named.length === 1 && events.length === ids.length) {
+  if (named.length >= 1 && events.length === ids.length) {
     return `https://sportsbook.draftkings.com/event/${encodeURIComponent(named[0])}?outcomes=${outcomes}`
   }
   return `https://sportsbook.draftkings.com/?outcomes=${outcomes}`

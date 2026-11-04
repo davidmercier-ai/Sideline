@@ -6,7 +6,10 @@ assert.equal(BOOSTS.filter((slip) => slip.book === 'FanDuel').length, 2)
 assert.equal(BOOSTS.filter((slip) => slip.book === 'DraftKings').length, 1)
 assert.equal(BOOSTS.every((slip) => slip.href.startsWith('https://')), true)
 assert.equal(BOOSTS.some((slip) => slip.href.includes('marketId[0]=')), true)
-assert.equal(BOOSTS.some((slip) => slip.href.startsWith('https://sportsbook.draftkings.com/?outcomes=')), true)
+assert.equal(
+  BOOSTS.some((slip) => slip.href === 'https://sportsbook.draftkings.com/event/34936984?outcomes=0OU87027687U23050_3%2B0OU87027691U23350_3%2B0OU87027692O22850_1'),
+  true,
+)
 
 assert.equal(GAME_BETS.length, 8)
 const ids = new Set(GAME_BETS.map((bet) => bet.id))
