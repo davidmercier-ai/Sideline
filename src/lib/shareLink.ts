@@ -8,11 +8,11 @@ export function messageLink(href: string): string {
   return href.replaceAll('#', '%23').replaceAll('[', '%5B').replaceAll(']', '%5D')
 }
 
-export function shareMessage(label: string, detail: string, href: string): string {
+export function shareMessage(label: string, detail: string, href: string, confirm = 'Confirm the player and the number on the slip.'): string {
   const link = messageLink(href)
   const safari = link.startsWith('https://sportsbook.draftkings.com/?')
   const where = safari ? ' Open the DraftKings link in Safari.' : ''
-  return `${label}. ${detail}.${where} Confirm the player and the number on the slip.\n${link}`
+  return `${label}. ${detail}.${where} ${confirm}\n${link}`
 }
 
 export async function sendBetLink(message: string): Promise<'shared' | 'copied' | 'dismissed' | 'failed'> {

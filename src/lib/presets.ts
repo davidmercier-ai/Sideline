@@ -1,6 +1,6 @@
 import type { BookName } from './tickets'
 
-export const FEATURE_IDS = ['draftkings', 'fanduel', 'props', 'cards', 'progress', 'exposure', 'later'] as const
+export const FEATURE_IDS = ['bets', 'draftkings', 'fanduel', 'props', 'cards', 'progress', 'exposure', 'later'] as const
 
 export type FeatureId = (typeof FEATURE_IDS)[number]
 
@@ -14,6 +14,7 @@ export type Preset = {
 }
 
 export const FEATURE_LABELS: { id: FeatureId; label: string }[] = [
+  { id: 'bets', label: 'Bets' },
   { id: 'draftkings', label: 'DraftKings' },
   { id: 'fanduel', label: 'FanDuel' },
   { id: 'props', label: 'Player props' },
@@ -24,6 +25,7 @@ export const FEATURE_LABELS: { id: FeatureId; label: string }[] = [
 ]
 
 const PROPS: Features = {
+  bets: true,
   draftkings: true,
   fanduel: true,
   props: true,
@@ -34,6 +36,7 @@ const PROPS: Features = {
 }
 
 const CARDS: Features = {
+  bets: true,
   draftkings: true,
   fanduel: true,
   props: false,
@@ -44,6 +47,7 @@ const CARDS: Features = {
 }
 
 const DRAFTKINGS: Features = {
+  bets: true,
   draftkings: true,
   fanduel: false,
   props: true,
@@ -54,6 +58,7 @@ const DRAFTKINGS: Features = {
 }
 
 const FANDUEL: Features = {
+  bets: true,
   draftkings: false,
   fanduel: true,
   props: true,
@@ -64,6 +69,7 @@ const FANDUEL: Features = {
 }
 
 const FULL: Features = {
+  bets: true,
   draftkings: true,
   fanduel: true,
   props: true,

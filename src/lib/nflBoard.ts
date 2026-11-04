@@ -27,6 +27,44 @@ type Summary = {
   boxscore?: BoxScore
 }
 
+export async function loadSportSnaps(requests: { eventId: string; sportPath: string }[], date: string): Promise<Record<string, GameSnap>> {
+  const wanted = new Set(requests.map((row) => row.eventId))
+  const paths = [...new Set(requests.map((row) => row.sportPath))]
+  const snaps: Record<string, GameSnap> = {}
+  await Promise.all(
+    paths.map(async (sportPath) => {
+      try {
+        const board = await getEspnJson<Scoreboard>(`/apis/site/v2/sports/${sportPath}/scoreboard?dates=${date}`)
+        for (const event of board.events ?? []) {
+          const id = event.id ?? ''
+          if (!wanted.has(id) || snaps[id]) continue
+          snaps[id] = snapFromEvent(event)
+        }
+      } catch {
+        // A missing board leaves those games on the kickoff time.
+      }
+    }),
+  )
+  return snaps
+}
+
+function snapFromEvent(event: NonNullable<Scoreboard['events']>[number]): GameSnap {
+  const competition = event.competitions?.[0]
+  const status = competition?.status?.type
+  const state = status?.state === 'in' || status?.state === 'post' ? status.state : 'pre'
+  const home = competition?.competitors?.find((team) => team.homeAway === 'home')
+  const away = competition?.competitors?.find((team) => team.homeAway === 'away')
+  const awayName = away?.team?.displayName ?? 'Away'
+  const homeName = home?.team?.displayName ?? 'Home'
+  return {
+    eventId: event.id ?? '',
+    state,
+    detail: status?.shortDetail ?? '',
+    matchup: `${awayName} at ${homeName}`,
+    score: state === 'pre' ? '' : `${away?.score ?? '0'}–${home?.score ?? '0'}`,
+  }
+}
+
 export async function loadGameSnaps(eventIds: string[]): Promise<Record<string, GameSnap>> {
   const board = await getEspnJson<Scoreboard>('/apis/site/v2/sports/football/nfl/scoreboard?dates=20261101')
   const wanted = new Set(eventIds)
@@ -34,20 +72,7 @@ export async function loadGameSnaps(eventIds: string[]): Promise<Record<string, 
   for (const event of board.events ?? []) {
     const id = event.id ?? ''
     if (!wanted.has(id)) continue
-    const competition = event.competitions?.[0]
-    const status = competition?.status?.type
-    const state = status?.state === 'in' || status?.state === 'post' ? status.state : 'pre'
-    const home = competition?.competitors?.find((team) => team.homeAway === 'home')
-    const away = competition?.competitors?.find((team) => team.homeAway === 'away')
-    const awayName = away?.team?.displayName ?? 'Away'
-    const homeName = home?.team?.displayName ?? 'Home'
-    snaps[id] = {
-      eventId: id,
-      state,
-      detail: status?.shortDetail ?? '',
-      matchup: `${awayName} at ${homeName}`,
-      score: state === 'pre' ? '' : `${away?.score ?? '0'}–${home?.score ?? '0'}`,
-    }
+    snaps[id] = snapFromEvent(event)
   }
   return snaps
 }

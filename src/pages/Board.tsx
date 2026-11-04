@@ -2,8 +2,9 @@ import { useState, type FormEvent } from 'react'
 import { messageLink, sendBetLink, shareMessage } from '../lib/shareLink'
 import { NAMED_CARDS, type NamedCard } from '../lib/cards'
 import { progressLine } from '../lib/boxScore'
+import { GAME_BETS, type GameBet } from '../lib/gameBets'
 import { ledger, parseStake, type TicketStatus } from '../lib/ledger'
-import { loadGameSnaps, loadStats } from '../lib/nflBoard'
+import { loadGameSnaps, loadSportSnaps, loadStats } from '../lib/nflBoard'
 import {
   allowsBook,
   BUILTIN_PRESETS,
@@ -45,7 +46,7 @@ function statKey(ticket: Ticket): string {
 }
 
 function seeds(): TicketSeed[] {
-  return [...TICKETS, ...NAMED_CARDS.flatMap((card) => card.slips)]
+  return [...GAME_BETS, ...TICKETS, ...NAMED_CARDS.flatMap((card) => card.slips)]
 }
 
 export function BoardPage() {
@@ -58,7 +59,13 @@ export function BoardPage() {
   const progress = usePoll(
     async () => {
       const eventIds = [...new Set(TICKETS.map((ticket) => ticket.eventId))]
-      const snaps = await loadGameSnaps(eventIds)
+      const [snaps, betSnaps] = await Promise.all([
+        loadGameSnaps(eventIds),
+        loadSportSnaps(
+          GAME_BETS.map((bet) => ({ eventId: bet.eventId, sportPath: bet.sportPath })),
+          '20261104',
+        ),
+      ])
       const stats = await loadStats(
         snaps,
         TICKETS.map((ticket) => ({
@@ -67,7 +74,7 @@ export function BoardPage() {
           statKey: ticket.statKey,
         })),
       )
-      return { snaps, stats }
+      return { snaps: { ...snaps, ...betSnaps }, stats }
     },
     'sunday-board',
     30000,
@@ -93,6 +100,7 @@ export function BoardPage() {
   }
 
   const active = matchingPreset(features, custom)
+  const gameBets = GAME_BETS.filter((bet) => features.bets && allowsBook(features, bet.book))
   const propTickets = TICKETS.filter((ticket) => features.props && allowsBook(features, ticket.book))
   const cards = NAMED_CARDS.map((card) => ({
     ...card,
@@ -100,6 +108,10 @@ export function BoardPage() {
   })).filter((card) => card.slips.length > 0)
 
   const book = ledger([
+    ...gameBets.map((bet) => {
+      const view = ticketView(bet, saved)
+      return { status: view.status, stake: parseStake(view.stake), american: bet.american }
+    }),
     ...propTickets.map((ticket) => {
       const view = ticketView(ticket, saved)
       return { status: view.status, stake: parseStake(view.stake), american: ticket.american }
@@ -116,7 +128,8 @@ export function BoardPage() {
   const live = groups.filter((ticket) => progress.data?.snaps[ticket.eventId]?.state !== 'pre')
   const later = groups.filter((ticket) => progress.data?.snaps[ticket.eventId]?.state === 'pre' || !progress.data)
   const propGroups = progress.data ? live : groups
-  const nothingOn = propGroups.length === 0 && !(features.later && later.length > 0) && cards.length === 0
+  const betGroups = gameBets.filter((bet, index) => gameBets.findIndex((row) => row.group === bet.group) === index)
+  const nothingOn = betGroups.length === 0 && propGroups.length === 0 && !(features.later && later.length > 0) && cards.length === 0
 
   function onToggle(id: FeatureId) {
     setPresetMessage('')
@@ -223,6 +236,15 @@ export function BoardPage() {
       {progress.error ? <p className="lede">Game progress is unavailable. Ticket marks are still saved.</p> : null}
       {nothingOn ? <p className="empty">Nothing is on for this combination.</p> : null}
 
+      <BetList
+        bets={gameBets}
+        groups={betGroups}
+        saved={saved}
+        snaps={progress.data?.snaps}
+        showProgress={features.progress}
+        onUpdate={update}
+      />
+
       <BoardList
         title={progress.data ? 'In progress' : 'Props'}
         pool={propTickets}
@@ -238,6 +260,65 @@ export function BoardPage() {
       ) : null}
       {cards.length > 0 ? <CardList cards={cards} saved={saved} onUpdate={update} /> : null}
     </main>
+  )
+}
+
+function BetList({
+  bets,
+  groups,
+  saved,
+  snaps,
+  showProgress,
+  onUpdate,
+}: {
+  bets: GameBet[]
+  groups: GameBet[]
+  saved: Record<string, SavedTicket>
+  snaps?: Record<string, { detail: string; matchup: string; score: string; state: string }>
+  showProgress: boolean
+  onUpdate: (id: string, patch: Partial<SavedTicket>) => void
+}) {
+  if (groups.length === 0) return null
+  return (
+    <section className="board-section">
+      <h2 className="section-title">Bets</h2>
+      <p className="board-note">Prices at 12:55 PM ET. Opening a link does not place the bet.</p>
+      {groups.map((lead) => {
+        const legs = bets.filter((bet) => bet.group === lead.group)
+        const snap = snaps?.[lead.eventId]
+        const clock = showProgress && snap?.detail ? snap.detail : lead.kickoff
+        return (
+          <article key={lead.group} className="card board-row">
+            <header className="board-head">
+              <div>
+                <h3>{showProgress && snap?.matchup ? snap.matchup : lead.game}</h3>
+                <p>
+                  {clock}
+                  {showProgress && snap?.score ? ` · ${snap.score}` : ''}
+                </p>
+              </div>
+            </header>
+            <ul className="board-legs">
+              {legs.map((bet) => (
+                <SlipControls
+                  key={bet.id}
+                  seed={bet}
+                  label={`${bet.book} ${bet.selection} ${american(bet.american)}`}
+                  detail={`${bet.game}, ${bet.kickoff}`}
+                  href={bet.href}
+                  color={BOOK_COLOR[bet.book]}
+                  note={bet.note}
+                  progress=""
+                  confirm="Confirm the team and the number on the slip."
+                  saved={saved}
+                  onUpdate={onUpdate}
+                />
+              ))}
+            </ul>
+          </article>
+        )
+      })}
+    </section>
   )
 }
 
@@ -293,6 +374,7 @@ function BoardList({
                   color={BOOK_COLOR[ticket.book]}
                   note={ticket.note}
                   progress={showProgress ? progressLine(ticket.side, ticket.line, stat, ticket.book) : ''}
+                  confirm="Confirm the player and the number on the slip."
                   saved={saved}
                   onUpdate={onUpdate}
                 />
@@ -340,6 +422,7 @@ function CardList({
                 color={BOOK_COLOR[slip.book]}
                 note={`${slip.legs} ${slip.note}`}
                 progress=""
+                confirm="Confirm the player and the number on the slip."
                 saved={saved}
                 onUpdate={onUpdate}
               />
@@ -359,6 +442,7 @@ function SlipControls({
   color,
   note,
   progress,
+  confirm,
   saved,
   onUpdate,
 }: {
@@ -369,6 +453,7 @@ function SlipControls({
   color: string
   note: string
   progress: string
+  confirm: string
   saved: Record<string, SavedTicket>
   onUpdate: (id: string, patch: Partial<SavedTicket>) => void
 }) {
@@ -377,7 +462,7 @@ function SlipControls({
   const link = messageLink(href)
 
   async function onSend() {
-    const message = shareMessage(label, detail, href)
+    const message = shareMessage(label, detail, href, confirm)
     const outcome = await sendBetLink(message)
     if (outcome === 'copied') setSendNote('Copied. Paste it into a message.')
     else if (outcome === 'shared') setSendNote('Ready to send.')
