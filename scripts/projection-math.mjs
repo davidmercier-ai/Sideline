@@ -153,8 +153,7 @@ function roomUnit(sportPath) {
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
 /**
- * One DraftKings slip for several bets. The betslip reads `outcomes` and
- * The selections are joined with %2B so a plus sign is not read as a space.
+ * One DraftKings slip for several bets. The selections are joined with %2B so a plus sign is not read as a space.
  * The link names the first event. A link with no event is the sportsbook home page.
  * A Lean or a Pass returns null. Opening the link does not place the bet.
  */
