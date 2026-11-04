@@ -137,7 +137,10 @@ const REASON_MARK = {
 }
 
 export function sportMark(sportPath) {
-  return SPORT_MARKS[sportPath] ?? '🎟️'
+  const path = String(sportPath ?? '')
+  if (path.startsWith('soccer/')) return '⚽'
+  if (path.startsWith('basketball/')) return '🏀'
+  return SPORT_MARKS[path] ?? '🎟️'
 }
 
 function roomUnit(sportPath) {

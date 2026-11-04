@@ -1,0 +1,278 @@
+{
+  "id": "2026-11-04-champions-league",
+  "title": "Champions League",
+  "sportPath": "soccer/uefa.champions",
+  "retrievedAt": "2026-11-04T17:49:58.274Z",
+  "games": [
+    {
+      "date": "2026-11-04T17:45Z",
+      "when": "2'",
+      "away": "Real Madrid",
+      "home": "AEK Athens",
+      "score": "2–2",
+      "total": "4",
+      "models": "split, 2–2",
+      "sim": "2–2, even 0%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "86",
+      "homeId": "887",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 ⚡ Lean. Thin sample. Game: Real Madrid at AEK Athens, 2'.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T17:45Z",
+      "when": "2'",
+      "away": "Liverpool",
+      "home": "Fenerbahce",
+      "score": "3.8–2.3",
+      "total": "6",
+      "models": "Liverpool, 4–0",
+      "sim": "3.5–2, Liverpool 100%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "364",
+      "homeId": "436",
+      "neutral": false,
+      "homeMargin": "-1.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 ⚡ Lean. Thin sample. Game: Liverpool at Fenerbahce, 2'.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Betis",
+      "home": "Dortmund",
+      "score": "2.5–2.5",
+      "total": "5",
+      "models": "split, 2–2",
+      "sim": "2.5–2.5, even 0%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "244",
+      "homeId": "124",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Betis at Dortmund, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Napoli",
+      "home": "FC Porto",
+      "score": "1.3–1.5",
+      "total": "2.8",
+      "models": "split, 2–2",
+      "sim": "1–1.5, FC Porto 52.1%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "114",
+      "homeId": "437",
+      "neutral": false,
+      "homeMargin": "0.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Napoli at FC Porto, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Como",
+      "home": "Lens",
+      "score": "2–1.5",
+      "total": "3.5",
+      "models": "Como, 4–0",
+      "sim": "2–1.5, Como 100%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "2572",
+      "homeId": "175",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Como at Lens, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Club Brugge",
+      "home": "PSV",
+      "score": "2.5–2",
+      "total": "4.5",
+      "models": "Club Brugge, 4–0",
+      "sim": "2.5–2, Club Brugge 100%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "570",
+      "homeId": "148",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Club Brugge at PSV, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Man City",
+      "home": "RB Leipzig",
+      "score": "1–0.5",
+      "total": "1.5",
+      "models": "Man City, 4–0",
+      "sim": "1–0.5, Man City 100%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "382",
+      "homeId": "11420",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Man City at RB Leipzig, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Arsenal",
+      "home": "Slavia Prague",
+      "score": "2.3–1.5",
+      "total": "3.8",
+      "models": "Arsenal, 4–0",
+      "sim": "2–1, Arsenal 74.1%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "359",
+      "homeId": "494",
+      "neutral": false,
+      "homeMargin": "-0.7",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Arsenal at Slavia Prague, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-04T20:00Z",
+      "when": "Scheduled",
+      "away": "Sabah",
+      "home": "Viking FK",
+      "score": "1.5–3.5",
+      "total": "5",
+      "models": "split, 2–2",
+      "sim": "1.5–3.5, Viking FK 100%, thin",
+      "sportPath": "soccer/uefa.champions",
+      "awayId": "21922",
+      "homeId": "510",
+      "neutral": false,
+      "homeMargin": "2",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Sabah at Viking FK, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "id": "2026-11-04-college-basketball-2026-11-04",
+  "title": "College basketball 2026-11-04",
+  "sportPath": "basketball/mens-college-basketball",
+  "retrievedAt": "2026-11-04T17:49:52.316Z",
+  "games": [
+    {
+      "date": "2026-11-04T23:30Z",
+      "when": "11/4 - 6:30 PM EST",
+      "away": "Framingham St",
+      "home": "Dartmouth",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Dartmouth, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "126956",
+      "homeId": "159",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Framingham St at Dartmouth, 11/4 - 6:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Regent",
+      "home": "Old Dominion",
+      "score": "47–64.5",
+      "total": "111.5",
+      "models": "Old Dominion, 4–0",
+      "sim": "47–64.5, Old Dominion 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "131784",
+      "homeId": "295",
+      "neutral": false,
+      "homeMargin": "17.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Regent at Old Dominion, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Christendom",
+      "home": "App State",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "App State, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "111180",
+      "homeId": "2026",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Christendom at App State, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "VA Lynchburg",
+      "home": "Morgan St",
+      "score": "67.5–109",
+      "total": "176.5",
+      "models": "Morgan St, 4–0",
+      "sim": "67.5–109, Morgan St 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3229",
+      "homeId": "2415",
+      "neutral": false,
+      "homeMargin": "41.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: VA Lynchburg at Morgan St, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Concordia Chi",
+      "home": "SIUE",
+      "score": "39–91",
+      "total": "130",
+      "models": "SIUE, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2151",
+      "homeId": "2565",
+      "neutral": false,
+      "homeMargin": "52",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Concordia Chi at SIUE, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Erskine",
+      "home": "UNC Asheville",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Erskine, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2215",
+      "homeId": "2427",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Erskine at UNC Asheville, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "MD Eastern",
+      "home": "High Point",
+      "score": "62–83",
+      "total": "145",
+      "models": "High Point, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2379",
+      "homeId": "2272",
+      "neutral": false,
+      "homeMargin": "21",
+      "agreement": "home",
+      "marketHomeMargin": "34.5",
+      "postedTotal": "147.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: MD Eastern at High Point, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "Longwood",
+      "home": "Saint Joseph's",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Longwood, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2344",
+      "homeId": "2603",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "10.5",
+      "postedTotal": "151.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Longwood at Saint Joseph's, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:00Z",
+      "when": "11/4 - 7:00 PM EST",
+      "away": "FDU",
+      "home": "Butler",
+      "score": "52.5–108",
+      "total": "160.5",
+      "models": "Butler, 4–0",
+      "sim": "52.5–108, Butler 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "161",
+      "homeId": "2086",
+      "neutral": false,
+      "homeMargin": "55.5",
+      "agreement": "home",
+      "marketHomeMargin": "27.5",
+      "postedTotal": "156.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: FDU at Butler, 11/4 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Central Col",
+      "home": "Drake",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "split",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2964",
+      "homeId": "2181",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "unavailable",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Central Col at Drake, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Blue Mountain",
+      "home": "Tennessee Tech",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Blue Mountain, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "494",
+      "homeId": "2635",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Blue Mountain at Tennessee Tech, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Webster",
+      "home": "SE Missouri",
+      "score": "79–86",
+      "total": "165",
+      "models": "SE Missouri, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2693",
+      "homeId": "2546",
+      "neutral": false,
+      "homeMargin": "7",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Webster at SE Missouri, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Bob Jones",
+      "home": "Furman",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Furman, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3243",
+      "homeId": "231",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Bob Jones at Furman, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "CSU Northridge",
+      "home": "Wichita St",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "split",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2463",
+      "homeId": "2724",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "unavailable",
+      "marketHomeMargin": "15.5",
+      "postedTotal": "160.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: CSU Northridge at Wichita St, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Champ Chrstn",
+      "home": "UL Monroe",
+      "score": "83–78",
+      "total": "161",
+      "models": "Champ Chrstn, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3134",
+      "homeId": "2433",
+      "neutral": false,
+      "homeMargin": "-5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Champ Chrstn at UL Monroe, 11/4 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T01:00Z",
+      "when": "11/4 - 8:00 PM EST",
+      "away": "N Kentucky",
+      "home": "South Dakota",
+      "score": "57–95",
+      "total": "152",
+      "models": "South Dakota, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "94",
+      "homeId": "233",
+      "neutral": false,
+      "homeMargin": "38",
+      "agreement": "home",
+      "marketHomeMargin": "-2.5",
+      "postedTotal": "162.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: N Kentucky at South Dakota, 11/4 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T01:00Z",
+      "when": "11/4 - 8:00 PM EST",
+      "away": "Randolph",
+      "home": "Norfolk St",
+      "score": "45–68",
+      "total": "113",
+      "models": "Norfolk St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3153",
+      "homeId": "2450",
+      "neutral": false,
+      "homeMargin": "23",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Randolph at Norfolk St, 11/4 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T01:00Z",
+      "when": "11/4 - 8:00 PM EST",
+      "away": "St Mary's",
+      "home": "S Indiana",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "St Mary's, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "126824",
+      "homeId": "88",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: St Mary's at S Indiana, 11/4 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T01:00Z",
+      "when": "11/4 - 8:00 PM EST",
+      "away": "SE Louisiana",
+      "home": "Auburn",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "split",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2545",
+      "homeId": "2",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "unavailable",
+      "marketHomeMargin": "29.5",
+      "postedTotal": "151.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: SE Louisiana at Auburn, 11/4 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T02:00Z",
+      "when": "11/4 - 9:00 PM EST",
+      "away": "West Coast",
+      "home": "Boise St",
+      "score": "69–134",
+      "total": "203",
+      "models": "Boise St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "110418",
+      "homeId": "68",
+      "neutral": false,
+      "homeMargin": "65",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: West Coast at Boise St, 11/4 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T02:00Z",
+      "when": "11/4 - 9:00 PM EST",
+      "away": "Grace U",
+      "home": "Utah Tech",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Grace U, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "134743",
+      "homeId": "3101",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Grace U at Utah Tech, 11/4 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T02:00Z",
+      "when": "11/4 - 9:00 PM EST",
+      "away": "SalishKootenai",
+      "home": "Montana",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "SalishKootenai, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "131858",
+      "homeId": "149",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: SalishKootenai at Montana, 11/4 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T02:00Z",
+      "when": "11/4 - 9:00 PM EST",
+      "away": "Radford",
+      "home": "California",
+      "score": "74–95.5",
+      "total": "169.5",
+      "models": "California, 4–0",
+      "sim": "74–95.5, California 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2515",
+      "homeId": "25",
+      "neutral": false,
+      "homeMargin": "21.5",
+      "agreement": "home",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "157.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Radford at California, 11/4 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T03:00Z",
+      "when": "11/4 - 10:00 PM EST",
+      "away": "Queens",
+      "home": "LMU",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Queens, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2511",
+      "homeId": "2351",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "8.5",
+      "postedTotal": "160.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Queens at LMU, 11/4 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T03:00Z",
+      "when": "11/4 - 10:00 PM EST",
+      "away": "Milwaukee",
+      "home": "Santa Clara",
+      "score": "66.5–92",
+      "total": "158.5",
+      "models": "Santa Clara, 4–0",
+      "sim": "66.5–92, Santa Clara 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "270",
+      "homeId": "2541",
+      "neutral": false,
+      "homeMargin": "25.5",
+      "agreement": "home",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "161.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: Milwaukee at Santa Clara, 11/4 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T03:00Z",
+      "when": "11/4 - 10:00 PM EST",
+      "away": "N Dakota St",
+      "home": "Saint Mary's",
+      "score": "85–90",
+      "total": "175",
+      "models": "split, 2–1 N Dakota St",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2449",
+      "homeId": "2608",
+      "neutral": false,
+      "homeMargin": "5",
+      "agreement": "split",
+      "marketHomeMargin": "12.5",
+      "postedTotal": "148.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🎟️ 🟡 2 📏 Lean. Thin sample. Game: N Dakota St at Saint Mary's, 11/4 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

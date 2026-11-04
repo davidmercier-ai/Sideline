@@ -14,6 +14,7 @@ const NOVIG = 'https://api.novig.com/v3/public/catalog'
 const FANDUEL_PAGES = {
   nfl: 'nfl',
   ncaaf: 'ncaaf',
+  ncaab: 'ncaab',
   nba: 'nba',
   nhl: 'nhl',
 }

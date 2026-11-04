@@ -1,0 +1,128 @@
+{
+  "id": "2026-11-04-nhl-2026-11-04",
+  "title": "NHL 2026-11-04",
+  "sportPath": "hockey/nhl",
+  "retrievedAt": "2026-11-04T17:49:56.504Z",
+  "games": [
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Senators",
+      "home": "Sabres",
+      "score": "3.2–2.8",
+      "total": "6",
+      "models": "split, 3–1 Senators",
+      "sim": "3.5–3, Senators 54.2%",
+      "sportPath": "hockey/nhl",
+      "awayId": "14",
+      "homeId": "2",
+      "neutral": false,
+      "homeMargin": "-0.4",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔵 3 ⚠️ Bet Senators. Game: Senators at Sabres, 11/4 - 7:30 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-05T00:30Z",
+      "when": "11/4 - 7:30 PM EST",
+      "away": "Blackhawks",
+      "home": "Panthers",
+      "score": "2.5–4.3",
+      "total": "6.9",
+      "models": "Panthers, 4–0",
+      "sim": "2.5–4, Panthers 85.8%",
+      "sportPath": "hockey/nhl",
+      "awayId": "4",
+      "homeId": "26",
+      "neutral": false,
+      "homeMargin": "1.8",
+      "agreement": "home",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 5.5. Game: Blackhawks at Panthers, 11/4 - 7:30 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-05T03:00Z",
+      "when": "11/4 - 10:00 PM EST",
+      "away": "Sharks",
+      "home": "Kings",
+      "score": "3.3–2.8",
+      "total": "6.1",
+      "models": "split, 2–1 Sharks",
+      "sim": "3.5–2.5, Sharks 59%",
+      "sportPath": "hockey/nhl",
+      "awayId": "18",
+      "homeId": "8",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Under 6.5. Game: Sharks at Kings, 11/4 - 10:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-05T03:00Z",
+      "when": "11/4 - 10:00 PM EST",
+      "away": "Flames",
+      "home": "Kraken",
+      "score": "2.7–3.9",
+      "total": "6.6",
+      "models": "split, 3–1 Kraken",
+      "sim": "2.5–4, Kraken 72%",
+      "sportPath": "hockey/nhl",
+      "awayId": "3",
+      "homeId": "124292",
+      "neutral": false,
+      "homeMargin": "1.2",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟩 4 💰 Bet Over 6.5. Game: Flames at Kraken, 11/4 - 10:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet",
+      "research": "log"
+    }
+  ]
+}

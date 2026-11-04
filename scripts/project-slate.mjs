@@ -1124,8 +1124,8 @@ async function main() {
   blocks.push('- Public consensus: Covers handicapper picks and the ESPN Matchup Predictor when those sources send a row. A missing row stays missing. This is not blended into the four models or the book prices.')
   blocks.push('')
 
-  const books = await loadBooks(['nfl', 'ncaaf', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
-  blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
+  const books = await loadBooks(['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
+  blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
   const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
   blocks.push('')
@@ -1143,7 +1143,9 @@ async function main() {
         [`FBS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=80&limit=300`, true, 'points', 'ncaaf'],
         [`FCS ${slateDate}`, 'football/college-football', `?dates=${dated}&groups=81&limit=300`, true, 'points', 'ncaaf'],
         [`NBA ${slateDate}`, 'basketball/nba', `?dates=${dated}`, false, 'points', 'nba'],
+        [`College basketball ${slateDate}`, 'basketball/mens-college-basketball', `?dates=${dated}&limit=300`, false, 'points', 'ncaab'],
         [`NHL ${slateDate}`, 'hockey/nhl', `?dates=${dated}`, false, 'goals', 'nhl'],
+        ['Champions League', 'soccer/uefa.champions', `?dates=${dated}`, false, 'goals', null],
         ['Premier League scoreboard', 'soccer/eng.1', `?dates=${dated}`, false, 'goals', 'epl'],
         ['J1', 'soccer/jpn.1', `?dates=${dated}`, false, 'goals', null],
         ['MLS scoreboard', 'soccer/usa.1', `?dates=${dated}`, false, 'goals', 'mls'],
