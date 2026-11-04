@@ -103,7 +103,7 @@ export const GAME_BETS: GameBet[] = [
     id: 'dk-grizzlies-over',
     book: DK,
     href: 'https://sportsbook.draftkings.com/event/34936989?outcomes=0OU87027692O22850_1',
-    american: -110,
+    american: -106,
     selection: 'Over 228.5',
     game: 'Pacers at Grizzlies',
     kickoff: '8:00 PM ET',
