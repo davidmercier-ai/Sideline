@@ -19,6 +19,54 @@ export type GameBet = {
 const DK = 'DraftKings' as const
 const FD = 'FanDuel' as const
 
+export type BoostSlip = {
+  id: string
+  book: BookName
+  href: string
+  title: string
+  legs: string
+  note: string
+  defaultStatus: 'open'
+  defaultStake: ''
+}
+
+/**
+ * Boost slips built only from numbers that clear.
+ * The combined price is the book's number on the slip. It is not a product of the leg prices.
+ */
+export const BOOSTS: BoostSlip[] = [
+  {
+    id: 'fd-nba-50',
+    book: FD,
+    href: 'https://sportsbook.fanduel.com/addToBetslip?marketId[0]=739.195732700&selectionId[0]=7017824&marketId[1]=739.195736189&selectionId[1]=7017824&marketId[2]=739.195203761&selectionId[2]=237491',
+    title: 'FanDuel 50% NBA',
+    legs: 'Hawks at Wizards under 231.5, Bulls at Knicks under 234.5, Grizzlies −5.5',
+    note: '3 legs. The boost needs +100 or longer and a $10 max. Apply it on the slip. Confirm under 231.5, under 234.5, and the spread. The under ids are shared, and the Grizzlies id is also the moneyline.',
+    defaultStatus: 'open',
+    defaultStake: '',
+  },
+  {
+    id: 'dk-nba-25',
+    book: DK,
+    href: 'https://sportsbook.draftkings.com/?outcomes=0OU87027687U23150_3,0OU87027691U23350_3,0OU87027692O22850_1',
+    title: 'DraftKings 25% NBA',
+    legs: 'Hawks at Wizards under 231.5, Bulls at Knicks under 233.5, Grizzlies over 228.5',
+    note: '3 legs across three games. Open in Safari. The boost needs +300 or longer and a $10 max. A two-leg of these prices stays short of +300. The slip price is whatever DraftKings shows.',
+    defaultStatus: 'open',
+    defaultStake: '',
+  },
+  {
+    id: 'fd-any-25',
+    book: FD,
+    href: 'https://sportsbook.fanduel.com/addToBetslip?marketId=739.194952424&selectionId=7017911',
+    title: 'FanDuel 25% any bet',
+    legs: 'Blackhawks at Panthers over 5.5 −140',
+    note: 'One leg. −140 is longer than the −200 minimum. $25 max. Expires Nov 9. Confirm the over is 5.5. That over id is shared.',
+    defaultStatus: 'open',
+    defaultStake: '',
+  },
+]
+
 /**
  * Clears from the Wednesday Nov 4 card. Prices at 12:55 PM ET.
  * Each row is one selection. A price is ranked only when both books post that same number.

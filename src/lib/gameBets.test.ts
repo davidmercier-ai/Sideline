@@ -1,5 +1,12 @@
 import assert from 'node:assert/strict'
-import { GAME_BETS } from './gameBets.ts'
+import { BOOSTS, GAME_BETS } from './gameBets.ts'
+
+assert.equal(BOOSTS.length, 3)
+assert.equal(BOOSTS.filter((slip) => slip.book === 'FanDuel').length, 2)
+assert.equal(BOOSTS.filter((slip) => slip.book === 'DraftKings').length, 1)
+assert.equal(BOOSTS.every((slip) => slip.href.startsWith('https://')), true)
+assert.equal(BOOSTS.some((slip) => slip.href.includes('marketId[0]=')), true)
+assert.equal(BOOSTS.some((slip) => slip.href.startsWith('https://sportsbook.draftkings.com/?outcomes=')), true)
 
 assert.equal(GAME_BETS.length, 8)
 const ids = new Set(GAME_BETS.map((bet) => bet.id))

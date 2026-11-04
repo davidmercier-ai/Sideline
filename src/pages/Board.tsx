@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { messageLink, sendBetLink, shareMessage } from '../lib/shareLink'
 import { NAMED_CARDS, type NamedCard } from '../lib/cards'
 import { progressLine } from '../lib/boxScore'
-import { GAME_BETS, type GameBet } from '../lib/gameBets'
+import { BOOSTS, GAME_BETS, type BoostSlip, type GameBet } from '../lib/gameBets'
 import { ledger, parseStake, type TicketStatus } from '../lib/ledger'
 import { loadGameSnaps, loadSportSnaps, loadStats } from '../lib/nflBoard'
 import {
@@ -46,7 +46,7 @@ function statKey(ticket: Ticket): string {
 }
 
 function seeds(): TicketSeed[] {
-  return [...GAME_BETS, ...TICKETS, ...NAMED_CARDS.flatMap((card) => card.slips)]
+  return [...BOOSTS, ...GAME_BETS, ...TICKETS, ...NAMED_CARDS.flatMap((card) => card.slips)]
 }
 
 export function BoardPage() {
@@ -101,6 +101,7 @@ export function BoardPage() {
 
   const active = matchingPreset(features, custom)
   const gameBets = GAME_BETS.filter((bet) => features.bets && allowsBook(features, bet.book))
+  const boosts = BOOSTS.filter((slip) => features.bets && allowsBook(features, slip.book))
   const propTickets = TICKETS.filter((ticket) => features.props && allowsBook(features, ticket.book))
   const cards = NAMED_CARDS.map((card) => ({
     ...card,
@@ -108,6 +109,10 @@ export function BoardPage() {
   })).filter((card) => card.slips.length > 0)
 
   const book = ledger([
+    ...boosts.map((slip) => {
+      const view = ticketView(slip, saved)
+      return { status: view.status, stake: parseStake(view.stake), american: 0 }
+    }),
     ...gameBets.map((bet) => {
       const view = ticketView(bet, saved)
       return { status: view.status, stake: parseStake(view.stake), american: bet.american }
@@ -236,6 +241,7 @@ export function BoardPage() {
       {progress.error ? <p className="lede">Game progress is unavailable. Ticket marks are still saved.</p> : null}
       {nothingOn ? <p className="empty">Nothing is on for this combination.</p> : null}
 
+      <BoostList boosts={boosts} saved={saved} onUpdate={update} />
       <BetList
         bets={gameBets}
         groups={betGroups}
@@ -260,6 +266,48 @@ export function BoardPage() {
       ) : null}
       {cards.length > 0 ? <CardList cards={cards} saved={saved} onUpdate={update} /> : null}
     </main>
+  )
+}
+
+function BoostList({
+  boosts,
+  saved,
+  onUpdate,
+}: {
+  boosts: BoostSlip[]
+  saved: Record<string, SavedTicket>
+  onUpdate: (id: string, patch: Partial<SavedTicket>) => void
+}) {
+  if (boosts.length === 0) return null
+  return (
+    <section className="board-section">
+      <h2 className="section-title">Boosts</h2>
+      <p className="board-note">The slip price is the book’s number. Apply the boost on the slip. Opening a link does not place the bet.</p>
+      {boosts.map((slip) => (
+        <article key={slip.id} className="card board-row">
+          <header className="board-head">
+            <div>
+              <h3>{slip.title}</h3>
+              <p>{slip.legs}</p>
+            </div>
+          </header>
+          <ul className="board-legs">
+            <SlipControls
+              seed={slip}
+              label={slip.book}
+              detail={slip.legs}
+              href={slip.href}
+              color={BOOK_COLOR[slip.book]}
+              note={slip.note}
+              progress=""
+              confirm="Confirm the team and the number on the slip."
+              saved={saved}
+              onUpdate={onUpdate}
+            />
+          </ul>
+        </article>
+      ))}
+    </section>
   )
 }
 
