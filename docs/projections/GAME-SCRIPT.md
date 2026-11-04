@@ -13,3 +13,5 @@ The four reads stay the score. A game script is the personnel and scheme view. I
 7. Every branch says what would confirm it and what would kill it.
 
 Run `node scripts/game-script.mjs docs/projections/scripts/2026-11-02-bears-seahawks.json`.
+
+A scouting report can supply the personnel. The report is the source, the date, and what the source said. A matchup is named only when that report names it. See `docs/projections/SCOUTING.md`.

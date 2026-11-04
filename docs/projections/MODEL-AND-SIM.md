@@ -39,7 +39,10 @@ Retrieved snapshots are not live feeds. The Friday card was retrieved at 2026-10
 | `scripts/book-access.mjs` | Pulls the FanDuel Ohio board and the DraftKings prop feeds. |
 | `docs/projections/BOOK-ACCESS.md` | The latest access check and row counts. |
 | `docs/projections/book-access.json` | The prices from that check. |
-| `docs/projections/COMMANDMENTS.md` | The eleven rules that govern every slate. |
+| `docs/projections/COMMANDMENTS.md` | The rules that govern every slate. |
+| `scripts/scouting-reports.mjs` | Stores a source, a date, and what the source said. Builds script personnel from those reports and runs a labeled scouted sim. |
+| `docs/projections/SCOUTING.md` | How a report feeds the script and the scouted sim. |
+| `docs/projections/scouting/reports.json` | The accumulated reports. |
 | `docs/sports-projection-requirements.md` | Recovered requirements and what is still open. |
 | `docs/projections/2026-10-30-today.md` | Friday, October 30 only: four models, sim, FanDuel, DraftKings. |
 | `docs/projections/2026-10-30-slate.md` | All sports on the retrieved boards: NFL week, Friday and Saturday FBS and FCS, October 30 NBA and NHL, Premier League, MLS. Same models and sim. MLB had no upcoming game. |
@@ -133,6 +136,8 @@ Reported from those draws:
 - Over rate against each book’s total. The draw is an over when the sum of the two simulated scores is greater than the posted total.
 
 If any of the four venue lists has fewer than 3 games, the sim is marked thin. Treat that frequency as unstable.
+
+A scouted sim is a second run. It drops a venue game only when a scouting report names that team and that date, then it draws again from the same seed. The label is scouted. The base sim is the full log. If the drop empties a list, the scouted sim does not run. A share of draws is still not a win probability. The four models do not read the report.
 
 ## Books
 
