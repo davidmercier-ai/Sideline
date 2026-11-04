@@ -28,6 +28,7 @@ import {
   betSlipLink,
   draftKingsEventSlug,
   draftKingsPhoneLink,
+  draftKingsPhoneLinks,
   draftKingsSlipLink,
   fanDuelSlipLink,
   sportMark,
@@ -359,9 +360,13 @@ assert.equal(
 const webSlip = draftKingsSlipLink([dkId, '0QA2#3'], 'Bet', ['34118045', '34118045'], 'SJ Sharks @ LA Kings')
 const webOutcomes = new URL(webSlip).searchParams.get('outcomes').split(/[,|+\s]+/).filter(Boolean)
 assert.deepEqual(webOutcomes, [dkId, '0QA2#3'])
-const phone = draftKingsPhoneLink(['0OU87064453U650_3', '0HC87064453P150_3'], 'Bet')
-const deep = new URL(phone).searchParams.get('_dl')
-assert.equal(deep, 'dksb://sb/addbet/0OU87064453U650_3,0HC87064453P150_3')
+assert.equal(draftKingsPhoneLink(['0OU87064453U650_3', '0HC87064453P150_3'], 'Bet'), null)
+assert.deepEqual(draftKingsPhoneLinks(['0OU87064453U650_3', dkId], 'Bet'), [
+  'dksb://sb/addbet/0OU87064453U650_3',
+  'dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20',
+])
+assert.equal(draftKingsPhoneLink(['0OU87064453U650_3'], 'Bet'), 'dksb://sb/addbet/0OU87064453U650_3')
+assert.deepEqual(draftKingsPhoneLinks([dkId], 'Lean'), [])
 assert.equal(draftKingsPhoneLink([dkId], 'Lean'), null)
 assert.equal(draftKingsSlipLink([dkId], 'Lean'), null)
 const fdSlip = fanDuelSlipLink([

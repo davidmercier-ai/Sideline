@@ -6,9 +6,9 @@ A dated note. It does not enter the four models. The rules are in `COMMANDMENTS.
 
 Standing instructions. Written Wednesday, November 4, 2026, 3:06 PM ET. A message uses these. A Lean or a Pass gets no link. Opening a link does not place the bet.
 
-A DraftKings message uses the phone link from `draftKingsPhoneLink` in `scripts/projection-math.mjs`. Do not send `https://sportsbook.draftkings.com/event/...` in a message. On the phone that address opens the game and the picks are not added. The short `/event/{id}` path redirects, and the app drops the picks on that redirect. The homepage `/?outcomes=` link is dropped. Do not join selection ids with `%2B`. Do not join them with a raw plus. A raw plus is read as a space.
+A DraftKings message uses one `dksb://sb/addbet/` link per selection, from `draftKingsPhoneLinks` in `scripts/projection-math.mjs`. Tap one link, that pick lands, then tap the next. Do not send `https://sportsbook.draftkings.com/event/...` in a message. On the phone that address opens the game and the picks are not added. The short `/event/{id}` path redirects, and the app drops the picks on that redirect. The homepage `/?outcomes=` link is dropped. Do not join selection ids with `%2B` or a raw plus. A raw plus is read as a space. Do not send `https://dksb.sng.link/`. That address falls through to the App Store.
 
-Build the phone link in two steps. Encode each selection id, then join those ids with a comma. That string is the deep link: `dksb://sb/addbet/` plus the joined ids. A hash in an id is `%23` inside that deep link. Encode the whole deep link once and put it in `_dl`. The https address is `https://dksb.sng.link/As9kz/mjk7?_dl=` plus that value. One pick and several picks use the same path. Several bets on one slip are one link.
+A hash in a selection id is `%23` inside `dksb://sb/addbet/`. One pick is one link. A slip is several taps, not one combined link.
 
 The desktop site is the only place for a sportsbook.draftkings.com slip. That web link names the first event and its slug, then `?outcomes=` with the same ids joined by a comma. The slug is the event name in lowercase. Spaces become hyphens. ` @ ` becomes `-%40-`. No event id means no web link. The site splits `outcomes` on a comma, a plus, or a space after the query is decoded. The phone does not. The phone gets the add path only.
 

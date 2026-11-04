@@ -167,18 +167,20 @@ function draftKingsSelectionIds(selectionIds) {
 }
 
 /**
- * The phone app adds a bet from dksb://sb/addbet/{id}. A sportsbook.draftkings.com
- * event link opens the game and leaves the slip empty. The https wrapper is the
- * Singular address the DraftKings app is registered to open, so a tap from a
- * message reaches that add path. Several ids are comma-separated. A hash in an
- * id is %23. A Lean or a Pass returns null. Opening the link does not place the bet.
+ * One phone add per selection. The app adds from dksb://sb/addbet/{id}.
+ * A sportsbook.draftkings.com event link opens the game and leaves the slip empty.
+ * The Singular https wrapper falls through to the App Store, so it is not the message link.
+ * A hash in an id is %23. Several picks are several links, tapped one at a time.
+ * A Lean or a Pass returns an empty list. Opening a link does not place the bet.
  */
+export function draftKingsPhoneLinks(selectionIds, action = 'Bet') {
+  if (action !== 'Bet' && action !== 'Bet now') return []
+  return draftKingsSelectionIds(selectionIds).map((id) => `dksb://sb/addbet/${encodeURIComponent(id)}`)
+}
+
 export function draftKingsPhoneLink(selectionIds, action = 'Bet') {
-  if (action !== 'Bet' && action !== 'Bet now') return null
-  const ids = draftKingsSelectionIds(selectionIds)
-  if (ids.length === 0) return null
-  const deep = `dksb://sb/addbet/${ids.map((id) => encodeURIComponent(id)).join(',')}`
-  return `https://dksb.sng.link/As9kz/mjk7?_dl=${encodeURIComponent(deep)}`
+  const links = draftKingsPhoneLinks(selectionIds, action)
+  return links.length === 1 ? links[0] : null
 }
 
 /**
