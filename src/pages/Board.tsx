@@ -330,7 +330,7 @@ function BetList({
   return (
     <section className="board-section">
       <h2 className="section-title">Bets</h2>
-      <p className="board-note">Prices at 12:55 PM ET. Opening a link does not place the bet.</p>
+      <p className="board-note">Prices at 1:27 PM ET. Opening a link does not place the bet.</p>
       {groups.map((lead) => {
         const legs = bets.filter((bet) => bet.group === lead.group)
         const snap = snaps?.[lead.eventId]
