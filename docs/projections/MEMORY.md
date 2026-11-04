@@ -17,3 +17,5 @@ NHL had two bets. Blackhawks at Panthers over 5.5, both books, DraftKings −135
 Soccer was the Champions League only. Every venue slice was 1 or 2 games. No bet. Premier League, MLS, and J1 had no games.
 
 The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. A multi link names the first event and joins the selection ids with %2B. A raw plus sign becomes a space. FanDuel brackets in a message are %5B and %5D.
+
+A number already on a ticket stays that number. Grizzlies −5.5 is in the FanDuel parlay. DraftKings later showed −6.5. That is the same side at a worse number, not a new bet. The other side is not a hedge. This is the same mistake as offering a second soccer number after the first one was already bet.
