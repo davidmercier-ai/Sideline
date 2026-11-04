@@ -2,6 +2,22 @@
 
 A dated note. It does not enter the four models. The rules are in `COMMANDMENTS.md`.
 
+## Slip links
+
+Standing instructions. Written Wednesday, November 4, 2026, 3:06 PM ET. A message uses these. A Lean or a Pass gets no link. Opening a link does not place the bet.
+
+A DraftKings message uses the phone link from `draftKingsPhoneLink` in `scripts/projection-math.mjs`. Do not send `https://sportsbook.draftkings.com/event/...` in a message. On the phone that address opens the game and the picks are not added. The short `/event/{id}` path redirects, and the app drops the picks on that redirect. The homepage `/?outcomes=` link is dropped. Do not join selection ids with `%2B`. Do not join them with a raw plus. A raw plus is read as a space.
+
+Build the phone link in two steps. Encode each selection id, then join those ids with a comma. That string is the deep link: `dksb://sb/addbet/` plus the joined ids. A hash in an id is `%23` inside that deep link. Encode the whole deep link once and put it in `_dl`. The https address is `https://dksb.sng.link/As9kz/mjk7?_dl=` plus that value. One pick and several picks use the same path. Several bets on one slip are one link.
+
+The desktop site is the only place for a sportsbook.draftkings.com slip. That web link names the first event and its slug, then `?outcomes=` with the same ids joined by a comma. The slug is the event name in lowercase. Spaces become hyphens. ` @ ` becomes `-%40-`. No event id means no web link. The site splits `outcomes` on a comma, a plus, or a space after the query is decoded. The phone does not. The phone gets the add path only.
+
+Recheck every selection id on the live feed before the link is sent. A moved number kills the old id, and a dead id adds nothing. Derrick White under 16.5 died when DraftKings moved the number to 17.5.
+
+A FanDuel message uses `addToBetslip` with `marketId` and `selectionId`. Several legs use `marketId[n]` and `selectionId[n]`. In a message those brackets are `%5B` and `%5D`. A shared selection id still needs its market id. Confirm the player and the number on the slip before the bet is treated as placed.
+
+A number already on a ticket stays that number. A later price on that same side is not a new bet, and the other side is not a hedge. A worse number does not get a link. For a favorite, laying more points is worse. For an under, the lower total is worse. For an over, the higher total is worse. When the number is the same, only the higher American price gets the link.
+
 ## Wednesday, November 4, 2026, 1:50 PM ET
 
 The card named NBA, college basketball, college football, FCS, NHL, and soccer. Each sport gets its own answer.
@@ -16,6 +32,6 @@ NHL had two bets. Blackhawks at Panthers over 5.5, both books, DraftKings −135
 
 Soccer was the Champions League only. Every venue slice was 1 or 2 games. No bet. Premier League, MLS, and J1 had no games.
 
-The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. A sportsbook.draftkings.com event link opens the game on the phone and does not add the legs. The phone link is https://dksb.sng.link/As9kz/mjk7?_dl=dksb://sb/addbet/ with the selection ids comma-separated. A hash in a selection id is %23. FanDuel brackets in a message are %5B and %5D.
+The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. The slip-link instructions above are the rule for the next link.
 
 A number already on a ticket stays that number. Grizzlies −5.5 is in the FanDuel parlay. DraftKings later showed −6.5. That is a worse number. A worse number does not get a link. The other side is not a hedge. For a favorite, laying more points is worse. For an under, the lower total is worse. For an over, the higher total is worse. Hawks under 230.5 is worse than 231.5. This is the same mistake as the soccer card: a second, worse number after the first one was already bet.
