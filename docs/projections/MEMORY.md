@@ -12,7 +12,7 @@ The desktop site is the only place for a sportsbook.draftkings.com slip. That we
 
 Recheck every selection id on the live feed before the link is sent. A moved number kills the old id, and a dead id adds nothing. Derrick White under 16.5 died when DraftKings moved the number to 17.5.
 
-A FanDuel message uses `addToBetslip` with `marketId` and `selectionId`. Several legs use `marketId[n]` and `selectionId[n]`. In a message those brackets are `%5B` and `%5D`. A shared selection id still needs its market id. Confirm the player and the number on the slip before the bet is treated as placed.
+A FanDuel message uses `addToBetslip` with `marketId` and `selectionId`. Several legs use `marketId[n]` and `selectionId[n]`. In a message those brackets are `%5B` and `%5D`. A shared selection id still needs its market id. Confirm the player and the number on the slip before the bet is treated as placed. On Wednesday, November 4, 2026, at 5:24 PM ET, this shape landed on the phone: `https://sportsbook.fanduel.com/addToBetslip?marketId%5B0%5D=` and `selectionId%5B0%5D=`, then the next leg as `%5B1%5D`. That is the FanDuel link to send.
 
 A number already on a ticket stays that number. A later price on that same side is not a new bet, and the other side is not a hedge. A worse number does not get a link. For a favorite, laying more points is worse. For an under, the lower total is worse. For an over, the higher total is worse. When the number is the same, only the higher American price gets the link.
 
