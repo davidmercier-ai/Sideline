@@ -1,0 +1,518 @@
+{
+  "id": "2026-11-05-europa-league",
+  "title": "Europa League",
+  "sportPath": "soccer/uefa.europa",
+  "retrievedAt": "2026-11-05T14:20:16.610Z",
+  "games": [
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Ferencvaros",
+      "home": "Milan",
+      "score": "2.5–0.5",
+      "total": "3",
+      "models": "Ferencvaros, 4–0",
+      "sim": "2.5–0.5, Ferencvaros 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "622",
+      "homeId": "103",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Ferencvaros at Milan, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "RB Salzburg",
+      "home": "Anderlecht",
+      "score": "1.8–1",
+      "total": "2.8",
+      "models": "split, 2–2",
+      "sim": "2–0.5, RB Salzburg 76.1%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "2790",
+      "homeId": "441",
+      "neutral": false,
+      "homeMargin": "-0.7",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: RB Salzburg at Anderlecht, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Hoffenheim",
+      "home": "C Palace",
+      "score": "0–3",
+      "total": "3",
+      "models": "C Palace, 4–0",
+      "sim": "0–3, C Palace 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "7911",
+      "homeId": "384",
+      "neutral": false,
+      "homeMargin": "3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Hoffenheim at C Palace, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Jagiellonia ",
+      "home": "Levski Sofia",
+      "score": "1–1",
+      "total": "2",
+      "models": "split, 2–2",
+      "sim": "1–1, even 0%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "11505",
+      "homeId": "490",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Jagiellonia  at Levski Sofia, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Viktoria Plzen",
+      "home": "Lillestrom",
+      "score": "2.5–1.3",
+      "total": "3.8",
+      "models": "Viktoria Plzen, 4–0",
+      "sim": "3.5–1, Viktoria Plzen 76.2%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "11706",
+      "homeId": "987",
+      "neutral": false,
+      "homeMargin": "-1.2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Viktoria Plzen at Lillestrom, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Omonia",
+      "home": "NEC",
+      "score": "2–0.5",
+      "total": "2.5",
+      "models": "Omonia, 4–0",
+      "sim": "2–0.5, Omonia 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "617",
+      "homeId": "147",
+      "neutral": false,
+      "homeMargin": "-1.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Omonia at NEC, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Lyon",
+      "home": "Real Sociedad",
+      "score": "1.5–1.5",
+      "total": "3",
+      "models": "split, 2–2",
+      "sim": "1–2, Real Sociedad 24.7%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "167",
+      "homeId": "89",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Lyon at Real Sociedad, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Bournemouth",
+      "home": "Sparta",
+      "score": "1.5–1",
+      "total": "2.5",
+      "models": "Bournemouth, 4–0",
+      "sim": "1.5–1, Bournemouth 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "349",
+      "homeId": "433",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Bournemouth at Sparta, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Juventus",
+      "home": "AZ Alkmaar",
+      "score": "1.5–1.5",
+      "total": "3",
+      "models": "split, 2–2",
+      "sim": "1.5–1.5, even 0%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "111",
+      "homeId": "140",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Juventus at AZ Alkmaar, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Marseille",
+      "home": "Leverkusen",
+      "score": "0.3–2.3",
+      "total": "2.5",
+      "models": "Leverkusen, 4–0",
+      "sim": "0.5–1.5, Leverkusen 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "176",
+      "homeId": "131",
+      "neutral": false,
+      "homeMargin": "2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Marseille at Leverkusen, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Lech Poznan",
+      "home": "Benfica",
+      "score": "0.5–4",
+      "total": "4.5",
+      "models": "Benfica, 4–0",
+      "sim": "0.5–4, Benfica 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "2990",
+      "homeId": "1929",
+      "neutral": false,
+      "homeMargin": "3.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Lech Poznan at Benfica, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Union SG",
+      "home": "Celta Vigo",
+      "score": "2.5–0.5",
+      "total": "3",
+      "models": "Union SG, 4–0",
+      "sim": "2.5–0.5, Union SG 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "5807",
+      "homeId": "85",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Union SG at Celta Vigo, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Besiktas",
+      "home": "Celtic",
+      "score": "2.8–1.5",
+      "total": "4.3",
+      "models": "Besiktas, 4–0",
+      "sim": "3–1.5, Besiktas 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "1895",
+      "homeId": "256",
+      "neutral": false,
+      "homeMargin": "-1.2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Besiktas at Celtic, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "OFI Crete",
+      "home": "Hapoel Be'er",
+      "score": "0.5–1",
+      "total": "1.5",
+      "models": "split, 2–2",
+      "sim": "0.5–1, Hapoel Be'er 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "1010",
+      "homeId": "13083",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: OFI Crete at Hapoel Be'er, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "NK Celje",
+      "home": "Sturm Graz",
+      "score": "0–1.3",
+      "total": "1.3",
+      "models": "Sturm Graz, 4–0",
+      "sim": "0–1, Sturm Graz 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "3362",
+      "homeId": "3746",
+      "neutral": false,
+      "homeMargin": "1.3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: NK Celje at Sturm Graz, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Dinamo Zagreb",
+      "home": "Sunderland",
+      "score": "0–0.5",
+      "total": "0.5",
+      "models": "Sunderland, 4–0",
+      "sim": "0–0.5, Sunderland 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "597",
+      "homeId": "366",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Dinamo Zagreb at Sunderland, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Ararat-Armenia",
+      "home": "Torreense",
+      "score": "1.5–2",
+      "total": "3.5",
+      "models": "Torreense, 4–0",
+      "sim": "1.5–2, Torreense 100%, thin",
+      "sportPath": "soccer/uefa.europa",
+      "awayId": "20024",
+      "homeId": "21615",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Ararat-Armenia at Torreense, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "2026-11-05-nba-2026-11-05",
+  "title": "NBA 2026-11-05",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-05T14:20:16.610Z",
+  "games": [
+    {
+      "date": "2026-11-06T02:00Z",
+      "when": "11/5 - 9:00 PM EST",
+      "away": "Magic",
+      "home": "Suns",
+      "score": "118.7–119.2",
+      "total": "237.8",
+      "models": "split, 3–1 Magic",
+      "sim": "119–117, Suns 51.7%",
+      "sportPath": "basketball/nba",
+      "awayId": "19",
+      "homeId": "21",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "223.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟢 5 💰 Bet Over 223.5. Game: Magic at Suns, 11/5 - 9:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T03:00Z",
+      "when": "11/5 - 10:00 PM EST",
+      "away": "Heat",
+      "home": "Warriors",
+      "score": "113–118.3",
+      "total": "231.3",
+      "models": "Warriors, 4–0",
+      "sim": "114–116, Warriors 71%",
+      "sportPath": "basketball/nba",
+      "awayId": "14",
+      "homeId": "9",
+      "neutral": false,
+      "homeMargin": "5.3",
+      "agreement": "home",
+      "marketHomeMargin": "7.5",
+      "postedTotal": "235.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🔴 1 ➗ Pass. Warriors does not clear the number. Game: Heat at Warriors, 11/5 - 10:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
+    }
+  ]
+}

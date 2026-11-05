@@ -1,0 +1,38 @@
+{
+  "id": "2026-11-05-nfl",
+  "title": "NFL",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-05T14:20:16.610Z",
+  "games": [
+    {
+      "date": "2026-11-06T01:15Z",
+      "when": "11/5 - 8:15 PM EST",
+      "away": "Jaguars",
+      "home": "Ravens",
+      "score": "21.6–18.3",
+      "total": "39.8",
+      "models": "Jaguars, 4–0",
+      "sim": "23–18.5, Jaguars 72.8%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "30",
+      "homeId": "33",
+      "neutral": false,
+      "homeMargin": "-3.3",
+      "agreement": "away",
+      "marketHomeMargin": "-10",
+      "postedTotal": "39.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Jaguars at Ravens, 11/5 - 8:15 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "id": "2026-11-05-conference-league",
+  "title": "Conference League",
+  "sportPath": "soccer/uefa.europa.conf",
+  "retrievedAt": "2026-11-05T14:20:16.610Z",
+  "games": [
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Braga",
+      "home": "AGF",
+      "score": "0.5–2",
+      "total": "2.5",
+      "models": "split, 2–2",
+      "sim": "0.5–2, AGF 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "2994",
+      "homeId": "7853",
+      "neutral": false,
+      "homeMargin": "1.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Braga at AGF, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Kairat Almaty",
+      "home": "Atalanta",
+      "score": "1–2",
+      "total": "3",
+      "models": "Atalanta, 4–0",
+      "sim": "1–2, Atalanta 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "2528",
+      "homeId": "105",
+      "neutral": false,
+      "homeMargin": "1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Kairat Almaty at Atalanta, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Ajax",
+      "home": "Midtjylland",
+      "score": "1–1",
+      "total": "2",
+      "models": "split, 2–2",
+      "sim": "1–1, even 0%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "139",
+      "homeId": "572",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Ajax at Midtjylland, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Hearts",
+      "home": "FC Thun",
+      "score": "0.5–1",
+      "total": "1.5",
+      "models": "split, 2–2",
+      "sim": "0.5–1, FC Thun 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "262",
+      "homeId": "3024",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Hearts at FC Thun, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "KAA Gent",
+      "home": "KuPS Kuopio",
+      "score": "2–2",
+      "total": "4",
+      "models": "split, 2–2",
+      "sim": "2–2, even 0%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "3611",
+      "homeId": "8169",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: KAA Gent at KuPS Kuopio, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Hajduk Split",
+      "home": "Red Imps",
+      "score": "2.5–0.5",
+      "total": "3",
+      "models": "Hajduk Split, 4–0",
+      "sim": "2.5–0.5, Hajduk Split 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "489",
+      "homeId": "17856",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Hajduk Split at Red Imps, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Borac",
+      "home": "Mjällby",
+      "score": "0.5–2",
+      "total": "2.5",
+      "models": "Mjällby, 4–0",
+      "sim": "0.5–2, Mjällby 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "20710",
+      "homeId": "20301",
+      "neutral": false,
+      "homeMargin": "1.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Borac at Mjällby, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Inter D'Escaldes",
+      "home": "Red Star",
+      "score": "1–2",
+      "total": "3",
+      "models": "Red Star, 4–0",
+      "sim": "1–2, Red Star 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "20703",
+      "homeId": "2290",
+      "neutral": false,
+      "homeMargin": "1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Inter D'Escaldes at Red Star, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T17:45Z",
+      "when": "Scheduled",
+      "away": "Freiburg",
+      "home": "Trabzonspor",
+      "score": "0–2.5",
+      "total": "2.5",
+      "models": "Trabzonspor, 4–0",
+      "sim": "0–2.5, Trabzonspor 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "126",
+      "homeId": "997",
+      "neutral": false,
+      "homeMargin": "2.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Freiburg at Trabzonspor, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Nordsjælland",
+      "home": "Monaco",
+      "score": "0.5–2",
+      "total": "2.5",
+      "models": "Monaco, 4–0",
+      "sim": "0.5–2, Monaco 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "3101",
+      "homeId": "174",
+      "neutral": false,
+      "homeMargin": "1.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Nordsjælland at Monaco, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Egnatia",
+      "home": "CSU Craiova",
+      "score": "1–1",
+      "total": "2",
+      "models": "split, 2–2",
+      "sim": "1–1, even 0%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "21943",
+      "homeId": "8089",
+      "neutral": false,
+      "homeMargin": "0",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Egnatia at CSU Craiova, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Iberia 1999",
+      "home": "København",
+      "score": "0–2.5",
+      "total": "2.5",
+      "models": "København, 4–0",
+      "sim": "0–2.5, København 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "20025",
+      "homeId": "909",
+      "neutral": false,
+      "homeMargin": "2.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Iberia 1999 at København, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Kauno Zalgiris",
+      "home": "FC Lugano",
+      "score": "1–3.5",
+      "total": "4.5",
+      "models": "FC Lugano, 4–0",
+      "sim": "1–3.5, FC Lugano 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "20028",
+      "homeId": "7672",
+      "neutral": false,
+      "homeMargin": "2.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Kauno Zalgiris at FC Lugano, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Pafos",
+      "home": "FC Twente",
+      "score": "0.5–2",
+      "total": "2.5",
+      "models": "FC Twente, 4–0",
+      "sim": "0.5–2, FC Twente 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "22281",
+      "homeId": "152",
+      "neutral": false,
+      "homeMargin": "1.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "4.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Pafos at FC Twente, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Brighton",
+      "home": "Getafe",
+      "score": "2.5–1",
+      "total": "3.5",
+      "models": "Brighton, 4–0",
+      "sim": "2.5–1, Brighton 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "331",
+      "homeId": "2922",
+      "neutral": false,
+      "homeMargin": "-1.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Brighton at Getafe, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "CSKA Sofia",
+      "home": "Panathinaikos",
+      "score": "1.5–2",
+      "total": "3.5",
+      "models": "Panathinaikos, 4–0",
+      "sim": "1.5–2, Panathinaikos 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "10834",
+      "homeId": "443",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: CSKA Sofia at Panathinaikos, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "Jablonec",
+      "home": "Riga FC",
+      "score": "1.5–2",
+      "total": "3.5",
+      "models": "Riga FC, 4–0",
+      "sim": "1.5–2, Riga FC 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "7922",
+      "homeId": "19246",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: Jablonec at Riga FC, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-05T20:00Z",
+      "when": "Scheduled",
+      "away": "SK Brann",
+      "home": "Sint-Truidense",
+      "score": "2–1.5",
+      "total": "3.5",
+      "models": "SK Brann, 4–0",
+      "sim": "2–1.5, SK Brann 100%, thin",
+      "sportPath": "soccer/uefa.europa.conf",
+      "awayId": "620",
+      "homeId": "936",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📏 Lean. Thin sample. Game: SK Brann at Sint-Truidense, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

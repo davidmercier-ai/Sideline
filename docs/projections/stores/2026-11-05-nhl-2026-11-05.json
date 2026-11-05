@@ -1,0 +1,338 @@
+{
+  "id": "2026-11-05-nhl-2026-11-05",
+  "title": "NHL 2026-11-05",
+  "sportPath": "hockey/nhl",
+  "retrievedAt": "2026-11-05T14:20:16.610Z",
+  "games": [
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Mammoth",
+      "home": "Canadiens",
+      "score": "3.5–3.3",
+      "total": "6.9",
+      "models": "split, 2–2",
+      "sim": "3.5–3, Mammoth 50.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "129764",
+      "homeId": "10",
+      "neutral": false,
+      "homeMargin": "-0.2",
+      "agreement": "split",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 6.5. Game: Mammoth at Canadiens, 11/5 - 7:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Golden Knights",
+      "home": "Red Wings",
+      "score": "3.1–3",
+      "total": "6.1",
+      "models": "split, 2–2",
+      "sim": "3–3, Golden Knights 46.1%",
+      "sportPath": "hockey/nhl",
+      "awayId": "37",
+      "homeId": "5",
+      "neutral": false,
+      "homeMargin": "-0.1",
+      "agreement": "split",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 5.5. Game: Golden Knights at Red Wings, 11/5 - 7:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Blackhawks",
+      "home": "Lightning",
+      "score": "2.1–4.4",
+      "total": "6.4",
+      "models": "Lightning, 4–0",
+      "sim": "2–4.5, Lightning 98.1%",
+      "sportPath": "hockey/nhl",
+      "awayId": "4",
+      "homeId": "20",
+      "neutral": false,
+      "homeMargin": "2.3",
+      "agreement": "home",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔴 1 ➗ Pass. Lightning does not clear the number. Game: Blackhawks at Lightning, 11/5 - 7:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Blues",
+      "home": "Devils",
+      "score": "2.8–3.6",
+      "total": "6.4",
+      "models": "split, 3–1 Devils",
+      "sim": "2.5–4, Devils 64.6%",
+      "sportPath": "hockey/nhl",
+      "awayId": "19",
+      "homeId": "11",
+      "neutral": false,
+      "homeMargin": "0.9",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 5.5. Game: Blues at Devils, 11/5 - 7:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Hurricanes",
+      "home": "Islanders",
+      "score": "3.2–2.9",
+      "total": "6",
+      "models": "Hurricanes, 4–0",
+      "sim": "3–3, Hurricanes 51.1%",
+      "sportPath": "hockey/nhl",
+      "awayId": "7",
+      "homeId": "12",
+      "neutral": false,
+      "homeMargin": "-0.3",
+      "agreement": "away",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 5.5. Game: Hurricanes at Islanders, 11/5 - 7:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Flyers",
+      "home": "Rangers",
+      "score": "2–3.6",
+      "total": "5.5",
+      "models": "split, 3–1 Rangers",
+      "sim": "1.5–3.5, Rangers 85.8%",
+      "sportPath": "hockey/nhl",
+      "awayId": "15",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "1.6",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔵 3 ⚠️ Bet Rangers. Game: Flyers at Rangers, 11/5 - 7:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Bruins",
+      "home": "Penguins",
+      "score": "2.7–2.9",
+      "total": "5.7",
+      "models": "split, 2–1 Bruins",
+      "sim": "3–3, Penguins 47.6%",
+      "sportPath": "hockey/nhl",
+      "awayId": "1",
+      "homeId": "16",
+      "neutral": false,
+      "homeMargin": "0.2",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🟡 2 ➗ Pass. Split. Game: Bruins at Penguins, 11/5 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T00:00Z",
+      "when": "11/5 - 7:00 PM EST",
+      "away": "Stars",
+      "home": "Blue Jackets",
+      "score": "3.1–2.5",
+      "total": "5.6",
+      "models": "split, 3–1 Stars",
+      "sim": "3–2.5, Stars 58.1%",
+      "sportPath": "hockey/nhl",
+      "awayId": "9",
+      "homeId": "29",
+      "neutral": false,
+      "homeMargin": "-0.7",
+      "agreement": "split",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "5.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔵 3 ⚠️ Bet Stars. Game: Stars at Blue Jackets, 11/5 - 7:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T01:00Z",
+      "when": "11/5 - 8:00 PM EST",
+      "away": "Canucks",
+      "home": "Jets",
+      "score": "3–3.4",
+      "total": "6.4",
+      "models": "split, 3–1 Jets",
+      "sim": "3–3.5, Jets 53%",
+      "sportPath": "hockey/nhl",
+      "awayId": "22",
+      "homeId": "28",
+      "neutral": false,
+      "homeMargin": "0.3",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔵 3 ⚠️ Bet Jets. Game: Canucks at Jets, 11/5 - 8:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T01:00Z",
+      "when": "11/5 - 8:00 PM EST",
+      "away": "Ducks",
+      "home": "Oilers",
+      "score": "3.6–3.4",
+      "total": "7.1",
+      "models": "split, 2–2",
+      "sim": "3.5–3.5, Ducks 47.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "25",
+      "homeId": "6",
+      "neutral": false,
+      "homeMargin": "-0.2",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏒 🟢 5 💰 Bet Over 6.5. Game: Ducks at Oilers, 11/5 - 8:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-06T02:30Z",
+      "when": "11/5 - 9:30 PM EST",
+      "away": "Predators",
+      "home": "Avalanche",
+      "score": "2.7–4.4",
+      "total": "7.1",
+      "models": "split, 3–1 Avalanche",
+      "sim": "2.5–4, Avalanche 80.2%",
+      "sportPath": "hockey/nhl",
+      "awayId": "27",
+      "homeId": "17",
+      "neutral": false,
+      "homeMargin": "1.7",
+      "agreement": "split",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "6.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏒 🔵 3 ⚠️ Bet Avalanche. Game: Predators at Avalanche, 11/5 - 9:30 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    }
+  ]
+}
