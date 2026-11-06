@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import { indexDraftKingsProps, indexDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
-import { boardSideCall, boardTotalCall, coverRole, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
+import { boardSideCall, boardTotalCall, closestReadGap, coverRole, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
 import { propBoardCall } from './project-players.mjs'
+import { walkForwardProp } from './backtest-players.mjs'
 import { playerReads } from './projection-math.mjs'
 
 const totals = indexDraftKingsTeamTotals({
@@ -61,5 +62,28 @@ const games = [
 assert.equal(propBoardCall(playerReads(games, 'home'), 20), 'over')
 assert.equal(propBoardCall(playerReads(games, 'home'), 27), null)
 assert.equal(propBoardCall(playerReads(games.slice(0, 2), 'home'), 10), null)
+
+assert.equal(closestReadGap([8, 6, 5, 9], 'home', 3), 2)
+assert.equal(closestReadGap([2, 4, 1, 6], 'away', 3), -3)
+assert.equal(closestReadGap([4], 'tie', 3), null)
+
+const season = [30, 28, 26, 32, 10].map((value, index) => ({
+  date: `2026-10-${20 + index}`,
+  venue: 'home',
+  value,
+}))
+const forward = walkForwardProp(season, 20)
+assert.equal(forward.over.hits, 1)
+assert.equal(forward.over.decided, 2)
+assert.equal(forward.under.decided, 0)
+const cold = [10, 8, 9, 7].map((value, index) => ({
+  date: `2026-10-${20 + index}`,
+  venue: 'home',
+  value,
+}))
+const under = walkForwardProp(cold, 20)
+assert.equal(under.under.hits, 1)
+assert.equal(under.under.decided, 1)
+assert.equal(under.over.decided, 0)
 
 console.log('book feeds ok')

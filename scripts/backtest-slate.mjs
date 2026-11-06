@@ -217,6 +217,23 @@ export function boardTotalCall({ totals, postedTotal, room, thin }) {
   return null
 }
 
+export function closestReadGap(margins, side, marketMargin) {
+  if ((side !== 'home' && side !== 'away') || !Number.isFinite(marketMargin)) return null
+  const gaps = (margins ?? [])
+    .filter((value) => Number.isFinite(value))
+    .map((margin) => (side === 'home' ? margin - marketMargin : marketMargin - margin))
+  if (gaps.length === 0) return null
+  return Math.min(...gaps)
+}
+
+export const GAP_BUCKETS = [
+  { id: 'short', label: 'Short of the number', test: (gap) => gap < 0 },
+  { id: 'under1', label: '0 to 1', test: (gap) => gap >= 0 && gap < 1 },
+  { id: 'to5', label: '1 to 5', test: (gap) => gap >= 1 && gap < 5 },
+  { id: 'to10', label: '5 to 10', test: (gap) => gap >= 5 && gap < 10 },
+  { id: 'over10', label: '10 or more', test: (gap) => gap >= 10 },
+]
+
 export function coverRole(homeSpread, coverPick) {
   if (!Number.isFinite(homeSpread) || homeSpread === 0) return null
   if (coverPick !== 'home' && coverPick !== 'away') return null
@@ -286,6 +303,7 @@ function scoreLeague(name, games) {
         boardSide,
         boardTotal,
         totalActual: totalSide(actualTotal, game.total),
+        closestGap: closestReadGap(margins, agreement.side, marketMargin),
       })
     }
     const stamp = (teamId, venueName, pointsFor, pointsAgainst) => {
@@ -327,6 +345,12 @@ function summarize(name, scheduled, rows) {
   const boardSideHits = boardSides.filter((row) => row.boardSide === row.coverActual).length
   const boardTotals = rows.filter((row) => row.boardTotal && (row.totalActual === 'over' || row.totalActual === 'under'))
   const boardTotalHits = boardTotals.filter((row) => row.boardTotal === row.totalActual).length
+  const unanimousPriced = unanimous.filter((row) => Number.isFinite(row.closestGap))
+  const gapBuckets = GAP_BUCKETS.map((bucket) => {
+    const games = unanimousPriced.filter((row) => bucket.test(row.closestGap))
+    const hits = games.filter((row) => row.agreement.side === row.actual).length
+    return { id: bucket.id, label: bucket.label, hits, decided: games.length, rate: rate(hits, games.length) }
+  })
   const marginError = rows.reduce((sum, row) => sum + row.marginError, 0) / (rows.length || 1)
   const totalRows = rows.filter((row) => Number.isFinite(row.totalError))
   const totalError = totalRows.reduce((sum, row) => sum + row.totalError, 0) / (totalRows.length || 1)
@@ -362,6 +386,8 @@ function summarize(name, scheduled, rows) {
     boardTotalHits,
     boardTotalDecided: boardTotals.length,
     boardTotalRate: rate(boardTotalHits, boardTotals.length),
+    gapBuckets,
+    unanimousPriced: unanimousPriced.length,
     marginError,
     totalError,
   }
@@ -418,6 +444,17 @@ function report(results) {
   lines.push('| --- | --- | --- | --- |')
   for (const row of results) {
     lines.push(`| ${row.name} | ${record(row.favoriteRate, row.favoriteHits, row.favoriteDecided)} | ${record(row.dogRate, row.dogHits, row.dogDecided)} | ${record(row.dogBaseRate, row.dogBaseHits, row.dogBaseDecided)} |`)
+  }
+  lines.push('')
+  lines.push('## Unanimous side by gap to the spread')
+  lines.push('')
+  lines.push('The unanimous side is every decided game where the finite reads picked the same winner. The gap is the closest of those reads to the spread, on that side. A negative gap means the closest read sat on the other side of the number. A hit is a straight-up win. The cuts are the league’s scoring unit: points in the NFL and NBA, goals in the NHL. A game with no spread stays out. This is not a priced edge.')
+  lines.push('')
+  lines.push(`| League | ${GAP_BUCKETS.map((bucket) => bucket.label).join(' | ')} |`)
+  lines.push(`| --- | ${GAP_BUCKETS.map(() => '---').join(' | ')} |`)
+  for (const row of results) {
+    const cells = row.gapBuckets.map((bucket) => record(bucket.rate, bucket.hits, bucket.decided))
+    lines.push(`| ${row.name} | ${cells.join(' | ')} |`)
   }
   lines.push('')
   return lines.join('\n')

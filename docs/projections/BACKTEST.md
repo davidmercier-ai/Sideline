@@ -1,6 +1,6 @@
 # Walk-forward backtest
 
-Run at 2026-11-06T23:05:30.077Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
+Run at 2026-11-06T23:27:46.003Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
 
 This is a record of the venue-matched mean, the four-model vote, and the 2,000-draw sim. It is not a priced edge. A straight-up hit means the side with the higher number won. A cover means the venue-matched margin and the actual margin sat on the same side of the ESPN spread. Pushes are left out of the rates.
 
@@ -33,4 +33,14 @@ The venue-mean cover, split by whether that pick was the favorite or the dog. A 
 | NFL | 43.8% (21/48) | 61.4% (27/44) | 57.9% (55/95) |
 | NBA | 53.1% (26/49) | 49.0% (25/51) | 48.0% (48/100) |
 | NHL | 40.0% (16/40) | 61.5% (123/200) | 61.2% (150/245) |
+
+## Unanimous side by gap to the spread
+
+The unanimous side is every decided game where the finite reads picked the same winner. The gap is the closest of those reads to the spread, on that side. A negative gap means the closest read sat on the other side of the number. A hit is a straight-up win. The cuts are the league’s scoring unit: points in the NFL and NBA, goals in the NHL. A game with no spread stays out. This is not a priced edge.
+
+| League | Short of the number | 0 to 1 | 1 to 5 | 5 to 10 | 10 or more |
+| --- | --- | --- | --- | --- | --- |
+| NFL | 62.5% (20/32) | 57.1% (4/7) | 46.2% (6/13) | 80.0% (4/5) | 50.0% (2/4) |
+| NBA | 76.5% (26/34) | 75.0% (3/4) | 60.0% (9/15) | 42.9% (3/7) | 50.0% (4/8) |
+| NHL | 57.7% (41/71) | 71.4% (5/7) | 25.0% (6/24) | 0/0 | 0/0 |
 
