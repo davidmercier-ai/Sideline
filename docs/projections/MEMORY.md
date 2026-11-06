@@ -33,3 +33,19 @@ Soccer was the Champions League only. Every venue slice was 1 or 2 games. No bet
 The DraftKings homepage outcomes link was dropped on the phone. The Hawks under moved from 231.5 to 230.5, and the old selection id killed the parlay. The slip-link instructions above are the rule for the next link.
 
 A number already on a ticket stays that number. Grizzlies −5.5 is in the FanDuel parlay. DraftKings later showed −6.5. That is a worse number. A worse number does not get a link. The other side is not a hedge. For a favorite, laying more points is worse. For an under, the lower total is worse. For an over, the higher total is worse. Hawks under 230.5 is worse than 231.5. This is the same mistake as the soccer card: a second, worse number after the first one was already bet.
+
+## Friday, November 6, 2026, 1:20 PM ET
+
+A profit-boost token has to be on when the bet is placed. A link does not turn the token on. These four are tagged and not placed. Enter each one in the app with its token on. Recheck the number first. A moved number is not this bet.
+
+Bengals same-game parlay and the college football 3-leg are already in. They are not on this list.
+
+NHL 20% token, ID 434285. Same-game parlay plus. Blue Jackets +1.5 −170 and Sabres under 6.5 −118, then Ducks at Flames over 5.5 −165. Sabres game is 7:00 PM ET. Minimum odds +200.
+
+NBA Cup 50% token. Same-game parlay. Grizzlies moneyline +142, Thunder at Grizzlies over 223.5 −112, Ty Jerome over 20.5 points −109, Ajay Mitchell under 19.5 points −118. Game is 8:00 PM ET. Moneyline and spread stay apart. Team total and game total stay apart.
+
+Sixers 30% token, ID 435402. Same-game parlay. Tyrese Maxey over 25.5 points −108, Donovan Mitchell under 24.5 points −104, James Harden under 18.5 points −119, Joel Embiid over 8.5 rebounds −132, Evan Mobley over 17.5 points −114. Game is 7:30 PM ET. Minimum odds −200.
+
+NBA Live Game Leader 50% token, ID 434156. Single. Luka Doncic most assists +118. Trail Blazers at Lakers, 10:10 PM ET. Minimum odds −200. Add it from Game Leaders, then turn the token on, then place it.
+
+UConn at Michigan and the college 3-leg boost have no bet. Every men’s college log today is under 3 games. Nothing is tagged for those two.
