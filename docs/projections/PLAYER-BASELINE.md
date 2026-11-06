@@ -1,40 +1,64 @@
 # Player baseline
 
-Retrieved 2026-10-31T04:29:55.254Z UTC. Regular-season ESPN gamelogs for the NFL and NBA names on the saved FanDuel and DraftKings prop boards.
+Retrieved 2026-11-06T23:05:17.061Z UTC. Regular-season ESPN gamelogs for the names on the current DraftKings prop lines.
 
-The four reads are the player venue mean, overall mean, venue median, and last three games. Opponent allowance is not applied. A yes/no stat, such as an anytime touchdown, compares each read with one half of the games. A counting stat uses the same 1-unit band as a team total. The stance needs the venue read and at least three reads on that side. It is not a win probability and it is not a priced edge.
+The four reads are the player venue mean, overall mean, venue median, and last three games. Opponent allowance is not applied. A counting stat uses the same 1-unit band as a team total. The stance needs the venue read and at least three reads on that side. A board row needs all four reads at least 1 unit past the line and a venue sample of at least 3 games. It is not a win probability and it is not a priced edge.
 
-Stats in this pass: NFL passing, rushing, and receiving yards, receptions, and anytime touchdowns; NBA points, rebounds, assists, and threes. Other player stats stay open.
+Stats in this pass: NBA points, rebounds, and assists; NFL passing, rushing, and receiving yards. Other player stats stay open.
 
-| Players with a log | 470 |
-| Lookups with no log | 20 |
-| Prop rows compared | 1496 |
-| With the log | 225 |
-| Against the log | 668 |
-| Even or mixed | 426 |
-| Unrated | 177 |
+| Players with a log | 314 |
+| Lookups with no log | 7 |
+| Prop rows compared | 586 |
+| With the log | 156 |
+| Against the log | 134 |
+| Even or mixed | 274 |
+| Unrated | 22 |
+| Board over | 56 |
+| Board under | 53 |
+
+## Board over
+
+- Kyshawn George (Wizards): Kyshawn George points 15.5. Venue mean 18, Overall mean 17.3, Venue median 21, Last 3 games 19.7.
+- Grayson Allen (Hornets): Grayson Allen points 13.5. Venue mean 16.8, Overall mean 15.7, Venue median 15, Last 3 games 20.
+- Tyrese Maxey (76ers): Tyrese Maxey points 25.5. Venue mean 28, Overall mean 28, Venue median 27.5, Last 3 games 27.7.
+- Evan Mobley (Cavaliers): Evan Mobley points 17.5. Venue mean 19.5, Overall mean 18.8, Venue median 19, Last 3 games 19.7.
+- Zion Williamson (Pelicans): Zion Williamson points 19.5. Venue mean 21.4, Overall mean 21.5, Venue median 22, Last 3 games 21.
+- Saddiq Bey (Pelicans): Saddiq Bey points 11.5. Venue mean 15.8, Overall mean 16.4, Venue median 13, Last 3 games 21.7.
+- Ty Jerome (Grizzlies): Ty Jerome points 20.5. Venue mean 36, Overall mean 27.4, Venue median 40, Last 3 games 24.3.
+- Walker Kessler (Lakers): Walker Kessler points 12.5. Venue mean 18.4, Overall mean 14.4, Venue median 16, Last 3 games 15.3.
+
+## Board under
+
+- Trae Young (Wizards): Trae Young points 21.5. Venue mean 19, Overall mean 19.6, Venue median 18.5, Last 3 games 18.
+- CJ McCollum (Hawks): CJ McCollum points 17.5. Venue mean 11.7, Overall mean 14.3, Venue median 13, Last 3 games 14.
+- Dyson Daniels (Hawks): Dyson Daniels points 12.5. Venue mean 9.7, Overall mean 9.6, Venue median 7, Last 3 games 7.3.
+- Deandre Ayton (Wizards): Deandre Ayton points 8.5. Venue mean 5, Overall mean 5.4, Venue median 5, Last 3 games 4.
+- Royce O'Neale (Hornets): Royce O'Neale points 6.5. Venue mean 3.2, Overall mean 4.4, Venue median 2, Last 3 games 3.3.
+- Donovan Mitchell (Cavaliers): Donovan Mitchell points 24.5. Venue mean 21, Overall mean 22.5, Venue median 20.5, Last 3 games 19.7.
+- James Harden (Cavaliers): James Harden points 18.5. Venue mean 15.3, Overall mean 16.6, Venue median 15, Last 3 games 15.3.
+- Rudy Gobert (Timberwolves): Rudy Gobert points 10.5. Venue mean 8, Overall mean 7.5, Venue median 6.5, Last 3 games 9.
 
 ## With the log
 
-- Aaron Rodgers (Steelers): Aaron Rodgers Passing Yards O/U 219.5. Venue mean 240, Overall mean 242.
-- Deshaun Watson (Browns): Deshaun Watson Passing Yards O/U 210.5. Venue mean 226.
-- Joe Burrow (Bengals): Joe Burrow Passing Yards O/U 274.5. Venue mean 341, n=2, Overall mean 275.
-- Michael Penix Jr. (Falcons): Michael Penix Jr. Passing Yards O/U 227.5. Venue mean 239.
-- Kirk Cousins (Raiders): Kirk Cousins Passing Yards O/U 240.5. Venue mean 248, Overall mean 268.
-- Geno Smith (Jets): Geno Smith Passing Yards O/U 223.5. Venue mean 238.
-- Lamar Jackson (Ravens): Lamar Jackson Passing Yards O/U 237.5. Venue mean 324, n=1, Overall mean 241.
-- Trevor Lawrence (Jaguars): Trevor Lawrence Passing Yards O/U 241.5. Venue mean 266, Overall mean 246.
+- Kyshawn George (Wizards): Kyshawn George points 15.5. Venue mean 18, Overall mean 17.3, Venue median 21, Last 3 games 19.7.
+- Paul George (Celtics): Paul George points 17.5. Venue mean 27.5, n=2, Overall mean 21.3, Venue median 27.5, n=2, Last 3 games 20.
+- Grayson Allen (Hornets): Grayson Allen points 13.5. Venue mean 16.8, Overall mean 15.7, Venue median 15, Last 3 games 20.
+- Tyrese Maxey (76ers): Tyrese Maxey points 25.5. Venue mean 28, Overall mean 28, Venue median 27.5, Last 3 games 27.7.
+- Evan Mobley (Cavaliers): Evan Mobley points 17.5. Venue mean 19.5, Overall mean 18.8, Venue median 19, Last 3 games 19.7.
+- Anfernee Simons (76ers): Anfernee Simons points 8.5. Venue mean 13, Overall mean 10, Venue median 16, Last 3 games 8.3.
+- Zion Williamson (Pelicans): Zion Williamson points 19.5. Venue mean 21.4, Overall mean 21.5, Venue median 22, Last 3 games 21.
+- Dejounte Murray (Pelicans): Dejounte Murray points 16.5. Venue mean 17.7, Overall mean 18.2, Venue median 20, Last 3 games 17.3.
 
 ## Against the log
 
-- Jacoby Brissett (Cardinals): Jacoby Brissett Passing Yards O/U 256.5. Venue mean 235.
-- Baker Mayfield (Buccaneers): Baker Mayfield Passing Yards O/U 213.5. Venue mean 199.
-- Kyler Murray (Vikings): Kyler Murray Passing Yards O/U 224.5. Venue mean 198.
-- Malik Willis (Dolphins): Malik Willis Passing Yards O/U 183.5. Venue mean 173.
-- Bo Nix (Broncos): Bo Nix Passing Yards O/U 203.5. Venue mean 193.
-- Jayden Daniels (Commanders): Jayden Daniels Passing Yards O/U 203.5. Venue mean 199, n=1, Overall mean 189.
-- Sam Darnold (Seahawks): Sam Darnold Passing Yards O/U 238.5. Venue mean 158.
-- Rico Dowdle (Steelers): Rico Dowdle Rushing Yards O/U 30.5. Venue mean 28, n=2, Overall mean 29.
+- Trae Young (Wizards): Trae Young points 21.5. Venue mean 19, Overall mean 19.6, Venue median 18.5, Last 3 games 18.
+- CJ McCollum (Hawks): CJ McCollum points 17.5. Venue mean 11.7, Overall mean 14.3, Venue median 13, Last 3 games 14.
+- Dyson Daniels (Hawks): Dyson Daniels points 12.5. Venue mean 9.7, Overall mean 9.6, Venue median 7, Last 3 games 7.3.
+- Deandre Ayton (Wizards): Deandre Ayton points 8.5. Venue mean 5, Overall mean 5.4, Venue median 5, Last 3 games 4.
+- Payton Pritchard (Celtics): Payton Pritchard points 13.5. Venue mean 9.3, Overall mean 13, Venue median 7, Last 3 games 7.
+- Coby White (Hornets): Coby White points 12.5. Venue mean 7, n=1, Overall mean 5.5, n=2, Venue median 7, n=1, Last 3 games 5.5, n=2.
+- Sion James (Hornets): Sion James points 6.5. Venue mean 4.6, Overall mean 5.2, Venue median 4, Last 3 games 8.3.
+- Sam Hauser (Celtics): Sam Hauser points 6.5. Venue mean 5.3, Overall mean 7.6, Venue median 3, Last 3 games 5.3.
 
 The full rows are in `docs/projections/player-baseline.json`.
 

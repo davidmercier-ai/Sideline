@@ -1,6 +1,6 @@
 # Walk-forward backtest
 
-Run at 2026-11-06T22:53:48.031Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
+Run at 2026-11-06T23:05:30.077Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
 
 This is a record of the venue-matched mean, the four-model vote, and the 2,000-draw sim. It is not a priced edge. A straight-up hit means the side with the higher number won. A cover means the venue-matched margin and the actual margin sat on the same side of the ESPN spread. Pushes are left out of the rates.
 
@@ -13,4 +13,24 @@ This is a record of the venue-matched mean, the four-model vote, and the 2,000-d
 Games with no prior venue sample are not scored. The stable sim side skips a game when any venue list has fewer than 3 games. Always home is the rate at which the home team won the decided games, shown so the model rates have a simple comparison.
 
 The cover column uses the ESPN schedule spread when that quote is present, and the DraftKings pick-center spread from the game summary when the schedule quote is missing. A game with neither stays out of the cover rate. That is a missing price, not a cover rate of zero.
+
+## Board rule
+
+A board side needs four finite reads on the same side of the spread, each at least the room past that number, and every venue list at 3 games or more. The room is 1 point in the NFL and NBA and 0.25 goals in the NHL. A board total is the same test against the posted total. A hit means the game finished on that side. A push is left out. This is a record of the filter, not a priced edge.
+
+| League | Board sides | Side covers | Board totals | Total hits |
+| --- | --- | --- | --- | --- |
+| NFL | 0 | 0/0 | 3 | 0.0% (0/3) |
+| NBA | 4 | 25.0% (1/4) | 6 | 33.3% (2/6) |
+| NHL | 8 | 62.5% (5/8) | 43 | 48.8% (21/43) |
+
+## Favorite and dog covers
+
+The venue-mean cover, split by whether that pick was the favorite or the dog. A negative home spread means the home team was favored. A pick'em is left out. Dog covered, any pick is how often the dog covered with no model involved, so the dog-pick column has a baseline.
+
+| League | Favorite picks | Dog picks | Dog covered, any pick |
+| --- | --- | --- | --- |
+| NFL | 43.8% (21/48) | 61.4% (27/44) | 57.9% (55/95) |
+| NBA | 53.1% (26/49) | 49.0% (25/51) | 48.0% (48/100) |
+| NHL | 40.0% (16/40) | 61.5% (123/200) | 61.2% (150/245) |
 
