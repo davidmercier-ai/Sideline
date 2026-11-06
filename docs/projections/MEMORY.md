@@ -46,6 +46,6 @@ NBA Cup 50% token. Same-game parlay. Grizzlies moneyline +142, Thunder at Grizzl
 
 Sixers 30% token, ID 435402. Same-game parlay. Tyrese Maxey over 25.5 points −108, Donovan Mitchell under 24.5 points −104, James Harden under 18.5 points −119, Joel Embiid over 8.5 rebounds −132, Evan Mobley over 17.5 points −114. Game is 7:30 PM ET. Minimum odds −200.
 
-NBA Live Game Leader 50% token, ID 434156. Single. Luka Doncic most assists +118. Trail Blazers at Lakers, 10:10 PM ET. Minimum odds −200. Add it from Game Leaders, then turn the token on, then place it.
+**LIVE.** NBA Live Game Leader 50% token, ID 434156. Single. Luka Doncic most assists +118. Trail Blazers at Lakers, 10:10 PM ET. Minimum odds −200. Add it from Game Leaders, then turn the token on, then place it. The word on this one is LIVE.
 
 UConn at Michigan and the college 3-leg boost have no bet. Every men’s college log today is under 3 games. Nothing is tagged for those two.
