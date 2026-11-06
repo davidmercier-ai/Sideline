@@ -233,7 +233,7 @@ function novigQuotes(events, markets, retrievedAt) {
   return { index, eventById, markets }
 }
 
-function findQuote(index, awayNames, homeNames) {
+export function findQuote(index, awayNames, homeNames) {
   if (!index) return null
   for (const [key, quote] of index) {
     const [away, home] = key.split('|')
@@ -297,6 +297,111 @@ export async function loadBooks(sportKeys, retrievedAt, options = {}) {
       return { fanduel, novig, props }
     },
   }
+}
+
+export const DRAFTKINGS_TEAM_TOTALS = {
+  nfl: ['88808', '530', '16719'],
+  ncaaf: ['87637', '530', '16719'],
+  nba: ['42648', '523', '4609'],
+  nhl: ['42133', '1193', '16716'],
+}
+
+export const DRAFTKINGS_PROP_FEEDS = {
+  nba: [
+    ['42648', '1215', '12488', 'points'],
+    ['42648', '1216', '12492', 'rebounds'],
+    ['42648', '1217', '12495', 'assists'],
+  ],
+  nfl: [
+    ['88808', '1000', '9524', 'passing yards'],
+    ['88808', '1001', '9514', 'rushing yards'],
+    ['88808', '1342', '14114', 'receiving yards'],
+  ],
+}
+
+const DK_CONTENT = 'https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues'
+
+function americanText(value) {
+  return formatAmerican(String(value ?? '').replaceAll('−', '-').replaceAll('–', '-'))
+}
+
+function eventSides(name) {
+  const parts = String(name || '').split(' @ ')
+  return parts.length === 2 ? parts : null
+}
+
+export function indexDraftKingsTeamTotals(payload) {
+  const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
+  const index = new Map()
+  for (const market of payload?.markets ?? []) {
+    const sides = eventSides(events.get(market.eventId))
+    if (!sides) continue
+    const selections = (payload.selections ?? []).filter((selection) => selection.marketId === market.id)
+    const over = selections.find((selection) => /over/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const under = selections.find((selection) => /under/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const line = Number(over?.points ?? under?.points)
+    if (!Number.isFinite(line)) continue
+    const quote = { line, over: americanText(over?.displayOdds?.american), under: americanText(under?.displayOdds?.american) }
+    const key = pairKey(sides[0], sides[1])
+    const bucket = index.get(key) ?? { away: sides[0], home: sides[1], awayTotal: null, homeTotal: null }
+    const teamLabel = String(market.name || '').split(':')[0]
+    if (namesMatch(teamLabel, sides[0])) bucket.awayTotal = quote
+    else if (namesMatch(teamLabel, sides[1])) bucket.homeTotal = quote
+    index.set(key, bucket)
+  }
+  return index
+}
+
+export function indexDraftKingsProps(payload, stat) {
+  const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
+  const props = []
+  for (const market of payload?.markets ?? []) {
+    const sides = eventSides(events.get(market.eventId))
+    if (!sides) continue
+    const selections = (payload.selections ?? []).filter((selection) => selection.marketId === market.id)
+    const over = selections.find((selection) => /over/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const under = selections.find((selection) => /under/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const line = Number(over?.points ?? under?.points)
+    if (!Number.isFinite(line)) continue
+    const player = String(market.name || '').replace(new RegExp(`\\s+${stat}.*$`, 'i'), '').trim()
+    if (!player) continue
+    props.push({
+      away: sides[0],
+      home: sides[1],
+      player,
+      stat,
+      line,
+      over: americanText(over?.displayOdds?.american),
+      under: americanText(under?.displayOdds?.american),
+    })
+  }
+  return props
+}
+
+async function loadDraftKingsFeed(league, category, subcategory) {
+  return getJson(`${DK_CONTENT}/${league}/categories/${category}/subcategories/${subcategory}`)
+}
+
+export async function loadDraftKingsTeamTotals(sport) {
+  const spec = DRAFTKINGS_TEAM_TOTALS[sport]
+  if (!spec) return new Map()
+  return indexDraftKingsTeamTotals(await loadDraftKingsFeed(...spec))
+}
+
+export async function loadDraftKingsPropLines(sport) {
+  const feeds = DRAFTKINGS_PROP_FEEDS[sport] ?? []
+  const props = []
+  for (const [league, category, subcategory, stat] of feeds) {
+    props.push(...indexDraftKingsProps(await loadDraftKingsFeed(league, category, subcategory), stat))
+  }
+  return props
+}
+
+export function propsForNames(props, awayNames, homeNames) {
+  return (props ?? []).filter((prop) => (
+    awayNames.some((name) => namesMatch(name, prop.away))
+    && homeNames.some((name) => namesMatch(name, prop.home))
+  ))
 }
 
 function propsForEvent(markets, eventId) {

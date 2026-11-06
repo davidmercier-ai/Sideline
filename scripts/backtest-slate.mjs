@@ -6,6 +6,7 @@
  */
 
 import { writeFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
 import {
   homeMargin,
   medianPair,
@@ -151,7 +152,25 @@ async function loadLeague(league) {
       }
     }
   }
+  const missingSpread = [...games.values()].filter((game) => !Number.isFinite(game.homeSpread))
+  await pool(missingSpread, 6, async (game) => {
+    try {
+      const summary = await getJson(`${ESPN}/apis/site/v2/sports/${league.path}/summary?event=${game.id}`)
+      const spread = spreadFromPickcenter(summary)
+      if (Number.isFinite(spread)) game.homeSpread = spread
+    } catch {
+      game.homeSpread = null
+    }
+  })
   return [...games.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)))
+}
+
+export function spreadFromPickcenter(data) {
+  const listed = data?.pickcenter ?? []
+  const draftKings = listed.find((item) => /draft\s*kings/i.test(item?.provider?.name ?? ''))
+  const pick = draftKings ?? listed[0] ?? data?.header?.competitions?.[0]?.odds?.[0]
+  const spread = Number(pick?.spread)
+  return Number.isFinite(spread) ? spread : null
 }
 
 function scoreLeague(name, games) {
@@ -284,7 +303,7 @@ function report(results) {
   lines.push('')
   lines.push('Games with no prior venue sample are not scored. The stable sim side skips a game when any venue list has fewer than 3 games. Always home is the rate at which the home team won the decided games, shown so the model rates have a simple comparison.')
   lines.push('')
-  lines.push('The cover column is missing when the completed-game payload did not include an ESPN spread. That is a missing price, not a cover rate of zero.')
+  lines.push('The cover column uses the ESPN schedule spread when that quote is present, and the DraftKings pick-center spread from the game summary when the schedule quote is missing. A game with neither stays out of the cover rate. That is a missing price, not a cover rate of zero.')
   lines.push('')
   return lines.join('\n')
 }
@@ -302,7 +321,9 @@ async function main() {
   process.stdout.write(markdown)
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

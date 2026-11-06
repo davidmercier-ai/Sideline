@@ -13,7 +13,7 @@ import { writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { boardStoreId, saveBoard } from './board-store.mjs'
 import { researchLevel, thinPublicLeague } from './research-protocol.mjs'
-import { loadBooks } from './book-prices.mjs'
+import { findQuote, loadBooks, loadDraftKingsPropLines, loadDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
 import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
   asNumber,
@@ -581,7 +581,7 @@ function marketSection(game) {
   lines.push('**2. Sportsbook lines and prices — FanDuel and DraftKings**')
   lines.push('')
   lines.push(`Retrieved ${retrievedAt.toISOString()} UTC. Snapshot, not a live feed. This pass uses FanDuel and DraftKings only.`)
-  lines.push('DraftKings open and latest come from the ESPN quote. The DraftKings site returned access denied. FanDuel latest comes from the Ohio board. FanDuel did not send an opening price.')
+  lines.push('DraftKings open and latest game lines come from the ESPN quote. DraftKings team totals come from the team-total feed. FanDuel latest comes from the Ohio board. FanDuel did not send an opening price.')
   lines.push('Prices and timestamps stay in this section. They are not inputs to the projection above.')
   lines.push('')
   lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Flag |')
@@ -595,8 +595,9 @@ function marketSection(game) {
   const fdTotal = fanduel && Number.isFinite(fanduel.total) ? 'verified-retrieved' : 'unavailable'
   const dkTotal = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
   lines.push(`| O/U | unavailable | ${totalCell(fanduel?.total, fanduel?.overPrice, fanduel?.underPrice)} | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | FD ${fdTotal}; DK ${dkTotal} |`)
-  lines.push('| Team total, away | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
-  lines.push('| Team total, home | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
+  const dkTotals = game.extra?.dkTeamTotals
+  lines.push(`| Team total, away | unavailable | unavailable | unavailable | ${teamTotalCell(dkTotals?.awayTotal)} | FD unavailable; DK ${dkTotals?.awayTotal ? 'verified-retrieved' : 'unavailable'} |`)
+  lines.push(`| Team total, home | unavailable | unavailable | unavailable | ${teamTotalCell(dkTotals?.homeTotal)} | FD unavailable; DK ${dkTotals?.homeTotal ? 'verified-retrieved' : 'unavailable'} |`)
   const sameSide = Number.isFinite(fanduel?.homeSpread) && Number.isFinite(market.homeSpread) && fanduel.homeSpread === market.homeSpread
   if (sameSide) {
     lines.push(`- Home-side price, same number ${fanduel.homeSpread}: better book is ${betterBook(fanduel.homeSpreadPrice, market.spread?.homeClosePrice)}.`)
@@ -668,7 +669,12 @@ function comparisonSection(game, scoring, methods) {
     lines.push(`- ${name} side: ${lineValue(name, quotePosition(margin, margins), margin, margins)}`)
     lines.push(`- ${name} total: ${lineValue(name, quotePosition(total, totals), total, totals)}`)
   }
-  lines.push('- Team totals: unavailable at FanDuel and DraftKings on the feeds used here.')
+  const postedTotals = game.extra?.dkTeamTotals
+  if (postedTotals?.awayTotal || postedTotals?.homeTotal) {
+    lines.push(`- Team totals: DraftKings posted ${game.away.name} ${teamTotalCell(postedTotals.awayTotal)} and ${game.home.name} ${teamTotalCell(postedTotals.homeTotal)}. FanDuel team totals are not on the Ohio game-line board.`)
+  } else {
+    lines.push('- Team totals: unavailable. FanDuel team totals are not on the Ohio game-line board, and the DraftKings team-total feed had no row for this game.')
+  }
   const homeMargins = quotes.map(([, margin]) => margin).filter((value) => Number.isFinite(value))
   if (homeMargins.length === 2) {
     lines.push(`- FanDuel versus DraftKings home margin: ${fmt(homeMargins[1] - homeMargins[0])} (FanDuel minus DraftKings).`)
@@ -783,18 +789,23 @@ function consensusSection(game) {
 }
 
 function propsSection(game) {
-  const props = game.extra?.props ?? []
-  const shown = props.slice(0, 8)
+  const props = game.extra?.dkProps ?? []
+  const shown = props.slice(0, 12)
   const lines = [
     '**Props**',
     '',
-    'Separate from the team card. This pass looks for FanDuel and DraftKings props only. Neither game-line feed included a verified player prop.',
+    'Separate from the team card. DraftKings main over/unders for NBA points, rebounds, and assists, and for NFL passing, rushing, and receiving yards, are attached when that feed sends them. FanDuel props are not on the Ohio game-line board. The independent read is the player-log pass, and it stays missing here.',
     '',
     '| Prop | Independent projection | FanDuel | DraftKings | Flag |',
     '| --- | --- | --- | --- | --- |',
   ]
   if (shown.length === 0) {
-    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | inventory-open; missing-input; unavailable |`)
+    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | missing | unavailable | unavailable | missing-input |`)
+  } else {
+    for (const prop of shown) {
+      const book = Number.isFinite(prop.line) ? `o${prop.line} ${prop.over ?? 'price missing'} / u${prop.line} ${prop.under ?? 'price missing'}` : 'unavailable'
+      lines.push(`| ${prop.player} ${prop.stat} | missing | unavailable | ${book} | DK verified-retrieved; projection missing |`)
+    }
   }
   lines.push('')
   return lines
@@ -1109,22 +1120,38 @@ async function main() {
   blocks.push('')
   blocks.push('The commandments in docs/projections/COMMANDMENTS.md govern this slate. The predicted slate is the first table. That score is the venue-matched mean. Each game then has an independent projection, sportsbook lines and prices, a comparison, and the game log against the posted number. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
-  blocks.push('Status: not complete. This pass compares projections with FanDuel and DraftKings only. DraftKings open and latest come from ESPN. FanDuel latest comes from the Ohio board for NFL, college football, NBA, and NHL. Player props and team totals were not on those two feeds.')
+  blocks.push('Status: not complete. FanDuel latest game lines come from the Ohio board for NFL, college football, NBA, and NHL. DraftKings open and latest game lines come from the ESPN quote. DraftKings team totals come from the team-total feed for those four leagues. DraftKings prop lines for NBA points, rebounds, and assists, and for NFL passing, rushing, and receiving yards, are attached when that feed sends them. The independent prop read stays missing until the player-log pass. A priced edge is not labeled.')
   blocks.push('')
   blocks.push('## Open gaps in this snapshot')
   blocks.push('')
-  blocks.push('- Player-stat projection inventory: open. Not recovered, not treated as canceled.')
-  blocks.push('- Player props: FanDuel and DraftKings game-line feeds did not include a verified player prop. The inventory stays open.')
+  blocks.push('- Player-stat projection inventory: open. A posted prop line is not a projection.')
+  blocks.push('- Player props: FanDuel props are not on the Ohio game-line board. DraftKings lines are attached for the NBA and NFL categories above. The four reads of a player log are a separate pass.')
   blocks.push('- FanDuel opening prices: not on the Ohio board.')
-  blocks.push('- DraftKings direct site: access denied. Open and latest prices are the ESPN quote.')
+  blocks.push('- DraftKings game lines: open and latest are the ESPN quote. Team totals and the listed prop categories are read from the DraftKings content feed.')
   blocks.push('- FanDuel soccer: no public Ohio board for Premier League or MLS, so those games have DraftKings only.')
-  blocks.push('- Team totals: unavailable at both FanDuel and DraftKings on these feeds.')
+  blocks.push('- Team totals: DraftKings when the team-total feed has a row. FanDuel team totals are not on the Ohio game-line board.')
   blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
   blocks.push('- Priced edge: not labeled. A resampling sim is reported separately from the four base models, and a gap versus the no-vig price is not called an edge.')
   blocks.push('- Public consensus: Covers handicapper picks and the ESPN Matchup Predictor when those sources send a row. A missing row stays missing. This is not blended into the four models or the book prices.')
   blocks.push('')
 
   const books = await loadBooks(['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
+  const dkTeamTotals = {}
+  const dkProps = {}
+  await Promise.all(['nfl', 'ncaaf', 'nba', 'nhl'].map(async (sport) => {
+    try {
+      dkTeamTotals[sport] = await loadDraftKingsTeamTotals(sport)
+    } catch (error) {
+      dkTeamTotals[sport] = new Map()
+      blocks.push(`DraftKings team totals ${sport}: ${error instanceof Error ? error.message : error}`)
+    }
+    try {
+      dkProps[sport] = await loadDraftKingsPropLines(sport)
+    } catch (error) {
+      dkProps[sport] = []
+      blocks.push(`DraftKings props ${sport}: ${error instanceof Error ? error.message : error}`)
+    }
+  }))
   blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
   const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
@@ -1180,8 +1207,12 @@ async function main() {
     }
     const games = gamesFromEvents(events, title).filter((game) => !slateDate || dateET(game.date) === slateDate)
     if (sportKey) {
+      const awayHome = (game) => [[game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name]]
       for (const game of games) {
-        game.extra = books.match(sportKey, [game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name])
+        const [awayNames, homeNames] = awayHome(game)
+        game.extra = books.match(sportKey, awayNames, homeNames)
+        game.extra.dkTeamTotals = findQuote(dkTeamTotals[sportKey], awayNames, homeNames)
+        game.extra.dkProps = propsForNames(dkProps[sportKey], awayNames, homeNames)
       }
     }
     for (const game of games) game.covers = matchCovers(game, covers.picks, coversLeagueFor(sportKey))
@@ -1210,11 +1241,12 @@ async function main() {
   blocks.push('')
   blocks.push('| Check | Status | Flag |')
   blocks.push('| --- | --- | --- |')
-  blocks.push('| Exact player-stat inventory | Not recovered | inventory-open |')
-  blocks.push('| Independent player projection | Not calculated | missing-input |')
+  const propCount = Object.values(dkProps).reduce((sum, rows) => sum + rows.length, 0)
+  blocks.push(`| Exact player-stat inventory | Open. ${propCount} DraftKings lines were retrieved for NBA and NFL. | inventory-open |`)
+  blocks.push('| Independent player projection | Not calculated in this pass | missing-input |')
   blocks.push('| FanDuel player props | Not on the Ohio game-line board | unavailable |')
-  blocks.push('| DraftKings player props | Not on the ESPN quote | unavailable |')
-  blocks.push('| Verification | No prop line was checked against a book | unverified |')
+  blocks.push(`| DraftKings player props | ${propCount > 0 ? 'NBA points, rebounds, and assists; NFL passing, rushing, and receiving yards' : 'The prop feeds returned no rows'} | ${propCount > 0 ? 'verified-retrieved' : 'unavailable'} |`)
+  blocks.push('| Verification | A line is the book number. It is not a projection. | unverified |')
   blocks.push('')
   blocks.push('No prop number is invented. Unrecovered player stats stay open.')
   blocks.push('')
