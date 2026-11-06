@@ -1,0 +1,38 @@
+{
+  "id": "2026-11-06-premier-league-scoreboard",
+  "title": "Premier League scoreboard",
+  "sportPath": "soccer/eng.1",
+  "retrievedAt": "2026-11-06T05:07:41.669Z",
+  "games": [
+    {
+      "date": "2026-11-06T20:00Z",
+      "when": "Scheduled",
+      "away": "Coventry",
+      "home": "Everton",
+      "score": "0.8–1.5",
+      "total": "2.3",
+      "models": "split, 3–1 Everton",
+      "sim": "0.5–1.5, Everton 71.3%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "388",
+      "homeId": "368",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🔵 3 ⚠️ Bet Everton. Game: Coventry at Everton, Scheduled.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    }
+  ]
+}

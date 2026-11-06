@@ -1,0 +1,278 @@
+{
+  "id": "2026-11-06-nba-2026-11-06",
+  "title": "NBA 2026-11-06",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-06T05:07:41.669Z",
+  "games": [
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Wizards",
+      "home": "Hawks",
+      "score": "115.3–113.1",
+      "total": "228.4",
+      "models": "split, 2–2",
+      "sim": "116–113.5, Wizards 54.9%",
+      "sportPath": "basketball/nba",
+      "awayId": "27",
+      "homeId": "1",
+      "neutral": false,
+      "homeMargin": "-2.2",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 ➗ Pass. Split. Game: Wizards at Hawks, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Celtics",
+      "home": "Hornets",
+      "score": "109.7–104.6",
+      "total": "214.3",
+      "models": "Celtics, 4–0",
+      "sim": "109–106, Celtics 67.1%",
+      "sportPath": "basketball/nba",
+      "awayId": "2",
+      "homeId": "30",
+      "neutral": false,
+      "homeMargin": "-5.1",
+      "agreement": "away",
+      "marketHomeMargin": "-8.5",
+      "postedTotal": "210.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟩 4 💰 Bet Over 210.5. Game: Celtics at Hornets, 11/6 - 7:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "76ers",
+      "home": "Cavaliers",
+      "score": "114.4–113",
+      "total": "227.4",
+      "models": "76ers, 4–0",
+      "sim": "114.5–113.5, 76ers 59.3%",
+      "sportPath": "basketball/nba",
+      "awayId": "20",
+      "homeId": "5",
+      "neutral": false,
+      "homeMargin": "-1.4",
+      "agreement": "away",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "229.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🔴 1 ➗ Pass. 76ers does not clear the number. Game: 76ers at Cavaliers, 11/6 - 7:30 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Jazz",
+      "home": "Mavericks",
+      "score": "107.7–115.6",
+      "total": "223.3",
+      "models": "Mavericks, 4–0",
+      "sim": "107–117.5, Mavericks 85.7%",
+      "sportPath": "basketball/nba",
+      "awayId": "26",
+      "homeId": "6",
+      "neutral": false,
+      "homeMargin": "7.9",
+      "agreement": "home",
+      "marketHomeMargin": "7.5",
+      "postedTotal": "226.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟩 4 💰 Bet Under 226.5. Game: Jazz at Mavericks, 11/6 - 8:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Thunder",
+      "home": "Grizzlies",
+      "score": "109.6–118.9",
+      "total": "228.5",
+      "models": "Grizzlies, 4–0",
+      "sim": "110–120, Grizzlies 80.4%",
+      "sportPath": "basketball/nba",
+      "awayId": "25",
+      "homeId": "29",
+      "neutral": false,
+      "homeMargin": "9.3",
+      "agreement": "home",
+      "marketHomeMargin": "-3.5",
+      "postedTotal": "225.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟢 5 💰 Bet Grizzlies. Game: Thunder at Grizzlies, 11/6 - 8:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Raptors",
+      "home": "Bucks",
+      "score": "119.3–115.4",
+      "total": "234.6",
+      "models": "Raptors, 4–0",
+      "sim": "120.5–114.5, Raptors 61.8%",
+      "sportPath": "basketball/nba",
+      "awayId": "28",
+      "homeId": "15",
+      "neutral": false,
+      "homeMargin": "-3.9",
+      "agreement": "away",
+      "marketHomeMargin": "-6.5",
+      "postedTotal": "230.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟢 5 💰 Bet Over 230.5. Game: Raptors at Bucks, 11/6 - 8:00 PM EST.",
+      "alertRating": 5,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Timberwolves",
+      "home": "Pelicans",
+      "score": "115.8–113.8",
+      "total": "229.6",
+      "models": "split, 3–1 Timberwolves",
+      "sim": "115.5–113.5, Timberwolves 57.2%",
+      "sportPath": "basketball/nba",
+      "awayId": "16",
+      "homeId": "3",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "split",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "230.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🔵 3 ⚠️ Bet Timberwolves. Game: Timberwolves at Pelicans, 11/6 - 8:00 PM EST.",
+      "alertRating": 3,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T03:00Z",
+      "when": "11/6 - 10:00 PM EST",
+      "away": "Trail Blazers",
+      "home": "Lakers",
+      "score": "122.6–121.8",
+      "total": "244.4",
+      "models": "split, 3–1 Trail Blazers",
+      "sim": "122.5–123.5, Trail Blazers 49.4%",
+      "sportPath": "basketball/nba",
+      "awayId": "22",
+      "homeId": "13",
+      "neutral": false,
+      "homeMargin": "-0.8",
+      "agreement": "split",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "233.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟩 4 💰 Bet Over 233.5. Game: Trail Blazers at Lakers, 11/6 - 10:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Bet",
+      "research": "log"
+    },
+    {
+      "date": "2026-11-07T03:00Z",
+      "when": "11/6 - 10:00 PM EST",
+      "away": "Spurs",
+      "home": "Kings",
+      "score": "120.9–110.1",
+      "total": "231",
+      "models": "Spurs, 4–0",
+      "sim": "122.5–111.5, Spurs 100%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "24",
+      "homeId": "23",
+      "neutral": false,
+      "homeMargin": "-10.8",
+      "agreement": "away",
+      "marketHomeMargin": "-15.5",
+      "postedTotal": "228.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Spurs at Kings, 11/6 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

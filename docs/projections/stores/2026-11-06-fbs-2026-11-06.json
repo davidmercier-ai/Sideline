@@ -2,7 +2,7 @@
   "id": "2026-11-06-fbs-2026-11-06",
   "title": "FBS 2026-11-06",
   "sportPath": "football/college-football",
-  "retrievedAt": "2026-11-02T00:29:05.991Z",
+  "retrievedAt": "2026-11-06T05:07:41.669Z",
   "games": [
     {
       "date": "2026-11-07T00:00Z",
@@ -20,7 +20,7 @@
       "homeMargin": "9.5",
       "agreement": "split",
       "marketHomeMargin": "6.5",
-      "postedTotal": "54.5",
+      "postedTotal": "56.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -31,7 +31,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Virginia Tech at SMU, 11/6 - 7:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T00:30Z",
@@ -48,8 +49,8 @@
       "neutral": false,
       "homeMargin": "5.9",
       "agreement": "split",
-      "marketHomeMargin": "1.5",
-      "postedTotal": "40.5",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "39.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -58,9 +59,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 40.5. Game: South Florida at East Carolina, 11/6 - 7:30 PM EST.",
+      "alert": "🏈 🟢 5 💰 Bet Over 39.5. Game: South Florida at East Carolina, 11/6 - 7:30 PM EST.",
       "alertRating": 5,
-      "alertAction": "Bet"
+      "alertAction": "Bet",
+      "research": "log"
     },
     {
       "date": "2026-11-07T01:00Z",
@@ -78,7 +80,7 @@
       "homeMargin": "1.9",
       "agreement": "split",
       "marketHomeMargin": "-4.5",
-      "postedTotal": "49.5",
+      "postedTotal": "50.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -89,12 +91,13 @@
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Nebraska at Illinois, 11/6 - 8:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T02:00Z",
       "when": "11/6 - 9:00 PM EST",
-      "away": "#22 New Mexico",
+      "away": "New Mexico",
       "home": "Nevada",
       "score": "21.6–21.9",
       "total": "43.5",
@@ -106,37 +109,38 @@
       "neutral": false,
       "homeMargin": "0.3",
       "agreement": "split",
-      "marketHomeMargin": "-10.5",
+      "marketHomeMargin": "-10",
       "postedTotal": "38.5",
       "fanduel": {
-        "side": "outside-method-range",
+        "side": "inside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: #22 New Mexico at Nevada, 11/6 - 9:00 PM EST.",
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: New Mexico at Nevada, 11/6 - 9:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T03:15Z",
       "when": "11/6 - 10:15 PM EST",
       "away": "TCU",
-      "home": "#24 Arizona",
+      "home": "#22 Arizona",
       "score": "11.8–25.5",
       "total": "37.3",
-      "models": "#24 Arizona, 4–0",
-      "sim": "12–24, #24 Arizona 100%, thin",
+      "models": "#22 Arizona, 4–0",
+      "sim": "12–24, #22 Arizona 100%, thin",
       "sportPath": "football/college-football",
       "awayId": "2628",
       "homeId": "12",
       "neutral": false,
       "homeMargin": "13.8",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
-      "postedTotal": "43.5",
+      "marketHomeMargin": "7.5",
+      "postedTotal": "46.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -145,9 +149,10 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: TCU at #24 Arizona, 11/6 - 10:15 PM EST.",
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: TCU at #22 Arizona, 11/6 - 10:15 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     }
   ]
 }

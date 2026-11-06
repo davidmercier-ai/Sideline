@@ -234,16 +234,82 @@
     "games": 0
   },
   {
+    "id": "2026-11-06-champions-league",
+    "title": "Champions League",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-06-college-basketball-2026-11-06",
+    "title": "College basketball 2026-11-06",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 72
+  },
+  {
+    "id": "2026-11-06-conference-league",
+    "title": "Conference League",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-06-europa-league",
+    "title": "Europa League",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
     "id": "2026-11-06-fbs-2026-11-06",
     "title": "FBS 2026-11-06",
-    "retrievedAt": "2026-11-02T00:29:05.991Z",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
     "games": 5
   },
   {
     "id": "2026-11-06-fcs-2026-11-06",
     "title": "FCS 2026-11-06",
-    "retrievedAt": "2026-11-02T00:29:09.521Z",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
     "games": 0
+  },
+  {
+    "id": "2026-11-06-j1",
+    "title": "J1",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 1
+  },
+  {
+    "id": "2026-11-06-mlb-scoreboard",
+    "title": "MLB scoreboard",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-06-mls-scoreboard",
+    "title": "MLS scoreboard",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-06-nba-2026-11-06",
+    "title": "NBA 2026-11-06",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 9
+  },
+  {
+    "id": "2026-11-06-nfl",
+    "title": "NFL",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 0
+  },
+  {
+    "id": "2026-11-06-nhl-2026-11-06",
+    "title": "NHL 2026-11-06",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 3
+  },
+  {
+    "id": "2026-11-06-premier-league-scoreboard",
+    "title": "Premier League scoreboard",
+    "retrievedAt": "2026-11-06T05:07:41.669Z",
+    "games": 1
   },
   {
     "id": "2026-11-07-fbs-2026-11-07",
