@@ -174,7 +174,7 @@ That price belongs to the book. It is not our win probability.
 
 Line value is a point comparison.
 
-- Outside the method range: that book’s number is above every model or below every model. Call it a line-value candidate. It is a point gap, not a priced edge.
+- Outside the method range: that book’s number is above every model or below every model. Call it a line-value candidate only when the distance also clears the league’s recorded miss. A smaller gap is inside that miss. Either way it is a point gap, not a priced edge. A room clear is not a bet.
 - Inside the method range: no line value. The quote sits among the models.
 - Missing book or missing models: missing-input.
 

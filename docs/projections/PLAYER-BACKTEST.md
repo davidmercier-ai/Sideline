@@ -1,18 +1,18 @@
 # Player walk-forward
 
-Run at 2026-11-06T23:27:25.734Z UTC. Each scored game uses only that player's earlier games. The number is the current DraftKings line, not the line posted before that game. The current line was set with this season already played, so this is a record against today's number.
+Run at 2026-11-06T23:54:33.622Z UTC. Each scored game uses only that player's earlier games and a line saved before that game. A line retrieved after the game stays out. 586 lines are on file.
 
-A counted row needs all four reads at least 1 unit past that number and a venue sample of at least 3. A hit means the game landed on that side. A push is left out. A rate with no rows is left blank as 0/0. This is not a priced edge.
+A counted row needs all four reads at least 1 unit past that saved line and a venue sample of at least 3. A hit means the game landed on that side. A push is left out. A rate with no rows is 0/0. This is not a priced edge.
 
 | Stat | Props | Overs | Unders |
 | --- | --- | --- | --- |
-| Points | 119 | 34.4% (11/32) | 54.2% (26/48) |
-| Rebounds | 112 | 35.3% (6/17) | 50.0% (10/20) |
-| Assists | 90 | 27.3% (3/11) | 35.7% (5/14) |
-| Passing yards | 26 | 45.5% (5/11) | 0.0% (0/3) |
-| Rushing yards | 72 | 52.9% (9/17) | 38.1% (8/21) |
-| Receiving yards | 147 | 43.5% (20/46) | 34.5% (10/29) |
-| All six | 566 | 40.3% (54/134) | 43.7% (59/135) |
+| Points | 119 | 0/0 | 0/0 |
+| Rebounds | 112 | 0/0 | 0/0 |
+| Assists | 90 | 0/0 | 0/0 |
+| Passing yards | 26 | 0/0 | 0/0 |
+| Rushing yards | 72 | 0/0 | 0/0 |
+| Receiving yards | 147 | 0/0 | 0/0 |
+| All six | 566 | 0/0 | 0/0 |
 
 Props skipped because the log or the stat was missing: 20.
 

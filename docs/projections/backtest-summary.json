@@ -1,0 +1,34 @@
+{
+  "NFL": {
+    "marginError": 11,
+    "totalError": 14,
+    "dogHits": 27,
+    "dogDecided": 44,
+    "dogBaseHits": 55,
+    "dogBaseDecided": 95
+  },
+  "NBA": {
+    "marginError": 14,
+    "totalError": 16.5,
+    "dogHits": 25,
+    "dogDecided": 51,
+    "dogBaseHits": 48,
+    "dogBaseDecided": 100
+  },
+  "NHL": {
+    "marginError": 2.4,
+    "totalError": 2,
+    "dogHits": 123,
+    "dogDecided": 200,
+    "dogBaseHits": 150,
+    "dogBaseDecided": 245
+  },
+  "NCAAB": {
+    "marginError": 20.6,
+    "totalError": 21.1,
+    "dogHits": 5,
+    "dogDecided": 15,
+    "dogBaseHits": 18,
+    "dogBaseDecided": 43
+  }
+}

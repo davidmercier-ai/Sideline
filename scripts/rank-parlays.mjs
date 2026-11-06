@@ -151,7 +151,9 @@ function checkRates(games) {
       },
     },
   })
-  if (ratedPlayer.stance !== 'with' || ratedPlayer.weight !== 1) throw new Error(`Josh Allen yards rated ${ratedPlayer.stance} ${ratedPlayer.label}`)
+  if (ratedPlayer.stance !== 'even' || ratedPlayer.weight !== 0 || !ratedPlayer.label.includes('Not a bet')) {
+    throw new Error(`Josh Allen yards rated ${ratedPlayer.stance} ${ratedPlayer.weight} ${ratedPlayer.label}`)
+  }
   if (teamTotal.weight !== 1 || teamTotal.stance !== 'with') throw new Error(`Steelers team total rated ${teamTotal.weight} ${teamTotal.label}`)
 }
 

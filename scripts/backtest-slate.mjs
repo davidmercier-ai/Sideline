@@ -22,6 +22,7 @@ const LEAGUES = [
   { name: 'NFL', path: 'football/nfl', year: 2026, type: 2 },
   { name: 'NBA', path: 'basketball/nba', year: 2027, type: 2 },
   { name: 'NHL', path: 'hockey/nhl', year: 2027, type: 2 },
+  { name: 'NCAAB', path: 'basketball/mens-college-basketball', year: 2027, type: 2 },
 ]
 
 async function getJson(url) {
@@ -143,9 +144,6 @@ async function loadLeague(league) {
       const homeScore = Number(home.score?.value ?? home.score)
       if (!Number.isFinite(awayScore) || !Number.isFinite(homeScore)) continue
       if (!games.has(event.id)) {
-        const odds = competition.odds?.[0]
-        const spread = Number(odds?.spread)
-        const total = Number(odds?.overUnder ?? odds?.total)
         games.set(event.id, {
           id: event.id,
           date: event.date || competition.date || '',
@@ -156,8 +154,8 @@ async function loadLeague(league) {
           homeName: home.team.shortDisplayName || home.team.displayName,
           awayScore,
           homeScore,
-          homeSpread: Number.isFinite(spread) ? spread : null,
-          total: Number.isFinite(total) ? total : null,
+          homeSpread: null,
+          total: null,
         })
       }
     }
@@ -180,12 +178,32 @@ async function loadLeague(league) {
 export function quoteFromPickcenter(data) {
   const listed = data?.pickcenter ?? []
   const draftKings = listed.find((item) => /draft\s*kings/i.test(item?.provider?.name ?? ''))
-  const pick = draftKings ?? listed[0] ?? data?.header?.competitions?.[0]?.odds?.[0]
-  const spread = Number(pick?.spread)
-  const total = Number(pick?.overUnder ?? pick?.total)
+  if (!draftKings) return { spread: null, total: null }
+  const spread = Number(draftKings.spread)
+  const total = Number(draftKings.overUnder ?? draftKings.total)
   return {
     spread: Number.isFinite(spread) ? spread : null,
     total: Number.isFinite(total) ? total : null,
+  }
+}
+
+function meanOf(values) {
+  if (!values.length) return null
+  return values.reduce((sum, value) => sum + value, 0) / values.length
+}
+
+export function allowanceRead(awayRows, homeRows) {
+  const awayAllowed = values(homeRows, 'home', 'pointsAgainst')
+  const homeAllowed = values(awayRows, 'away', 'pointsAgainst')
+  const awayScore = meanOf(awayAllowed)
+  const homeScore = meanOf(homeAllowed)
+  if (!Number.isFinite(awayScore) || !Number.isFinite(homeScore)) {
+    return { margin: null, total: null, thin: true }
+  }
+  return {
+    margin: homeScore - awayScore,
+    total: homeScore + awayScore,
+    thin: awayAllowed.length < 3 || homeAllowed.length < 3,
   }
 }
 
@@ -280,6 +298,7 @@ function scoreLeague(name, games) {
       const totals = methods.map((method) => method.total)
       const boardSide = boardSideCall({ margins, marketMargin, room, thin })
       const boardTotal = boardTotalCall({ totals, postedTotal: game.total, room, thin })
+      const allowance = allowanceRead(awayPrior, homePrior)
       const coverPick = Number.isFinite(marketMargin) && sideOf(venue.margin - marketMargin) !== 'tie'
         ? sideOf(venue.margin - marketMargin)
         : null
@@ -304,6 +323,9 @@ function scoreLeague(name, games) {
         boardTotal,
         totalActual: totalSide(actualTotal, game.total),
         closestGap: closestReadGap(margins, agreement.side, marketMargin),
+        allowanceSide: !allowance.thin && sideOf(allowance.margin) !== 'tie' && sideOf(allowance.margin) !== 'unavailable'
+          ? sideOf(allowance.margin)
+          : null,
       })
     }
     const stamp = (teamId, venueName, pointsFor, pointsAgainst) => {
@@ -345,6 +367,13 @@ function summarize(name, scheduled, rows) {
   const boardSideHits = boardSides.filter((row) => row.boardSide === row.coverActual).length
   const boardTotals = rows.filter((row) => row.boardTotal && (row.totalActual === 'over' || row.totalActual === 'under'))
   const boardTotalHits = boardTotals.filter((row) => row.boardTotal === row.totalActual).length
+  const short = unanimous.filter((row) => Number.isFinite(row.closestGap) && row.closestGap < 0)
+  const shortFavorite = short.filter((row) => coverRole(row.game.homeSpread, row.agreement.side) === 'favorite')
+  const shortDog = short.filter((row) => coverRole(row.game.homeSpread, row.agreement.side) === 'dog')
+  const shortFavoriteHits = shortFavorite.filter((row) => row.agreement.side === row.actual).length
+  const shortDogHits = shortDog.filter((row) => row.agreement.side === row.actual).length
+  const allowanceDecided = decided.filter((row) => row.allowanceSide === 'home' || row.allowanceSide === 'away')
+  const allowanceHits = allowanceDecided.filter((row) => row.allowanceSide === row.actual).length
   const unanimousPriced = unanimous.filter((row) => Number.isFinite(row.closestGap))
   const gapBuckets = GAP_BUCKETS.map((bucket) => {
     const games = unanimousPriced.filter((row) => bucket.test(row.closestGap))
@@ -388,6 +417,15 @@ function summarize(name, scheduled, rows) {
     boardTotalRate: rate(boardTotalHits, boardTotals.length),
     gapBuckets,
     unanimousPriced: unanimousPriced.length,
+    shortFavoriteHits,
+    shortFavoriteDecided: shortFavorite.length,
+    shortFavoriteRate: rate(shortFavoriteHits, shortFavorite.length),
+    shortDogHits,
+    shortDogDecided: shortDog.length,
+    shortDogRate: rate(shortDogHits, shortDog.length),
+    allowanceHits,
+    allowanceDecided: allowanceDecided.length,
+    allowanceRate: rate(allowanceHits, allowanceDecided.length),
     marginError,
     totalError,
   }
@@ -413,7 +451,7 @@ function report(results) {
     '',
     `Run at ${new Date().toISOString()} UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.`,
     '',
-    'This is a record of the venue-matched mean, the four-model vote, and the 2,000-draw sim. It is not a priced edge. A straight-up hit means the side with the higher number won. A cover means the venue-matched margin and the actual margin sat on the same side of the ESPN spread. Pushes are left out of the rates.',
+    'This is a record of the venue-matched mean, the four-model vote, and the 2,000-draw sim. It is not a priced edge. A straight-up hit means the side with the higher number won. A cover means the venue-matched margin and the actual margin sat on the same side of the DraftKings spread. Pushes are left out of the rates.',
     '',
     '| League | Games scored | Venue side | Unanimous side | Stable sim side | Always home | Venue cover | Margin error | Total error |',
     '| --- | --- | --- | --- | --- | --- | --- | --- | --- |',
@@ -422,9 +460,13 @@ function report(results) {
     lines.push(`| ${row.name} | ${row.scored} of ${row.scheduled} | ${pct(row.sideRate)} (${row.sideHits}/${row.sideDecided}) | ${pct(row.unanimousRate)} (${row.unanimousHits}/${row.unanimousDecided}) | ${pct(row.simRate)} (${row.simHits}/${row.simDecided}) | ${pct(row.homeRate)} | ${pct(row.coverRate)} (${row.coverHits}/${row.coverDecided}) | ${num(row.marginError)} | ${num(row.totalError)} |`)
   }
   lines.push('')
-  lines.push('Games with no prior venue sample are not scored. The stable sim side skips a game when any venue list has fewer than 3 games. Always home is the rate at which the home team won the decided games, shown so the model rates have a simple comparison.')
+  const college = results.find((row) => row.name === 'NCAAB')
+  const collegeNote = college && college.sideRate != null && college.homeRate != null && college.sideRate < college.homeRate
+    ? ' Its venue side is below always home, so a college side stays a lean.'
+    : ' A team with fewer than three completed games stays a lean.'
+  lines.push(`Games with no prior venue sample are not scored. The stable sim side skips a game when any venue list has fewer than 3 games. Always home is the rate at which the home team won the decided games, shown so the model rates have a simple comparison. NCAAB uses the 2026-27 season only.${collegeNote}`)
   lines.push('')
-  lines.push('The cover column uses the ESPN schedule spread when that quote is present, and the DraftKings pick-center spread from the game summary when the schedule quote is missing. A game with neither stays out of the cover rate. That is a missing price, not a cover rate of zero.')
+  lines.push('The cover column uses only the DraftKings pick-center spread from the game summary. Another book’s number stays out. A game with no DraftKings spread stays out of the cover rate. That is a missing price, not a cover rate of zero.')
   lines.push('')
   lines.push('## Board rule')
   lines.push('')
@@ -444,6 +486,26 @@ function report(results) {
   lines.push('| --- | --- | --- | --- |')
   for (const row of results) {
     lines.push(`| ${row.name} | ${record(row.favoriteRate, row.favoriteHits, row.favoriteDecided)} | ${record(row.dogRate, row.dogHits, row.dogDecided)} | ${record(row.dogBaseRate, row.dogBaseHits, row.dogBaseDecided)} |`)
+  }
+  lines.push('')
+  lines.push('## Short of the number, favorite and dog')
+  lines.push('')
+  lines.push('Unanimous sides whose closest read is short of the spread, split by favorite and dog. This side is not a bet. When the favorites are the bulk of the slice, the wins are the favorite.')
+  lines.push('')
+  lines.push('| League | Short, favorite | Short, dog |')
+  lines.push('| --- | --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.shortFavoriteRate, row.shortFavoriteHits, row.shortFavoriteDecided)} | ${record(row.shortDogRate, row.shortDogHits, row.shortDogDecided)} |`)
+  }
+  lines.push('')
+  lines.push('## Opponent allowance')
+  lines.push('')
+  lines.push('One read, kept out of the four and out of the alert. The away score is the home team’s home points allowed. The home score is the away team’s road points allowed. A side is counted only when both lists have at least 3 games. A hit is a straight-up win. This is not a priced edge.')
+  lines.push('')
+  lines.push('| League | Allowance side |')
+  lines.push('| --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.allowanceRate, row.allowanceHits, row.allowanceDecided)} |`)
   }
   lines.push('')
   lines.push('## Unanimous side by gap to the spread')
@@ -469,7 +531,19 @@ async function main() {
     results.push(scoreLeague(league.name, games))
   }
   const markdown = `${report(results)}\n`
+  const summary = {}
+  for (const row of results) {
+    summary[row.name] = {
+      marginError: Number.isFinite(row.marginError) ? Number(row.marginError.toFixed(1)) : null,
+      totalError: Number.isFinite(row.totalError) ? Number(row.totalError.toFixed(1)) : null,
+      dogHits: row.dogHits,
+      dogDecided: row.dogDecided,
+      dogBaseHits: row.dogBaseHits,
+      dogBaseDecided: row.dogBaseDecided,
+    }
+  }
   await writeFile('docs/projections/BACKTEST.md', markdown)
+  await writeFile('docs/projections/backtest-summary.json', `${JSON.stringify(summary, null, 2)}\n`)
   process.stdout.write(markdown)
 }
 

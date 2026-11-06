@@ -352,6 +352,64 @@ export function indexDraftKingsTeamTotals(payload) {
   return index
 }
 
+const FANDUEL_PROP_TABS = {
+  nba: [
+    ['player-points', 'points', /^PLAYER_[A-Z]_TOTAL_POINTS$/],
+    ['player-rebounds', 'rebounds', /^PLAYER_[A-Z]_TOTAL_REBOUNDS$/],
+    ['player-assists', 'assists', /^PLAYER_[A-Z]_TOTAL_ASSISTS$/],
+  ],
+  nfl: [
+    ['passing-props', 'passing yards', /^PLAYER_[A-Z]_PASSING_YARDS_HIGH$/],
+    ['rushing-props', 'rushing yards', /^PLAYER_[A-Z]_RUSHING_YARDS_HIGH$/],
+    ['receiving-props', 'receiving yards', /^PLAYER_[A-Z]_RECEIVING_YARDS_HIGH$/],
+  ],
+}
+
+export function indexFanDuelProps(payload, stat, pattern) {
+  const events = payload?.attachments?.events ?? {}
+  const props = []
+  for (const market of Object.values(payload?.attachments?.markets ?? {})) {
+    if (!pattern.test(market.marketType || '')) continue
+    if (/ALT|QUARTER|DRIVE|MOST/.test(market.marketType || '')) continue
+    const event = events[String(market.eventId)] || Object.values(events)[0]
+    const parts = String(event?.name || '').split(' @ ')
+    if (parts.length !== 2) continue
+    const over = (market.runners ?? []).find((runner) => runner.result?.type === 'OVER' || /^over\b/i.test(runner.runnerName || ''))
+    const under = (market.runners ?? []).find((runner) => runner.result?.type === 'UNDER' || /^under\b/i.test(runner.runnerName || ''))
+    const line = Number(over?.handicap ?? under?.handicap)
+    if (!Number.isFinite(line)) continue
+    const player = String(market.marketName || '').split(' - ')[0].trim()
+    if (!player) continue
+    props.push({
+      away: parts[0].trim(),
+      home: parts[1].trim(),
+      player,
+      stat,
+      line,
+      over: formatAmerican(over?.winRunnerOdds?.americanDisplayOdds?.americanOdds),
+      under: formatAmerican(under?.winRunnerOdds?.americanDisplayOdds?.americanOdds),
+    })
+  }
+  return props
+}
+
+export async function loadFanDuelPropLines(sport) {
+  const tabs = FANDUEL_PROP_TABS[sport] ?? []
+  if (tabs.length === 0) return []
+  const board = await getJson(`${FANDUEL}?page=CUSTOM&customPageId=${FANDUEL_PAGES[sport]}&_ak=${FANDUEL_KEY}`)
+  const events = Object.values(board.attachments?.events ?? {}).filter((event) => /@/.test(event?.name || ''))
+  const props = []
+  for (const event of events) {
+    for (const [tab, stat, pattern] of tabs) {
+      const payload = await getJson(`${FANDUEL.replace('/content-managed-page', '/event-page')}?_ak=${FANDUEL_KEY}&eventId=${event.eventId}&tab=${tab}`)
+      if (!payload.attachments) payload.attachments = {}
+      payload.attachments.events = { [event.eventId]: event }
+      props.push(...indexFanDuelProps(payload, stat, pattern))
+    }
+  }
+  return props
+}
+
 export function indexDraftKingsProps(payload, stat) {
   const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
   const props = []

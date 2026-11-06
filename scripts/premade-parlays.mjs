@@ -290,9 +290,9 @@ export function rateLeg(games, leg, players = null) {
     return {
       status: comparison.status,
       kind: 'player',
-      stance: comparison.stance,
-      weight: comparison.weight,
-      label: `${record.name}. ${comparison.label}`,
+      stance: 'even',
+      weight: 0,
+      label: `${record.name}. ${comparison.label} Not a bet.`,
       signature: `player|${looseName(record.name)}|${spec.stat}|${posted ?? ''}|${overUnder(leg) || 'over'}`,
       game: leg.event ?? null,
     }

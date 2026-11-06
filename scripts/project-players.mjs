@@ -155,7 +155,7 @@ async function main() {
     '',
     `Retrieved ${payload.retrievedAt} UTC. Regular-season ESPN gamelogs for the names on the current DraftKings prop lines.`,
     '',
-    'The four reads are the player venue mean, overall mean, venue median, and last three games. Opponent allowance is not applied. A counting stat uses the same 1-unit band as a team total. The stance needs the venue read and at least three reads on that side. A board row needs all four reads at least 1 unit past the line and a venue sample of at least 3 games. It is not a win probability and it is not a priced edge.',
+    'The four reads are the player venue mean, overall mean, venue median, and last three games. Opponent allowance is not applied. A counting stat uses the same 1-unit band as a team total. The stance needs the venue read and at least three reads on that side. A board row needs all four reads at least 1 unit past the line and a venue sample of at least 3 games. That row is a record, not a bet. It is not a win probability and it is not a priced edge.',
     '',
     'Stats in this pass: NBA points, rebounds, and assists; NFL passing, rushing, and receiving yards. Other player stats stay open.',
     '',

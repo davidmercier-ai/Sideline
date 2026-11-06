@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict'
 import { indexDraftKingsProps, indexDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
-import { boardSideCall, boardTotalCall, closestReadGap, coverRole, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
+import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
+import { indexFanDuelProps } from './book-prices.mjs'
 import { propBoardCall } from './project-players.mjs'
-import { walkForwardProp } from './backtest-players.mjs'
+import { lineBeforeGame, walkForwardProp, walkForwardSaved } from './backtest-players.mjs'
 import { playerReads } from './projection-math.mjs'
 
 const totals = indexDraftKingsTeamTotals({
@@ -39,8 +40,18 @@ assert.equal(propsForNames(props, ['Lakers'], ['Celtics']).length, 0)
 
 assert.equal(spreadFromPickcenter({ pickcenter: [{ provider: { name: 'Draft Kings' }, spread: -1.5, overUnder: 41.5 }] }), -1.5)
 assert.deepEqual(quoteFromPickcenter({ pickcenter: [{ provider: { name: 'Draft Kings' }, spread: -1.5, overUnder: 41.5 }] }), { spread: -1.5, total: 41.5 })
-assert.equal(spreadFromPickcenter({ pickcenter: [{ provider: { name: 'Other' }, spread: 3 }] }), 3)
+assert.equal(spreadFromPickcenter({ pickcenter: [{ provider: { name: 'Other' }, spread: 3 }] }), null)
 assert.equal(spreadFromPickcenter({}), null)
+assert.equal(lineBeforeGame([{ retrievedAt: '2026-11-06T23:00:00Z', line: 20.5 }], '2026-11-05T00:00:00Z'), null)
+assert.equal(lineBeforeGame([{ retrievedAt: '2026-11-06T18:00:00Z', line: 20.5 }], '2026-11-07T00:30:00Z'), 20.5)
+const savedForward = walkForwardSaved([
+  { date: '2026-11-07T00:30:00Z', venue: 'home', value: 30 },
+  { date: '2026-11-08T00:30:00Z', venue: 'home', value: 28 },
+  { date: '2026-11-09T00:30:00Z', venue: 'home', value: 26 },
+  { date: '2026-11-10T00:30:00Z', venue: 'home', value: 32 },
+], [{ retrievedAt: '2026-11-06T18:00:00Z', line: 20 }])
+assert.equal(savedForward.over.decided, 1)
+assert.equal(savedForward.over.hits, 1)
 
 const cleared = [6, 5, 4.5, 7]
 assert.equal(boardSideCall({ margins: cleared, marketMargin: 3, room: 1, thin: false }), 'home')
@@ -85,5 +96,40 @@ const under = walkForwardProp(cold, 20)
 assert.equal(under.under.hits, 1)
 assert.equal(under.under.decided, 1)
 assert.equal(under.over.decided, 0)
+
+const allowed = allowanceRead(
+  [
+    { venue: 'away', pointsAgainst: 20 },
+    { venue: 'away', pointsAgainst: 22 },
+    { venue: 'away', pointsAgainst: 24 },
+  ],
+  [
+    { venue: 'home', pointsAgainst: 10 },
+    { venue: 'home', pointsAgainst: 12 },
+    { venue: 'home', pointsAgainst: 14 },
+  ],
+)
+assert.equal(allowed.thin, false)
+assert.equal(allowed.margin, 10)
+const fanduelProp = indexFanDuelProps({
+  attachments: {
+    events: { 9: { name: 'Boston Celtics @ Charlotte Hornets' } },
+    markets: {
+      a: {
+        eventId: 9,
+        marketType: 'PLAYER_A_TOTAL_POINTS',
+        marketName: 'Jayson Tatum - Points',
+        runners: [
+          { runnerName: 'Jayson Tatum Over', handicap: 26.5, result: { type: 'OVER' }, winRunnerOdds: { americanDisplayOdds: { americanOdds: -130 } } },
+          { runnerName: 'Jayson Tatum Under', handicap: 26.5, result: { type: 'UNDER' }, winRunnerOdds: { americanDisplayOdds: { americanOdds: 102 } } },
+        ],
+      },
+    },
+  },
+}, 'points', /^PLAYER_[A-Z]_TOTAL_POINTS$/)
+assert.equal(fanduelProp.length, 1)
+assert.equal(fanduelProp[0].player, 'Jayson Tatum')
+assert.equal(fanduelProp[0].line, 26.5)
+assert.equal(fanduelProp[0].over, '-130')
 
 console.log('book feeds ok')

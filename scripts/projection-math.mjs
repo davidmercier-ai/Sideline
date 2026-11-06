@@ -134,6 +134,7 @@ const REASON_MARK = {
   oneScore: '⚡',
   split: '➗',
   thin: '📏',
+  record: '📒',
 }
 
 export function sportMark(sportPath) {
@@ -296,15 +297,15 @@ export function buildAlert({
     const gaps = margins.map((margin) => (side === 'home' ? margin - marketHomeMargin : marketHomeMargin - margin))
     const closest = Math.min(...gaps)
     if (gaps.every((gap) => gap > 0) && closest >= room) {
-      rating = margins.length >= 4 ? 5 : 4
-      reason = 'value'
-      action = 'Bet'
-      bet = sideName
+      rating = 2
+      reason = 'record'
+      action = 'Pass'
+      bet = `${sideName} clears the number. Walk-forward did not support a bet`
     } else if (gaps.every((gap) => gap > 0)) {
-      rating = 4
-      reason = 'value'
-      action = 'Bet'
-      bet = sideName
+      rating = 2
+      reason = 'record'
+      action = 'Pass'
+      bet = `${sideName} is inside the recorded miss`
     } else if (gaps.some((gap) => gap < 0)) {
       rating = 1
       reason = 'split'
@@ -324,11 +325,18 @@ export function buildAlert({
   }
 
   const totalCall = totalAlert(totals, postedTotal, room, thin)
-  if (totalCall && (action === 'Pass' || totalCall.rating > rating)) {
-    rating = totalCall.rating
-    reason = 'value'
-    action = 'Bet'
-    bet = `${totalCall.side} ${postedTotal}`
+  if (totalCall && action !== 'Bet' && action !== 'Bet now') {
+    rating = 2
+    reason = 'record'
+    action = 'Pass'
+    bet = `${totalCall.side} ${postedTotal} clears the number. Walk-forward did not support a bet`
+  }
+
+  if (thin && String(sportPath).includes('mens-college-basketball')) {
+    rating = 2
+    reason = 'thin'
+    action = 'Lean'
+    bet = 'College sample under 3. 2026-27 only'
   }
 
   if (started && action !== 'Pass') {
