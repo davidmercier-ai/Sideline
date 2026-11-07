@@ -1,0 +1,218 @@
+{
+  "id": "2026-11-07-nba-2026-11-07",
+  "title": "NBA 2026-11-07",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "games": [
+    {
+      "date": "2026-11-07T22:00Z",
+      "when": "11/7 - 5:00 PM EST",
+      "away": "Nuggets",
+      "home": "Pacers",
+      "score": "107.6–102.2",
+      "total": "209.8",
+      "models": "Nuggets, 4–0",
+      "sim": "109–100.5, Nuggets 66.4%",
+      "sportPath": "basketball/nba",
+      "awayId": "7",
+      "homeId": "11",
+      "neutral": true,
+      "homeMargin": "-5.5",
+      "agreement": "away",
+      "marketHomeMargin": "-7.5",
+      "postedTotal": "229.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Under 229.5 clears the number. Walk-forward did not support a bet. Game: Nuggets at Pacers, 11/7 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T00:30Z",
+      "when": "11/7 - 7:30 PM EST",
+      "away": "Nets",
+      "home": "Hawks",
+      "score": "115.8–115.9",
+      "total": "231.6",
+      "models": "split, 3–1 Hawks",
+      "sim": "115–119.5, Nets 51.1%",
+      "sportPath": "basketball/nba",
+      "awayId": "17",
+      "homeId": "1",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "split",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "224.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 ➗ Pass. Split. Game: Nets at Hawks, 11/7 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T01:00Z",
+      "when": "11/7 - 8:00 PM EST",
+      "away": "Knicks",
+      "home": "Cavaliers",
+      "score": "111.7–115.7",
+      "total": "227.5",
+      "models": "split, 2–2",
+      "sim": "110–114, Cavaliers 62.7%",
+      "sportPath": "basketball/nba",
+      "awayId": "18",
+      "homeId": "5",
+      "neutral": false,
+      "homeMargin": "4",
+      "agreement": "split",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "225.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 ➗ Pass. Split. Game: Knicks at Cavaliers, 11/7 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T01:00Z",
+      "when": "11/7 - 8:00 PM EST",
+      "away": "Wizards",
+      "home": "Thunder",
+      "score": "109.2–115",
+      "total": "224.2",
+      "models": "Thunder, 4–0",
+      "sim": "109.5–117, Thunder 65.5%",
+      "sportPath": "basketball/nba",
+      "awayId": "27",
+      "homeId": "25",
+      "neutral": false,
+      "homeMargin": "5.9",
+      "agreement": "home",
+      "marketHomeMargin": "11.5",
+      "postedTotal": "220.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Over 220.5 clears the number. Walk-forward did not support a bet. Game: Wizards at Thunder, 11/7 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T01:30Z",
+      "when": "11/7 - 8:30 PM EST",
+      "away": "Magic",
+      "home": "Warriors",
+      "score": "107.5–115.8",
+      "total": "223.2",
+      "models": "Warriors, 4–0",
+      "sim": "107.5–116.5, Warriors 83.9%",
+      "sportPath": "basketball/nba",
+      "awayId": "19",
+      "homeId": "9",
+      "neutral": false,
+      "homeMargin": "8.3",
+      "agreement": "home",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "220.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Warriors lands on the number. That slice did not beat every favorite. Game: Magic at Warriors, 11/7 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T02:00Z",
+      "when": "11/7 - 9:00 PM EST",
+      "away": "Rockets",
+      "home": "Suns",
+      "score": "120.4–115.9",
+      "total": "236.3",
+      "models": "Rockets, 4–0",
+      "sim": "121.5–116.5, Rockets 73.8%",
+      "sportPath": "basketball/nba",
+      "awayId": "10",
+      "homeId": "21",
+      "neutral": false,
+      "homeMargin": "-4.5",
+      "agreement": "away",
+      "marketHomeMargin": "-7.5",
+      "postedTotal": "222.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Over 222.5 clears the number. Walk-forward did not support a bet. Game: Rockets at Suns, 11/7 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T03:00Z",
+      "when": "11/7 - 10:00 PM EST",
+      "away": "Spurs",
+      "home": "Trail Blazers",
+      "score": "111.5–111",
+      "total": "222.5",
+      "models": "split, 2–2",
+      "sim": "120.5–107, Spurs 50.1%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "24",
+      "homeId": "22",
+      "neutral": false,
+      "homeMargin": "-0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Spurs at Trail Blazers, 11/7 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

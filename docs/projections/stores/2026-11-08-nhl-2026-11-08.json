@@ -1,0 +1,188 @@
+{
+  "id": "2026-11-08-nhl-2026-11-08",
+  "title": "NHL 2026-11-08",
+  "sportPath": "hockey/nhl",
+  "retrievedAt": "2026-11-07T04:49:35.333Z",
+  "games": [
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Panthers",
+      "home": "Bruins",
+      "score": "2.4–3.6",
+      "total": "5.9",
+      "models": "Bruins, 4–0",
+      "sim": "2.5–3.5, Bruins 72.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "26",
+      "homeId": "1",
+      "neutral": false,
+      "homeMargin": "1.2",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟩 4 🏠 Lean. Bruins. Price missing. Game: Panthers at Bruins, 11/8 - 1:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T20:30Z",
+      "when": "11/8 - 3:30 PM EST",
+      "away": "Golden Knights",
+      "home": "Sabres",
+      "score": "2.9–2.6",
+      "total": "5.5",
+      "models": "split, 3–1 Golden Knights",
+      "sim": "2.5–2.5, Golden Knights 54.4%",
+      "sportPath": "hockey/nhl",
+      "awayId": "37",
+      "homeId": "2",
+      "neutral": false,
+      "homeMargin": "-0.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟡 2 📒 Pass. Golden Knights scar. Walk-forward did not beat every favorite. Game: Golden Knights at Sabres, 11/8 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T23:00Z",
+      "when": "11/8 - 6:00 PM EST",
+      "away": "Lightning",
+      "home": "Jets",
+      "score": "3.3–3.5",
+      "total": "6.8",
+      "models": "split, 2–2",
+      "sim": "3–3.5, Jets 49.5%",
+      "sportPath": "hockey/nhl",
+      "awayId": "20",
+      "homeId": "28",
+      "neutral": false,
+      "homeMargin": "0.2",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟡 2 ➗ Pass. Split. Game: Lightning at Jets, 11/8 - 6:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T00:00Z",
+      "when": "11/8 - 7:00 PM EST",
+      "away": "Devils",
+      "home": "Maple Leafs",
+      "score": "3.1–3.3",
+      "total": "6.4",
+      "models": "split, 3–1 Devils",
+      "sim": "3–3.5, Maple Leafs 45.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "11",
+      "homeId": "21",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟡 2 ➗ Pass. Split. Game: Devils at Maple Leafs, 11/8 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T00:00Z",
+      "when": "11/8 - 7:00 PM EST",
+      "away": "Flyers",
+      "home": "Flames",
+      "score": "2.5–3.2",
+      "total": "5.7",
+      "models": "split, 3–1 Flames",
+      "sim": "2–3, Flames 61.9%",
+      "sportPath": "hockey/nhl",
+      "awayId": "15",
+      "homeId": "3",
+      "neutral": false,
+      "homeMargin": "0.7",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟡 2 📒 Pass. Flames scar. Walk-forward did not beat every favorite. Game: Flyers at Flames, 11/8 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T01:00Z",
+      "when": "11/8 - 8:00 PM EST",
+      "away": "Penguins",
+      "home": "Ducks",
+      "score": "3.9–4",
+      "total": "7.9",
+      "models": "Ducks, 4–0",
+      "sim": "4–4, Ducks 50.7%",
+      "sportPath": "hockey/nhl",
+      "awayId": "16",
+      "homeId": "25",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏒 🟩 4 🏠 Lean. Ducks. Price missing. Game: Penguins at Ducks, 11/8 - 8:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}

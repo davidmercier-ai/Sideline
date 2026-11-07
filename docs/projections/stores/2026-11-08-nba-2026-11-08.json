@@ -1,0 +1,218 @@
+{
+  "id": "2026-11-08-nba-2026-11-08",
+  "title": "NBA 2026-11-08",
+  "sportPath": "basketball/nba",
+  "retrievedAt": "2026-11-07T04:49:35.333Z",
+  "games": [
+    {
+      "date": "2026-11-08T20:30Z",
+      "when": "11/8 - 3:30 PM EST",
+      "away": "76ers",
+      "home": "Bulls",
+      "score": "117.9–115.6",
+      "total": "233.4",
+      "models": "76ers, 4–0",
+      "sim": "119–115.5, 76ers 65.6%, thin",
+      "sportPath": "basketball/nba",
+      "awayId": "20",
+      "homeId": "4",
+      "neutral": false,
+      "homeMargin": "-2.3",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: 76ers at Bulls, 11/8 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T23:00Z",
+      "when": "11/8 - 6:00 PM EST",
+      "away": "Lakers",
+      "home": "Pistons",
+      "score": "108.1–107.1",
+      "total": "215.2",
+      "models": "split, 2–2",
+      "sim": "107.5–109, Lakers 49.9%",
+      "sportPath": "basketball/nba",
+      "awayId": "13",
+      "homeId": "8",
+      "neutral": false,
+      "homeMargin": "-1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 ➗ Pass. Split. Game: Lakers at Pistons, 11/8 - 6:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T00:00Z",
+      "when": "11/8 - 7:00 PM EST",
+      "away": "Jazz",
+      "home": "Timberwolves",
+      "score": "103.4–118",
+      "total": "221.4",
+      "models": "Timberwolves, 4–0",
+      "sim": "101.5–117.5, Timberwolves 98.3%",
+      "sportPath": "basketball/nba",
+      "awayId": "26",
+      "homeId": "16",
+      "neutral": false,
+      "homeMargin": "14.6",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. Timberwolves. Price missing. Game: Jazz at Timberwolves, 11/8 - 7:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T00:30Z",
+      "when": "11/8 - 7:30 PM EST",
+      "away": "Nets",
+      "home": "Mavericks",
+      "score": "108.5–110.8",
+      "total": "219.3",
+      "models": "split, 3–1 Mavericks",
+      "sim": "110–112.5, Mavericks 58.4%",
+      "sportPath": "basketball/nba",
+      "awayId": "17",
+      "homeId": "6",
+      "neutral": false,
+      "homeMargin": "2.3",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Mavericks scar. Walk-forward did not beat every favorite. Game: Nets at Mavericks, 11/8 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T01:00Z",
+      "when": "11/8 - 8:00 PM EST",
+      "away": "Celtics",
+      "home": "Bucks",
+      "score": "116.4–106.2",
+      "total": "222.6",
+      "models": "Celtics, 4–0",
+      "sim": "120–108, Celtics 80.5%",
+      "sportPath": "basketball/nba",
+      "awayId": "2",
+      "homeId": "15",
+      "neutral": false,
+      "homeMargin": "-10.2",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟩 4 🏠 Lean. Celtics. Price missing. Game: Celtics at Bucks, 11/8 - 8:00 PM EST.",
+      "alertRating": 4,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T02:00Z",
+      "when": "11/8 - 9:00 PM EST",
+      "away": "Pelicans",
+      "home": "Clippers",
+      "score": "120–121.1",
+      "total": "241",
+      "models": "split, 2–2",
+      "sim": "119–125, Clippers 54%",
+      "sportPath": "basketball/nba",
+      "awayId": "3",
+      "homeId": "12",
+      "neutral": false,
+      "homeMargin": "1.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 ➗ Pass. Split. Game: Pelicans at Clippers, 11/8 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T02:00Z",
+      "when": "11/8 - 9:00 PM EST",
+      "away": "Heat",
+      "home": "Kings",
+      "score": "118.5–116.4",
+      "total": "234.9",
+      "models": "split, 3–1 Heat",
+      "sim": "119–116, Heat 60.9%",
+      "sportPath": "basketball/nba",
+      "awayId": "14",
+      "homeId": "23",
+      "neutral": false,
+      "homeMargin": "-2",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📒 Pass. Heat scar. Walk-forward did not beat every favorite. Game: Heat at Kings, 11/8 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    }
+  ]
+}

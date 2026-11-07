@@ -1,0 +1,128 @@
+{
+  "id": "2026-11-07-premier-league-scoreboard",
+  "title": "Premier League scoreboard",
+  "sportPath": "soccer/eng.1",
+  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "games": [
+    {
+      "date": "2026-11-07T12:30Z",
+      "when": "Scheduled",
+      "away": "Spurs",
+      "home": "Leeds",
+      "score": "0.8–1.3",
+      "total": "2",
+      "models": "split, 2–1 Leeds",
+      "sim": "0.5–1, Leeds 54.3%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "367",
+      "homeId": "357",
+      "neutral": false,
+      "homeMargin": "0.5",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📒 Pass. Under 2.5 clears the number. Walk-forward did not support a bet. Game: Spurs at Leeds, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T15:00Z",
+      "when": "Scheduled",
+      "away": "Hull",
+      "home": "Arsenal",
+      "score": "0.8–1.8",
+      "total": "2.5",
+      "models": "Arsenal, 4–0",
+      "sim": "0.5–2, Arsenal 87.2%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "306",
+      "homeId": "359",
+      "neutral": false,
+      "homeMargin": "1",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "3.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "outside-method-range"
+      },
+      "alert": "⚽ 🟡 2 📒 Pass. Under 3.5 clears the number. Walk-forward did not support a bet. Game: Hull at Arsenal, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T15:00Z",
+      "when": "Scheduled",
+      "away": "Newcastle",
+      "home": "Fulham",
+      "score": "1.6–1.8",
+      "total": "3.4",
+      "models": "split, 3–1 Fulham",
+      "sim": "2–1, Fulham 45.3%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "361",
+      "homeId": "370",
+      "neutral": false,
+      "homeMargin": "0.1",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Newcastle at Fulham, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T17:30Z",
+      "when": "Scheduled",
+      "away": "Man City",
+      "home": "Nottm Forest",
+      "score": "1.5–0.4",
+      "total": "1.9",
+      "models": "Man City, 4–0",
+      "sim": "1–0, Man City 84.9%",
+      "sportPath": "soccer/eng.1",
+      "awayId": "382",
+      "homeId": "393",
+      "neutral": false,
+      "homeMargin": "-1.1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "2.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "inside-method-range"
+      },
+      "alert": "⚽ 🟩 4 🏠 Lean. Man City. Price missing. Game: Man City at Nottm Forest, Scheduled.",
+      "alertRating": 4,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}
