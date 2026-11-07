@@ -1,0 +1,398 @@
+{
+  "id": "2026-11-08-nfl",
+  "title": "NFL",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-07T04:49:35.333Z",
+  "games": [
+    {
+      "date": "2026-11-08T14:30Z",
+      "when": "11/8 - 9:30 AM EST",
+      "away": "Bengals",
+      "home": "Falcons",
+      "score": "28.5–18.9",
+      "total": "47.4",
+      "models": "Bengals, 4–0",
+      "sim": "29–18, Bengals 88.1%",
+      "sportPath": "football/nfl",
+      "awayId": "4",
+      "homeId": "1",
+      "neutral": true,
+      "homeMargin": "-9.6",
+      "agreement": "away",
+      "marketHomeMargin": "-3",
+      "postedTotal": "52.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Under 52.5 clears the number. Walk-forward did not support a bet. Game: Bengals at Falcons, 11/8 - 9:30 AM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Cowboys",
+      "home": "Colts",
+      "score": "27.1–23.1",
+      "total": "50.2",
+      "models": "Cowboys, 4–0",
+      "sim": "27.5–23, Cowboys 68.8%",
+      "sportPath": "football/nfl",
+      "awayId": "6",
+      "homeId": "11",
+      "neutral": false,
+      "homeMargin": "-4",
+      "agreement": "away",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "51.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Under 51.5 clears the number. Walk-forward did not support a bet. Game: Cowboys at Colts, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Jets",
+      "home": "Chiefs",
+      "score": "17.4–25.6",
+      "total": "43",
+      "models": "Chiefs, 4–0",
+      "sim": "15–27, Chiefs 84.9%",
+      "sportPath": "football/nfl",
+      "awayId": "20",
+      "homeId": "12",
+      "neutral": false,
+      "homeMargin": "8.2",
+      "agreement": "home",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "48.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Under 48.5 clears the number. Walk-forward did not support a bet. Game: Jets at Chiefs, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Lions",
+      "home": "Dolphins",
+      "score": "30.2–24.5",
+      "total": "54.7",
+      "models": "Lions, 4–0",
+      "sim": "28.5–25.5, Lions 74.3%",
+      "sportPath": "football/nfl",
+      "awayId": "8",
+      "homeId": "15",
+      "neutral": false,
+      "homeMargin": "-5.7",
+      "agreement": "away",
+      "marketHomeMargin": "-6.5",
+      "postedTotal": "49.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Lions does not clear the number. Game: Lions at Dolphins, 11/8 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Browns",
+      "home": "Saints",
+      "score": "25–22.8",
+      "total": "47.7",
+      "models": "split, 2–2",
+      "sim": "25–23, Browns 59.5%",
+      "sportPath": "football/nfl",
+      "awayId": "5",
+      "homeId": "18",
+      "neutral": false,
+      "homeMargin": "-2.2",
+      "agreement": "split",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "42.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Browns at Saints, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Giants",
+      "home": "Eagles",
+      "score": "23.6–22.5",
+      "total": "46.2",
+      "models": "Giants, 4–0",
+      "sim": "25.5–22.5, Giants 64.8%",
+      "sportPath": "football/nfl",
+      "awayId": "19",
+      "homeId": "21",
+      "neutral": false,
+      "homeMargin": "-1.1",
+      "agreement": "away",
+      "marketHomeMargin": "-3",
+      "postedTotal": "38.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Over 38.5 clears the number. Walk-forward did not support a bet. Game: Giants at Eagles, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Rams",
+      "home": "Commanders",
+      "score": "25.5–26.3",
+      "total": "51.8",
+      "models": "split, 3–1 Rams",
+      "sim": "26.5–26.5, Commanders 49.6%",
+      "sportPath": "football/nfl",
+      "awayId": "14",
+      "homeId": "28",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "split",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "47.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Rams at Commanders, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T18:00Z",
+      "when": "11/8 - 1:00 PM EST",
+      "away": "Broncos",
+      "home": "Panthers",
+      "score": "31–24.7",
+      "total": "55.6",
+      "models": "Broncos, 4–0",
+      "sim": "28.5–26.5, Broncos 72.2%",
+      "sportPath": "football/nfl",
+      "awayId": "7",
+      "homeId": "29",
+      "neutral": false,
+      "homeMargin": "-6.3",
+      "agreement": "away",
+      "marketHomeMargin": "-3",
+      "postedTotal": "44.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Over 44.5 clears the number. Walk-forward did not support a bet. Game: Broncos at Panthers, 11/8 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T21:05Z",
+      "when": "11/8 - 4:05 PM EST",
+      "away": "Texans",
+      "home": "Chargers",
+      "score": "23.3–13",
+      "total": "36.3",
+      "models": "Texans, 4–0",
+      "sim": "24.5–16.5, Texans 100%, thin",
+      "sportPath": "football/nfl",
+      "awayId": "34",
+      "homeId": "24",
+      "neutral": false,
+      "homeMargin": "-10.2",
+      "agreement": "away",
+      "marketHomeMargin": "-6",
+      "postedTotal": "40.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Texans at Chargers, 11/8 - 4:05 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T21:25Z",
+      "when": "11/8 - 4:25 PM EST",
+      "away": "Packers",
+      "home": "Patriots",
+      "score": "16–26.4",
+      "total": "42.4",
+      "models": "split, 3–1 Patriots",
+      "sim": "17–29.5, Patriots 90.2%",
+      "sportPath": "football/nfl",
+      "awayId": "9",
+      "homeId": "17",
+      "neutral": false,
+      "homeMargin": "10.4",
+      "agreement": "split",
+      "marketHomeMargin": "3",
+      "postedTotal": "44.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Under 44.5 clears the number. Walk-forward did not support a bet. Game: Packers at Patriots, 11/8 - 4:25 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T21:25Z",
+      "when": "11/8 - 4:25 PM EST",
+      "away": "Raiders",
+      "home": "49ers",
+      "score": "23.8–29.6",
+      "total": "53.4",
+      "models": "49ers, 4–0",
+      "sim": "24.5–28.5, 49ers 74.2%",
+      "sportPath": "football/nfl",
+      "awayId": "13",
+      "homeId": "25",
+      "neutral": false,
+      "homeMargin": "5.9",
+      "agreement": "home",
+      "marketHomeMargin": "10",
+      "postedTotal": "51.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Over 51.5 clears the number. Walk-forward did not support a bet. Game: Raiders at 49ers, 11/8 - 4:25 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-08T21:25Z",
+      "when": "11/8 - 4:25 PM EST",
+      "away": "Cardinals",
+      "home": "Seahawks",
+      "score": "23.3–24.1",
+      "total": "47.4",
+      "models": "Seahawks, 4–0",
+      "sim": "24.5–24.5, Seahawks 52.8%",
+      "sportPath": "football/nfl",
+      "awayId": "22",
+      "homeId": "26",
+      "neutral": false,
+      "homeMargin": "0.8",
+      "agreement": "home",
+      "marketHomeMargin": "8.5",
+      "postedTotal": "39.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Over 39.5 clears the number. Walk-forward did not support a bet. Game: Cardinals at Seahawks, 11/8 - 4:25 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-09T01:20Z",
+      "when": "11/8 - 8:20 PM EST",
+      "away": "Buccaneers",
+      "home": "Bears",
+      "score": "22.2–20.7",
+      "total": "42.9",
+      "models": "split, 2–2",
+      "sim": "19.5–21.5, Buccaneers 48.4%",
+      "sportPath": "football/nfl",
+      "awayId": "27",
+      "homeId": "3",
+      "neutral": false,
+      "homeMargin": "-1.5",
+      "agreement": "split",
+      "marketHomeMargin": "6",
+      "postedTotal": "47.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. Under 47.5 clears the number. Walk-forward did not support a bet. Game: Buccaneers at Bears, 11/8 - 8:20 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
+    }
+  ]
+}

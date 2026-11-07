@@ -163,19 +163,19 @@ Show the projected combined total, the sportsbook total, the difference, and the
 
 Show each team’s projection and the sportsbook team total when available.
 
-**Status:** Team projection is implemented. The sportsbook team total is blocked: the ESPN team-odds object does not include one.
+**Status:** Team projection is implemented. The ESPN team-odds object still has no team total. DraftKings team totals are read from the team-total feed for NFL, college football, NBA, and NHL when that feed sends a row. FanDuel team totals are not on the Ohio game-line board, so that cell stays unavailable.
 
 ### 3.5 Player props
 
 Keep a separate section. Do not invent lines.
 
-**Status:** The section is no longer empty for the saved NFL and NBA prop boards. `scripts/project-players.mjs` writes the baseline and the comparison. Lines that the book file does not contain are not invented. The wider player-stat inventory remains open.
+**Status:** DraftKings main lines for NBA points, rebounds, and assists, and for NFL passing, rushing, and receiving yards, are attached on the slate when that feed sends them. The independent four-read projection stays in `scripts/project-players.mjs` and is missing on the slate pass. FanDuel props are not on the Ohio game-line board. Lines that the feed does not contain are not invented. The wider player-stat inventory remains open.
 
 ### 3.6 Default sportsbooks
 
 Compare FanDuel, DraftKings, and Novig, with Ohio availability in mind. Show open and latest prices, the best verified price, retrieval time, and public splits when available. Never call a snapshot a live feed.
 
-**Status:** DraftKings open and close prices are implemented when ESPN sends them. FanDuel, Novig, Ohio confirmation, cross-book best price, and public splits are blocked for this source.
+**Status:** DraftKings open and latest game lines are implemented when ESPN sends them. FanDuel Ohio latest game lines are implemented for NFL, college football, NBA, and NHL. A price is ranked only when both books post the same number. Novig is implemented in `scripts/book-prices.mjs` and stays off unless a run asks for it. Public betting splits are not on these feeds. Opening prices stay missing when the source does not send them.
 
 ### 3.7 Three layers
 
@@ -185,7 +185,7 @@ Compare FanDuel, DraftKings, and Novig, with Ohio availability in mind. Show ope
 
 Outside-pick consensus is its own layer and is not blended in.
 
-**Status:** Every game on the slate, in every sport, is presented as three views. Sides, moneyline, O/U, team totals, and props each have a row. Opening and latest prices and the retrieval timestamp sit only in the market view. The comparison shows each method minus the DraftKings number. Line value is marked only when that quote sits outside every method’s range. A point gap is not a priced edge. A priced edge stays unsupported until a validated win probability exists alongside a verified price. FanDuel and Novig remain unavailable, so there is no cross-book value check.
+**Status:** Every game on the slate, in every sport, is presented as three views. Sides, moneyline, O/U, team totals, and props each have a row. Opening and latest prices and the retrieval timestamp sit only in the market view. The comparison shows each method minus the FanDuel number and minus the DraftKings number. Line value is marked only when that quote sits outside every method’s range. A point gap is not a priced edge. A priced edge stays unsupported until a validated win probability exists alongside a verified price. FanDuel and DraftKings are both read for the leagues that have a public Ohio game-line board. Novig stays off unless a run asks for it.
 
 The independent view now has four reads of the same logs: venue-matched mean, overall mean, the average of the two venue medians, and the last three completed games. Agreement among those reads is convergence. It is counted, not averaged into a new projection. Synergy says whether a team’s own venue rate and the opponent’s venue allowance sit on the same side of their overall rates. Outside-pick consensus stays unavailable until a separate source is retrieved. It is not the average of these methods.
 

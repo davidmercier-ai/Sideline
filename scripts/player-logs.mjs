@@ -8,6 +8,12 @@ const UA = { 'User-Agent': 'SidelineProjection/0.1', Accept: 'application/json' 
 const SPORT = {
   nfl: 'football/nfl',
   nba: 'basketball/nba',
+  nhl: 'hockey/nhl',
+  epl: 'soccer/eng.1',
+}
+
+export function sportPath(league) {
+  return SPORT[league] ?? null
 }
 
 export function looseName(value) {
@@ -16,6 +22,9 @@ export function looseName(value) {
 
 export function playerStat(market, selection) {
   const text = `${market ?? ''} ${selection ?? ''}`
+  if (/first (td|touchdown)/i.test(text)) return { stat: 'firstTd', binary: true }
+  if (/first basket|first field goal/i.test(text)) return { stat: 'firstBasket', binary: true }
+  if (/first goal/i.test(text)) return { stat: 'firstGoal', binary: true }
   if (/touchdown scorer|anytime td|any time td/i.test(text)) return { stat: 'anytimeTd', binary: true }
   if (/passing yards/i.test(text)) return { stat: 'passYds', binary: false }
   if (/rushing yards|rush yards/i.test(text)) return { stat: 'rushYds', binary: false }
@@ -138,9 +147,32 @@ async function searchPlayer(name, league) {
     `https://site.web.api.espn.com/apis/common/v3/search?query=${encodeURIComponent(name)}&limit=8&type=player`,
   )
   const target = looseName(name)
-  const items = (data.items || []).filter((item) => item.league === league)
+  const code = league === 'epl' ? 'eng.1' : league
+  let items = (data.items || []).filter((item) => item.league === code)
+  if (!items.length && league === 'epl') {
+    items = (data.items || []).filter((item) => looseName(item.displayName) === target)
+  }
   const exact = items.filter((item) => looseName(item.displayName) === target)
   return exact.length ? exact : items.filter((item) => looseName(item.displayName).startsWith(target)).slice(0, 2)
+}
+
+export async function fetchAthleteGamelog(name, league) {
+  const path = SPORT[league]
+  if (!path) return { name, league, error: 'no sport' }
+  const candidates = await searchPlayer(name, league)
+  if (!candidates.length) return { name, league, error: 'no ESPN player' }
+  let best = null
+  for (const hit of candidates) {
+    const data = await getJson(
+      `https://site.web.api.espn.com/apis/common/v3/sports/${path}/athletes/${hit.id}/gamelog`,
+    )
+    const season = (data.seasonTypes || []).find((item) => /2026/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
+    const games = (season?.categories || []).filter((category) => category.type === 'event')
+      .reduce((sum, category) => sum + (category.events || []).length, 0)
+    const record = { name: hit.displayName, id: String(hit.id), league, games, data }
+    if (!best || record.games > best.games) best = record
+  }
+  return best
 }
 
 export async function fetchPlayerLog(name, league) {

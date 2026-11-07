@@ -286,10 +286,11 @@ const valueAlert = buildAlert({
   marketHomeMargin: 3,
   postedTotal: 44,
 })
-assert.equal(valueAlert.rating, 5)
-assert.equal(valueAlert.reason, 'value')
-assert.equal(valueAlert.action, 'Bet')
-assert.ok(valueAlert.text.startsWith('🏈 🟢 5 💰 Bet Home.'))
+assert.equal(valueAlert.rating, 2)
+assert.equal(valueAlert.reason, 'record')
+assert.equal(valueAlert.action, 'Pass')
+assert.ok(valueAlert.text.includes('Walk-forward did not support a bet'))
+assert.equal(valueAlert.link, null)
 assert.ok(valueAlert.text.includes('Game: Away at Home'))
 
 const soon = buildAlert({
@@ -302,8 +303,8 @@ const soon = buildAlert({
   methods: [{ margin: -0.2, total: 2.2 }, { margin: 0.1, total: 2.4 }, { margin: -0.4, total: 2.1 }, { margin: -0.3, total: 2.6 }],
   postedTotal: 3.5,
 })
-assert.equal(soon.action, 'Bet now')
-assert.equal(soon.bet, 'Under 3.5')
+assert.equal(soon.action, 'Pass')
+assert.ok(soon.bet.startsWith('Under 3.5'))
 assert.ok(soon.text.startsWith('⚽'))
 
 const split = buildAlert({
@@ -333,8 +334,10 @@ const scar = buildAlert({
   methods: [{ margin: 1.2, total: 6 }, { margin: 0.8, total: 6 }, { margin: 0.4, total: 6 }, { margin: -0.3, total: 6 }],
   marketHomeMargin: 0.5,
 })
-assert.equal(scar.rating, 3)
-assert.equal(scar.reason, 'scar')
+assert.equal(scar.rating, 2)
+assert.equal(scar.reason, 'record')
+assert.equal(scar.action, 'Pass')
+assert.ok(scar.bet.includes('scar'))
 assert.ok(scar.text.includes('🏒'))
 
 const dkId = '0QA382657149#2341145992_13L88808Q1-549717439Q20'
@@ -392,8 +395,8 @@ const linked = buildAlert({
   marketHomeMargin: 3,
   slip: { book: 'DraftKings', eventId: '34118052', selectionId: dkId },
 })
-assert.equal(linked.action, 'Bet')
-assert.equal(linked.link, betSlipLink({ book: 'DraftKings', action: 'Bet', eventId: '34118052', selectionId: dkId }))
+assert.equal(linked.action, 'Pass')
+assert.equal(linked.link, null)
 assert.ok(!linked.text.includes('http'))
 
 const leaned = buildAlert({
@@ -406,5 +409,17 @@ const leaned = buildAlert({
 })
 assert.equal(leaned.action, 'Lean')
 assert.equal(leaned.link, null)
+const college = buildAlert({
+  sportPath: 'basketball/mens-college-basketball',
+  away: 'Michigan',
+  home: 'UConn',
+  methods: [{ margin: 8, total: 140 }, { margin: 7, total: 141 }, { margin: 6, total: 139 }, { margin: 9, total: 142 }],
+  marketHomeMargin: 3,
+  thin: true,
+  slip: { book: 'DraftKings', eventId: '34118052', selectionId: dkId },
+})
+assert.equal(college.action, 'Lean')
+assert.equal(college.link, null)
+assert.ok(college.bet.includes('2026-27'))
 
 console.log('projection math ok')

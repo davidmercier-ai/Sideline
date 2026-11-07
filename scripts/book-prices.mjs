@@ -233,7 +233,7 @@ function novigQuotes(events, markets, retrievedAt) {
   return { index, eventById, markets }
 }
 
-function findQuote(index, awayNames, homeNames) {
+export function findQuote(index, awayNames, homeNames) {
   if (!index) return null
   for (const [key, quote] of index) {
     const [away, home] = key.split('|')
@@ -297,6 +297,170 @@ export async function loadBooks(sportKeys, retrievedAt, options = {}) {
       return { fanduel, novig, props }
     },
   }
+}
+
+export const DRAFTKINGS_TEAM_TOTALS = {
+  nfl: ['88808', '530', '16719'],
+  ncaaf: ['87637', '530', '16719'],
+  nba: ['42648', '523', '4609'],
+  nhl: ['42133', '1193', '16716'],
+}
+
+export const DRAFTKINGS_PROP_FEEDS = {
+  nba: [
+    ['42648', '1215', '12488', 'points'],
+    ['42648', '1216', '12492', 'rebounds'],
+    ['42648', '1217', '12495', 'assists'],
+  ],
+  nfl: [
+    ['88808', '1000', '9524', 'passing yards'],
+    ['88808', '1001', '9514', 'rushing yards'],
+    ['88808', '1342', '14114', 'receiving yards'],
+  ],
+}
+
+const DK_CONTENT = 'https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues'
+
+function americanText(value) {
+  return formatAmerican(String(value ?? '').replaceAll('−', '-').replaceAll('–', '-'))
+}
+
+function eventSides(name) {
+  const parts = String(name || '').split(' @ ')
+  return parts.length === 2 ? parts : null
+}
+
+export function indexDraftKingsTeamTotals(payload) {
+  const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
+  const index = new Map()
+  for (const market of payload?.markets ?? []) {
+    const sides = eventSides(events.get(market.eventId))
+    if (!sides) continue
+    const selections = (payload.selections ?? []).filter((selection) => selection.marketId === market.id)
+    const over = selections.find((selection) => /over/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const under = selections.find((selection) => /under/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const line = Number(over?.points ?? under?.points)
+    if (!Number.isFinite(line)) continue
+    const quote = { line, over: americanText(over?.displayOdds?.american), under: americanText(under?.displayOdds?.american) }
+    const key = pairKey(sides[0], sides[1])
+    const bucket = index.get(key) ?? { away: sides[0], home: sides[1], awayTotal: null, homeTotal: null }
+    const teamLabel = String(market.name || '').split(':')[0]
+    if (namesMatch(teamLabel, sides[0])) bucket.awayTotal = quote
+    else if (namesMatch(teamLabel, sides[1])) bucket.homeTotal = quote
+    index.set(key, bucket)
+  }
+  return index
+}
+
+const FANDUEL_PROP_TABS = {
+  nba: [
+    ['player-points', 'points', /^PLAYER_[A-Z]_TOTAL_POINTS$/],
+    ['player-rebounds', 'rebounds', /^PLAYER_[A-Z]_TOTAL_REBOUNDS$/],
+    ['player-assists', 'assists', /^PLAYER_[A-Z]_TOTAL_ASSISTS$/],
+  ],
+  nfl: [
+    // HIGH is the main two-sided over/under on this tab. ALT markets are excluded.
+    ['passing-props', 'passing yards', /^PLAYER_[A-Z]_PASSING_YARDS_HIGH$/],
+    ['rushing-props', 'rushing yards', /^PLAYER_[A-Z]_RUSHING_YARDS_HIGH$/],
+    ['receiving-props', 'receiving yards', /^PLAYER_[A-Z]_RECEIVING_YARDS_HIGH$/],
+  ],
+}
+
+export function indexFanDuelProps(payload, stat, pattern) {
+  const events = payload?.attachments?.events ?? {}
+  const props = []
+  for (const market of Object.values(payload?.attachments?.markets ?? {})) {
+    if (!pattern.test(market.marketType || '')) continue
+    if (/ALT|QUARTER|DRIVE|MOST/.test(market.marketType || '')) continue
+    const event = events[String(market.eventId)] || Object.values(events)[0]
+    const parts = String(event?.name || '').split(' @ ')
+    if (parts.length !== 2) continue
+    const over = (market.runners ?? []).find((runner) => runner.result?.type === 'OVER' || /^over\b/i.test(runner.runnerName || ''))
+    const under = (market.runners ?? []).find((runner) => runner.result?.type === 'UNDER' || /^under\b/i.test(runner.runnerName || ''))
+    const line = Number(over?.handicap ?? under?.handicap)
+    if (!Number.isFinite(line)) continue
+    const player = String(market.marketName || '').split(' - ')[0].trim()
+    if (!player) continue
+    props.push({
+      away: parts[0].trim(),
+      home: parts[1].trim(),
+      player,
+      stat,
+      line,
+      over: formatAmerican(over?.winRunnerOdds?.americanDisplayOdds?.americanOdds),
+      under: formatAmerican(under?.winRunnerOdds?.americanDisplayOdds?.americanOdds),
+    })
+  }
+  return props
+}
+
+export async function loadFanDuelPropLines(sport) {
+  const tabs = FANDUEL_PROP_TABS[sport] ?? []
+  if (tabs.length === 0) return []
+  const board = await getJson(`${FANDUEL}?page=CUSTOM&customPageId=${FANDUEL_PAGES[sport]}&_ak=${FANDUEL_KEY}`)
+  const events = Object.values(board.attachments?.events ?? {}).filter((event) => /@/.test(event?.name || ''))
+  const props = []
+  for (const event of events) {
+    for (const [tab, stat, pattern] of tabs) {
+      const payload = await getJson(`${FANDUEL.replace('/content-managed-page', '/event-page')}?_ak=${FANDUEL_KEY}&eventId=${event.eventId}&tab=${tab}`)
+      if (!payload.attachments) payload.attachments = {}
+      payload.attachments.events = { [event.eventId]: event }
+      props.push(...indexFanDuelProps(payload, stat, pattern))
+    }
+  }
+  return props
+}
+
+export function indexDraftKingsProps(payload, stat) {
+  const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
+  const props = []
+  for (const market of payload?.markets ?? []) {
+    const sides = eventSides(events.get(market.eventId))
+    if (!sides) continue
+    const selections = (payload.selections ?? []).filter((selection) => selection.marketId === market.id)
+    const over = selections.find((selection) => /over/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const under = selections.find((selection) => /under/i.test(`${selection.outcomeType ?? ''} ${selection.label ?? ''}`))
+    const line = Number(over?.points ?? under?.points)
+    if (!Number.isFinite(line)) continue
+    const player = String(market.name || '').replace(new RegExp(`\\s+${stat}.*$`, 'i'), '').trim()
+    if (!player) continue
+    props.push({
+      away: sides[0],
+      home: sides[1],
+      player,
+      stat,
+      line,
+      over: americanText(over?.displayOdds?.american),
+      under: americanText(under?.displayOdds?.american),
+    })
+  }
+  return props
+}
+
+async function loadDraftKingsFeed(league, category, subcategory) {
+  return getJson(`${DK_CONTENT}/${league}/categories/${category}/subcategories/${subcategory}`)
+}
+
+export async function loadDraftKingsTeamTotals(sport) {
+  const spec = DRAFTKINGS_TEAM_TOTALS[sport]
+  if (!spec) return new Map()
+  return indexDraftKingsTeamTotals(await loadDraftKingsFeed(...spec))
+}
+
+export async function loadDraftKingsPropLines(sport) {
+  const feeds = DRAFTKINGS_PROP_FEEDS[sport] ?? []
+  const props = []
+  for (const [league, category, subcategory, stat] of feeds) {
+    props.push(...indexDraftKingsProps(await loadDraftKingsFeed(league, category, subcategory), stat))
+  }
+  return props
+}
+
+export function propsForNames(props, awayNames, homeNames) {
+  return (props ?? []).filter((prop) => (
+    awayNames.some((name) => namesMatch(name, prop.away))
+    && homeNames.some((name) => namesMatch(name, prop.home))
+  ))
 }
 
 function propsForEvent(markets, eventId) {

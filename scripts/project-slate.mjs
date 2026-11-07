@@ -9,11 +9,12 @@
  * Run: node scripts/project-slate.mjs [output.md]
  */
 
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { boardStoreId, saveBoard } from './board-store.mjs'
 import { researchLevel, thinPublicLeague } from './research-protocol.mjs'
-import { loadBooks } from './book-prices.mjs'
+import { findQuote, loadBooks, loadDraftKingsPropLines, loadDraftKingsTeamTotals, loadFanDuelPropLines, propsForNames } from './book-prices.mjs'
+import { looseName } from './player-logs.mjs'
 import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
   asNumber,
@@ -581,7 +582,7 @@ function marketSection(game) {
   lines.push('**2. Sportsbook lines and prices — FanDuel and DraftKings**')
   lines.push('')
   lines.push(`Retrieved ${retrievedAt.toISOString()} UTC. Snapshot, not a live feed. This pass uses FanDuel and DraftKings only.`)
-  lines.push('DraftKings open and latest come from the ESPN quote. The DraftKings site returned access denied. FanDuel latest comes from the Ohio board. FanDuel did not send an opening price.')
+  lines.push('DraftKings open and latest game lines come from the ESPN quote. DraftKings team totals come from the team-total feed. FanDuel latest comes from the Ohio board. FanDuel did not send an opening price.')
   lines.push('Prices and timestamps stay in this section. They are not inputs to the projection above.')
   lines.push('')
   lines.push('| Market | FanDuel open | FanDuel latest | DraftKings open | DraftKings latest | Flag |')
@@ -595,8 +596,9 @@ function marketSection(game) {
   const fdTotal = fanduel && Number.isFinite(fanduel.total) ? 'verified-retrieved' : 'unavailable'
   const dkTotal = bookFlag(draftKings, market.total != null, market.totalPrices?.overClosePrice != null)
   lines.push(`| O/U | unavailable | ${totalCell(fanduel?.total, fanduel?.overPrice, fanduel?.underPrice)} | ${priceCell(market.totalPrices?.overOpenLine, market.totalPrices?.overOpenPrice)} / ${priceCell(market.totalPrices?.underOpenLine, market.totalPrices?.underOpenPrice)} | ${priceCell(market.totalPrices?.overCloseLine, market.totalPrices?.overClosePrice)} / ${priceCell(market.totalPrices?.underCloseLine, market.totalPrices?.underClosePrice)} | FD ${fdTotal}; DK ${dkTotal} |`)
-  lines.push('| Team total, away | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
-  lines.push('| Team total, home | unavailable | unavailable | unavailable | unavailable | FD unavailable; DK unavailable |')
+  const dkTotals = game.extra?.dkTeamTotals
+  lines.push(`| Team total, away | unavailable | unavailable | unavailable | ${teamTotalCell(dkTotals?.awayTotal)} | FD unavailable; DK ${dkTotals?.awayTotal ? 'verified-retrieved' : 'unavailable'} |`)
+  lines.push(`| Team total, home | unavailable | unavailable | unavailable | ${teamTotalCell(dkTotals?.homeTotal)} | FD unavailable; DK ${dkTotals?.homeTotal ? 'verified-retrieved' : 'unavailable'} |`)
   const sameSide = Number.isFinite(fanduel?.homeSpread) && Number.isFinite(market.homeSpread) && fanduel.homeSpread === market.homeSpread
   if (sameSide) {
     lines.push(`- Home-side price, same number ${fanduel.homeSpread}: better book is ${betterBook(fanduel.homeSpreadPrice, market.spread?.homeClosePrice)}.`)
@@ -620,7 +622,7 @@ function marketSection(game) {
   return lines
 }
 
-function lineValue(book, position, quote, values) {
+function lineValue(book, position, quote, values, miss) {
   if (position === 'missing-input') return `${book}: missing-input`
   const nums = values.filter((value) => Number.isFinite(value))
   const low = Math.min(...nums)
@@ -629,8 +631,27 @@ function lineValue(book, position, quote, values) {
     return `${book}: no line value — ${fmt(quote)} sits inside the method range ${fmt(low)} to ${fmt(high)}`
   }
   const direction = quote > high ? 'above every method' : 'below every method'
+  const distance = quote > high ? quote - high : low - quote
+  if (Number.isFinite(miss) && distance < miss) {
+    return `${book}: inside the recorded miss of ${fmt(miss)}. ${fmt(quote)} is ${direction} (${fmt(low)} to ${fmt(high)}). This is not line value.`
+  }
   return `${book}: line-value candidate — ${fmt(quote)} is ${direction} (${fmt(low)} to ${fmt(high)}). This is a point gap, not a priced edge.`
 }
+
+function insideMiss(gap, miss) {
+  if (!Number.isFinite(gap) || !Number.isFinite(miss)) return 'Recorded miss unavailable.'
+  if (Math.abs(gap) < miss) return `Inside the recorded miss of ${fmt(miss)}.`
+  return `Outside the recorded miss of ${fmt(miss)}.`
+}
+
+const LEAGUE_RECORD = {
+  'football/nfl': 'NFL',
+  'basketball/nba': 'NBA',
+  'hockey/nhl': 'NHL',
+  'basketball/mens-college-basketball': 'NCAAB',
+}
+
+let recordedMiss = {}
 
 function bookMargins(game) {
   const fanduel = game.extra?.fanduel
@@ -640,7 +661,7 @@ function bookMargins(game) {
   ]
 }
 
-function comparisonSection(game, scoring, methods) {
+function comparisonSection(game, scoring, methods, sportPath) {
   const market = game.market
   const margins = methods.map((method) => method.margin)
   const totals = methods.map((method) => method.total)
@@ -662,13 +683,34 @@ function comparisonSection(game, scoring, methods) {
     lines.push(`| ${name} latest | ${fmt(margin)} | — | ${fmt(total)} | — |`)
   }
   lines.push('')
-  lines.push(`- Venue-mean side gap versus FanDuel: ${fmt(difference(scoring.margin, fanduelMargin))}. Versus DraftKings: ${fmt(difference(scoring.margin, market.marketHomeMargin))}.`)
-  lines.push(`- Venue-mean total gap versus FanDuel: ${fmt(difference(scoring.total, fanduelTotal))} (${totalDirection(difference(scoring.total, fanduelTotal))}). Versus DraftKings: ${fmt(difference(scoring.total, market.total))} (${totalDirection(difference(scoring.total, market.total))}).`)
+  const record = recordedMiss[LEAGUE_RECORD[sportPath]] ?? {}
+  const sideGapFd = difference(scoring.margin, fanduelMargin)
+  const sideGapDk = difference(scoring.margin, market.marketHomeMargin)
+  const totalGapFd = difference(scoring.total, fanduelTotal)
+  const totalGapDk = difference(scoring.total, market.total)
+  lines.push(`- Venue-mean side gap versus FanDuel: ${fmt(sideGapFd)}. ${insideMiss(sideGapFd, record.marginError)} Versus DraftKings: ${fmt(sideGapDk)}. ${insideMiss(sideGapDk, record.marginError)}`)
+  lines.push(`- Venue-mean total gap versus FanDuel: ${fmt(totalGapFd)} (${totalDirection(totalGapFd)}). ${insideMiss(totalGapFd, record.totalError)} Versus DraftKings: ${fmt(totalGapDk)} (${totalDirection(totalGapDk)}). ${insideMiss(totalGapDk, record.totalError)}`)
   for (const [name, margin, total] of quotes) {
-    lines.push(`- ${name} side: ${lineValue(name, quotePosition(margin, margins), margin, margins)}`)
-    lines.push(`- ${name} total: ${lineValue(name, quotePosition(total, totals), total, totals)}`)
+    lines.push(`- ${name} side: ${lineValue(name, quotePosition(margin, margins), margin, margins, record.marginError)}`)
+    lines.push(`- ${name} total: ${lineValue(name, quotePosition(total, totals), total, totals, record.totalError)}`)
   }
-  lines.push('- Team totals: unavailable at FanDuel and DraftKings on the feeds used here.')
+  if (LEAGUE_RECORD[sportPath] === 'NHL' && Number.isFinite(record.dogDecided)) {
+    lines.push(`- NHL puck line: model dogs covered ${record.dogHits} of ${record.dogDecided}. Any dog covered ${record.dogBaseHits} of ${record.dogBaseDecided}. A 0.25-goal room is not a bet.`)
+  }
+  if (LEAGUE_RECORD[sportPath] === 'NBA' && Number.isFinite(record.straightFavoriteDecided)) {
+    const cut = record.cut === 'open'
+      ? 'The later sample still beats every favorite. The gap stays on the record. It is not a bet.'
+      : record.cut === 'note'
+        ? 'The later sample has no games yet. Open stays a note. It is not a bet.'
+        : 'The cut is finished. It is not a bet.'
+    lines.push(`- NBA favorites won ${record.straightFavoriteHits} of ${record.straightFavoriteDecided} straight up. Short-of-the-number favorites won ${record.shortFavoriteHits} of ${record.shortFavoriteDecided}. ${cut}`)
+  }
+  const postedTotals = game.extra?.dkTeamTotals
+  if (postedTotals?.awayTotal || postedTotals?.homeTotal) {
+    lines.push(`- Team totals: DraftKings posted ${game.away.name} ${teamTotalCell(postedTotals.awayTotal)} and ${game.home.name} ${teamTotalCell(postedTotals.homeTotal)}. FanDuel team totals are not on the Ohio game-line board.`)
+  } else {
+    lines.push('- Team totals: unavailable. FanDuel team totals are not on the Ohio game-line board, and the DraftKings team-total feed had no row for this game.')
+  }
   const homeMargins = quotes.map(([, margin]) => margin).filter((value) => Number.isFinite(value))
   if (homeMargins.length === 2) {
     lines.push(`- FanDuel versus DraftKings home margin: ${fmt(homeMargins[1] - homeMargins[0])} (FanDuel minus DraftKings).`)
@@ -782,19 +824,41 @@ function consensusSection(game) {
   return lines
 }
 
+function propCell(prop) {
+  if (!prop || !Number.isFinite(prop.line)) return 'unavailable'
+  return `o${prop.line} ${prop.over ?? 'price missing'} / u${prop.line} ${prop.under ?? 'price missing'}`
+}
+
 function propsSection(game) {
-  const props = game.extra?.props ?? []
-  const shown = props.slice(0, 8)
+  const rows = new Map()
+  for (const prop of game.extra?.dkProps ?? []) {
+    const key = `${looseName(prop.player)}|${prop.stat}`
+    const row = rows.get(key) ?? { player: prop.player, stat: prop.stat, dk: null, fd: null }
+    row.dk = prop
+    rows.set(key, row)
+  }
+  for (const prop of game.extra?.fdProps ?? []) {
+    const key = `${looseName(prop.player)}|${prop.stat}`
+    const row = rows.get(key) ?? { player: prop.player, stat: prop.stat, dk: null, fd: null }
+    row.fd = prop
+    rows.set(key, row)
+  }
+  const shown = [...rows.values()].slice(0, 12)
   const lines = [
     '**Props**',
     '',
-    'Separate from the team card. This pass looks for FanDuel and DraftKings props only. Neither game-line feed included a verified player prop.',
+    'Separate from the team card. DraftKings and FanDuel main over/unders are attached when those feeds send them. FanDuel props come from the event page. FanDuel tags the main passing, rushing, and receiving total as HIGH. That line is the two-sided over/under. Markets tagged ALT are left out. The 1-unit player rule is not a bet. The independent read stays missing on this pass.',
     '',
     '| Prop | Independent projection | FanDuel | DraftKings | Flag |',
     '| --- | --- | --- | --- | --- |',
   ]
   if (shown.length === 0) {
-    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | inventory open | unavailable | unavailable | inventory-open; missing-input; unavailable |`)
+    lines.push(`| Player props for ${game.away.name} at ${game.home.name} | missing | unavailable | unavailable | missing-input |`)
+  } else {
+    for (const prop of shown) {
+      const flag = `${prop.fd ? 'FD verified-retrieved' : 'FD unavailable'}; ${prop.dk ? 'DK verified-retrieved' : 'DK unavailable'}; not a bet`
+      lines.push(`| ${prop.player} ${prop.stat} | missing | ${propCell(prop.fd)} | ${propCell(prop.dk)} | ${flag} |`)
+    }
   }
   lines.push('')
   return lines
@@ -824,6 +888,13 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
   game.alert = alert
   game.research = research
   lines.push(`- Alert: ${alert.text}`)
+  if (String(sportPath).includes('mens-college-basketball')) {
+    const college = recordedMiss.NCAAB
+    const homeLine = college && Number.isFinite(college.homeDecided)
+      ? ` Always home won ${college.homeHits} of ${college.homeDecided}. Venue side won ${college.sideHits} of ${college.sideDecided}.`
+      : ''
+    lines.push(`- College basketball stays a lean until both teams have three completed 2026-27 games. Season year 2026 is last season and stays out.${homeLine}`)
+  }
   lines.push(`- Research: ${research.name}. ${research.reason}`)
   lines.push('')
   lines.push('**1. Independent projection**')
@@ -868,6 +939,10 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
     lines.push(`- Sim median score: ${game.away.name} ${fmt(sim.awayMedian)}, ${game.home.name} ${fmt(sim.homeMedian)}.`)
     lines.push(`- Sim frequencies: ${game.home.name} wins ${fmt(sim.homeWinRate * 100)}%, ${game.away.name} wins ${fmt(sim.awayWinRate * 100)}%, ties ${fmt(sim.tieRate * 100)}%.`)
     lines.push(sim.thin ? '- Sim sample: thin. At least one venue slice has fewer than 3 games, so this frequency is not a stable probability.' : '- Sim sample: each venue slice has at least 3 games.')
+    const simRecord = recordedMiss[LEAGUE_RECORD[sportPath]]
+    if (simRecord && Number.isFinite(simRecord.simDecided)) {
+      lines.push(`- Stable sim record: ${simRecord.simHits} of ${simRecord.simDecided}. A thin sim is not in that count.`)
+    }
     if (sim.fdCover != null) lines.push(`- Sim home-cover rate versus FanDuel: ${fmt(sim.fdCover * 100)}% (pushes ${fmt(sim.fdCoverPush * 100)}%).`)
     if (sim.dkCover != null) lines.push(`- Sim home-cover rate versus DraftKings: ${fmt(sim.dkCover * 100)}% (pushes ${fmt(sim.dkCoverPush * 100)}%).`)
     if (sim.fdOver != null) lines.push(`- Sim over rate versus FanDuel total: ${fmt(sim.fdOver * 100)}%.`)
@@ -919,7 +994,7 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
   lines.push('')
   lines.push(...marketSection(game))
   lines.push('')
-  lines.push(...comparisonSection(game, scoring, methods))
+  lines.push(...comparisonSection(game, scoring, methods, sportPath))
   lines.push('')
   lines.push(...consensusSection(game))
   lines.push('')
@@ -1109,22 +1184,52 @@ async function main() {
   blocks.push('')
   blocks.push('The commandments in docs/projections/COMMANDMENTS.md govern this slate. The predicted slate is the first table. That score is the venue-matched mean. Each game then has an independent projection, sportsbook lines and prices, a comparison, and the game log against the posted number. Sides, moneyline, O/U, team totals, and props are on every sport, not only football. An edge is stated only when a validated probability and verified prices support it. This snapshot does not meet that bar.')
   blocks.push('')
-  blocks.push('Status: not complete. This pass compares projections with FanDuel and DraftKings only. DraftKings open and latest come from ESPN. FanDuel latest comes from the Ohio board for NFL, college football, NBA, and NHL. Player props and team totals were not on those two feeds.')
+  blocks.push('Status: not complete. FanDuel latest game lines come from the Ohio board for NFL, college football, NBA, and NHL. DraftKings open and latest game lines come from the ESPN quote. DraftKings team totals come from the team-total feed for those four leagues. DraftKings and FanDuel prop lines for NBA points, rebounds, and assists, and for NFL passing, rushing, and receiving yards, are attached when those feeds send them. A room clear is not a bet. A priced edge is not labeled.')
   blocks.push('')
   blocks.push('## Open gaps in this snapshot')
   blocks.push('')
-  blocks.push('- Player-stat projection inventory: open. Not recovered, not treated as canceled.')
-  blocks.push('- Player props: FanDuel and DraftKings game-line feeds did not include a verified player prop. The inventory stays open.')
+  blocks.push('- Player-stat projection inventory: open. A posted prop line is not a projection.')
+  blocks.push('- Player props: FanDuel lines come from the event page for NBA points, rebounds, and assists, and for NFL passing, rushing, and receiving yards. DraftKings lines come from the prop feed. The 1-unit rule is not a bet. The player-log pass is separate.')
   blocks.push('- FanDuel opening prices: not on the Ohio board.')
-  blocks.push('- DraftKings direct site: access denied. Open and latest prices are the ESPN quote.')
+  blocks.push('- DraftKings game lines: open and latest are the ESPN quote. Team totals and the listed prop categories are read from the DraftKings content feed.')
   blocks.push('- FanDuel soccer: no public Ohio board for Premier League or MLS, so those games have DraftKings only.')
-  blocks.push('- Team totals: unavailable at both FanDuel and DraftKings on these feeds.')
+  blocks.push('- Team totals: DraftKings when the team-total feed has a row. FanDuel team totals are not on the Ohio game-line board.')
   blocks.push('- Model win probability: not calculated. A score is not turned into a probability.')
   blocks.push('- Priced edge: not labeled. A resampling sim is reported separately from the four base models, and a gap versus the no-vig price is not called an edge.')
   blocks.push('- Public consensus: Covers handicapper picks and the ESPN Matchup Predictor when those sources send a row. A missing row stays missing. This is not blended into the four models or the book prices.')
   blocks.push('')
 
+  try {
+    recordedMiss = JSON.parse(await readFile('docs/projections/backtest-summary.json', 'utf8'))
+  } catch {
+    recordedMiss = {}
+  }
   const books = await loadBooks(['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl', 'epl', 'mls'], retrievedAt.toISOString(), { novig: false })
+  const dkTeamTotals = {}
+  const dkProps = {}
+  const fdProps = {}
+  await Promise.all(['nfl', 'ncaaf', 'nba', 'nhl'].map(async (sport) => {
+    try {
+      dkTeamTotals[sport] = await loadDraftKingsTeamTotals(sport)
+    } catch (error) {
+      dkTeamTotals[sport] = new Map()
+      blocks.push(`DraftKings team totals ${sport}: ${error instanceof Error ? error.message : error}`)
+    }
+    try {
+      dkProps[sport] = await loadDraftKingsPropLines(sport)
+    } catch (error) {
+      dkProps[sport] = []
+      blocks.push(`DraftKings props ${sport}: ${error instanceof Error ? error.message : error}`)
+    }
+  }))
+  await Promise.all(['nfl', 'nba'].map(async (sport) => {
+    try {
+      fdProps[sport] = await loadFanDuelPropLines(sport)
+    } catch (error) {
+      fdProps[sport] = []
+      blocks.push(`FanDuel props ${sport}: ${error instanceof Error ? error.message : error}`)
+    }
+  }))
   blocks.push(`Price sources loaded at ${retrievedAt.toISOString()} UTC. FanDuel Ohio games indexed: ${['nfl', 'ncaaf', 'ncaab', 'nba', 'nhl'].map((sport) => `${sport} ${books.books[sport]?.fanduel.size ?? 0}`).join(', ')}. DraftKings is read per game from ESPN.`)
   const priceErrors = Object.values(books.books).flatMap((entry) => entry.errors)
   if (priceErrors.length) blocks.push(`Price source notes: ${priceErrors.join(' | ')}`)
@@ -1180,8 +1285,13 @@ async function main() {
     }
     const games = gamesFromEvents(events, title).filter((game) => !slateDate || dateET(game.date) === slateDate)
     if (sportKey) {
+      const awayHome = (game) => [[game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name]]
       for (const game of games) {
-        game.extra = books.match(sportKey, [game.away.full, game.away.short, game.away.name], [game.home.full, game.home.short, game.home.name])
+        const [awayNames, homeNames] = awayHome(game)
+        game.extra = books.match(sportKey, awayNames, homeNames)
+        game.extra.dkTeamTotals = findQuote(dkTeamTotals[sportKey], awayNames, homeNames)
+        game.extra.dkProps = propsForNames(dkProps[sportKey], awayNames, homeNames)
+        game.extra.fdProps = propsForNames(fdProps[sportKey], awayNames, homeNames)
       }
     }
     for (const game of games) game.covers = matchCovers(game, covers.picks, coversLeagueFor(sportKey))
@@ -1210,11 +1320,12 @@ async function main() {
   blocks.push('')
   blocks.push('| Check | Status | Flag |')
   blocks.push('| --- | --- | --- |')
-  blocks.push('| Exact player-stat inventory | Not recovered | inventory-open |')
-  blocks.push('| Independent player projection | Not calculated | missing-input |')
-  blocks.push('| FanDuel player props | Not on the Ohio game-line board | unavailable |')
-  blocks.push('| DraftKings player props | Not on the ESPN quote | unavailable |')
-  blocks.push('| Verification | No prop line was checked against a book | unverified |')
+  const propCount = Object.values(dkProps).reduce((sum, rows) => sum + rows.length, 0)
+  blocks.push(`| Exact player-stat inventory | Open. ${propCount} DraftKings lines were retrieved for NBA and NFL. | inventory-open |`)
+  blocks.push('| Independent player projection | Not calculated in this pass | missing-input |')
+  blocks.push(`| FanDuel player props | Event page, NBA points, rebounds, and assists; NFL passing, rushing, and receiving yards. ${Object.values(fdProps).reduce((sum, rows) => sum + rows.length, 0)} lines retrieved. | verified-retrieved |`)
+  blocks.push(`| DraftKings player props | ${propCount > 0 ? 'NBA points, rebounds, and assists; NFL passing, rushing, and receiving yards' : 'The prop feeds returned no rows'} | ${propCount > 0 ? 'verified-retrieved' : 'unavailable'} |`)
+  blocks.push('| Verification | A line is the book number. It is not a projection. | unverified |')
   blocks.push('')
   blocks.push('No prop number is invented. Unrecovered player stats stay open.')
   blocks.push('')

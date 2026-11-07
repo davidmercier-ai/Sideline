@@ -2,12 +2,12 @@
   "id": "2026-11-07-fbs-2026-11-07",
   "title": "FBS 2026-11-07",
   "sportPath": "football/college-football",
-  "retrievedAt": "2026-11-02T00:28:54.008Z",
+  "retrievedAt": "2026-11-07T04:47:28.866Z",
   "games": [
     {
       "date": "2026-11-07T17:00Z",
       "when": "11/7 - 12:00 PM EST",
-      "away": "#7 BYU",
+      "away": "#9 BYU",
       "home": "#3 Utah",
       "score": "20.9–32.4",
       "total": "53.3",
@@ -19,58 +19,30 @@
       "neutral": false,
       "homeMargin": "11.5",
       "agreement": "home",
-      "marketHomeMargin": "5.5",
-      "postedTotal": "47.5",
+      "marketHomeMargin": "4.5",
+      "postedTotal": "49.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 47.5. Game: #7 BYU at #3 Utah, 11/7 - 12:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 49.5 clears the number. Walk-forward did not support a bet. Game: #9 BYU at #3 Utah, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
       "when": "11/7 - 12:00 PM EST",
-      "away": "#5 UCLA",
-      "home": "Minnesota",
-      "score": "26.9–21.6",
-      "total": "48.5",
-      "models": "#5 UCLA, 4–0",
-      "sim": "27.5–18.5, #5 UCLA 63.8%",
-      "sportPath": "football/college-football",
-      "awayId": "26",
-      "homeId": "135",
-      "neutral": false,
-      "homeMargin": "-5.3",
-      "agreement": "away",
-      "marketHomeMargin": "-6",
-      "postedTotal": "39.5",
-      "fanduel": {
-        "side": "inside-method-range",
-        "total": "inside-method-range"
-      },
-      "draftkings": {
-        "side": "inside-method-range",
-        "total": "inside-method-range"
-      },
-      "alert": "🏈 🔴 1 ➗ Pass. #5 UCLA does not clear the number. Game: #5 UCLA at Minnesota, 11/7 - 12:00 PM EST.",
-      "alertRating": 1,
-      "alertAction": "Pass"
-    },
-    {
-      "date": "2026-11-07T17:00Z",
-      "when": "11/7 - 12:00 PM EST",
-      "away": "#10 Texas",
-      "home": "#19 Missouri",
+      "away": "#7 Texas",
+      "home": "#18 Missouri",
       "score": "16.8–27.6",
       "total": "44.4",
       "models": "split, 2–2",
-      "sim": "17–31, #19 Missouri 100%, thin",
+      "sim": "17–31, #18 Missouri 100%, thin",
       "sportPath": "football/college-football",
       "awayId": "251",
       "homeId": "142",
@@ -78,18 +50,49 @@
       "homeMargin": "10.9",
       "agreement": "split",
       "marketHomeMargin": "-2.5",
-      "postedTotal": "43.5",
+      "postedTotal": "42.5",
       "fanduel": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: #7 Texas at #18 Missouri, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T17:00Z",
+      "when": "11/7 - 12:00 PM EST",
+      "away": "#8 UCLA",
+      "home": "Minnesota",
+      "score": "26.9–21.6",
+      "total": "48.5",
+      "models": "#8 UCLA, 4–0",
+      "sim": "27.5–18.5, #8 UCLA 63.8%",
+      "sportPath": "football/college-football",
+      "awayId": "26",
+      "homeId": "135",
+      "neutral": false,
+      "homeMargin": "-5.3",
+      "agreement": "away",
+      "marketHomeMargin": "-4",
+      "postedTotal": "38.5",
+      "fanduel": {
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: #10 Texas at #19 Missouri, 11/7 - 12:00 PM EST.",
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🟡 2 📒 Pass. #8 UCLA clears the number. Walk-forward did not support a bet. Game: #8 UCLA at Minnesota, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -106,7 +109,7 @@
       "neutral": false,
       "homeMargin": "16",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
+      "marketHomeMargin": "10",
       "postedTotal": "50.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -118,7 +121,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Baylor does not clear the number. Game: Iowa State at Baylor, 11/7 - 12:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -135,19 +139,20 @@
       "neutral": false,
       "homeMargin": "9.4",
       "agreement": "split",
-      "marketHomeMargin": "-1.5",
+      "marketHomeMargin": "-2.5",
       "postedTotal": "49.5",
       "fanduel": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 💰 Bet Over 49.5. Game: Clemson at Syracuse, 11/7 - 12:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 49.5 clears the number. Walk-forward did not support a bet. Game: Clemson at Syracuse, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -174,9 +179,10 @@
         "side": "outside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 52.5. Game: Florida St at Boston College, 11/7 - 12:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 52.5 clears the number. Walk-forward did not support a bet. Game: Florida St at Boston College, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -193,7 +199,7 @@
       "neutral": false,
       "homeMargin": "5.4",
       "agreement": "home",
-      "marketHomeMargin": "-7",
+      "marketHomeMargin": "-7.5",
       "postedTotal": "54.5",
       "fanduel": {
         "side": "missing-input",
@@ -203,9 +209,10 @@
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet UConn. Game: North Carolina at UConn, 11/7 - 12:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. UConn clears the number. Walk-forward did not support a bet. Game: North Carolina at UConn, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -222,7 +229,7 @@
       "neutral": false,
       "homeMargin": "0.9",
       "agreement": "split",
-      "marketHomeMargin": "-1.5",
+      "marketHomeMargin": "-3",
       "postedTotal": "50.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -234,7 +241,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Tulsa at Tulane, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:30Z",
@@ -251,8 +259,8 @@
       "neutral": false,
       "homeMargin": "7.6",
       "agreement": "split",
-      "marketHomeMargin": "-6",
-      "postedTotal": "50.5",
+      "marketHomeMargin": "-4",
+      "postedTotal": "51.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -263,7 +271,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Duke at NC State, 11/7 - 12:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:30Z",
@@ -280,8 +289,8 @@
       "neutral": false,
       "homeMargin": "5",
       "agreement": "home",
-      "marketHomeMargin": "6.5",
-      "postedTotal": "57.5",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "56.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -292,7 +301,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Purdue does not clear the number. Game: Maryland at Purdue, 11/7 - 12:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:45Z",
@@ -310,18 +320,19 @@
       "homeMargin": "10.2",
       "agreement": "split",
       "marketHomeMargin": "10.5",
-      "postedTotal": "50.5",
+      "postedTotal": "53.5",
       "fanduel": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Auburn. Game: Arkansas at Auburn, 11/7 - 12:45 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Under 53.5 clears the number. Walk-forward did not support a bet. Game: Arkansas at Auburn, 11/7 - 12:45 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -338,19 +349,20 @@
       "neutral": false,
       "homeMargin": "10.1",
       "agreement": "split",
-      "marketHomeMargin": "-3.5",
+      "marketHomeMargin": "-6.5",
       "postedTotal": "62.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Oklahoma St at Kansas St, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -367,19 +379,20 @@
       "neutral": false,
       "homeMargin": "10.6",
       "agreement": "home",
-      "marketHomeMargin": "7.5",
-      "postedTotal": "44.5",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "45.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 44.5. Game: Old Dominion at Coastal, 11/7 - 1:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 45.5 clears the number. Walk-forward did not support a bet. Game: Old Dominion at Coastal, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:30Z",
@@ -396,29 +409,30 @@
       "neutral": false,
       "homeMargin": "10.8",
       "agreement": "split",
-      "marketHomeMargin": "3.5",
-      "postedTotal": "55.5",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "54.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Georgia St at App State, 11/7 - 2:30 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 54.5 clears the number. Walk-forward did not support a bet. Game: Georgia St at App State, 11/7 - 2:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
       "when": "11/7 - 3:00 PM EST",
       "away": "Texas A&M",
-      "home": "#23 South Carolina",
+      "home": "#21 South Carolina",
       "score": "16.2–35.2",
       "total": "51.4",
-      "models": "#23 South Carolina, 4–0",
-      "sim": "15–34.5, #23 South Carolina 97.7%",
+      "models": "#21 South Carolina, 4–0",
+      "sim": "15–34.5, #21 South Carolina 97.7%",
       "sportPath": "football/college-football",
       "awayId": "245",
       "homeId": "2579",
@@ -426,7 +440,7 @@
       "homeMargin": "19",
       "agreement": "home",
       "marketHomeMargin": "7",
-      "postedTotal": "51.5",
+      "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -435,9 +449,10 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔴 1 ➗ Pass. #23 South Carolina does not clear the number. Game: Texas A&M at #23 South Carolina, 11/7 - 3:00 PM EST.",
+      "alert": "🏈 🔴 1 ➗ Pass. #21 South Carolina does not clear the number. Game: Texas A&M at #21 South Carolina, 11/7 - 3:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -455,7 +470,7 @@
       "homeMargin": "14",
       "agreement": "home",
       "marketHomeMargin": "14.5",
-      "postedTotal": "52.5",
+      "postedTotal": "53.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -464,9 +479,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 52.5. Game: UL Monroe at Arkansas St, 11/7 - 3:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 53.5 clears the number. Walk-forward did not support a bet. Game: UL Monroe at Arkansas St, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -483,8 +499,8 @@
       "neutral": false,
       "homeMargin": "5.1",
       "agreement": "split",
-      "marketHomeMargin": "-2.5",
-      "postedTotal": "56.5",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "57.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -495,24 +511,25 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Delaware at Kennesaw St, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
       "when": "11/7 - 3:30 PM EST",
-      "away": "#9 Alabama",
-      "home": "#15 LSU",
+      "away": "#5 Alabama",
+      "home": "#14 LSU",
       "score": "22.9–33.5",
       "total": "56.4",
-      "models": "#15 LSU, 4–0",
-      "sim": "27.5–34, #15 LSU 78.5%",
+      "models": "#14 LSU, 4–0",
+      "sim": "27.5–34, #14 LSU 78.5%",
       "sportPath": "football/college-football",
       "awayId": "333",
       "homeId": "99",
       "neutral": false,
       "homeMargin": "10.6",
       "agreement": "home",
-      "marketHomeMargin": "5.5",
+      "marketHomeMargin": "6",
       "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -522,27 +539,28 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔴 1 ➗ Pass. #15 LSU does not clear the number. Game: #9 Alabama at #15 LSU, 11/7 - 3:30 PM EST.",
+      "alert": "🏈 🔴 1 ➗ Pass. #14 LSU does not clear the number. Game: #5 Alabama at #14 LSU, 11/7 - 3:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
       "when": "11/7 - 3:30 PM EST",
-      "away": "Oregon",
-      "home": "#11 Ohio State",
+      "away": "#23 Oregon",
+      "home": "#12 Ohio State",
       "score": "18.8–39.8",
       "total": "58.5",
-      "models": "#11 Ohio State, 4–0",
-      "sim": "17–40.5, #11 Ohio State 100%",
+      "models": "#12 Ohio State, 4–0",
+      "sim": "17–40.5, #12 Ohio State 100%",
       "sportPath": "football/college-football",
       "awayId": "2483",
       "homeId": "194",
       "neutral": false,
       "homeMargin": "21",
       "agreement": "home",
-      "marketHomeMargin": "7",
-      "postedTotal": "48.5",
+      "marketHomeMargin": "7.5",
+      "postedTotal": "45.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -551,38 +569,40 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔴 1 ➗ Pass. #11 Ohio State does not clear the number. Game: Oregon at #11 Ohio State, 11/7 - 3:30 PM EST.",
+      "alert": "🏈 🔴 1 ➗ Pass. #12 Ohio State does not clear the number. Game: #23 Oregon at #12 Ohio State, 11/7 - 3:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
       "when": "11/7 - 3:30 PM EST",
       "away": "Merrimack",
-      "home": "#14 Wake Forest",
+      "home": "#16 Wake Forest",
       "score": "16.9–37.7",
       "total": "54.5",
-      "models": "#14 Wake Forest, 4–0",
-      "sim": "15.5–39, #14 Wake Forest 95.6%",
+      "models": "#16 Wake Forest, 4–0",
+      "sim": "15.5–39, #16 Wake Forest 95.6%",
       "sportPath": "football/college-football",
       "awayId": "2771",
       "homeId": "154",
       "neutral": false,
       "homeMargin": "20.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "47.5",
+      "postedTotal": "58.5",
       "fanduel": {
         "side": "outside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. #14 Wake Forest. Price missing. Game: Merrimack at #14 Wake Forest, 11/7 - 3:30 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. #16 Wake Forest does not clear the number. Game: Merrimack at #16 Wake Forest, 11/7 - 3:30 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -599,8 +619,8 @@
       "neutral": false,
       "homeMargin": "19.6",
       "agreement": "home",
-      "marketHomeMargin": "11.5",
-      "postedTotal": "62.5",
+      "marketHomeMargin": "10.5",
+      "postedTotal": "61.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -611,7 +631,8 @@
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Cincinnati at #17 Houston, 11/7 - 3:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -629,7 +650,7 @@
       "homeMargin": "3.8",
       "agreement": "split",
       "marketHomeMargin": "2.5",
-      "postedTotal": "44.5",
+      "postedTotal": "43.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -640,7 +661,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Penn State at Washington, 11/7 - 3:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -657,7 +679,7 @@
       "neutral": false,
       "homeMargin": "14",
       "agreement": "home",
-      "marketHomeMargin": "11.5",
+      "marketHomeMargin": "8.5",
       "postedTotal": "47.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -667,9 +689,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 47.5. Game: Charlotte at UAB, 11/7 - 3:30 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 47.5 clears the number. Walk-forward did not support a bet. Game: Charlotte at UAB, 11/7 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -687,18 +710,19 @@
       "homeMargin": "5",
       "agreement": "split",
       "marketHomeMargin": "7.5",
-      "postedTotal": "53.5",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Navy. Game: Temple at Navy, 11/7 - 3:30 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Navy scar. Walk-forward did not beat every favorite. Game: Temple at Navy, 11/7 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -715,7 +739,7 @@
       "neutral": false,
       "homeMargin": "10.5",
       "agreement": "home",
-      "marketHomeMargin": "10",
+      "marketHomeMargin": "8.5",
       "postedTotal": "54.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -725,9 +749,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Under 54.5. Game: Marshall at GA Southern, 11/7 - 3:30 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Under 54.5 clears the number. Walk-forward did not support a bet. Game: Marshall at GA Southern, 11/7 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -744,7 +769,7 @@
       "neutral": false,
       "homeMargin": "15.3",
       "agreement": "split",
-      "marketHomeMargin": "1.5",
+      "marketHomeMargin": "-2.5",
       "postedTotal": "53.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -754,9 +779,10 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet MTSU. Game: Western KY at MTSU, 11/7 - 3:30 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. MTSU scar. Walk-forward did not beat every favorite. Game: Western KY at MTSU, 11/7 - 3:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:45Z",
@@ -773,7 +799,7 @@
       "neutral": false,
       "homeMargin": "15.3",
       "agreement": "home",
-      "marketHomeMargin": "3",
+      "marketHomeMargin": "3.5",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -785,7 +811,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Kansas does not clear the number. Game: UCF at Kansas, 11/7 - 3:45 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -814,7 +841,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. North Texas does not clear the number. Game: Rice at North Texas, 11/7 - 4:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -831,7 +859,7 @@
       "neutral": false,
       "homeMargin": "9.3",
       "agreement": "home",
-      "marketHomeMargin": "10",
+      "marketHomeMargin": "11.5",
       "postedTotal": "52.5",
       "fanduel": {
         "side": "missing-input",
@@ -841,9 +869,10 @@
         "side": "outside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Under 52.5. Game: N Illinois at San José St, 11/7 - 4:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Under 52.5 clears the number. Walk-forward did not support a bet. Game: N Illinois at San José St, 11/7 - 4:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -860,8 +889,8 @@
       "neutral": false,
       "homeMargin": "18.8",
       "agreement": "split",
-      "marketHomeMargin": "4",
-      "postedTotal": "50.5",
+      "marketHomeMargin": "4.5",
+      "postedTotal": "49.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -870,9 +899,10 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet FIU. Game: Missouri St at FIU, 11/7 - 4:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. FIU scar. Walk-forward did not beat every favorite. Game: Missouri St at FIU, 11/7 - 4:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -889,7 +919,7 @@
       "neutral": false,
       "homeMargin": "5.4",
       "agreement": "split",
-      "marketHomeMargin": "-5.5",
+      "marketHomeMargin": "-6",
       "postedTotal": "47.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -901,7 +931,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Louisiana Tech at Troy, 11/7 - 4:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:15Z",
@@ -918,7 +949,7 @@
       "neutral": false,
       "homeMargin": "9.7",
       "agreement": "split",
-      "marketHomeMargin": "2.5",
+      "marketHomeMargin": "3",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -928,9 +959,10 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Mississippi St. Game: Vanderbilt at Mississippi St, 11/7 - 4:15 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Mississippi St scar. Walk-forward did not beat every favorite. Game: Vanderbilt at Mississippi St, 11/7 - 4:15 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:15Z",
@@ -947,7 +979,7 @@
       "neutral": false,
       "homeMargin": "19.2",
       "agreement": "home",
-      "marketHomeMargin": "17.5",
+      "marketHomeMargin": "18.5",
       "postedTotal": "45.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -959,7 +991,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Wisconsin does not clear the number. Game: Rutgers at Wisconsin, 11/7 - 4:15 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T22:00Z",
@@ -976,8 +1009,8 @@
       "neutral": false,
       "homeMargin": "12",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
-      "postedTotal": "58.5",
+      "marketHomeMargin": "7",
+      "postedTotal": "57.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -988,17 +1021,18 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Louisiana does not clear the number. Game: South Alabama at Louisiana, 11/7 - 5:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T23:00Z",
       "when": "11/7 - 6:00 PM EST",
-      "away": "#20 Boise St",
+      "away": "#25 Boise St",
       "home": "Colorado St",
       "score": "34.3–30.1",
       "total": "64.4",
-      "models": "#20 Boise St, 4–0",
-      "sim": "36–31.5, #20 Boise St 59.7%",
+      "models": "#25 Boise St, 4–0",
+      "sim": "36–31.5, #25 Boise St 59.7%",
       "sportPath": "football/college-football",
       "awayId": "68",
       "homeId": "36",
@@ -1015,38 +1049,40 @@
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔴 1 ➗ Pass. #20 Boise St does not clear the number. Game: #20 Boise St at Colorado St, 11/7 - 6:00 PM EST.",
+      "alert": "🏈 🔴 1 ➗ Pass. #25 Boise St does not clear the number. Game: #25 Boise St at Colorado St, 11/7 - 6:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T23:15Z",
       "when": "11/7 - 6:15 PM EST",
-      "away": "#8 Kentucky",
-      "home": "#16 Tennessee",
+      "away": "#6 Kentucky",
+      "home": "#13 Tennessee",
       "score": "20.7–27.8",
       "total": "48.5",
-      "models": "split, 3–1 #16 Tennessee",
-      "sim": "20.5–27.5, #16 Tennessee 72.7%",
+      "models": "split, 3–1 #13 Tennessee",
+      "sim": "20.5–27.5, #13 Tennessee 72.7%",
       "sportPath": "football/college-football",
       "awayId": "96",
       "homeId": "2633",
       "neutral": false,
       "homeMargin": "7.1",
       "agreement": "split",
-      "marketHomeMargin": "6.5",
-      "postedTotal": "50.5",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "49.5",
       "fanduel": {
         "side": "outside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet #16 Tennessee. Game: #8 Kentucky at #16 Tennessee, 11/7 - 6:15 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. #13 Tennessee scar. Walk-forward did not beat every favorite. Game: #6 Kentucky at #13 Tennessee, 11/7 - 6:15 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:00Z",
@@ -1064,57 +1100,59 @@
       "homeMargin": "18.8",
       "agreement": "home",
       "marketHomeMargin": "16.5",
-      "postedTotal": "48.5",
+      "postedTotal": "45.5",
       "fanduel": {
         "side": "inside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Under 48.5. Game: Sam Houston at Jax State, 11/7 - 7:00 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🔴 1 ➗ Pass. Jax State does not clear the number. Game: Sam Houston at Jax State, 11/7 - 7:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
       "when": "11/7 - 7:30 PM EST",
       "away": "#1 Miami",
-      "home": "#4 Notre Dame",
+      "home": "#11 Notre Dame",
       "score": "22.5–32.1",
       "total": "54.5",
-      "models": "split, 3–1 #4 Notre Dame",
-      "sim": "22.5–32, #4 Notre Dame 82%",
+      "models": "split, 3–1 #11 Notre Dame",
+      "sim": "22.5–32, #11 Notre Dame 82%",
       "sportPath": "football/college-football",
       "awayId": "2390",
       "homeId": "87",
       "neutral": false,
       "homeMargin": "9.6",
       "agreement": "split",
-      "marketHomeMargin": "4.5",
-      "postedTotal": "57.5",
+      "marketHomeMargin": "7",
+      "postedTotal": "54.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: #1 Miami at #4 Notre Dame, 11/7 - 7:30 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 54.5 clears the number. Walk-forward did not support a bet. Game: #1 Miami at #11 Notre Dame, 11/7 - 7:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
       "when": "11/7 - 7:30 PM EST",
       "away": "#2 Georgia",
-      "home": "#12 Ole Miss",
+      "home": "#10 Ole Miss",
       "score": "22.6–27.1",
       "total": "49.8",
-      "models": "split, 3–1 #12 Ole Miss",
-      "sim": "24–29, #12 Ole Miss 67.7%, thin",
+      "models": "split, 3–1 #10 Ole Miss",
+      "sim": "24–29, #10 Ole Miss 67.7%, thin",
       "sportPath": "football/college-football",
       "awayId": "61",
       "homeId": "145",
@@ -1131,14 +1169,15 @@
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: #2 Georgia at #12 Ole Miss, 11/7 - 7:30 PM EST.",
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: #2 Georgia at #10 Ole Miss, 11/7 - 7:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
       "when": "11/7 - 7:30 PM EST",
-      "away": "#21 Iowa",
+      "away": "#19 Iowa",
       "home": "Northwestern",
       "score": "18.4–28.9",
       "total": "47.4",
@@ -1150,8 +1189,8 @@
       "neutral": false,
       "homeMargin": "10.5",
       "agreement": "split",
-      "marketHomeMargin": "2.5",
-      "postedTotal": "44.5",
+      "marketHomeMargin": "-2.5",
+      "postedTotal": "43.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -1160,9 +1199,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 44.5. Game: #21 Iowa at Northwestern, 11/7 - 7:30 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 43.5 clears the number. Walk-forward did not support a bet. Game: #19 Iowa at Northwestern, 11/7 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
@@ -1179,7 +1219,7 @@
       "neutral": false,
       "homeMargin": "16.5",
       "agreement": "home",
-      "marketHomeMargin": "3.5",
+      "marketHomeMargin": "3",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1191,7 +1231,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Arizona St does not clear the number. Game: Colorado at Arizona St, 11/7 - 7:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
@@ -1209,7 +1250,7 @@
       "homeMargin": "-2",
       "agreement": "away",
       "marketHomeMargin": "-14.5",
-      "postedTotal": "60.5",
+      "postedTotal": "62.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -1220,7 +1261,8 @@
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Louisville at Georgia Tech, 11/7 - 7:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
@@ -1237,19 +1279,20 @@
       "neutral": false,
       "homeMargin": "13.7",
       "agreement": "home",
-      "marketHomeMargin": "12.5",
+      "marketHomeMargin": "14",
       "postedTotal": "39.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "alert": "🏈 🔴 1 ➗ Pass. Michigan does not clear the number. Game: Michigan St at Michigan, 11/7 - 7:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:30Z",
@@ -1266,8 +1309,8 @@
       "neutral": false,
       "homeMargin": "9.2",
       "agreement": "home",
-      "marketHomeMargin": "3.5",
-      "postedTotal": "48.5",
+      "marketHomeMargin": "4",
+      "postedTotal": "43.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -1276,26 +1319,27 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 48.5. Game: Air Force at Army, 11/7 - 7:30 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 43.5 clears the number. Walk-forward did not support a bet. Game: Air Force at Army, 11/7 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:45Z",
       "when": "11/7 - 7:45 PM EST",
       "away": "Oklahoma",
-      "home": "#25 Florida",
+      "home": "#24 Florida",
       "score": "18.9–35.8",
       "total": "54.7",
-      "models": "split, 3–1 #25 Florida",
-      "sim": "19–34.5, #25 Florida 89.5%",
+      "models": "split, 3–1 #24 Florida",
+      "sim": "19–34.5, #24 Florida 89.5%",
       "sportPath": "football/college-football",
       "awayId": "201",
       "homeId": "57",
       "neutral": false,
       "homeMargin": "16.9",
       "agreement": "split",
-      "marketHomeMargin": "7",
+      "marketHomeMargin": "5.5",
       "postedTotal": "45.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1305,9 +1349,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟢 5 💰 Bet Over 45.5. Game: Oklahoma at #25 Florida, 11/7 - 7:45 PM EST.",
-      "alertRating": 5,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 45.5 clears the number. Walk-forward did not support a bet. Game: Oklahoma at #24 Florida, 11/7 - 7:45 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T01:00Z",
@@ -1324,7 +1369,7 @@
       "neutral": false,
       "homeMargin": "-5.5",
       "agreement": "away",
-      "marketHomeMargin": "-17.5",
+      "marketHomeMargin": "-15.5",
       "postedTotal": "46.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1336,25 +1381,26 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Liberty does not clear the number. Game: Liberty at New Mexico St, 11/7 - 8:00 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T02:30Z",
       "when": "11/7 - 9:30 PM EST",
       "away": "West Virginia",
-      "home": "#13 Texas Tech",
+      "home": "#15 Texas Tech",
       "score": "26.6–36",
       "total": "62.6",
-      "models": "#13 Texas Tech, 4–0",
-      "sim": "26–36.5, #13 Texas Tech 82.9%, thin",
+      "models": "#15 Texas Tech, 4–0",
+      "sim": "26–36.5, #15 Texas Tech 82.9%, thin",
       "sportPath": "football/college-football",
       "awayId": "277",
       "homeId": "2641",
       "neutral": false,
       "homeMargin": "9.4",
       "agreement": "home",
-      "marketHomeMargin": "17.5",
-      "postedTotal": "63.5",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "65.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -1363,9 +1409,10 @@
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: West Virginia at #13 Texas Tech, 11/7 - 9:30 PM EST.",
+      "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: West Virginia at #15 Texas Tech, 11/7 - 9:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T02:30Z",
@@ -1382,8 +1429,8 @@
       "neutral": false,
       "homeMargin": "2.9",
       "agreement": "split",
-      "marketHomeMargin": "-2.5",
-      "postedTotal": "42.5",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "43.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -1394,7 +1441,8 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Fresno St at Utah State, 11/7 - 9:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T02:30Z",
@@ -1411,7 +1459,7 @@
       "neutral": false,
       "homeMargin": "-0.6",
       "agreement": "away",
-      "marketHomeMargin": "-9.5",
+      "marketHomeMargin": "-7.5",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "missing-input",
@@ -1423,7 +1471,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Hawai'i does not clear the number. Game: Hawai'i at UTEP, 11/7 - 9:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T03:30Z",
@@ -1440,8 +1489,8 @@
       "neutral": false,
       "homeMargin": "20.9",
       "agreement": "home",
-      "marketHomeMargin": "6.5",
-      "postedTotal": "69.5",
+      "marketHomeMargin": "6",
+      "postedTotal": "70.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -1452,7 +1501,8 @@
       },
       "alert": "🏈 🔴 1 ➗ Pass. Oregon St does not clear the number. Game: Texas St at Oregon St, 11/7 - 10:30 PM EST.",
       "alertRating": 1,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T03:30Z",
@@ -1469,8 +1519,8 @@
       "neutral": false,
       "homeMargin": "9.5",
       "agreement": "split",
-      "marketHomeMargin": "7",
-      "postedTotal": "47.5",
+      "marketHomeMargin": "4",
+      "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -1479,9 +1529,10 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 💰 Bet Under 47.5. Game: Wyoming at UNLV, 11/7 - 10:30 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Under 48.5 clears the number. Walk-forward did not support a bet. Game: Wyoming at UNLV, 11/7 - 10:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "id": "2026-11-07-fcs-2026-11-07",
   "title": "FCS 2026-11-07",
   "sportPath": "football/college-football",
-  "retrievedAt": "2026-11-02T00:28:54.008Z",
+  "retrievedAt": "2026-11-07T04:47:28.866Z",
   "games": [
     {
       "date": "2026-11-07T17:00Z",
@@ -19,19 +19,20 @@
       "neutral": false,
       "homeMargin": "14.3",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "20.5",
+      "postedTotal": "56.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Monmouth. Price missing. Game: NC A&T at Monmouth, 11/7 - 12:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Monmouth does not clear the number. Game: NC A&T at Monmouth, 11/7 - 12:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -48,19 +49,20 @@
       "neutral": false,
       "homeMargin": "7.3",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "50.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Sacred Heart. Game: Towson at Sacred Heart, 11/7 - 12:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Sacred Heart scar. Walk-forward did not beat every favorite. Game: Towson at Sacred Heart, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -77,19 +79,20 @@
       "neutral": false,
       "homeMargin": "3.7",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "7",
+      "postedTotal": "46.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Brown at Yale, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -106,19 +109,20 @@
       "neutral": false,
       "homeMargin": "5.7",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "41.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Princeton. Game: Dartmouth at Princeton, 11/7 - 12:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Princeton scar. Walk-forward did not beat every favorite. Game: Dartmouth at Princeton, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -135,19 +139,20 @@
       "neutral": false,
       "homeMargin": "1.1",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "42.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Long Island at New Haven, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -164,19 +169,20 @@
       "neutral": false,
       "homeMargin": "18.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "10",
+      "postedTotal": "47.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Duquesne. Price missing. Game: Robert Morris at Duquesne, 11/7 - 12:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Over 47.5 clears the number. Walk-forward did not support a bet. Game: Robert Morris at Duquesne, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -193,19 +199,20 @@
       "neutral": false,
       "homeMargin": "25.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "8.5",
+      "postedTotal": "49.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Wagner at Mercyhurst, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -222,19 +229,20 @@
       "neutral": false,
       "homeMargin": "29.4",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-4",
+      "postedTotal": "51.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Norfolk St. Game: NC Central at Norfolk St, 11/7 - 12:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Norfolk St scar. Walk-forward did not beat every favorite. Game: NC Central at Norfolk St, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -251,19 +259,20 @@
       "neutral": false,
       "homeMargin": "7.5",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "4",
+      "postedTotal": "43.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Lehigh. Game: Colgate at Lehigh, 11/7 - 12:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Lehigh scar. Walk-forward did not beat every favorite. Game: Colgate at Lehigh, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -280,19 +289,20 @@
       "neutral": false,
       "homeMargin": "12.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "52.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Dayton. Price missing. Game: Valparaiso at Dayton, 11/7 - 12:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Dayton does not clear the number. Game: Valparaiso at Dayton, 11/7 - 12:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:00Z",
@@ -309,19 +319,20 @@
       "neutral": false,
       "homeMargin": "19.1",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "56.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Marist. Game: Morehead St at Marist, 11/7 - 12:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 56.5 clears the number. Walk-forward did not support a bet. Game: Morehead St at Marist, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T17:30Z",
@@ -338,19 +349,20 @@
       "neutral": false,
       "homeMargin": "-0.9",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-7",
+      "postedTotal": "50.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Holy Cross at Georgetown, 11/7 - 12:30 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 50.5 clears the number. Walk-forward did not support a bet. Game: Holy Cross at Georgetown, 11/7 - 12:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -367,19 +379,20 @@
       "neutral": false,
       "homeMargin": "-3.3",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-9.5",
+      "postedTotal": "44.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. UAlbany. Price missing. Game: UAlbany at Bryant, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Over 44.5 clears the number. Walk-forward did not support a bet. Game: UAlbany at Bryant, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -396,19 +409,20 @@
       "neutral": false,
       "homeMargin": "6.7",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "7",
+      "postedTotal": "65.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Campbell. Price missing. Game: Stony Brook at Campbell, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Under 65.5 clears the number. Walk-forward did not support a bet. Game: Stony Brook at Campbell, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -425,19 +439,20 @@
       "neutral": false,
       "homeMargin": "-2.4",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-7",
+      "postedTotal": "45.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Rhode Island. Price missing. Game: Rhode Island at New Hampshire, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Over 45.5 clears the number. Walk-forward did not support a bet. Game: Rhode Island at New Hampshire, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -454,19 +469,20 @@
       "neutral": false,
       "homeMargin": "6.2",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "21.5",
+      "postedTotal": "47.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Harvard. Price missing. Game: Columbia at Harvard, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Under 47.5 clears the number. Walk-forward did not support a bet. Game: Columbia at Harvard, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -483,19 +499,20 @@
       "neutral": false,
       "homeMargin": "3.5",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "45.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Penn at Cornell, 11/7 - 1:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 45.5 clears the number. Walk-forward did not support a bet. Game: Penn at Cornell, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -512,19 +529,20 @@
       "neutral": false,
       "homeMargin": "8.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-7",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: C Connecticut at Stonehill, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -541,19 +559,20 @@
       "neutral": false,
       "homeMargin": "8.6",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "4",
+      "postedTotal": "52.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Delaware St. Price missing. Game: Morgan St at Delaware St, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Delaware St does not clear the number. Game: Morgan St at Delaware St, 11/7 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -570,19 +589,20 @@
       "neutral": false,
       "homeMargin": "6.1",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "45.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Bucknell. Game: Fordham at Bucknell, 11/7 - 1:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Under 45.5 clears the number. Walk-forward did not support a bet. Game: Fordham at Bucknell, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -599,19 +619,20 @@
       "neutral": false,
       "homeMargin": "-2.2",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-2.5",
+      "postedTotal": "52.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Lafayette. Price missing. Game: Lafayette at William & Mary, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Lafayette does not clear the number. Game: Lafayette at William & Mary, 11/7 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -628,19 +649,20 @@
       "neutral": false,
       "homeMargin": "7.3",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "8.5",
+      "postedTotal": "47.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Villanova. Price missing. Game: Richmond at Villanova, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Villanova does not clear the number. Game: Richmond at Villanova, 11/7 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -657,19 +679,20 @@
       "neutral": false,
       "homeMargin": "18.4",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Butler. Game: St Thomas at Butler, 11/7 - 1:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Butler scar. Walk-forward did not beat every favorite. Game: St Thomas at Butler, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -686,19 +709,20 @@
       "neutral": false,
       "homeMargin": "14",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "62.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Davidson. Game: Stetson at Davidson, 11/7 - 1:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 62.5 clears the number. Walk-forward did not support a bet. Game: Stetson at Davidson, 11/7 - 1:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -715,19 +739,20 @@
       "neutral": false,
       "homeMargin": "9.3",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "64.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: San Diego at Drake, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -744,19 +769,20 @@
       "neutral": false,
       "homeMargin": "0.5",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-2.5",
+      "postedTotal": "40.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Mercer at Chattanooga, 11/7 - 1:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 40.5 clears the number. Walk-forward did not support a bet. Game: Mercer at Chattanooga, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -773,19 +799,20 @@
       "neutral": false,
       "homeMargin": "11.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "12.5",
+      "postedTotal": "46.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. ETSU. Price missing. Game: Samford at ETSU, 11/7 - 1:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. ETSU does not clear the number. Game: Samford at ETSU, 11/7 - 1:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:00Z",
@@ -802,19 +829,20 @@
       "neutral": false,
       "homeMargin": "11.9",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "4.5",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Wofford at W Carolina, 11/7 - 1:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 54.5 clears the number. Walk-forward did not support a bet. Game: Wofford at W Carolina, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T18:30Z",
@@ -831,19 +859,20 @@
       "neutral": false,
       "homeMargin": "9.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "43.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Lindenwood at Gardner-Webb, 11/7 - 1:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -860,19 +889,20 @@
       "neutral": false,
       "homeMargin": "22",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "22.5",
+      "postedTotal": "48.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Elon. Price missing. Game: Hampton at Elon, 11/7 - 2:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Elon does not clear the number. Game: Hampton at Elon, 11/7 - 2:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -889,19 +919,20 @@
       "neutral": false,
       "homeMargin": "5.8",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "52.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Illinois St at North Dakota, 11/7 - 2:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -918,19 +949,20 @@
       "neutral": false,
       "homeMargin": "-9.9",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-30.5",
+      "postedTotal": "62.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Youngstown St. Price missing. Game: Youngstown St at Murray St, 11/7 - 2:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Under 62.5 clears the number. Walk-forward did not support a bet. Game: Youngstown St at Murray St, 11/7 - 2:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -947,19 +979,20 @@
       "neutral": false,
       "homeMargin": "19.2",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "46.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Charleston So. Price missing. Game: UT Martin at Charleston So, 11/7 - 2:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Over 46.5 clears the number. Walk-forward did not support a bet. Game: UT Martin at Charleston So, 11/7 - 2:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -976,19 +1009,20 @@
       "neutral": false,
       "homeMargin": "0.3",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-20.5",
+      "postedTotal": "56.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: UT Rio Grande at N'Western St, 11/7 - 2:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -1005,19 +1039,20 @@
       "neutral": false,
       "homeMargin": "-1.1",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-3",
+      "postedTotal": "41.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Furman. Price missing. Game: Furman at The Citadel, 11/7 - 2:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Furman does not clear the number. Game: Furman at The Citadel, 11/7 - 2:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:00Z",
@@ -1034,19 +1069,20 @@
       "neutral": false,
       "homeMargin": "11.4",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-14",
+      "postedTotal": "50.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: S Dakota St at Northern Iowa, 11/7 - 2:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T19:30Z",
@@ -1063,19 +1099,20 @@
       "neutral": false,
       "homeMargin": "25.5",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "38.5",
+      "postedTotal": "49.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Tennessee Tech. Price missing. Game: VMI at Tennessee Tech, 11/7 - 2:30 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Tennessee Tech does not clear the number. Game: VMI at Tennessee Tech, 11/7 - 2:30 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1092,19 +1129,20 @@
       "neutral": false,
       "homeMargin": "23.5",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "24.5",
+      "postedTotal": "65.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Montana. Price missing. Game: Portland St at Montana, 11/7 - 3:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Montana does not clear the number. Game: Portland St at Montana, 11/7 - 3:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1121,19 +1159,20 @@
       "neutral": false,
       "homeMargin": "10.1",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "10",
+      "postedTotal": "55.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Southern Utah. Price missing. Game: N Colorado at Southern Utah, 11/7 - 3:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Southern Utah does not clear the number. Game: N Colorado at Southern Utah, 11/7 - 3:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1150,19 +1189,20 @@
       "neutral": false,
       "homeMargin": "0.1",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-3",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: W Illinois at E Illinois, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1179,19 +1219,20 @@
       "neutral": false,
       "homeMargin": "-8.7",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-3",
+      "postedTotal": "57.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 📏 Lean. Thin sample. Game: Alabama A&M at Prairie View, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1208,19 +1249,20 @@
       "neutral": false,
       "homeMargin": "4.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-8.5",
+      "postedTotal": "55.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Alabama St at Texas Southern, 11/7 - 3:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 55.5 clears the number. Walk-forward did not support a bet. Game: Alabama St at Texas Southern, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1237,19 +1279,20 @@
       "neutral": false,
       "homeMargin": "31.2",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "10",
+      "postedTotal": "62.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Alcorn St. Price missing. Game: Florida A&M at Alcorn St, 11/7 - 3:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Alcorn St clears the number. Walk-forward did not support a bet. Game: Florida A&M at Alcorn St, 11/7 - 3:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1266,19 +1309,20 @@
       "neutral": false,
       "homeMargin": "10.4",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-1.5",
+      "postedTotal": "64.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: AR-Pine Bluff at Grambling, 11/7 - 3:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 64.5 clears the number. Walk-forward did not support a bet. Game: AR-Pine Bluff at Grambling, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1295,19 +1339,20 @@
       "neutral": false,
       "homeMargin": "17",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "3",
+      "postedTotal": "55.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Bethune at Southern, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:00Z",
@@ -1324,48 +1369,50 @@
       "neutral": false,
       "homeMargin": "27.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "24.5",
+      "postedTotal": "56.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Jackson St. Price missing. Game: Miss Valley St at Jackson St, 11/7 - 3:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Jackson St does not clear the number. Game: Miss Valley St at Jackson St, 11/7 - 3:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
       "when": "11/7 - 3:30 PM EST",
       "away": "Merrimack",
-      "home": "#14 Wake Forest",
+      "home": "#16 Wake Forest",
       "score": "16.9–37.7",
       "total": "54.5",
-      "models": "#14 Wake Forest, 4–0",
-      "sim": "15.5–39, #14 Wake Forest 95.6%",
+      "models": "#16 Wake Forest, 4–0",
+      "sim": "15.5–39, #16 Wake Forest 95.6%",
       "sportPath": "football/college-football",
       "awayId": "2771",
       "homeId": "154",
       "neutral": false,
       "homeMargin": "20.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "47.5",
+      "postedTotal": "58.5",
       "fanduel": {
         "side": "outside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. #14 Wake Forest. Price missing. Game: Merrimack at #14 Wake Forest, 11/7 - 3:30 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. #16 Wake Forest does not clear the number. Game: Merrimack at #16 Wake Forest, 11/7 - 3:30 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T20:30Z",
@@ -1382,19 +1429,20 @@
       "neutral": false,
       "homeMargin": "-0.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-11.5",
+      "postedTotal": "49.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: SE Missouri at Tennessee St, 11/7 - 3:30 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 49.5 clears the number. Walk-forward did not support a bet. Game: SE Missouri at Tennessee St, 11/7 - 3:30 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -1411,19 +1459,20 @@
       "neutral": false,
       "homeMargin": "-5.5",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-7",
+      "postedTotal": "54.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. SF Austin. Price missing. Game: SF Austin at Lamar, 11/7 - 4:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. SF Austin does not clear the number. Game: SF Austin at Lamar, 11/7 - 4:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T21:00Z",
@@ -1440,23 +1489,24 @@
       "neutral": false,
       "homeMargin": "4.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-3",
+      "postedTotal": "45.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: East Texas A&M at Nicholls, 11/7 - 4:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
-      "date": "2026-11-07T22:00Z",
-      "when": "11/7 - 5:00 PM EST",
+      "date": "2026-11-07T21:00Z",
+      "when": "11/7 - 4:00 PM EST",
       "away": "E Kentucky",
       "home": "Austin Peay",
       "score": "18.3–42.1",
@@ -1469,19 +1519,20 @@
       "neutral": false,
       "homeMargin": "23.8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "17.5",
+      "postedTotal": "52.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Austin Peay. Price missing. Game: E Kentucky at Austin Peay, 11/7 - 5:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Austin Peay does not clear the number. Game: E Kentucky at Austin Peay, 11/7 - 4:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T22:00Z",
@@ -1498,19 +1549,20 @@
       "neutral": false,
       "homeMargin": "-0.1",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-14",
+      "postedTotal": "62.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. N Arizona. Price missing. Game: N Arizona at Cal Poly, 11/7 - 5:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. N Arizona does not clear the number. Game: N Arizona at Cal Poly, 11/7 - 5:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T22:00Z",
@@ -1527,19 +1579,20 @@
       "neutral": false,
       "homeMargin": "8",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "67.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Idaho. Price missing. Game: E Washington at Idaho, 11/7 - 5:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Under 67.5 clears the number. Walk-forward did not support a bet. Game: E Washington at Idaho, 11/7 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T22:00Z",
@@ -1556,19 +1609,20 @@
       "neutral": false,
       "homeMargin": "17.3",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "14",
+      "postedTotal": "48.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. C Arkansas. Price missing. Game: West Georgia at C Arkansas, 11/7 - 5:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🟡 2 📒 Pass. Over 48.5 clears the number. Walk-forward did not support a bet. Game: West Georgia at C Arkansas, 11/7 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T22:00Z",
@@ -1585,19 +1639,20 @@
       "neutral": false,
       "homeMargin": "32",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "43.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Hou Christian. Game: McNeese at Hou Christian, 11/7 - 5:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Over 43.5 clears the number. Walk-forward did not support a bet. Game: McNeese at Hou Christian, 11/7 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T23:00Z",
@@ -1614,19 +1669,20 @@
       "neutral": false,
       "homeMargin": "-0.6",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-5.5",
+      "postedTotal": "56.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: S Illinois at Indiana St, 11/7 - 6:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-07T23:00Z",
@@ -1643,19 +1699,20 @@
       "neutral": false,
       "homeMargin": "-3.6",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-14",
+      "postedTotal": "60.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟩 4 🏠 Lean. Montana St. Price missing. Game: Montana St at Idaho St, 11/7 - 6:00 PM EST.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "🏈 🔴 1 ➗ Pass. Montana St does not clear the number. Game: Montana St at Idaho St, 11/7 - 6:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:00Z",
@@ -1675,16 +1732,17 @@
       "marketHomeMargin": "missing",
       "postedTotal": "missing",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
         "side": "missing-input",
         "total": "missing-input"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet Tarleton St. Game: Abilene Chrstn at Tarleton St, 11/7 - 7:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. Tarleton St scar. Walk-forward did not beat every favorite. Game: Abilene Chrstn at Tarleton St, 11/7 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:00Z",
@@ -1701,19 +1759,20 @@
       "neutral": false,
       "homeMargin": "1.5",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "47.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: West Florida at North Alabama, 11/7 - 7:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 47.5 clears the number. Walk-forward did not support a bet. Game: West Florida at North Alabama, 11/7 - 7:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:00Z",
@@ -1730,19 +1789,20 @@
       "neutral": false,
       "homeMargin": "14.5",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "17.5",
+      "postedTotal": "58.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🔵 3 ⚠️ Bet UC Davis. Game: Utah Tech at UC Davis, 11/7 - 7:00 PM EST.",
-      "alertRating": 3,
-      "alertAction": "Bet"
+      "alert": "🏈 🟡 2 📒 Pass. UC Davis scar. Walk-forward did not beat every favorite. Game: Utah Tech at UC Davis, 11/7 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T00:00Z",
@@ -1759,19 +1819,20 @@
       "neutral": false,
       "homeMargin": "8.8",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-4",
+      "postedTotal": "55.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: Incarnate Word at SE Louisiana, 11/7 - 7:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     }
   ]
 }

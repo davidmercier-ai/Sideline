@@ -2,7 +2,7 @@
   "id": "2026-11-08-j1",
   "title": "J1",
   "sportPath": "soccer/jpn.1",
-  "retrievedAt": "2026-11-01T23:52:10.601Z",
+  "retrievedAt": "2026-11-07T04:49:35.333Z",
   "games": [
     {
       "date": "2026-11-08T05:00Z",
@@ -20,18 +20,19 @@
       "homeMargin": "0",
       "agreement": "split",
       "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "postedTotal": "2.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
         "side": "missing-input",
-        "total": "missing-input"
+        "total": "inside-method-range"
       },
       "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Sanfreece at Machida Zelvia, Scheduled.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T05:00Z",
@@ -49,18 +50,19 @@
       "homeMargin": "1",
       "agreement": "home",
       "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "postedTotal": "2.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
         "side": "missing-input",
-        "total": "missing-input"
+        "total": "outside-method-range"
       },
-      "alert": "⚽ 🟩 4 🏠 Lean. Vissel Kobe. Price missing. Game: Urawa Reds at Vissel Kobe, Scheduled.",
-      "alertRating": 4,
-      "alertAction": "Lean"
+      "alert": "⚽ 🟡 2 📒 Pass. Over 2.5 clears the number. Walk-forward did not support a bet. Game: Urawa Reds at Vissel Kobe, Scheduled.",
+      "alertRating": 2,
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T06:00Z",
@@ -78,18 +80,19 @@
       "homeMargin": "0.8",
       "agreement": "split",
       "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "postedTotal": "2.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
         "side": "missing-input",
-        "total": "missing-input"
+        "total": "inside-method-range"
       },
       "alert": "⚽ 🟡 2 ➗ Pass. Split. Game: Cerezo Osaka at Gamba Osaka, Scheduled.",
       "alertRating": 2,
-      "alertAction": "Pass"
+      "alertAction": "Pass",
+      "research": "screen"
     },
     {
       "date": "2026-11-08T08:00Z",
@@ -107,18 +110,19 @@
       "homeMargin": "0.8",
       "agreement": "home",
       "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "postedTotal": "2.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
       },
       "draftkings": {
         "side": "missing-input",
-        "total": "missing-input"
+        "total": "inside-method-range"
       },
       "alert": "⚽ 🟩 4 🏠 Lean. JEF Utd Chiba. Price missing. Game: Mito Hollyhock at JEF Utd Chiba, Scheduled.",
       "alertRating": 4,
-      "alertAction": "Lean"
+      "alertAction": "Lean",
+      "research": "screen"
     }
   ]
 }

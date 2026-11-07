@@ -1,0 +1,2168 @@
+{
+  "id": "2026-11-06-college-basketball-2026-11-06",
+  "title": "College basketball 2026-11-06",
+  "sportPath": "basketball/mens-college-basketball",
+  "retrievedAt": "2026-11-06T05:07:41.669Z",
+  "games": [
+    {
+      "date": "2026-11-06T21:00Z",
+      "when": "11/6 - 4:00 PM EST",
+      "away": "UMass",
+      "home": "Boston College",
+      "score": "60.5–68",
+      "total": "128.5",
+      "models": "Boston College, 4–0",
+      "sim": "60.5–68, Boston College 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "113",
+      "homeId": "103",
+      "neutral": true,
+      "homeMargin": "7.5",
+      "agreement": "home",
+      "marketHomeMargin": "6.5",
+      "postedTotal": "145.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: UMass at Boston College, 11/6 - 4:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T22:00Z",
+      "when": "11/6 - 5:00 PM EST",
+      "away": "Northeastern",
+      "home": "#9 Virginia",
+      "score": "72.5–91",
+      "total": "163.5",
+      "models": "#9 Virginia, 4–0",
+      "sim": "72.5–91, #9 Virginia 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "111",
+      "homeId": "258",
+      "neutral": false,
+      "homeMargin": "18.5",
+      "agreement": "home",
+      "marketHomeMargin": "34.5",
+      "postedTotal": "159.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Northeastern at #9 Virginia, 11/6 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T22:00Z",
+      "when": "11/6 - 5:00 PM EST",
+      "away": "West Florida",
+      "home": "FIU",
+      "score": "58–101",
+      "total": "159",
+      "models": "split, 2–1 West Florida",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2697",
+      "homeId": "2229",
+      "neutral": false,
+      "homeMargin": "43",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: West Florida at FIU, 11/6 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T22:00Z",
+      "when": "11/6 - 5:00 PM EST",
+      "away": "AR-Pine Bluff",
+      "home": "Baylor",
+      "score": "63–96.5",
+      "total": "159.5",
+      "models": "Baylor, 4–0",
+      "sim": "63–96.5, Baylor 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2029",
+      "homeId": "239",
+      "neutral": false,
+      "homeMargin": "33.5",
+      "agreement": "home",
+      "marketHomeMargin": "36.5",
+      "postedTotal": "158.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: AR-Pine Bluff at Baylor, 11/6 - 5:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T23:00Z",
+      "when": "11/6 - 6:00 PM EST",
+      "away": "E Washington",
+      "home": "Oregon",
+      "score": "67–80.5",
+      "total": "147.5",
+      "models": "Oregon, 4–0",
+      "sim": "67–80.5, Oregon 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "331",
+      "homeId": "2483",
+      "neutral": false,
+      "homeMargin": "13.5",
+      "agreement": "home",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "151.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: E Washington at Oregon, 11/6 - 6:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T23:30Z",
+      "when": "11/6 - 6:30 PM EST",
+      "away": "Valparaiso",
+      "home": "Purdue",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Valparaiso, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2674",
+      "homeId": "2509",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "19.5",
+      "postedTotal": "146.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Valparaiso at Purdue, 11/6 - 6:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T23:30Z",
+      "when": "11/6 - 6:30 PM EST",
+      "away": "SC State",
+      "home": "SC Upstate",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "SC State, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2569",
+      "homeId": "2908",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: SC State at SC Upstate, 11/6 - 6:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-06T23:30Z",
+      "when": "11/6 - 6:30 PM EST",
+      "away": "Youngstown St",
+      "home": "Ohio State",
+      "score": "79–71",
+      "total": "150",
+      "models": "Youngstown St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2754",
+      "homeId": "194",
+      "neutral": false,
+      "homeMargin": "-8",
+      "agreement": "away",
+      "marketHomeMargin": "25.5",
+      "postedTotal": "154.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Youngstown St at Ohio State, 11/6 - 6:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "James Madison",
+      "home": "#23 Kentucky",
+      "score": "57–85",
+      "total": "142",
+      "models": "#23 Kentucky, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "256",
+      "homeId": "96",
+      "neutral": false,
+      "homeMargin": "28",
+      "agreement": "home",
+      "marketHomeMargin": "25.5",
+      "postedTotal": "157.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: James Madison at #23 Kentucky, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Midway",
+      "home": "E Kentucky",
+      "score": "55.5–110.5",
+      "total": "166",
+      "models": "E Kentucky, 4–0",
+      "sim": "55.5–110.5, E Kentucky 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "111166",
+      "homeId": "2198",
+      "neutral": false,
+      "homeMargin": "55",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Midway at E Kentucky, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Roberts Wslyn",
+      "home": "Kent State",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Roberts Wslyn, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "128531",
+      "homeId": "2309",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Roberts Wslyn at Kent State, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Newberry",
+      "home": "Charleston",
+      "score": "55–111",
+      "total": "166",
+      "models": "Charleston, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2444",
+      "homeId": "232",
+      "neutral": false,
+      "homeMargin": "56",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Newberry at Charleston, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Erskine",
+      "home": "The Citadel",
+      "score": "74–101",
+      "total": "175",
+      "models": "The Citadel, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2215",
+      "homeId": "2643",
+      "neutral": false,
+      "homeMargin": "27",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Erskine at The Citadel, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "New Haven",
+      "home": "Rutgers",
+      "score": "58–74",
+      "total": "132",
+      "models": "Rutgers, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2441",
+      "homeId": "164",
+      "neutral": false,
+      "homeMargin": "16",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: New Haven at Rutgers, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "New College",
+      "home": "FGCU",
+      "score": "58–101",
+      "total": "159",
+      "models": "FGCU, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "128550",
+      "homeId": "526",
+      "neutral": false,
+      "homeMargin": "43",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: New College at FGCU, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Stetson",
+      "home": "West Virginia",
+      "score": "54.8–87",
+      "total": "141.8",
+      "models": "West Virginia, 4–0",
+      "sim": "50.5–88, West Virginia 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "56",
+      "homeId": "277",
+      "neutral": false,
+      "homeMargin": "32.3",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Stetson at West Virginia, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Yale",
+      "home": "UCF",
+      "score": "95–96",
+      "total": "191",
+      "models": "split, 2–1 Yale",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "43",
+      "homeId": "2116",
+      "neutral": false,
+      "homeMargin": "1",
+      "agreement": "split",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "152.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Yale at UCF, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Holy Cross",
+      "home": "Villanova",
+      "score": "59–103",
+      "total": "162",
+      "models": "Villanova, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "107",
+      "homeId": "222",
+      "neutral": false,
+      "homeMargin": "44",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Holy Cross at Villanova, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "UM Dearborn",
+      "home": "Cleveland St",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "UM Dearborn, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2391",
+      "homeId": "325",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: UM Dearborn at Cleveland St, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "UNC Greensboro",
+      "home": "Elon",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "UNC Greensboro, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2430",
+      "homeId": "2210",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "154.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: UNC Greensboro at Elon, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Loyola MD",
+      "home": "Mount St Marys",
+      "score": "58–80",
+      "total": "138",
+      "models": "split, 2–1 Loyola MD",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2352",
+      "homeId": "116",
+      "neutral": false,
+      "homeMargin": "22",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Loyola MD at Mount St Marys, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "GA Southern",
+      "home": "Georgia Tech",
+      "score": "55–75",
+      "total": "130",
+      "models": "Georgia Tech, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "290",
+      "homeId": "59",
+      "neutral": false,
+      "homeMargin": "20",
+      "agreement": "home",
+      "marketHomeMargin": "18.5",
+      "postedTotal": "157.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: GA Southern at Georgia Tech, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Coppin St",
+      "home": "George Mason",
+      "score": "54–85",
+      "total": "139",
+      "models": "George Mason, 4–0",
+      "sim": "54–85, George Mason 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2154",
+      "homeId": "2244",
+      "neutral": false,
+      "homeMargin": "31",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Coppin St at George Mason, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "ETSU",
+      "home": "NC State",
+      "score": "64.5–79",
+      "total": "143.5",
+      "models": "NC State, 4–0",
+      "sim": "64.5–79, NC State 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2193",
+      "homeId": "152",
+      "neutral": false,
+      "homeMargin": "14.5",
+      "agreement": "home",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "152.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: ETSU at NC State, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Austin Peay",
+      "home": "Kennesaw St",
+      "score": "57–116",
+      "total": "173",
+      "models": "Kennesaw St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2046",
+      "homeId": "338",
+      "neutral": false,
+      "homeMargin": "59",
+      "agreement": "home",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "157.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Austin Peay at Kennesaw St, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Wofford",
+      "home": "North Carolina",
+      "score": "65.5–85",
+      "total": "150.5",
+      "models": "North Carolina, 4–0",
+      "sim": "65.5–85, North Carolina 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2747",
+      "homeId": "153",
+      "neutral": false,
+      "homeMargin": "19.5",
+      "agreement": "home",
+      "marketHomeMargin": "22.5",
+      "postedTotal": "156.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Wofford at North Carolina, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "American",
+      "home": "Clemson",
+      "score": "62.5–82",
+      "total": "144.5",
+      "models": "Clemson, 4–0",
+      "sim": "62.5–82, Clemson 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "44",
+      "homeId": "228",
+      "neutral": false,
+      "homeMargin": "19.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: American at Clemson, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Boston U",
+      "home": "Brown",
+      "score": "59–55",
+      "total": "114",
+      "models": "Boston U, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "104",
+      "homeId": "225",
+      "neutral": false,
+      "homeMargin": "-4",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Boston U at Brown, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Saint Louis",
+      "home": "Missouri",
+      "score": "50–111",
+      "total": "161",
+      "models": "Missouri, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "139",
+      "homeId": "142",
+      "neutral": true,
+      "homeMargin": "61",
+      "agreement": "home",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "161.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Saint Louis at Missouri, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Alma",
+      "home": "C Michigan",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "C Michigan, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2800",
+      "homeId": "2117",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Alma at C Michigan, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Indiana St",
+      "home": "Ball State",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Indiana St, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "282",
+      "homeId": "2050",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "2.5",
+      "postedTotal": "148.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Indiana St at Ball State, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Troy",
+      "home": "Florida St",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Florida St, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2653",
+      "homeId": "52",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "22.5",
+      "postedTotal": "159.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Troy at Florida St, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "E Michigan",
+      "home": "Xavier",
+      "score": "61.5–83.5",
+      "total": "145",
+      "models": "Xavier, 4–0",
+      "sim": "61.5–83.5, Xavier 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2199",
+      "homeId": "2752",
+      "neutral": false,
+      "homeMargin": "22",
+      "agreement": "home",
+      "marketHomeMargin": "23.5",
+      "postedTotal": "156.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: E Michigan at Xavier, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:00Z",
+      "when": "11/6 - 7:00 PM EST",
+      "away": "Presbyterian",
+      "home": "Georgia",
+      "score": "62–78",
+      "total": "140",
+      "models": "Georgia, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2506",
+      "homeId": "61",
+      "neutral": false,
+      "homeMargin": "16",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Presbyterian at Georgia, 11/6 - 7:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "Arkansas St",
+      "home": "#20 Alabama",
+      "score": "74–96",
+      "total": "170",
+      "models": "#20 Alabama, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2032",
+      "homeId": "333",
+      "neutral": false,
+      "homeMargin": "22",
+      "agreement": "home",
+      "marketHomeMargin": "25.5",
+      "postedTotal": "175.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Arkansas St at #20 Alabama, 11/6 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "Texas Lutheran",
+      "home": "SF Austin",
+      "score": "61–120",
+      "total": "181",
+      "models": "SF Austin, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2639",
+      "homeId": "2617",
+      "neutral": false,
+      "homeMargin": "59",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Texas Lutheran at SF Austin, 11/6 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "FAU",
+      "home": "Wright St",
+      "score": "71–102",
+      "total": "173",
+      "models": "Wright St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2226",
+      "homeId": "2750",
+      "neutral": false,
+      "homeMargin": "31",
+      "agreement": "home",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "158.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: FAU at Wright St, 11/6 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "Delaware",
+      "home": "Wisconsin",
+      "score": "68–75",
+      "total": "143",
+      "models": "split, 2–1 Delaware",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "48",
+      "homeId": "275",
+      "neutral": false,
+      "homeMargin": "7",
+      "agreement": "split",
+      "marketHomeMargin": "24.5",
+      "postedTotal": "152.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Delaware at Wisconsin, 11/6 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T00:30Z",
+      "when": "11/6 - 7:30 PM EST",
+      "away": "Nicholls",
+      "home": "UAB",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Nicholls, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2447",
+      "homeId": "5",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Nicholls at UAB, 11/6 - 7:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "#4 UConn",
+      "home": "#16 Michigan",
+      "score": "68–84",
+      "total": "152",
+      "models": "split, 2–1 #4 UConn",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "41",
+      "homeId": "130",
+      "neutral": true,
+      "homeMargin": "16",
+      "agreement": "split",
+      "marketHomeMargin": "-7.5",
+      "postedTotal": "144.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: #4 UConn at #16 Michigan, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Southern Miss",
+      "home": "#18 Iowa State",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "Southern Miss, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2572",
+      "homeId": "66",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "30.5",
+      "postedTotal": "150.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Southern Miss at #18 Iowa State, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Robert Morris",
+      "home": "UIC",
+      "score": "48–91",
+      "total": "139",
+      "models": "UIC, 4–0",
+      "sim": "48–91, UIC 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2523",
+      "homeId": "82",
+      "neutral": false,
+      "homeMargin": "43",
+      "agreement": "home",
+      "marketHomeMargin": "10.5",
+      "postedTotal": "143.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Robert Morris at UIC, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Truman St",
+      "home": "Missouri St",
+      "score": "60–88",
+      "total": "148",
+      "models": "Missouri St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2654",
+      "homeId": "2623",
+      "neutral": false,
+      "homeMargin": "28",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Truman St at Missouri St, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "MS for Women",
+      "home": "Alabama A&M",
+      "score": "57–90",
+      "total": "147",
+      "models": "Alabama A&M, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "126826",
+      "homeId": "2010",
+      "neutral": false,
+      "homeMargin": "33",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: MS for Women at Alabama A&M, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Texas A&M-CC",
+      "home": "Louisiana",
+      "score": "65–64",
+      "total": "129",
+      "models": "Texas A&M-CC, 4–0",
+      "sim": "65–64, Texas A&M-CC 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "357",
+      "homeId": "309",
+      "neutral": false,
+      "homeMargin": "-1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Texas A&M-CC at Louisiana, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Texas Southern",
+      "home": "LSU",
+      "score": "68–101.5",
+      "total": "169.5",
+      "models": "LSU, 4–0",
+      "sim": "68–101.5, LSU 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2640",
+      "homeId": "99",
+      "neutral": false,
+      "homeMargin": "33.5",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Texas Southern at LSU, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "N Kentucky",
+      "home": "Texas A&M",
+      "score": "84–95.5",
+      "total": "179.5",
+      "models": "Texas A&M, 4–0",
+      "sim": "84–95.5, Texas A&M 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "94",
+      "homeId": "245",
+      "neutral": false,
+      "homeMargin": "11.5",
+      "agreement": "home",
+      "marketHomeMargin": "26.5",
+      "postedTotal": "170.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: N Kentucky at Texas A&M, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Stony Brook",
+      "home": "Northwestern",
+      "score": "60–86",
+      "total": "146",
+      "models": "split, 2–1 Stony Brook",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2619",
+      "homeId": "77",
+      "neutral": false,
+      "homeMargin": "26",
+      "agreement": "split",
+      "marketHomeMargin": "13.5",
+      "postedTotal": "144.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Stony Brook at Northwestern, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Southern",
+      "home": "TCU",
+      "score": "65.5–91.5",
+      "total": "157",
+      "models": "TCU, 4–0",
+      "sim": "65.5–91.5, TCU 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2582",
+      "homeId": "2628",
+      "neutral": false,
+      "homeMargin": "26",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Southern at TCU, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "St Thomas",
+      "home": "Minnesota",
+      "score": "68.5–81.5",
+      "total": "150",
+      "models": "Minnesota, 4–0",
+      "sim": "68.5–81.5, Minnesota 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2900",
+      "homeId": "135",
+      "neutral": false,
+      "homeMargin": "13",
+      "agreement": "home",
+      "marketHomeMargin": "14.5",
+      "postedTotal": "150.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: St Thomas at Minnesota, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Detroit Mercy",
+      "home": "Marquette",
+      "score": "43–78",
+      "total": "121",
+      "models": "Marquette, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2174",
+      "homeId": "269",
+      "neutral": false,
+      "homeMargin": "35",
+      "agreement": "home",
+      "marketHomeMargin": "32.5",
+      "postedTotal": "155.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Detroit Mercy at Marquette, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:00Z",
+      "when": "11/6 - 8:00 PM EST",
+      "away": "Miss Valley St",
+      "home": "Oklahoma",
+      "score": "68–64",
+      "total": "132",
+      "models": "Miss Valley St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2400",
+      "homeId": "201",
+      "neutral": false,
+      "homeMargin": "-4",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Miss Valley St at Oklahoma, 11/6 - 8:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:30Z",
+      "when": "11/6 - 8:30 PM EST",
+      "away": "Idaho St",
+      "home": "Wyoming",
+      "score": "53–94.5",
+      "total": "147.5",
+      "models": "Wyoming, 4–0",
+      "sim": "53–94.5, Wyoming 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "304",
+      "homeId": "2751",
+      "neutral": false,
+      "homeMargin": "41.5",
+      "agreement": "home",
+      "marketHomeMargin": "18.5",
+      "postedTotal": "149.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Idaho St at Wyoming, 11/6 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:30Z",
+      "when": "11/6 - 8:30 PM EST",
+      "away": "S Illinois",
+      "home": "Kansas City",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "S Illinois, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "79",
+      "homeId": "140",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "away",
+      "marketHomeMargin": "-2.5",
+      "postedTotal": "145.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: S Illinois at Kansas City, 11/6 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:30Z",
+      "when": "11/6 - 8:30 PM EST",
+      "away": "E Illinois",
+      "home": "Iowa",
+      "score": "55.5–83.5",
+      "total": "139",
+      "models": "Iowa, 4–0",
+      "sim": "55.5–83.5, Iowa 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2197",
+      "homeId": "2294",
+      "neutral": false,
+      "homeMargin": "28",
+      "agreement": "home",
+      "marketHomeMargin": "35.5",
+      "postedTotal": "137.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: E Illinois at Iowa, 11/6 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T01:30Z",
+      "when": "11/6 - 8:30 PM EST",
+      "away": "C Arkansas",
+      "home": "Ole Miss",
+      "score": "58–99",
+      "total": "157",
+      "models": "Ole Miss, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2110",
+      "homeId": "145",
+      "neutral": false,
+      "homeMargin": "41",
+      "agreement": "home",
+      "marketHomeMargin": "19.5",
+      "postedTotal": "152.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: C Arkansas at Ole Miss, 11/6 - 8:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "Wagner",
+      "home": "#14 Miami",
+      "score": "50–76",
+      "total": "126",
+      "models": "#14 Miami, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2681",
+      "homeId": "2390",
+      "neutral": false,
+      "homeMargin": "26",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Wagner at #14 Miami, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "MTSU",
+      "home": "#17 Kansas",
+      "score": "65–95",
+      "total": "160",
+      "models": "split, 2–1 MTSU",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2393",
+      "homeId": "2305",
+      "neutral": false,
+      "homeMargin": "30",
+      "agreement": "split",
+      "marketHomeMargin": "29.5",
+      "postedTotal": "153.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: MTSU at #17 Kansas, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "Omaha",
+      "home": "#25 BYU",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "#25 BYU, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2437",
+      "homeId": "252",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "31.5",
+      "postedTotal": "160.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Omaha at #25 BYU, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "Idaho",
+      "home": "Colorado St",
+      "score": "74–84",
+      "total": "158",
+      "models": "split, 2–1 Idaho",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "70",
+      "homeId": "36",
+      "neutral": false,
+      "homeMargin": "10",
+      "agreement": "split",
+      "marketHomeMargin": "16.5",
+      "postedTotal": "151.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Idaho at Colorado St, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "N Colorado",
+      "home": "Arizona St",
+      "score": "65–75",
+      "total": "140",
+      "models": "split, 2–1 N Colorado",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2458",
+      "homeId": "9",
+      "neutral": false,
+      "homeMargin": "10",
+      "agreement": "split",
+      "marketHomeMargin": "18.5",
+      "postedTotal": "147.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: N Colorado at Arizona St, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "Queens",
+      "home": "Oklahoma St",
+      "score": "78–93",
+      "total": "171",
+      "models": "Oklahoma St, 4–0",
+      "sim": "78–93, Oklahoma St 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2511",
+      "homeId": "197",
+      "neutral": false,
+      "homeMargin": "15",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Queens at Oklahoma St, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:00Z",
+      "when": "11/6 - 9:00 PM EST",
+      "away": "CSU Northridge",
+      "home": "Kansas St",
+      "score": "67.5–72.5",
+      "total": "140",
+      "models": "Kansas St, 4–0",
+      "sim": "67.5–72.5, Kansas St 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2463",
+      "homeId": "2306",
+      "neutral": false,
+      "homeMargin": "5",
+      "agreement": "home",
+      "marketHomeMargin": "10.5",
+      "postedTotal": "163.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: CSU Northridge at Kansas St, 11/6 - 9:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:30Z",
+      "when": "11/6 - 9:30 PM EST",
+      "away": "Briar Cliff",
+      "home": "S Dakota St",
+      "score": "missing–missing",
+      "total": "missing",
+      "models": "S Dakota St, 2–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3065",
+      "homeId": "2571",
+      "neutral": false,
+      "homeMargin": "missing",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Briar Cliff at S Dakota St, 11/6 - 9:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:30Z",
+      "when": "11/6 - 9:30 PM EST",
+      "away": "UT Arlington",
+      "home": "Portland",
+      "score": "89–133",
+      "total": "222",
+      "models": "Portland, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "250",
+      "homeId": "2501",
+      "neutral": true,
+      "homeMargin": "44",
+      "agreement": "home",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "150.5",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: UT Arlington at Portland, 11/6 - 9:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:30Z",
+      "when": "11/6 - 9:30 PM EST",
+      "away": "CA Baptist",
+      "home": "Oregon St",
+      "score": "61–102",
+      "total": "163",
+      "models": "Oregon St, 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2856",
+      "homeId": "204",
+      "neutral": false,
+      "homeMargin": "41",
+      "agreement": "home",
+      "marketHomeMargin": "18.5",
+      "postedTotal": "155.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: CA Baptist at Oregon St, 11/6 - 9:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T02:30Z",
+      "when": "11/6 - 9:30 PM EST",
+      "away": "Tarleton St",
+      "home": "San Diego",
+      "score": "62–79",
+      "total": "141",
+      "models": "split, 2–1 Tarleton St",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2627",
+      "homeId": "301",
+      "neutral": false,
+      "homeMargin": "17",
+      "agreement": "split",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "148.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Tarleton St at San Diego, 11/6 - 9:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T03:00Z",
+      "when": "11/6 - 10:00 PM EST",
+      "away": "Oakland",
+      "home": "Stanford",
+      "score": "66.5–79",
+      "total": "145.5",
+      "models": "Stanford, 4–0",
+      "sim": "66.5–79, Stanford 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2473",
+      "homeId": "24",
+      "neutral": false,
+      "homeMargin": "12.5",
+      "agreement": "home",
+      "marketHomeMargin": "14.5",
+      "postedTotal": "150.5",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Oakland at Stanford, 11/6 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T03:00Z",
+      "when": "11/6 - 10:00 PM EST",
+      "away": "N Dakota St",
+      "home": "San Francisco",
+      "score": "63–90.5",
+      "total": "153.5",
+      "models": "San Francisco, 4–0",
+      "sim": "63–90.5, San Francisco 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2449",
+      "homeId": "2539",
+      "neutral": false,
+      "homeMargin": "27.5",
+      "agreement": "home",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "146.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "outside-method-range"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: N Dakota St at San Francisco, 11/6 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T03:00Z",
+      "when": "11/6 - 10:00 PM EST",
+      "away": "Lincoln (CA)",
+      "home": "LMU",
+      "score": "96–95",
+      "total": "191",
+      "models": "Lincoln (CA), 3–0",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "124946",
+      "homeId": "2351",
+      "neutral": false,
+      "homeMargin": "-1",
+      "agreement": "away",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Lincoln (CA) at LMU, 11/6 - 10:00 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T03:30Z",
+      "when": "11/6 - 10:30 PM EST",
+      "away": "North Florida",
+      "home": "#22 UCLA",
+      "score": "71–63",
+      "total": "134",
+      "models": "split, 2–1 #22 UCLA",
+      "sim": "not run",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "2454",
+      "homeId": "26",
+      "neutral": false,
+      "homeMargin": "-8",
+      "agreement": "split",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "outside-method-range",
+        "total": "outside-method-range"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: North Florida at #22 UCLA, 11/6 - 10:30 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T04:59Z",
+      "when": "11/6 - 11:59 PM EST",
+      "away": "Bethesda",
+      "home": "Hawai'i",
+      "score": "60–88",
+      "total": "148",
+      "models": "Hawai'i, 4–0",
+      "sim": "60–88, Hawai'i 100%, thin",
+      "sportPath": "basketball/mens-college-basketball",
+      "awayId": "3246",
+      "homeId": "62",
+      "neutral": false,
+      "homeMargin": "28",
+      "agreement": "home",
+      "marketHomeMargin": "missing",
+      "postedTotal": "missing",
+      "fanduel": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "draftkings": {
+        "side": "missing-input",
+        "total": "missing-input"
+      },
+      "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Bethesda at Hawai'i, 11/6 - 11:59 PM EST.",
+      "alertRating": 2,
+      "alertAction": "Lean",
+      "research": "screen"
+    }
+  ]
+}
