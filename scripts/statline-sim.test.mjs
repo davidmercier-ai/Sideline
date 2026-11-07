@@ -7,6 +7,7 @@ import {
   simulateNbaBox,
   simulateNbaDraw,
   simulateNflDraw,
+  simulateNhlDraw,
   splitMade,
 } from './statline-sim.mjs'
 
@@ -159,5 +160,21 @@ const kicks = nflGamesFromLog(kickerLog)
 assert.equal(kicks[0].fgAtt, 2)
 assert.equal(kicks[0].xpMade, 1)
 assert.equal(kicks[0].venue, 'home')
+
+const skater = (name, shots) => ({
+  name,
+  games: [0, 1, 2].map(() => ({ shots, goals: 0, assists: 0, minutes: 16, goalie: false })),
+})
+const shutout = simulateNhlDraw(
+  { skaters: [skater('Home', 3)], goalie: { name: 'Home Goalie', skills: { save: 90 } } },
+  { skaters: [skater('Away', 4)], goalie: { name: 'Away Goalie', skills: { save: 90 } } },
+  mulberry32(4),
+)
+assert.equal(shutout.away[0].shots, 4)
+assert.equal(shutout.away[0].goals, 0)
+assert.equal(shutout.homeGoalie.shotsAgainst, 4)
+assert.equal(shutout.homeGoalie.saves, 4)
+assert.equal(shutout.homeGoalie.goalsAgainst, 0)
+assert.equal(shutout.awayScore, 0)
 
 console.log('statline sim ok')

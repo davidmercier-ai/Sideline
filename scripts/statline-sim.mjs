@@ -624,3 +624,172 @@ export function simulateNflBox({ home, away, draws = 2000, seed = 1 }) {
     sample: played[0],
   }
 }
+
+function readStat(names, stats, key) {
+  const index = names.indexOf(key)
+  if (index < 0) return 0
+  const value = Number(stats[index])
+  return Number.isFinite(value) ? value : 0
+}
+
+function toiMinutes(value) {
+  const match = String(value ?? '').match(/^(\d+):(\d+)/)
+  if (!match) return Number(value) || 0
+  return Number(match[1]) + Number(match[2]) / 60
+}
+
+export function nhlGamesFromLog(data) {
+  const names = data?.names || []
+  const goalie = names.includes('saves') && names.includes('shotsAgainst')
+  const seasons = data?.seasonTypes || []
+  const season = seasons.find((item) => /2026|2027/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
+    || seasons.find((item) => /2026|2027/.test(item.displayName || '') && !/preseason|playoff/i.test(item.displayName || ''))
+  const games = []
+  const seen = new Set()
+  for (const category of season?.categories || []) {
+    if (category.type !== 'event') continue
+    for (const event of category.events || []) {
+      if (!event.eventId || seen.has(event.eventId)) continue
+      seen.add(event.eventId)
+      const stats = event.stats || []
+      const meta = data.events?.[event.eventId] || {}
+      const venue = meta.atVs === '@' ? 'away' : meta.atVs === 'vs' ? 'home' : 'neutral'
+      if (goalie) {
+        games.push({
+          date: String(meta.gameDate || event.eventId),
+          venue,
+          goalie: true,
+          shotsAgainst: readStat(names, stats, 'shotsAgainst'),
+          saves: readStat(names, stats, 'saves'),
+          goalsAgainst: readStat(names, stats, 'goalsAgainst'),
+          minutes: toiMinutes(stats[names.indexOf('timeOnIcePerGame')]),
+        })
+      } else {
+        games.push({
+          date: String(meta.gameDate || event.eventId),
+          venue,
+          goalie: false,
+          shots: readStat(names, stats, 'shotsTotal'),
+          goals: readStat(names, stats, 'goals'),
+          assists: readStat(names, stats, 'assists'),
+          minutes: toiMinutes(stats[names.indexOf('timeOnIcePerGame')]),
+        })
+      }
+    }
+  }
+  return games
+}
+
+function nhlShotPct(games) {
+  const shots = sumOf(games, 'shots')
+  if (shots <= 0) return null
+  return sumOf(games, 'goals') / shots
+}
+
+function prepareSkater(player, random) {
+  const games = (player.games || []).filter((game) => !game.goalie)
+  const sample = pickGame(games, random) || { shots: 0, assists: 0, minutes: 0 }
+  return {
+    name: player.name,
+    games,
+    skills: player.skills || null,
+    shotPct: nhlShotPct(games),
+    astMean: games.length ? sumOf(games, 'assists') / games.length : 0,
+    sample,
+    box: { name: player.name, goals: 0, assists: 0, shots: 0, minutes: sample.minutes || 0 },
+  }
+}
+
+/**
+ * One NHL game. Skater volume is one game's shots. Each shot is a goal or a
+ * save from that skater's own shooting rate, moved by EA shot ratings against
+ * the goalie's save ratings. A missing rating leaves the shooting rate.
+ */
+export function simulateNhlDraw(home, away, random) {
+  const homeSkaters = (home.skaters || []).map((player) => prepareSkater(player, random))
+  const awaySkaters = (away.skaters || []).map((player) => prepareSkater(player, random))
+  const plays = []
+  const makeGoalie = (goalie) => (goalie ? {
+    name: goalie.name,
+    skills: goalie.skills || null,
+    box: { name: goalie.name, saves: 0, shotsAgainst: 0, goalsAgainst: 0 },
+  } : null)
+  const homeGoalie = makeGoalie(home.goalie)
+  const awayGoalie = makeGoalie(away.goalie)
+  const shoot = (skaters, goalie) => {
+    let goals = 0
+    for (const skater of skaters) {
+      const rate = blendRating(skater.shotPct, skater.skills?.shot, goalie?.skills?.save ?? null)
+      for (let i = 0; i < (skater.sample.shots || 0); i += 1) {
+        skater.box.shots += 1
+        if (goalie) goalie.box.shotsAgainst += 1
+        if (rate != null && random() < rate) {
+          skater.box.goals += 1
+          goals += 1
+          if (goalie) goalie.box.goalsAgainst += 1
+          const helpers = []
+          for (let assist = 0; assist < 2; assist += 1) {
+            const passer = pickWeighted(skaters, 'astMean', random, skater)
+            if (!passer || helpers.includes(passer)) break
+            if (random() > Math.min(1, passer.astMean)) continue
+            passer.box.assists += 1
+            helpers.push(passer)
+          }
+          const names = helpers.map((passer) => passer.name).join(', ')
+          plays.push(`${skater.name} goal${names ? `, assists ${names}` : ''}`)
+        } else if (goalie) {
+          goalie.box.saves += 1
+          plays.push(`${skater.name} shot, ${goalie.name} save`)
+        } else {
+          plays.push(`${skater.name} shot, miss`)
+        }
+      }
+    }
+    return goals
+  }
+  const homeGoals = shoot(homeSkaters, awayGoalie)
+  const awayGoals = shoot(awaySkaters, homeGoalie)
+  const finish = (skaters) => skaters.map((skater) => ({
+    ...skater.box,
+    points: skater.box.goals + skater.box.assists,
+  }))
+  return {
+    home: finish(homeSkaters),
+    away: finish(awaySkaters),
+    homeGoalie: homeGoalie?.box || null,
+    awayGoalie: awayGoalie?.box || null,
+    homeScore: homeGoals,
+    awayScore: awayGoals,
+    plays,
+  }
+}
+
+function medianNhl(draws, side) {
+  const names = draws[0]?.[side]?.map((player) => player.name) || []
+  return names.map((name) => {
+    const rows = draws.map((draw) => draw[side].find((player) => player.name === name))
+    return {
+      name,
+      goals: medianOf(rows.map((row) => row.goals)),
+      assists: medianOf(rows.map((row) => row.assists)),
+      points: medianOf(rows.map((row) => row.points)),
+      shots: medianOf(rows.map((row) => row.shots)),
+      minutes: medianOf(rows.map((row) => row.minutes)),
+    }
+  })
+}
+
+export function simulateNhlBox({ home, away, draws = 2000, seed = 1 }) {
+  const random = mulberry32(seed)
+  const played = []
+  for (let i = 0; i < draws; i += 1) played.push(simulateNhlDraw(home, away, random))
+  return {
+    draws,
+    seed,
+    home: medianNhl(played, 'home'),
+    away: medianNhl(played, 'away'),
+    homeMedian: medianOf(played.map((draw) => draw.homeScore)),
+    awayMedian: medianOf(played.map((draw) => draw.awayScore)),
+    sample: played[0],
+  }
+}
