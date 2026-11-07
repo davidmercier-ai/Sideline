@@ -7,6 +7,7 @@ import {
   simulateNbaBox,
   simulateNbaDraw,
   simulateNflDraw,
+  simulateNhlBox,
   simulateNhlDraw,
   splitMade,
 } from './statline-sim.mjs'
@@ -176,5 +177,14 @@ assert.equal(shutout.homeGoalie.shotsAgainst, 4)
 assert.equal(shutout.homeGoalie.saves, 4)
 assert.equal(shutout.homeGoalie.goalsAgainst, 0)
 assert.equal(shutout.awayScore, 0)
+const box = simulateNhlBox({
+  home: { skaters: [skater('Home', 3)], goalie: { name: 'Home Goalie', skills: { save: 90 } } },
+  away: { skaters: [skater('Away', 4)], goalie: { name: 'Away Goalie', skills: { save: 90 } } },
+  draws: 20,
+  seed: 4,
+})
+assert.equal(box.homeGoalie.name, 'Home Goalie')
+assert.equal(box.homeGoalie.saves, 4)
+assert.equal(box.awayGoalie.shotsAgainst, 3)
 
 console.log('statline sim ok')

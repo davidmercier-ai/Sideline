@@ -137,6 +137,15 @@ function dressGoalie(player, ratings) {
   return { ...player, rating: card || null, skills: { save: saveSkill(card) } }
 }
 
+function goalieMedianTable(rows) {
+  const lines = ['| Goalie | SV | SA | GA |', '| --- | --- | --- | --- |']
+  for (const row of rows) {
+    if (!row) continue
+    lines.push(`| ${row.name} | ${row.saves} | ${row.shotsAgainst} | ${row.goalsAgainst} |`)
+  }
+  return lines.join('\n')
+}
+
 function minutes(value) {
   if (!Number.isFinite(value)) return '—'
   return Math.round(value)
@@ -229,6 +238,14 @@ async function main() {
     blocks.push(goalieLine(box.sample.homeGoalie, dressGoalie(homeGoalie, ratings)))
     blocks.push('')
     blocks.push(skaterTable(box.sample.home, homeDressed))
+    blocks.push('')
+    blocks.push('### Median of 2,000 games')
+    blocks.push('')
+    blocks.push('Each column is its own median. Those goals are not the goals in the median score.')
+    blocks.push('')
+    blocks.push(skaterTable([...box.away, ...box.home], [...awayDressed, ...homeDressed]))
+    blocks.push('')
+    blocks.push(goalieMedianTable([box.awayGoalie, box.homeGoalie]))
     blocks.push('')
     process.stderr.write(`  ${box.awayMedian}-${box.homeMedian}\n`)
   }

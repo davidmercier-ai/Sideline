@@ -779,6 +779,17 @@ function medianNhl(draws, side) {
   })
 }
 
+function medianGoalie(draws, key) {
+  const rows = draws.map((draw) => draw[key]).filter(Boolean)
+  if (!rows.length) return null
+  return {
+    name: rows[0].name,
+    saves: medianOf(rows.map((row) => row.saves)),
+    shotsAgainst: medianOf(rows.map((row) => row.shotsAgainst)),
+    goalsAgainst: medianOf(rows.map((row) => row.goalsAgainst)),
+  }
+}
+
 export function simulateNhlBox({ home, away, draws = 2000, seed = 1 }) {
   const random = mulberry32(seed)
   const played = []
@@ -788,6 +799,8 @@ export function simulateNhlBox({ home, away, draws = 2000, seed = 1 }) {
     seed,
     home: medianNhl(played, 'home'),
     away: medianNhl(played, 'away'),
+    homeGoalie: medianGoalie(played, 'homeGoalie'),
+    awayGoalie: medianGoalie(played, 'awayGoalie'),
     homeMedian: medianOf(played.map((draw) => draw.homeScore)),
     awayMedian: medianOf(played.map((draw) => draw.awayScore)),
     sample: played[0],
