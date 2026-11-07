@@ -1,6 +1,6 @@
 /**
  * Highest first-scorer share for each upcoming NFL, NHL, and soccer game.
- * The share uses only games that player already played. It is not a bet.
+ * The share uses the player's completed regular-season games. It is not a bet.
  *
  * Run: node scripts/first-scorer-week.mjs
  */
@@ -8,7 +8,7 @@
 import { pathToFileURL } from 'node:url'
 import { playerReads } from './projection-math.mjs'
 import { looseName } from './player-logs.mjs'
-import { readFirstScorer } from './first-scorer.mjs'
+import { rankFirstScorers, readFirstScorer } from './first-scorer.mjs'
 
 const ESPN = 'https://site.api.espn.com'
 const DATES = ['20261106', '20261107', '20261108', '20261109', '20261110']
@@ -61,7 +61,7 @@ function namesFromSummary(summary) {
   return found
 }
 
-async function upcoming(board) {
+export async function upcoming(board) {
   const games = new Map()
   for (const date of DATES) {
     const data = await getJson(`${ESPN}/apis/site/v2/sports/${board.path}/scoreboard?dates=${date}&limit=300`)
@@ -101,8 +101,7 @@ async function recentGames(board, teamIds) {
         date: event.date || competition.date || '',
       })
     }
-    rows.sort((a, b) => String(b.date).localeCompare(String(a.date)))
-    for (const row of rows.slice(0, 8)) {
+    for (const row of rows) {
       if (!events.has(row.id)) events.set(row.id, row)
     }
   }
@@ -117,7 +116,7 @@ function addPlayer(logs, name, row) {
   logs.set(key, list)
 }
 
-async function loadHistories(board, games) {
+export async function loadHistories(board, games) {
   const teamIds = [...new Set(games.flatMap((game) => [game.awayId, game.homeId]))]
   const events = await recentGames(board, teamIds)
   const logs = new Map()
@@ -154,7 +153,7 @@ function showRead(read) {
   return `${read.value.toFixed(2)}${thin}`
 }
 
-function pickForGame(game, logs) {
+export function fieldForGame(game, logs) {
   const candidates = []
   for (const rows of logs.values()) {
     const mine = rows.filter((row) => row.teamId === game.awayId || row.teamId === game.homeId)
@@ -168,17 +167,16 @@ function pickForGame(game, logs) {
     candidates.push({
       name: mine[0].name,
       side: venue === 'home' ? game.home : game.away,
+      atHome: venue === 'home',
       reads,
       thin: reads.some((read) => read.thin),
     })
   }
-  candidates.sort((a, b) => (
-    Number(a.thin) - Number(b.thin)
-    || b.reads[0].value - a.reads[0].value
-    || (b.reads[1].value ?? -1) - (a.reads[1].value ?? -1)
-    || (b.reads[3].value ?? -1) - (a.reads[3].value ?? -1)
-  ))
-  return candidates[0] || null
+  return rankFirstScorers(candidates)
+}
+
+function pickForGame(game, logs) {
+  return fieldForGame(game, logs)[0] || null
 }
 
 function lineFor(game, pick) {

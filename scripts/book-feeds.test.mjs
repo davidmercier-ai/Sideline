@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
-import { indexDraftKingsProps, indexDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
+import { impliedFromAmerican, indexDraftKingsFirstScorers, indexDraftKingsProps, indexDraftKingsTeamTotals, indexFanDuelFirstScorers, mergeFirstScorerLines, propsForNames } from './book-prices.mjs'
+import { earlierAmerican, latestByBook, parlayImplied, scoreSide, slateScore } from './grade-slip.mjs'
+import { rowsFromProps } from './save-first-scorer-lines.mjs'
 import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, favoriteSide, predictorSide, quoteFromPickcenter, spreadFromPickcenter, spreadSizeBucket } from './backtest-slate.mjs'
 import { alertSignals } from './projection-math.mjs'
 import { indexFanDuelProps } from './book-prices.mjs'
@@ -146,5 +148,58 @@ assert.equal(fanduelProp.length, 1)
 assert.equal(fanduelProp[0].player, 'Jayson Tatum')
 assert.equal(fanduelProp[0].line, 26.5)
 assert.equal(fanduelProp[0].over, '-130')
+
+const firstDk = indexDraftKingsFirstScorers({
+  events: [{ id: '3', name: 'DEN Broncos @ CAR Panthers' }],
+  markets: [
+    { id: 'f1', eventId: '3', name: 'First TD Scorer' },
+    { id: 'a1', eventId: '3', name: 'Anytime TD Scorer' },
+  ],
+  selections: [
+    { id: 's1', marketId: 'f1', label: 'Chuba Hubbard', displayOdds: { american: '+500' } },
+    { id: 's2', marketId: 'f1', label: 'No Touchdown Scorer', displayOdds: { american: '+450' } },
+    { id: 's3', marketId: 'a1', label: 'Chuba Hubbard', displayOdds: { american: '-115' } },
+  ],
+}, 'First TD Scorer')
+assert.equal(firstDk.length, 1)
+assert.equal(firstDk[0].player, 'Chuba Hubbard')
+assert.equal(firstDk[0].american, '+500')
+assert.equal(firstDk[0].book, 'DraftKings')
+
+const firstFd = indexFanDuelFirstScorers({
+  attachments: {
+    events: { 4: { name: 'New York Jets @ Kansas City Chiefs' } },
+    markets: {
+      m: {
+        marketId: '739.1',
+        eventId: 4,
+        marketName: '1st Touchdown Scorer',
+        runners: [
+          { runnerName: 'Kenyon Sadiq', selectionId: 7, winRunnerOdds: { americanDisplayOdds: { americanOdds: 3000 } } },
+        ],
+      },
+    },
+  },
+}, '1st Touchdown Scorer')
+assert.equal(firstFd[0].american, '+3000')
+assert.equal(firstFd[0].book, 'FanDuel')
+const stored = mergeFirstScorerLines({ lines: [] }, rowsFromProps(firstFd, '2026-11-07T06:09:00.000Z'))
+assert.equal(stored.lines[0].event, 'New York Jets @ Kansas City Chiefs')
+assert.equal(mergeFirstScorerLines(stored, rowsFromProps(firstFd, '2026-11-07T06:09:00.000Z')).lines.length, 1)
+assert.equal(Math.round(impliedFromAmerican('+500') * 1000), 167)
+assert.equal(scoreSide('31–24.7', true), 'lower')
+assert.equal(scoreSide('17.4–25.6', false), 'lower')
+assert.equal(parlayImplied([0.5, 0.5]), 0.25)
+assert.equal(parlayImplied([0.5, null]), null)
+const books = latestByBook([
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+500', retrievedAt: '2026-11-07T06:00:00Z' },
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+550', retrievedAt: '2026-11-07T06:20:00Z' },
+], 'Chuba Hubbard')
+assert.equal(books[0].american, '+550')
+assert.equal(earlierAmerican([
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+500', retrievedAt: '2026-11-07T06:00:00Z' },
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+550', retrievedAt: '2026-11-07T06:20:00Z' },
+], 'Chuba Hubbard', 'DraftKings', '2026-11-07T06:20:00Z'), '+500')
+assert.equal(slateScore('| 11/8 - 1:00 PM EST | Broncos at Panthers | 31–24.7 | 55.6 | Broncos, 4–0 | 28.5–26.5, Broncos 72.2% |', 'DEN Broncos', 'CAR Panthers').score, '31–24.7')
 
 console.log('book feeds ok')

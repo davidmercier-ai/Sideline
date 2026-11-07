@@ -16,11 +16,22 @@ import { fetchAthleteGamelog, looseName, sportPath } from './player-logs.mjs'
 
 const ESPN = 'https://site.api.espn.com'
 
+function seasonHasCurrentYear(data, season) {
+  for (const category of season?.categories || []) {
+    for (const event of category.events || []) {
+      const date = String(data?.events?.[event.eventId]?.gameDate || '')
+      if (/^2026|^2027/.test(date)) return true
+    }
+  }
+  return false
+}
+
 export function currentSeason(data) {
   const seasons = data?.seasonTypes || []
-  return seasons.find((item) => /2026/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
-    || seasons.find((item) => /2026/.test(item.displayName || '') && !/preseason|playoff|postseason/i.test(item.displayName || ''))
-    || null
+  const named = seasons.find((item) => /2026|2027/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
+    || seasons.find((item) => /2026|2027/.test(item.displayName || '') && !/preseason|playoff|postseason/i.test(item.displayName || ''))
+  if (named) return named
+  return seasons.find((item) => /Regular/i.test(item.displayName || '') && seasonHasCurrentYear(data, item)) || null
 }
 
 export function gamesFromGamelog(data) {
@@ -93,6 +104,73 @@ export function readFirstScorer(kind, summary) {
   return read ? read(summary) : null
 }
 
+export function leaderCall(reads) {
+  const yes = (reads ?? []).map((read) => (
+    Boolean(read) && !read.missing && Number.isFinite(read.value) && read.value >= 0.5
+  ))
+  const thin = (reads ?? []).some((read) => read?.thin)
+  const count = yes.filter(Boolean).length
+  return {
+    pair: !thin && Boolean(yes[0]) && count >= 2,
+    called: !thin && Boolean(yes[0]) && count >= 3,
+    strict: !thin && yes.length >= 4 && yes.every(Boolean),
+  }
+}
+
+export function rankFirstScorers(candidates) {
+  return [...(candidates ?? [])].sort((a, b) => (
+    Number(a.thin) - Number(b.thin)
+    || b.reads[0].value - a.reads[0].value
+    || (b.reads[1].value ?? -1) - (a.reads[1].value ?? -1)
+    || (b.reads[3].value ?? -1) - (a.reads[3].value ?? -1)
+    || String(a.name).localeCompare(String(b.name))
+  ))
+}
+
+export function scoreGameLeaders(games, appearances) {
+  const byPlayer = new Map()
+  for (const row of appearances ?? []) {
+    const key = `${looseName(row.name)}|${row.teamId}`
+    const list = byPlayer.get(key) ?? []
+    list.push(row)
+    byPlayer.set(key, list)
+  }
+  const tally = {
+    leader: { hits: 0, decided: 0 },
+    pair: { hits: 0, decided: 0 },
+    called: { hits: 0, decided: 0 },
+    strict: { hits: 0, decided: 0 },
+  }
+  const ordered = [...(games ?? [])].sort((a, b) => String(a.date).localeCompare(String(b.date)))
+  for (const game of ordered) {
+    const candidates = []
+    for (const rows of byPlayer.values()) {
+      const current = rows.find((row) => row.eventId === game.id)
+      if (!current || (current.venue !== 'home' && current.venue !== 'away')) continue
+      const prior = rows.filter((row) => String(row.date) < String(game.date))
+      const reads = playerReads(prior, current.venue)
+      if (!reads[0] || reads[0].missing || !Number.isFinite(reads[0].value)) continue
+      candidates.push({
+        name: current.name,
+        value: current.value,
+        reads,
+        thin: reads.some((read) => read.thin),
+      })
+    }
+    if (!candidates.length) continue
+    const leader = rankFirstScorers(candidates)[0]
+    const call = leaderCall(leader.reads)
+    tally.leader.decided += 1
+    if (leader.value === 1) tally.leader.hits += 1
+    for (const key of ['pair', 'called', 'strict']) {
+      if (!call[key]) continue
+      tally[key].decided += 1
+      if (leader.value === 1) tally[key].hits += 1
+    }
+  }
+  return tally
+}
+
 export function walkForwardFirst(rows) {
   const ordered = [...(rows ?? [])]
     .filter((row) => Number.isFinite(row?.value))
@@ -100,6 +178,7 @@ export function walkForwardFirst(rows) {
   const tally = {
     strict: { hits: 0, decided: 0 },
     called: { hits: 0, decided: 0 },
+    pair: { hits: 0, decided: 0 },
     base: { hits: 0, decided: 0 },
   }
   for (let index = 0; index < ordered.length; index += 1) {
@@ -109,15 +188,11 @@ export function walkForwardFirst(rows) {
     if (reads.some((read) => read.missing || !Number.isFinite(read.value))) continue
     tally.base.decided += 1
     if (game.value === 1) tally.base.hits += 1
-    if (reads.some((read) => read.thin)) continue
-    const yes = reads.map((read) => read.value >= 0.5)
-    if (yes[0] && yes.filter(Boolean).length >= 3) {
-      tally.called.decided += 1
-      if (game.value === 1) tally.called.hits += 1
-    }
-    if (yes.every(Boolean)) {
-      tally.strict.decided += 1
-      if (game.value === 1) tally.strict.hits += 1
+    const call = leaderCall(reads)
+    for (const key of ['pair', 'called', 'strict']) {
+      if (!call[key]) continue
+      tally[key].decided += 1
+      if (game.value === 1) tally[key].hits += 1
     }
   }
   return tally

@@ -456,6 +456,124 @@ export async function loadDraftKingsPropLines(sport) {
   return props
 }
 
+export const DRAFTKINGS_FIRST_SCORER = {
+  nfl: ['88808', '1003', '12438', 'First TD Scorer'],
+}
+
+const FANDUEL_FIRST_SCORER = {
+  nfl: ['td-scorer-props', '1st Touchdown Scorer'],
+}
+
+export function impliedFromAmerican(american) {
+  const value = Number(String(american ?? '').replace('+', ''))
+  if (!Number.isFinite(value) || value === 0) return null
+  if (value > 0) return 100 / (value + 100)
+  const laid = Math.abs(value)
+  return laid / (laid + 100)
+}
+
+function yesPlayer(label) {
+  const player = String(label ?? '').trim()
+  if (!player || /no touchdown|no td scorer/i.test(player)) return null
+  return player
+}
+
+export function indexDraftKingsFirstScorers(payload, marketName) {
+  const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
+  const props = []
+  for (const market of payload?.markets ?? []) {
+    if (market.name !== marketName) continue
+    const sides = eventSides(events.get(market.eventId))
+    if (!sides) continue
+    for (const selection of (payload.selections ?? []).filter((item) => item.marketId === market.id)) {
+      const player = yesPlayer(selection.label)
+      const american = americanText(selection.displayOdds?.american)
+      if (!player || !american) continue
+      props.push({
+        away: sides[0],
+        home: sides[1],
+        player,
+        stat: 'firstTd',
+        book: 'DraftKings',
+        american,
+        selectionId: selection.id ?? null,
+      })
+    }
+  }
+  return props
+}
+
+export function indexFanDuelFirstScorers(payload, marketName) {
+  const events = payload?.attachments?.events ?? {}
+  const props = []
+  for (const market of Object.values(payload?.attachments?.markets ?? {})) {
+    if (market.marketName !== marketName) continue
+    const event = events[String(market.eventId)] || Object.values(events)[0]
+    const parts = String(event?.name || '').split(' @ ')
+    if (parts.length !== 2) continue
+    for (const runner of market.runners ?? []) {
+      const player = yesPlayer(runner.runnerName)
+      const american = formatAmerican(runner.winRunnerOdds?.americanDisplayOdds?.americanOdds)
+      if (!player || !american) continue
+      props.push({
+        away: parts[0].trim(),
+        home: parts[1].trim(),
+        player,
+        stat: 'firstTd',
+        book: 'FanDuel',
+        american,
+        marketId: market.marketId ?? null,
+        selectionId: runner.selectionId ?? null,
+      })
+    }
+  }
+  return props
+}
+
+export function mergeFirstScorerLines(existing, incoming) {
+  const lines = [...(existing?.lines ?? [])]
+  const seen = new Set(lines.map((row) => `${row.retrievedAt}|${normName(row.player)}|${row.book}|${row.stat}|${row.event}|${row.american}`))
+  for (const row of incoming) {
+    const key = `${row.retrievedAt}|${normName(row.player)}|${row.book}|${row.stat}|${row.event}|${row.american}`
+    if (seen.has(key) || !row.american || !row.retrievedAt || !row.player) continue
+    seen.add(key)
+    lines.push({
+      retrievedAt: row.retrievedAt,
+      player: row.player,
+      stat: row.stat,
+      book: row.book,
+      american: row.american,
+      event: row.event ?? '',
+      selectionId: row.selectionId ?? null,
+      marketId: row.marketId ?? null,
+    })
+  }
+  return { lines }
+}
+
+export async function loadDraftKingsFirstScorers(sport) {
+  const spec = DRAFTKINGS_FIRST_SCORER[sport]
+  if (!spec) return []
+  const [league, category, subcategory, marketName] = spec
+  return indexDraftKingsFirstScorers(await loadDraftKingsFeed(league, category, subcategory), marketName)
+}
+
+export async function loadFanDuelFirstScorers(sport) {
+  const spec = FANDUEL_FIRST_SCORER[sport]
+  if (!spec) return []
+  const [tab, marketName] = spec
+  const board = await getJson(`${FANDUEL}?page=CUSTOM&customPageId=${FANDUEL_PAGES[sport]}&_ak=${FANDUEL_KEY}`)
+  const events = Object.values(board.attachments?.events ?? {}).filter((event) => /@/.test(event?.name || ''))
+  const props = []
+  for (const event of events) {
+    const payload = await getJson(`${FANDUEL.replace('/content-managed-page', '/event-page')}?_ak=${FANDUEL_KEY}&eventId=${event.eventId}&tab=${tab}`)
+    if (!payload.attachments) payload.attachments = {}
+    payload.attachments.events = { [event.eventId]: event }
+    props.push(...indexFanDuelFirstScorers(payload, marketName))
+  }
+  return props
+}
+
 export function propsForNames(props, awayNames, homeNames) {
   return (props ?? []).filter((prop) => (
     awayNames.some((name) => namesMatch(name, prop.away))
