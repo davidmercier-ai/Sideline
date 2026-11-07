@@ -57,6 +57,100 @@ function num(value) {
   return Number.isFinite(number) ? number : null
 }
 
+export const HIT_EVENTS = new Set(['single', 'double', 'triple', 'home_run'])
+export const NON_AB_EVENTS = new Set([
+  'walk', 'intent_walk', 'hit_by_pitch', 'sac_bunt', 'sac_fly', 'sac_fly_double_play', 'catcher_interf',
+])
+
+export function addPlateAppearance(map, pitch) {
+  const event = pitch?.events
+  if (!event || !pitch?.batter) return map
+  const id = String(pitch.batter)
+  const row = map.get(id) ?? {
+    id,
+    name: savantName({ 'last_name, first_name': pitch.player_name || '' }),
+    pa: 0,
+    ab: 0,
+    hits: 0,
+    bip: 0,
+    xbaSum: 0,
+    evSum: 0,
+    evCount: 0,
+    barrels: 0,
+    hardHit: 0,
+  }
+  row.pa += 1
+  if (!NON_AB_EVENTS.has(event)) row.ab += 1
+  if (HIT_EVENTS.has(event)) row.hits += 1
+  const xba = Number(pitch.estimated_ba_using_speedangle)
+  if (Number.isFinite(xba)) {
+    row.bip += 1
+    row.xbaSum += xba
+    if (String(pitch.launch_speed_angle) === '6') row.barrels += 1
+  }
+  const speed = Number(pitch.launch_speed)
+  if (Number.isFinite(speed)) {
+    row.evSum += speed
+    row.evCount += 1
+    if (speed >= 95) row.hardHit += 1
+  }
+  map.set(id, row)
+  return map
+}
+
+export function hitterFromCount(row) {
+  const ba = row.ab ? row.hits / row.ab : null
+  // Strikeouts add an at-bat and a zero. They are not in the batted-ball sum.
+  const xba = row.ab ? row.xbaSum / row.ab : null
+  return {
+    ...row,
+    ba,
+    xba,
+    baMinusXba: ba != null && xba != null ? ba - xba : null,
+    exitVelocity: row.evCount ? row.evSum / row.evCount : null,
+    barrelRate: row.bip ? (row.barrels / row.bip) * 100 : null,
+    hardHitRate: row.evCount ? (row.hardHit / row.evCount) * 100 : null,
+  }
+}
+
+/**
+ * First window predicts the second window's batting average.
+ * The hit rate is the first-window BA. The process is the first-window xBA.
+ * Lower absolute error is the better predictor. This is not a bet.
+ */
+export function compareWindows(early, late, minAb = 80) {
+  const later = new Map((late ?? []).map((row) => [row.id, row]))
+  const paired = []
+  for (const row of early ?? []) {
+    const next = later.get(row.id)
+    if (!next || row.ab < minAb || next.ab < minAb || row.xba == null || row.ba == null || next.ba == null) continue
+    paired.push({
+      id: row.id,
+      name: row.name,
+      earlyBa: row.ba,
+      earlyXba: row.xba,
+      lateBa: next.ba,
+    })
+  }
+  const mae = (pick) => {
+    if (!paired.length) return null
+    return paired.reduce((sum, row) => sum + Math.abs(pick(row) - row.lateBa), 0) / paired.length
+  }
+  const hot = paired.filter((row) => row.earlyBa - row.earlyXba >= 0.02)
+  const cold = paired.filter((row) => row.earlyXba - row.earlyBa >= 0.02)
+  const fell = hot.filter((row) => row.lateBa < row.earlyBa).length
+  const rose = cold.filter((row) => row.lateBa > row.earlyBa).length
+  return {
+    hitters: paired.length,
+    baMae: mae((row) => row.earlyBa),
+    xbaMae: mae((row) => row.earlyXba),
+    hot: hot.length,
+    hotFell: fell,
+    cold: cold.length,
+    coldRose: rose,
+  }
+}
+
 export function savantName(row) {
   const combined = row?.['last_name, first_name'] || ''
   const [last, first] = combined.split(',').map((part) => part.trim())
