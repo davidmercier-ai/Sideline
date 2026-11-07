@@ -1,0 +1,496 @@
+{
+  "id": "2026-11-08-first-td",
+  "title": "NFL first touchdown 2026-11-08",
+  "sportPath": "football/nfl",
+  "retrievedAt": "2026-11-07T06:42:16.036Z",
+  "games": [
+    {
+      "when": "Sun 9:30 AM",
+      "kickoff": "2026-11-08T14:30Z",
+      "away": "Bengals",
+      "home": "Falcons",
+      "started": false,
+      "leader": "Mike Gesicki",
+      "site": "away",
+      "side": "Bengals",
+      "reads": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+1500",
+          "prior": null,
+          "implied": 0.0625
+        },
+        {
+          "book": "FanDuel",
+          "american": "+1600",
+          "prior": null,
+          "implied": 0.058823529411764705
+        }
+      ],
+      "score": {
+        "score": "28.5–18.9",
+        "total": "47.4",
+        "vote": "Bengals, 4–0",
+        "sim": "29–18, Bengals 88.1%",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Cowboys",
+      "home": "Colts",
+      "started": false,
+      "leader": "Jonathan Taylor",
+      "site": "home",
+      "side": "Colts",
+      "reads": [
+        0.3333333333333333,
+        0.375,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+550",
+          "prior": null,
+          "implied": 0.15384615384615385
+        },
+        {
+          "book": "FanDuel",
+          "american": "+550",
+          "prior": null,
+          "implied": 0.15384615384615385
+        }
+      ],
+      "score": {
+        "score": "27.1–23.1",
+        "total": "50.2",
+        "vote": "Cowboys, 4–0",
+        "sim": "27.5–23, Cowboys 68.8%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Jets",
+      "home": "Chiefs",
+      "started": false,
+      "leader": "Kenyon Sadiq",
+      "site": "away",
+      "side": "Jets",
+      "reads": [
+        0.5,
+        0.25,
+        0.5,
+        0
+      ],
+      "thin": false,
+      "record": "Pass, pair shape",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+3500",
+          "prior": "+3000",
+          "implied": 0.027777777777777776
+        },
+        {
+          "book": "FanDuel",
+          "american": "+3000",
+          "prior": null,
+          "implied": 0.03225806451612903
+        }
+      ],
+      "score": {
+        "score": "17.4–25.6",
+        "total": "43",
+        "vote": "Chiefs, 4–0",
+        "sim": "15–27, Chiefs 84.9%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Lions",
+      "home": "Dolphins",
+      "started": false,
+      "leader": "Malik Washington",
+      "site": "home",
+      "side": "Dolphins",
+      "reads": [
+        0.3333333333333333,
+        0.14285714285714285,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+1500",
+          "prior": null,
+          "implied": 0.0625
+        },
+        {
+          "book": "FanDuel",
+          "american": "+1600",
+          "prior": null,
+          "implied": 0.058823529411764705
+        }
+      ],
+      "score": {
+        "score": "30.2–24.5",
+        "total": "54.7",
+        "vote": "Lions, 4–0",
+        "sim": "28.5–25.5, Lions 74.3%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Browns",
+      "home": "Saints",
+      "started": false,
+      "leader": "Kendre Miller",
+      "site": "home",
+      "side": "Saints",
+      "reads": [
+        0.25,
+        0.16666666666666666,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+800",
+          "prior": null,
+          "implied": 0.1111111111111111
+        },
+        {
+          "book": "FanDuel",
+          "american": "+750",
+          "prior": null,
+          "implied": 0.11764705882352941
+        }
+      ],
+      "score": {
+        "score": "25–22.8",
+        "total": "47.7",
+        "vote": "split, 2–2",
+        "sim": "25–23, Browns 59.5%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Giants",
+      "home": "Eagles",
+      "started": false,
+      "leader": "Saquon Barkley",
+      "site": "home",
+      "side": "Eagles",
+      "reads": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0,
+        0.6666666666666666
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+500",
+          "prior": "+550",
+          "implied": 0.16666666666666666
+        },
+        {
+          "book": "FanDuel",
+          "american": "+500",
+          "prior": null,
+          "implied": 0.16666666666666666
+        }
+      ],
+      "score": {
+        "score": "23.6–22.5",
+        "total": "46.2",
+        "vote": "Giants, 4–0",
+        "sim": "25.5–22.5, Giants 64.8%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Rams",
+      "home": "Commanders",
+      "started": false,
+      "leader": "Jacory Croskey-Merritt",
+      "site": "home",
+      "side": "Commanders",
+      "reads": [
+        0.3333333333333333,
+        0.2,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [],
+      "score": {
+        "score": "25.5–26.3",
+        "total": "51.8",
+        "vote": "split, 3–1 Rams",
+        "sim": "26.5–26.5, Commanders 49.6%",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Sun 1:00 PM",
+      "kickoff": "2026-11-08T18:00Z",
+      "away": "Broncos",
+      "home": "Panthers",
+      "started": false,
+      "leader": "Chuba Hubbard",
+      "site": "home",
+      "side": "Panthers",
+      "reads": [
+        0.6666666666666666,
+        0.42857142857142855,
+        1,
+        0
+      ],
+      "thin": false,
+      "record": "Pass, pair shape",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+500",
+          "prior": null,
+          "implied": 0.16666666666666666
+        },
+        {
+          "book": "FanDuel",
+          "american": "+550",
+          "prior": null,
+          "implied": 0.15384615384615385
+        }
+      ],
+      "score": {
+        "score": "31–24.7",
+        "total": "55.6",
+        "vote": "Broncos, 4–0",
+        "sim": "28.5–26.5, Broncos 72.2%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 4:05 PM",
+      "kickoff": "2026-11-08T21:05Z",
+      "away": "Texans",
+      "home": "Chargers",
+      "started": false,
+      "leader": "Foster Moreau",
+      "site": "away",
+      "side": "Texans",
+      "reads": [
+        0.3333333333333333,
+        0.16666666666666666,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+2200",
+          "prior": null,
+          "implied": 0.043478260869565216
+        },
+        {
+          "book": "FanDuel",
+          "american": "+2000",
+          "prior": null,
+          "implied": 0.047619047619047616
+        }
+      ],
+      "score": {
+        "score": "23.3–13",
+        "total": "36.3",
+        "vote": "Texans, 4–0",
+        "sim": "24.5–16.5, Texans 100%, thin",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Sun 4:25 PM",
+      "kickoff": "2026-11-08T21:25Z",
+      "away": "Packers",
+      "home": "Patriots",
+      "started": false,
+      "leader": "Romeo Doubs",
+      "site": "home",
+      "side": "Patriots",
+      "reads": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0,
+        0.6666666666666666
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [],
+      "score": {
+        "score": "16–26.4",
+        "total": "42.4",
+        "vote": "split, 3–1 Patriots",
+        "sim": "17–29.5, Patriots 90.2%",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Sun 4:25 PM",
+      "kickoff": "2026-11-08T21:25Z",
+      "away": "Raiders",
+      "home": "49ers",
+      "started": false,
+      "leader": "Deebo Samuel Sr.",
+      "site": "home",
+      "side": "49ers",
+      "reads": [
+        0.3333333333333333,
+        0.2,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [],
+      "score": {
+        "score": "23.8–29.6",
+        "total": "53.4",
+        "vote": "49ers, 4–0",
+        "sim": "24.5–28.5, 49ers 74.2%",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Sun 4:25 PM",
+      "kickoff": "2026-11-08T21:25Z",
+      "away": "Cardinals",
+      "home": "Seahawks",
+      "started": false,
+      "leader": "Marvin Harrison Jr.",
+      "site": "away",
+      "side": "Cardinals",
+      "reads": [
+        0.3333333333333333,
+        0.25,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [],
+      "score": {
+        "score": "23.3–24.1",
+        "total": "47.4",
+        "vote": "Seahawks, 4–0",
+        "sim": "24.5–24.5, Seahawks 52.8%",
+        "side": "lower"
+      }
+    },
+    {
+      "when": "Sun 8:20 PM",
+      "kickoff": "2026-11-09T01:20Z",
+      "away": "Buccaneers",
+      "home": "Bears",
+      "started": false,
+      "leader": "Bucky Irving",
+      "site": "away",
+      "side": "Buccaneers",
+      "reads": [
+        0.3333333333333333,
+        0.25,
+        0,
+        0.6666666666666666
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+650",
+          "prior": null,
+          "implied": 0.13333333333333333
+        },
+        {
+          "book": "FanDuel",
+          "american": "+700",
+          "prior": null,
+          "implied": 0.125
+        }
+      ],
+      "score": {
+        "score": "22.2–20.7",
+        "total": "42.9",
+        "vote": "split, 2–2",
+        "sim": "19.5–21.5, Buccaneers 48.4%",
+        "side": "higher"
+      }
+    },
+    {
+      "when": "Mon 8:15 PM",
+      "kickoff": "2026-11-10T01:15Z",
+      "away": "Bills",
+      "home": "Vikings",
+      "started": false,
+      "leader": "Josh Allen",
+      "site": "away",
+      "side": "Bills",
+      "reads": [
+        0,
+        0.2857142857142857,
+        0,
+        0.3333333333333333
+      ],
+      "thin": false,
+      "record": "Pass",
+      "prices": [
+        {
+          "book": "DraftKings",
+          "american": "+500",
+          "prior": null,
+          "implied": 0.16666666666666666
+        },
+        {
+          "book": "FanDuel",
+          "american": "+550",
+          "prior": null,
+          "implied": 0.15384615384615385
+        }
+      ],
+      "score": null
+    }
+  ]
+}

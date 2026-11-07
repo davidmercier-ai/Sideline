@@ -47,15 +47,16 @@ export function latestByBook(lines, player) {
 }
 
 export function earlierAmerican(lines, player, book, latestAt) {
-  const prior = (lines ?? [])
-    .filter((row) => (
-      looseName(row.player) === looseName(player)
-      && row.book === book
-      && String(row.retrievedAt) < String(latestAt)
-      && row.american
-    ))
+  const mine = (lines ?? []).filter((row) => (
+    looseName(row.player) === looseName(player)
+    && row.book === book
+    && row.american
+  ))
+  const current = mine.find((row) => String(row.retrievedAt) === String(latestAt))
+  const prior = mine
+    .filter((row) => String(row.retrievedAt) < String(latestAt) && row.american !== current?.american)
     .sort((a, b) => String(b.retrievedAt).localeCompare(String(a.retrievedAt)))[0]
-  return prior?.american && prior.american !== undefined ? prior.american : null
+  return prior?.american || null
 }
 
 export function slateScore(markdown, away, home) {
@@ -76,11 +77,24 @@ function gameForEvent(games, event) {
   return games.find((game) => namesMatch(game.away, away) && namesMatch(game.home, home)) || null
 }
 
-function callLabel(call) {
+export function recordLabel(call) {
+  if (!call) return 'Pass'
   if (call.strict) return 'Pass, strict shape'
   if (call.called) return 'Pass, called shape'
   if (call.pair) return 'Pass, pair shape'
   return 'Pass'
+}
+
+export function leaderPrices(lines, game, player) {
+  const matched = (lines ?? []).filter((row) => {
+    if (looseName(row.player) !== looseName(player)) return false
+    const [away, home] = String(row.event || '').split(' @ ')
+    return namesMatch(game?.away, away) && namesMatch(game?.home, home)
+  })
+  return latestByBook(matched, player).map((row) => ({
+    ...row,
+    prior: earlierAmerican(lines, player, row.book, row.retrievedAt),
+  }))
 }
 
 function priceCell(row, prior) {
@@ -141,7 +155,7 @@ async function main() {
       field: field.length,
       reads: row ? row.reads.map((read) => read.value) : [],
       thin: Boolean(row?.thin),
-      call: call ? callLabel(call) : 'Pass',
+      call: recordLabel(call),
       prices: prices.map((price) => ({
         book: price.book,
         american: price.american,

@@ -2,7 +2,7 @@
   "id": "2026-11-08-first-td-slip",
   "title": "First touchdown slip 2026-11-08",
   "sportPath": "football/nfl",
-  "retrievedAt": "2026-11-07T06:39:33.622Z",
+  "retrievedAt": "2026-11-07T06:42:18.543Z",
   "games": [
     {
       "player": "Kenyon Sadiq",
@@ -28,14 +28,14 @@
           "american": "+3500",
           "prior": "+3000",
           "implied": 0.027777777777777776,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         },
         {
           "book": "FanDuel",
           "american": "+3000",
           "prior": null,
           "implied": 0.03225806451612903,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         }
       ],
       "score": {
@@ -70,14 +70,14 @@
           "american": "+500",
           "prior": "+550",
           "implied": 0.16666666666666666,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         },
         {
           "book": "FanDuel",
           "american": "+500",
           "prior": null,
           "implied": 0.16666666666666666,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         }
       ],
       "score": {
@@ -110,16 +110,16 @@
         {
           "book": "DraftKings",
           "american": "+500",
-          "prior": "+500",
+          "prior": null,
           "implied": 0.16666666666666666,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         },
         {
           "book": "FanDuel",
           "american": "+550",
           "prior": null,
           "implied": 0.15384615384615385,
-          "retrievedAt": "2026-11-07T06:32:11.530Z"
+          "retrievedAt": "2026-11-07T06:41:23.626Z"
         }
       ],
       "score": {

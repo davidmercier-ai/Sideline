@@ -1,6 +1,6 @@
 # First touchdown slip, 2026-11-08
 
-Graded at 2026-11-07T06:39:33.622Z. Each leg is a Pass. Pair, called, and strict are records from the walk-forward, and a share is not a win probability.
+Graded at 2026-11-07T06:42:18.543Z. Each leg is a Pass. Pair, called, and strict are records from the walk-forward, and a share is not a win probability.
 
 | Player | Game | Site | Rank | Venue | Overall | Median | Last 3 | Record | DraftKings | FanDuel | Team score |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

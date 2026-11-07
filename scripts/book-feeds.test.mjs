@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { impliedFromAmerican, indexDraftKingsFirstScorers, indexDraftKingsProps, indexDraftKingsTeamTotals, indexFanDuelFirstScorers, mergeFirstScorerLines, propsForNames } from './book-prices.mjs'
-import { earlierAmerican, latestByBook, parlayImplied, scoreSide, slateScore } from './grade-slip.mjs'
+import { earlierAmerican, latestByBook, leaderPrices, parlayImplied, recordLabel, scoreSide, slateScore } from './grade-slip.mjs'
+import { leaderCall } from './first-scorer.mjs'
 import { rowsFromProps } from './save-first-scorer-lines.mjs'
 import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, favoriteSide, predictorSide, quoteFromPickcenter, spreadFromPickcenter, spreadSizeBucket } from './backtest-slate.mjs'
 import { alertSignals } from './projection-math.mjs'
@@ -200,6 +201,25 @@ assert.equal(earlierAmerican([
   { player: 'Chuba Hubbard', book: 'DraftKings', american: '+500', retrievedAt: '2026-11-07T06:00:00Z' },
   { player: 'Chuba Hubbard', book: 'DraftKings', american: '+550', retrievedAt: '2026-11-07T06:20:00Z' },
 ], 'Chuba Hubbard', 'DraftKings', '2026-11-07T06:20:00Z'), '+500')
+assert.equal(earlierAmerican([
+  { player: 'Kenyon Sadiq', book: 'DraftKings', american: '+3000', retrievedAt: '2026-11-07T06:09:00Z' },
+  { player: 'Kenyon Sadiq', book: 'DraftKings', american: '+3500', retrievedAt: '2026-11-07T06:32:00Z' },
+  { player: 'Kenyon Sadiq', book: 'DraftKings', american: '+3500', retrievedAt: '2026-11-07T06:41:00Z' },
+], 'Kenyon Sadiq', 'DraftKings', '2026-11-07T06:41:00Z'), '+3000')
 assert.equal(slateScore('| 11/8 - 1:00 PM EST | Broncos at Panthers | 31–24.7 | 55.6 | Broncos, 4–0 | 28.5–26.5, Broncos 72.2% |', 'DEN Broncos', 'CAR Panthers').score, '31–24.7')
+const priced = leaderPrices([
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+500', retrievedAt: '2026-11-07T06:09:00Z', event: 'DEN Broncos @ CAR Panthers' },
+  { player: 'Chuba Hubbard', book: 'DraftKings', american: '+550', retrievedAt: '2026-11-07T06:40:00Z', event: 'DEN Broncos @ CAR Panthers' },
+  { player: 'Saquon Barkley', book: 'DraftKings', american: '+500', retrievedAt: '2026-11-07T06:40:00Z', event: 'NY Giants @ PHI Eagles' },
+], { away: 'Broncos', home: 'Panthers' }, 'Chuba Hubbard')
+assert.equal(priced.length, 1)
+assert.equal(priced[0].american, '+550')
+assert.equal(priced[0].prior, '+500')
+assert.equal(recordLabel(leaderCall([
+  { value: 0.67, missing: false, thin: false },
+  { value: 0.43, missing: false, thin: false },
+  { value: 1, missing: false, thin: false },
+  { value: 0, missing: false, thin: false },
+])), 'Pass, pair shape')
 
 console.log('book feeds ok')

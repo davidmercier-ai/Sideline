@@ -426,9 +426,15 @@
     "games": 0
   },
   {
+    "id": "2026-11-08-first-td",
+    "title": "NFL first touchdown 2026-11-08",
+    "retrievedAt": "2026-11-07T06:42:16.036Z",
+    "games": 14
+  },
+  {
     "id": "2026-11-08-first-td-slip",
     "title": "First touchdown slip 2026-11-08",
-    "retrievedAt": "2026-11-07T06:39:33.622Z",
+    "retrievedAt": "2026-11-07T06:42:18.543Z",
     "games": 3
   },
   {
