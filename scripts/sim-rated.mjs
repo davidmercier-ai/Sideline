@@ -89,7 +89,7 @@ function attachNba(players, ratings, opponents) {
       ...player,
       rating: card,
       skills: {
-        three: card.stats.ThreePointShot,
+        three: card.stats.ThreePointShot ?? card.stats.threePointShot,
         inside: numSkill(card, 'closeShot', 'midRangeShot', 'drivingLayup'),
         ft: card.stats.FreeThrow,
         contestThree,
