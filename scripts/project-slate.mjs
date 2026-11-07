@@ -697,6 +697,12 @@ function comparisonSection(game, scoring, methods, sportPath) {
   if (LEAGUE_RECORD[sportPath] === 'NHL' && Number.isFinite(record.dogDecided)) {
     lines.push(`- NHL puck line: model dogs covered ${record.dogHits} of ${record.dogDecided}. Any dog covered ${record.dogBaseHits} of ${record.dogBaseDecided}. A 0.25-goal room is not a bet.`)
   }
+  if (LEAGUE_RECORD[sportPath] === 'NBA' && Number.isFinite(record.straightFavoriteDecided)) {
+    const cut = record.cut === 'open'
+      ? 'The gap stays on the record. It is not a bet.'
+      : 'The cut is finished. It is not a bet.'
+    lines.push(`- NBA favorites won ${record.straightFavoriteHits} of ${record.straightFavoriteDecided} straight up. Short-of-the-number favorites won ${record.shortFavoriteHits} of ${record.shortFavoriteDecided}. ${cut}`)
+  }
   const postedTotals = game.extra?.dkTeamTotals
   if (postedTotals?.awayTotal || postedTotals?.homeTotal) {
     lines.push(`- Team totals: DraftKings posted ${game.away.name} ${teamTotalCell(postedTotals.awayTotal)} and ${game.home.name} ${teamTotalCell(postedTotals.homeTotal)}. FanDuel team totals are not on the Ohio game-line board.`)

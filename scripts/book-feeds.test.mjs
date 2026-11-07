@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { indexDraftKingsProps, indexDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
-import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
+import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, favoriteSide, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
 import { indexFanDuelProps } from './book-prices.mjs'
 import { propBoardCall } from './project-players.mjs'
 import { lineBeforeGame, walkForwardProp, walkForwardSaved } from './backtest-players.mjs'
@@ -59,6 +59,9 @@ assert.equal(boardSideCall({ margins: [2.2, 5, 4, 7], marketMargin: 3, room: 1, 
 assert.equal(boardSideCall({ margins: cleared, marketMargin: 3, room: 1, thin: true }), null)
 assert.equal(boardTotalCall({ totals: [210, 212, 214, 211], postedTotal: 220, room: 1, thin: false }), 'under')
 assert.equal(boardTotalCall({ totals: [210, 219.5, 214, 211], postedTotal: 220, room: 1, thin: false }), null)
+assert.equal(favoriteSide(-3), 'home')
+assert.equal(favoriteSide(3), 'away')
+assert.equal(favoriteSide(0), null)
 assert.equal(coverRole(-1.5, 'home'), 'favorite')
 assert.equal(coverRole(-1.5, 'away'), 'dog')
 assert.equal(coverRole(1.5, 'home'), 'dog')

@@ -252,6 +252,11 @@ export const GAP_BUCKETS = [
   { id: 'over10', label: '10 or more', test: (gap) => gap >= 10 },
 ]
 
+export function favoriteSide(homeSpread) {
+  if (!Number.isFinite(homeSpread) || homeSpread === 0) return null
+  return homeSpread < 0 ? 'home' : 'away'
+}
+
 export function coverRole(homeSpread, coverPick) {
   if (!Number.isFinite(homeSpread) || homeSpread === 0) return null
   if (coverPick !== 'home' && coverPick !== 'away') return null
@@ -372,6 +377,8 @@ function summarize(name, scheduled, rows) {
   const shortDog = short.filter((row) => coverRole(row.game.homeSpread, row.agreement.side) === 'dog')
   const shortFavoriteHits = shortFavorite.filter((row) => row.agreement.side === row.actual).length
   const shortDogHits = shortDog.filter((row) => row.agreement.side === row.actual).length
+  const straightFavorites = decided.filter((row) => favoriteSide(row.game.homeSpread))
+  const straightFavoriteHits = straightFavorites.filter((row) => row.actual === favoriteSide(row.game.homeSpread)).length
   const allowanceDecided = decided.filter((row) => row.allowanceSide === 'home' || row.allowanceSide === 'away')
   const allowanceHits = allowanceDecided.filter((row) => row.allowanceSide === row.actual).length
   const unanimousPriced = unanimous.filter((row) => Number.isFinite(row.closestGap))
@@ -423,6 +430,9 @@ function summarize(name, scheduled, rows) {
     shortDogHits,
     shortDogDecided: shortDog.length,
     shortDogRate: rate(shortDogHits, shortDog.length),
+    straightFavoriteHits,
+    straightFavoriteDecided: straightFavorites.length,
+    straightFavoriteRate: rate(straightFavoriteHits, straightFavorites.length),
     allowanceHits,
     allowanceDecided: allowanceDecided.length,
     allowanceRate: rate(allowanceHits, allowanceDecided.length),
@@ -490,12 +500,20 @@ function report(results) {
   lines.push('')
   lines.push('## Short of the number, favorite and dog')
   lines.push('')
-  lines.push('Unanimous sides whose closest read is short of the spread, split by favorite and dog. This side is not a bet. When the favorites are the bulk of the slice, the wins are the favorite.')
+  lines.push('Unanimous sides whose closest read is short of the spread, split by favorite and dog. Every favorite is the straight-up win rate of the favorite in the same walk-forward, with no model involved. A pick\'em is left out. This side is not a bet.')
   lines.push('')
-  lines.push('| League | Short, favorite | Short, dog |')
-  lines.push('| --- | --- | --- |')
+  lines.push('| League | Short, favorite | Every favorite | Short, dog |')
+  lines.push('| --- | --- | --- | --- |')
   for (const row of results) {
-    lines.push(`| ${row.name} | ${record(row.shortFavoriteRate, row.shortFavoriteHits, row.shortFavoriteDecided)} | ${record(row.shortDogRate, row.shortDogHits, row.shortDogDecided)} |`)
+    lines.push(`| ${row.name} | ${record(row.shortFavoriteRate, row.shortFavoriteHits, row.shortFavoriteDecided)} | ${record(row.straightFavoriteRate, row.straightFavoriteHits, row.straightFavoriteDecided)} | ${record(row.shortDogRate, row.shortDogHits, row.shortDogDecided)} |`)
+  }
+  lines.push('')
+  for (const row of results) {
+    if (!row.shortFavoriteDecided || !row.straightFavoriteDecided) continue
+    const ahead = row.shortFavoriteRate - row.straightFavoriteRate > 0.05
+    lines.push(ahead
+      ? `${row.name}: the short-of-the-number favorites beat every favorite by more than 5 points. The gap stays on the record. It is not a bet.`
+      : `${row.name}: the short-of-the-number favorites are within 5 points of every favorite. The cut is finished. It is not a bet.`)
   }
   lines.push('')
   lines.push('## Opponent allowance')
@@ -540,6 +558,11 @@ async function main() {
       dogDecided: row.dogDecided,
       dogBaseHits: row.dogBaseHits,
       dogBaseDecided: row.dogBaseDecided,
+      straightFavoriteHits: row.straightFavoriteHits,
+      straightFavoriteDecided: row.straightFavoriteDecided,
+      shortFavoriteHits: row.shortFavoriteHits,
+      shortFavoriteDecided: row.shortFavoriteDecided,
+      cut: row.shortFavoriteDecided && row.straightFavoriteDecided && row.shortFavoriteRate - row.straightFavoriteRate > 0.05 ? 'open' : 'finished',
     }
   }
   await writeFile('docs/projections/BACKTEST.md', markdown)

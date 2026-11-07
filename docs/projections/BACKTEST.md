@@ -1,6 +1,6 @@
 # Walk-forward backtest
 
-Run at 2026-11-06T23:54:33.546Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
+Run at 2026-11-07T00:07:16.237Z UTC. Each game uses only that team's completed games from earlier in the same season. The game being scored is not in its own sample.
 
 This is a record of the venue-matched mean, the four-model vote, and the 2,000-draw sim. It is not a priced edge. A straight-up hit means the side with the higher number won. A cover means the venue-matched margin and the actual margin sat on the same side of the DraftKings spread. Pushes are left out of the rates.
 
@@ -39,14 +39,19 @@ The venue-mean cover, split by whether that pick was the favorite or the dog. A 
 
 ## Short of the number, favorite and dog
 
-Unanimous sides whose closest read is short of the spread, split by favorite and dog. This side is not a bet. When the favorites are the bulk of the slice, the wins are the favorite.
+Unanimous sides whose closest read is short of the spread, split by favorite and dog. Every favorite is the straight-up win rate of the favorite in the same walk-forward, with no model involved. A pick'em is left out. This side is not a bet.
 
-| League | Short, favorite | Short, dog |
-| --- | --- | --- |
-| NFL | 62.5% (20/32) | 0/0 |
-| NBA | 76.5% (26/34) | 0/0 |
-| NHL | 57.7% (41/71) | 0/0 |
-| NCAAB | 91.7% (11/12) | 0/0 |
+| League | Short, favorite | Every favorite | Short, dog |
+| --- | --- | --- | --- |
+| NFL | 62.5% (20/32) | 61.9% (60/97) | 0/0 |
+| NBA | 76.5% (26/34) | 69.0% (69/100) | 0/0 |
+| NHL | 57.7% (41/71) | 63.3% (155/245) | 0/0 |
+| NCAAB | 91.7% (11/12) | 86.0% (37/43) | 0/0 |
+
+NFL: the short-of-the-number favorites are within 5 points of every favorite. The cut is finished. It is not a bet.
+NBA: the short-of-the-number favorites beat every favorite by more than 5 points. The gap stays on the record. It is not a bet.
+NHL: the short-of-the-number favorites are within 5 points of every favorite. The cut is finished. It is not a bet.
+NCAAB: the short-of-the-number favorites beat every favorite by more than 5 points. The gap stays on the record. It is not a bet.
 
 ## Opponent allowance
 

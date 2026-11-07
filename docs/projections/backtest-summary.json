@@ -5,7 +5,12 @@
     "dogHits": 27,
     "dogDecided": 44,
     "dogBaseHits": 55,
-    "dogBaseDecided": 95
+    "dogBaseDecided": 95,
+    "straightFavoriteHits": 60,
+    "straightFavoriteDecided": 97,
+    "shortFavoriteHits": 20,
+    "shortFavoriteDecided": 32,
+    "cut": "finished"
   },
   "NBA": {
     "marginError": 14,
@@ -13,7 +18,12 @@
     "dogHits": 25,
     "dogDecided": 51,
     "dogBaseHits": 48,
-    "dogBaseDecided": 100
+    "dogBaseDecided": 100,
+    "straightFavoriteHits": 69,
+    "straightFavoriteDecided": 100,
+    "shortFavoriteHits": 26,
+    "shortFavoriteDecided": 34,
+    "cut": "open"
   },
   "NHL": {
     "marginError": 2.4,
@@ -21,7 +31,12 @@
     "dogHits": 123,
     "dogDecided": 200,
     "dogBaseHits": 150,
-    "dogBaseDecided": 245
+    "dogBaseDecided": 245,
+    "straightFavoriteHits": 155,
+    "straightFavoriteDecided": 245,
+    "shortFavoriteHits": 41,
+    "shortFavoriteDecided": 71,
+    "cut": "finished"
   },
   "NCAAB": {
     "marginError": 20.6,
@@ -29,6 +44,11 @@
     "dogHits": 5,
     "dogDecided": 15,
     "dogBaseHits": 18,
-    "dogBaseDecided": 43
+    "dogBaseDecided": 43,
+    "straightFavoriteHits": 37,
+    "straightFavoriteDecided": 43,
+    "shortFavoriteHits": 11,
+    "shortFavoriteDecided": 12,
+    "cut": "open"
   }
 }
