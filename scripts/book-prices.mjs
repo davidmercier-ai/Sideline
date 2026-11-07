@@ -7,6 +7,8 @@
  * with the home handicap and the home price. One side is only half the number.
  */
 
+import { isMainTotal, preferMainTotal } from './process-layer.mjs'
+
 const FANDUEL = 'https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page'
 const FANDUEL_KEY = 'FhMFpcPWXMeyZxOx'
 const NOVIG = 'https://api.novig.com/v3/public/catalog'
@@ -332,7 +334,7 @@ function eventSides(name) {
 
 export function indexDraftKingsTeamTotals(payload) {
   const events = new Map((payload?.events ?? []).map((event) => [event.id, event.name]))
-  const index = new Map()
+  const pending = new Map()
   for (const market of payload?.markets ?? []) {
     const sides = eventSides(events.get(market.eventId))
     if (!sides) continue
@@ -342,12 +344,22 @@ export function indexDraftKingsTeamTotals(payload) {
     const line = Number(over?.points ?? under?.points)
     if (!Number.isFinite(line)) continue
     const quote = { line, over: americanText(over?.displayOdds?.american), under: americanText(under?.displayOdds?.american) }
+    if (!isMainTotal(quote)) continue
     const key = pairKey(sides[0], sides[1])
-    const bucket = index.get(key) ?? { away: sides[0], home: sides[1], awayTotal: null, homeTotal: null }
+    const bucket = pending.get(key) ?? { away: sides[0], home: sides[1], awayQuotes: [], homeQuotes: [] }
     const teamLabel = String(market.name || '').split(':')[0]
-    if (namesMatch(teamLabel, sides[0])) bucket.awayTotal = quote
-    else if (namesMatch(teamLabel, sides[1])) bucket.homeTotal = quote
-    index.set(key, bucket)
+    if (namesMatch(teamLabel, sides[0])) bucket.awayQuotes.push(quote)
+    else if (namesMatch(teamLabel, sides[1])) bucket.homeQuotes.push(quote)
+    pending.set(key, bucket)
+  }
+  const index = new Map()
+  for (const [key, bucket] of pending) {
+    index.set(key, {
+      away: bucket.away,
+      home: bucket.home,
+      awayTotal: preferMainTotal(bucket.awayQuotes),
+      homeTotal: preferMainTotal(bucket.homeQuotes),
+    })
   }
   return index
 }

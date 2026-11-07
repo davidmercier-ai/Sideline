@@ -131,10 +131,10 @@ function readMarket(competition) {
     }
   }
   const book = odd.provider?.displayName || odd.provider?.name || 'unknown book'
-  const homeSpread = asNumber(odd.spread)
-  const total = asNumber(odd.overUnder)
   const spreadHome = odd.pointSpread?.home ?? {}
   const spreadAway = odd.pointSpread?.away ?? {}
+  const homeSpread = asNumber(odd.spread) ?? asNumber(spreadHome.close?.line)
+  const total = asNumber(odd.overUnder)
   const over = odd.total?.over ?? {}
   const under = odd.total?.under ?? {}
   return {

@@ -26,6 +26,27 @@ assert.equal(parsed.rows.length, 2)
 assert.equal(parsed.rows[0].venue, 'home')
 assert.equal(parsed.rows[0].value, 36)
 assert.equal(parsed.rows[1].venue, 'away')
+const minutes = rowsFromGamelog({
+  labels: ['MIN', 'FGA'],
+  names: ['minutes', 'fieldGoalsAttempted'],
+  seasonTypes: [{
+    displayName: '2026-27 Regular Season',
+    categories: [{ type: 'event', events: [{ eventId: '1', stats: ['30', '18'] }] }],
+  }],
+  events: { 1: { gameDate: '2026-10-22', atVs: 'vs' } },
+}, 'minutes')
+assert.equal(minutes.rows[0].value, 30)
+const shots = rowsFromGamelog({
+  labels: ['SHOT', 'SOG'],
+  names: ['totalShots', 'shotsOnTarget'],
+  seasonTypes: [{
+    displayName: '2026-27 English Premier League',
+    categories: [{ type: 'event', events: [{ eventId: '3', stats: ['6', '3'] }] }],
+  }],
+  events: { 3: { gameDate: '2026-10-24', atVs: '@' } },
+}, 'shots')
+assert.equal(shots.rows[0].value, 6)
+assert.equal(shots.rows[0].venue, 'away')
 
 const td = rowsFromGamelog({
   labels: [],
