@@ -2,7 +2,7 @@
   "id": "2026-11-07-fcs-2026-11-07",
   "title": "FCS 2026-11-07",
   "sportPath": "football/college-football",
-  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "retrievedAt": "2026-11-07T14:08:27.644Z",
   "games": [
     {
       "date": "2026-11-07T17:00Z",
@@ -259,7 +259,7 @@
       "neutral": false,
       "homeMargin": "7.5",
       "agreement": "split",
-      "marketHomeMargin": "4",
+      "marketHomeMargin": "4.5",
       "postedTotal": "43.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -289,7 +289,7 @@
       "neutral": false,
       "homeMargin": "12.8",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
+      "marketHomeMargin": "8.5",
       "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -559,7 +559,7 @@
       "neutral": false,
       "homeMargin": "8.6",
       "agreement": "home",
-      "marketHomeMargin": "4",
+      "marketHomeMargin": "3.5",
       "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -709,8 +709,8 @@
       "neutral": false,
       "homeMargin": "14",
       "agreement": "split",
-      "marketHomeMargin": "2.5",
-      "postedTotal": "62.5",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "60.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -719,7 +719,7 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Over 62.5 clears the number. Walk-forward did not support a bet. Game: Stetson at Davidson, 11/7 - 1:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 60.5 clears the number. Walk-forward did not support a bet. Game: Stetson at Davidson, 11/7 - 1:00 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -1069,7 +1069,7 @@
       "neutral": false,
       "homeMargin": "11.4",
       "agreement": "split",
-      "marketHomeMargin": "-14",
+      "marketHomeMargin": "-13.5",
       "postedTotal": "50.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1160,7 +1160,7 @@
       "homeMargin": "10.1",
       "agreement": "home",
       "marketHomeMargin": "10",
-      "postedTotal": "55.5",
+      "postedTotal": "54.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -1189,7 +1189,7 @@
       "neutral": false,
       "homeMargin": "0.1",
       "agreement": "split",
-      "marketHomeMargin": "-3",
+      "marketHomeMargin": "-4",
       "postedTotal": "54.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1399,7 +1399,7 @@
       "neutral": false,
       "homeMargin": "20.8",
       "agreement": "home",
-      "marketHomeMargin": "47.5",
+      "marketHomeMargin": "46.5",
       "postedTotal": "58.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1447,6 +1447,36 @@
     {
       "date": "2026-11-07T21:00Z",
       "when": "11/7 - 4:00 PM EST",
+      "away": "E Kentucky",
+      "home": "Austin Peay",
+      "score": "18.3–42.1",
+      "total": "60.4",
+      "models": "Austin Peay, 4–0",
+      "sim": "18–42, Austin Peay 98.8%",
+      "sportPath": "football/college-football",
+      "awayId": "2198",
+      "homeId": "2046",
+      "neutral": false,
+      "homeMargin": "23.8",
+      "agreement": "home",
+      "marketHomeMargin": "17.5",
+      "postedTotal": "50.5",
+      "fanduel": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "draftkings": {
+        "side": "inside-method-range",
+        "total": "inside-method-range"
+      },
+      "alert": "🏈 🔴 1 ➗ Pass. Austin Peay does not clear the number. Game: E Kentucky at Austin Peay, 11/7 - 4:00 PM EST.",
+      "alertRating": 1,
+      "alertAction": "Pass",
+      "research": "screen"
+    },
+    {
+      "date": "2026-11-07T21:00Z",
+      "when": "11/7 - 4:00 PM EST",
       "away": "SF Austin",
       "home": "Lamar",
       "score": "28–22.5",
@@ -1460,7 +1490,7 @@
       "homeMargin": "-5.5",
       "agreement": "away",
       "marketHomeMargin": "-7",
-      "postedTotal": "54.5",
+      "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -1501,36 +1531,6 @@
       },
       "alert": "🏈 🟡 2 ➗ Pass. Split. Game: East Texas A&M at Nicholls, 11/7 - 4:00 PM EST.",
       "alertRating": 2,
-      "alertAction": "Pass",
-      "research": "screen"
-    },
-    {
-      "date": "2026-11-07T21:00Z",
-      "when": "11/7 - 4:00 PM EST",
-      "away": "E Kentucky",
-      "home": "Austin Peay",
-      "score": "18.3–42.1",
-      "total": "60.4",
-      "models": "Austin Peay, 4–0",
-      "sim": "18–42, Austin Peay 98.8%",
-      "sportPath": "football/college-football",
-      "awayId": "2198",
-      "homeId": "2046",
-      "neutral": false,
-      "homeMargin": "23.8",
-      "agreement": "home",
-      "marketHomeMargin": "17.5",
-      "postedTotal": "52.5",
-      "fanduel": {
-        "side": "inside-method-range",
-        "total": "inside-method-range"
-      },
-      "draftkings": {
-        "side": "inside-method-range",
-        "total": "inside-method-range"
-      },
-      "alert": "🏈 🔴 1 ➗ Pass. Austin Peay does not clear the number. Game: E Kentucky at Austin Peay, 11/7 - 4:00 PM EST.",
-      "alertRating": 1,
       "alertAction": "Pass",
       "research": "screen"
     },
@@ -1729,15 +1729,15 @@
       "neutral": false,
       "homeMargin": "12.8",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "10",
+      "postedTotal": "58.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏈 🟡 2 📒 Pass. Tarleton St scar. Walk-forward did not beat every favorite. Game: Abilene Chrstn at Tarleton St, 11/7 - 7:00 PM EST.",
       "alertRating": 2,
@@ -1760,16 +1760,16 @@
       "homeMargin": "1.5",
       "agreement": "split",
       "marketHomeMargin": "5.5",
-      "postedTotal": "47.5",
+      "postedTotal": "46.5",
       "fanduel": {
         "side": "outside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Under 47.5 clears the number. Walk-forward did not support a bet. Game: West Florida at North Alabama, 11/7 - 7:00 PM EST.",
+      "alert": "🏈 🟡 2 ➗ Pass. Split. Game: West Florida at North Alabama, 11/7 - 7:00 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"

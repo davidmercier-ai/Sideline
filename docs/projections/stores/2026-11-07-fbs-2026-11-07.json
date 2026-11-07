@@ -2,7 +2,7 @@
   "id": "2026-11-07-fbs-2026-11-07",
   "title": "FBS 2026-11-07",
   "sportPath": "football/college-football",
-  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "retrievedAt": "2026-11-07T14:08:27.644Z",
   "games": [
     {
       "date": "2026-11-07T17:00Z",
@@ -20,7 +20,7 @@
       "homeMargin": "11.5",
       "agreement": "home",
       "marketHomeMargin": "4.5",
-      "postedTotal": "49.5",
+      "postedTotal": "48.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -29,7 +29,7 @@
         "side": "outside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Over 49.5 clears the number. Walk-forward did not support a bet. Game: #9 BYU at #3 Utah, 11/7 - 12:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 48.5 clears the number. Walk-forward did not support a bet. Game: #9 BYU at #3 Utah, 11/7 - 12:00 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -110,17 +110,17 @@
       "homeMargin": "16",
       "agreement": "home",
       "marketHomeMargin": "10",
-      "postedTotal": "50.5",
+      "postedTotal": "51.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
-        "total": "inside-method-range"
+        "total": "outside-method-range"
       },
-      "alert": "🏈 🔴 1 ➗ Pass. Baylor does not clear the number. Game: Iowa State at Baylor, 11/7 - 12:00 PM EST.",
-      "alertRating": 1,
+      "alert": "🏈 🟡 2 📒 Pass. Under 51.5 clears the number. Walk-forward did not support a bet. Game: Iowa State at Baylor, 11/7 - 12:00 PM EST.",
+      "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
     },
@@ -139,7 +139,7 @@
       "neutral": false,
       "homeMargin": "9.4",
       "agreement": "split",
-      "marketHomeMargin": "-2.5",
+      "marketHomeMargin": "-1.5",
       "postedTotal": "49.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -169,7 +169,7 @@
       "neutral": false,
       "homeMargin": "9.2",
       "agreement": "split",
-      "marketHomeMargin": "-6.5",
+      "marketHomeMargin": "-6",
       "postedTotal": "52.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -320,7 +320,7 @@
       "homeMargin": "10.2",
       "agreement": "split",
       "marketHomeMargin": "10.5",
-      "postedTotal": "53.5",
+      "postedTotal": "54.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -329,7 +329,7 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Under 53.5 clears the number. Walk-forward did not support a bet. Game: Arkansas at Auburn, 11/7 - 12:45 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Under 54.5 clears the number. Walk-forward did not support a bet. Game: Arkansas at Auburn, 11/7 - 12:45 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -470,7 +470,7 @@
       "homeMargin": "14",
       "agreement": "home",
       "marketHomeMargin": "14.5",
-      "postedTotal": "53.5",
+      "postedTotal": "52.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -479,7 +479,7 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Over 53.5 clears the number. Walk-forward did not support a bet. Game: UL Monroe at Arkansas St, 11/7 - 3:00 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 52.5 clears the number. Walk-forward did not support a bet. Game: UL Monroe at Arkansas St, 11/7 - 3:00 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -589,7 +589,7 @@
       "neutral": false,
       "homeMargin": "20.8",
       "agreement": "home",
-      "marketHomeMargin": "47.5",
+      "marketHomeMargin": "46.5",
       "postedTotal": "58.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -709,7 +709,7 @@
       "neutral": false,
       "homeMargin": "5",
       "agreement": "split",
-      "marketHomeMargin": "7.5",
+      "marketHomeMargin": "7",
       "postedTotal": "54.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -799,11 +799,11 @@
       "neutral": false,
       "homeMargin": "15.3",
       "agreement": "home",
-      "marketHomeMargin": "3.5",
+      "marketHomeMargin": "4",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
@@ -979,14 +979,14 @@
       "neutral": false,
       "homeMargin": "19.2",
       "agreement": "home",
-      "marketHomeMargin": "18.5",
+      "marketHomeMargin": "19.5",
       "postedTotal": "45.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "alert": "🏈 🔴 1 ➗ Pass. Wisconsin does not clear the number. Game: Rutgers at Wisconsin, 11/7 - 4:15 PM EST.",
@@ -1039,7 +1039,7 @@
       "neutral": false,
       "homeMargin": "-4.2",
       "agreement": "away",
-      "marketHomeMargin": "-17.5",
+      "marketHomeMargin": "-16.5",
       "postedTotal": "68.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1069,7 +1069,7 @@
       "neutral": false,
       "homeMargin": "7.1",
       "agreement": "split",
-      "marketHomeMargin": "5.5",
+      "marketHomeMargin": "6",
       "postedTotal": "49.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1190,7 +1190,7 @@
       "homeMargin": "10.5",
       "agreement": "split",
       "marketHomeMargin": "-2.5",
-      "postedTotal": "43.5",
+      "postedTotal": "42.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -1199,7 +1199,7 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏈 🟡 2 📒 Pass. Over 43.5 clears the number. Walk-forward did not support a bet. Game: #19 Iowa at Northwestern, 11/7 - 7:30 PM EST.",
+      "alert": "🏈 🟡 2 📒 Pass. Over 42.5 clears the number. Walk-forward did not support a bet. Game: #19 Iowa at Northwestern, 11/7 - 7:30 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -1219,7 +1219,7 @@
       "neutral": false,
       "homeMargin": "16.5",
       "agreement": "home",
-      "marketHomeMargin": "3",
+      "marketHomeMargin": "3.5",
       "postedTotal": "48.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1490,7 +1490,7 @@
       "homeMargin": "20.9",
       "agreement": "home",
       "marketHomeMargin": "6",
-      "postedTotal": "70.5",
+      "postedTotal": "71.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"

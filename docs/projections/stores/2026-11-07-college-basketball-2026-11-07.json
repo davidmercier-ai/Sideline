@@ -2,7 +2,7 @@
   "id": "2026-11-07-college-basketball-2026-11-07",
   "title": "College basketball 2026-11-07",
   "sportPath": "basketball/mens-college-basketball",
-  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "retrievedAt": "2026-11-07T14:08:27.644Z",
   "games": [
     {
       "date": "2026-11-07T17:00Z",
@@ -19,8 +19,8 @@
       "neutral": false,
       "homeMargin": "19.5",
       "agreement": "split",
-      "marketHomeMargin": "36.5",
-      "postedTotal": "151.5",
+      "marketHomeMargin": "38.5",
+      "postedTotal": "152.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -49,8 +49,8 @@
       "neutral": false,
       "homeMargin": "35",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
-      "postedTotal": "159.5",
+      "marketHomeMargin": "8.5",
+      "postedTotal": "160.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -139,7 +139,7 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "12.5",
+      "marketHomeMargin": "13.5",
       "postedTotal": "161.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -260,7 +260,7 @@
       "homeMargin": "14",
       "agreement": "split",
       "marketHomeMargin": "1.5",
-      "postedTotal": "146.5",
+      "postedTotal": "141.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -290,7 +290,7 @@
       "homeMargin": "19.5",
       "agreement": "home",
       "marketHomeMargin": "1.5",
-      "postedTotal": "173.5",
+      "postedTotal": "176.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -319,7 +319,7 @@
       "neutral": false,
       "homeMargin": "13",
       "agreement": "split",
-      "marketHomeMargin": "-3.5",
+      "marketHomeMargin": "-4.5",
       "postedTotal": "149.5",
       "fanduel": {
         "side": "missing-input",
@@ -349,11 +349,11 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "2.5",
-      "postedTotal": "142.5",
+      "marketHomeMargin": "1.5",
+      "postedTotal": "164.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -380,7 +380,7 @@
       "homeMargin": "3",
       "agreement": "split",
       "marketHomeMargin": "10.5",
-      "postedTotal": "147.5",
+      "postedTotal": "146.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -409,7 +409,7 @@
       "neutral": false,
       "homeMargin": "36",
       "agreement": "home",
-      "marketHomeMargin": "11.5",
+      "marketHomeMargin": "12.5",
       "postedTotal": "148.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -439,7 +439,7 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "-1.5",
+      "marketHomeMargin": "-2.5",
       "postedTotal": "158.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -500,7 +500,7 @@
       "homeMargin": "10.5",
       "agreement": "split",
       "marketHomeMargin": "4.5",
-      "postedTotal": "146.5",
+      "postedTotal": "149.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -529,7 +529,7 @@
       "neutral": true,
       "homeMargin": "35",
       "agreement": "home",
-      "marketHomeMargin": "-2.5",
+      "marketHomeMargin": "-3.5",
       "postedTotal": "154.5",
       "fanduel": {
         "side": "missing-input",
@@ -559,8 +559,8 @@
       "neutral": false,
       "homeMargin": "38.5",
       "agreement": "home",
-      "marketHomeMargin": "26.5",
-      "postedTotal": "152.5",
+      "marketHomeMargin": "29.5",
+      "postedTotal": "153.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -579,17 +579,17 @@
       "when": "11/7 - 4:00 PM EST",
       "away": "Oakland",
       "home": "Santa Barbara",
-      "score": "61.5–84.5",
-      "total": "146",
+      "score": "60.3–83.8",
+      "total": "144",
       "models": "Santa Barbara, 4–0",
-      "sim": "61.5–84.5, Santa Barbara 100%, thin",
+      "sim": "61.5–83, Santa Barbara 100%, thin",
       "sportPath": "basketball/mens-college-basketball",
       "awayId": "2473",
       "homeId": "2540",
       "neutral": false,
-      "homeMargin": "23",
+      "homeMargin": "23.5",
       "agreement": "home",
-      "marketHomeMargin": "12.5",
+      "marketHomeMargin": "13.5",
       "postedTotal": "150.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -619,8 +619,8 @@
       "neutral": false,
       "homeMargin": "12",
       "agreement": "split",
-      "marketHomeMargin": "11.5",
-      "postedTotal": "156.5",
+      "marketHomeMargin": "10.5",
+      "postedTotal": "159.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
@@ -650,7 +650,7 @@
       "homeMargin": "22.5",
       "agreement": "home",
       "marketHomeMargin": "17.5",
-      "postedTotal": "146.5",
+      "postedTotal": "147.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -680,10 +680,10 @@
       "homeMargin": "29.5",
       "agreement": "home",
       "marketHomeMargin": "6.5",
-      "postedTotal": "146.5",
+      "postedTotal": "145.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -799,8 +799,8 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "28.5",
-      "postedTotal": "150.5",
+      "marketHomeMargin": "29.5",
+      "postedTotal": "151.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -830,10 +830,10 @@
       "homeMargin": "25",
       "agreement": "split",
       "marketHomeMargin": "4.5",
-      "postedTotal": "164.5",
+      "postedTotal": "163.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
@@ -860,7 +860,7 @@
       "homeMargin": "69",
       "agreement": "home",
       "marketHomeMargin": "4.5",
-      "postedTotal": "150.5",
+      "postedTotal": "149.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -889,15 +889,15 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-4.5",
+      "postedTotal": "143.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏀 🟡 2 📏 Lean. College sample under 3. 2026-27 only. Game: Old Dominion at Bucknell, 11/7 - 5:00 PM EST.",
       "alertRating": 2,
@@ -920,10 +920,10 @@
       "homeMargin": "19.5",
       "agreement": "home",
       "marketHomeMargin": "-2.5",
-      "postedTotal": "158.5",
+      "postedTotal": "163.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -952,8 +952,8 @@
       "marketHomeMargin": "5.5",
       "postedTotal": "143.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -979,8 +979,8 @@
       "neutral": false,
       "homeMargin": "14",
       "agreement": "home",
-      "marketHomeMargin": "11.5",
-      "postedTotal": "153.5",
+      "marketHomeMargin": "12.5",
+      "postedTotal": "154.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -1009,15 +1009,15 @@
       "neutral": false,
       "homeMargin": "34.5",
       "agreement": "home",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "20.5",
+      "postedTotal": "159.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "alert": "🏀 🟡 2 📏 Lean. College sample under 3. 2026-27 only. Game: Bellarmine at Miami OH, 11/7 - 5:00 PM EST.",
       "alertRating": 2,
@@ -1042,8 +1042,8 @@
       "marketHomeMargin": "8.5",
       "postedTotal": "149.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "inside-method-range",
+        "total": "inside-method-range"
       },
       "draftkings": {
         "side": "inside-method-range",
@@ -1072,8 +1072,8 @@
       "marketHomeMargin": "-2.5",
       "postedTotal": "149.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -1099,7 +1099,7 @@
       "neutral": false,
       "homeMargin": "36",
       "agreement": "home",
-      "marketHomeMargin": "19.5",
+      "marketHomeMargin": "18.5",
       "postedTotal": "147.5",
       "fanduel": {
         "side": "missing-input",
@@ -1129,8 +1129,8 @@
       "neutral": false,
       "homeMargin": "26",
       "agreement": "home",
-      "marketHomeMargin": "26.5",
-      "postedTotal": "155.5",
+      "marketHomeMargin": "27.5",
+      "postedTotal": "158.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -1162,8 +1162,8 @@
       "marketHomeMargin": "3.5",
       "postedTotal": "150.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -1250,7 +1250,7 @@
       "homeMargin": "missing",
       "agreement": "away",
       "marketHomeMargin": "-9.5",
-      "postedTotal": "139.5",
+      "postedTotal": "140.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -1279,7 +1279,7 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "-8.5",
+      "marketHomeMargin": "-9.5",
       "postedTotal": "147.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1309,8 +1309,8 @@
       "neutral": false,
       "homeMargin": "25",
       "agreement": "home",
-      "marketHomeMargin": "20.5",
-      "postedTotal": "146.5",
+      "marketHomeMargin": "19.5",
+      "postedTotal": "147.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
@@ -1339,8 +1339,8 @@
       "neutral": true,
       "homeMargin": "42",
       "agreement": "home",
-      "marketHomeMargin": "2.5",
-      "postedTotal": "156.5",
+      "marketHomeMargin": "3.5",
+      "postedTotal": "157.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -1372,8 +1372,8 @@
       "marketHomeMargin": "1.5",
       "postedTotal": "154.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -1429,7 +1429,7 @@
       "neutral": false,
       "homeMargin": "22",
       "agreement": "split",
-      "marketHomeMargin": "-2.5",
+      "marketHomeMargin": "-3.5",
       "postedTotal": "146.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1489,7 +1489,7 @@
       "neutral": false,
       "homeMargin": "30",
       "agreement": "home",
-      "marketHomeMargin": "21.5",
+      "marketHomeMargin": "22.5",
       "postedTotal": "153.5",
       "fanduel": {
         "side": "missing-input",
@@ -1520,7 +1520,7 @@
       "homeMargin": "14",
       "agreement": "split",
       "marketHomeMargin": "9.5",
-      "postedTotal": "143.5",
+      "postedTotal": "144.5",
       "fanduel": {
         "side": "missing-input",
         "total": "missing-input"
@@ -1549,11 +1549,11 @@
       "neutral": false,
       "homeMargin": "33",
       "agreement": "home",
-      "marketHomeMargin": "5.5",
-      "postedTotal": "147.5",
+      "marketHomeMargin": "9.5",
+      "postedTotal": "146.5",
       "fanduel": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
@@ -1580,7 +1580,7 @@
       "homeMargin": "44",
       "agreement": "split",
       "marketHomeMargin": "1.5",
-      "postedTotal": "142.5",
+      "postedTotal": "143.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -1609,14 +1609,14 @@
       "neutral": false,
       "homeMargin": "21",
       "agreement": "home",
-      "marketHomeMargin": "21.5",
-      "postedTotal": "152.5",
+      "marketHomeMargin": "20.5",
+      "postedTotal": "154.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
       },
       "draftkings": {
-        "side": "outside-method-range",
+        "side": "inside-method-range",
         "total": "outside-method-range"
       },
       "alert": "🏀 🟡 2 📏 Lean. College sample under 3. 2026-27 only. Game: Bethune at Grand Canyon, 11/7 - 8:00 PM EST.",
@@ -1629,15 +1629,15 @@
       "when": "11/7 - 8:30 PM EST",
       "away": "Bethesda",
       "home": "Southern Utah",
-      "score": "54–108.8",
-      "total": "162.8",
+      "score": "53.3–112.3",
+      "total": "165.5",
       "models": "Southern Utah, 4–0",
       "sim": "50–118, Southern Utah 100%, thin",
       "sportPath": "basketball/mens-college-basketball",
       "awayId": "3246",
       "homeId": "253",
       "neutral": false,
-      "homeMargin": "54.8",
+      "homeMargin": "59",
       "agreement": "home",
       "marketHomeMargin": "missing",
       "postedTotal": "missing",
@@ -1659,15 +1659,15 @@
       "when": "11/7 - 9:00 PM EST",
       "away": "Bethesda",
       "home": "Pepperdine",
-      "score": "56.5–104",
-      "total": "160.5",
+      "score": "55.8–107.5",
+      "total": "163.3",
       "models": "Pepperdine, 4–0",
       "sim": "56.5–104, Pepperdine 100%, thin",
       "sportPath": "basketball/mens-college-basketball",
       "awayId": "3246",
       "homeId": "2492",
       "neutral": false,
-      "homeMargin": "47.5",
+      "homeMargin": "51.8",
       "agreement": "home",
       "marketHomeMargin": "missing",
       "postedTotal": "missing",
@@ -1699,7 +1699,7 @@
       "neutral": false,
       "homeMargin": "missing",
       "agreement": "away",
-      "marketHomeMargin": "-6.5",
+      "marketHomeMargin": "-7.5",
       "postedTotal": "156.5",
       "fanduel": {
         "side": "outside-method-range",
@@ -1729,7 +1729,7 @@
       "neutral": false,
       "homeMargin": "25",
       "agreement": "home",
-      "marketHomeMargin": "9.5",
+      "marketHomeMargin": "10.5",
       "postedTotal": "151.5",
       "fanduel": {
         "side": "inside-method-range",
@@ -1760,7 +1760,7 @@
       "homeMargin": "21",
       "agreement": "home",
       "marketHomeMargin": "19.5",
-      "postedTotal": "167.5",
+      "postedTotal": "168.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"

@@ -2,7 +2,7 @@
   "id": "2026-11-07-nba-2026-11-07",
   "title": "NBA 2026-11-07",
   "sportPath": "basketball/nba",
-  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "retrievedAt": "2026-11-07T14:08:27.644Z",
   "games": [
     {
       "date": "2026-11-07T22:00Z",
@@ -22,7 +22,7 @@
       "marketHomeMargin": "-7.5",
       "postedTotal": "229.5",
       "fanduel": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "outside-method-range"
       },
       "draftkings": {
@@ -50,7 +50,7 @@
       "homeMargin": "0.1",
       "agreement": "split",
       "marketHomeMargin": "6.5",
-      "postedTotal": "224.5",
+      "postedTotal": "227.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -80,7 +80,7 @@
       "homeMargin": "4",
       "agreement": "split",
       "marketHomeMargin": "-4.5",
-      "postedTotal": "225.5",
+      "postedTotal": "224.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
@@ -110,17 +110,17 @@
       "homeMargin": "5.9",
       "agreement": "home",
       "marketHomeMargin": "11.5",
-      "postedTotal": "220.5",
+      "postedTotal": "222.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "outside-method-range"
       },
       "draftkings": {
         "side": "outside-method-range",
-        "total": "outside-method-range"
+        "total": "inside-method-range"
       },
-      "alert": "🏀 🟡 2 📒 Pass. Over 220.5 clears the number. Walk-forward did not support a bet. Game: Wizards at Thunder, 11/7 - 8:00 PM EST.",
-      "alertRating": 2,
+      "alert": "🏀 🔴 1 ➗ Pass. Thunder does not clear the number. Game: Wizards at Thunder, 11/7 - 8:00 PM EST.",
+      "alertRating": 1,
       "alertAction": "Pass",
       "research": "screen"
     },
@@ -139,17 +139,17 @@
       "neutral": false,
       "homeMargin": "8.3",
       "agreement": "home",
-      "marketHomeMargin": "6.5",
-      "postedTotal": "220.5",
+      "marketHomeMargin": "5.5",
+      "postedTotal": "222.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "inside-method-range",
+        "side": "outside-method-range",
         "total": "inside-method-range"
       },
-      "alert": "🏀 🟡 2 📒 Pass. Warriors lands on the number. That slice did not beat every favorite. Game: Magic at Warriors, 11/7 - 8:30 PM EST.",
+      "alert": "🏀 🟡 2 📒 Pass. Warriors clears the number. Walk-forward did not support a bet. Game: Magic at Warriors, 11/7 - 8:30 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -169,8 +169,8 @@
       "neutral": false,
       "homeMargin": "-4.5",
       "agreement": "away",
-      "marketHomeMargin": "-7.5",
-      "postedTotal": "222.5",
+      "marketHomeMargin": "-6.5",
+      "postedTotal": "223.5",
       "fanduel": {
         "side": "inside-method-range",
         "total": "outside-method-range"
@@ -179,7 +179,7 @@
         "side": "inside-method-range",
         "total": "outside-method-range"
       },
-      "alert": "🏀 🟡 2 📒 Pass. Over 222.5 clears the number. Walk-forward did not support a bet. Game: Rockets at Suns, 11/7 - 9:00 PM EST.",
+      "alert": "🏀 🟡 2 📒 Pass. Over 223.5 clears the number. Walk-forward did not support a bet. Game: Rockets at Suns, 11/7 - 9:00 PM EST.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
@@ -189,25 +189,25 @@
       "when": "11/7 - 10:00 PM EST",
       "away": "Spurs",
       "home": "Trail Blazers",
-      "score": "111.5–111",
-      "total": "222.5",
-      "models": "split, 2–2",
+      "score": "112.3–111.1",
+      "total": "223.3",
+      "models": "split, 3–1 Spurs",
       "sim": "120.5–107, Spurs 50.1%, thin",
       "sportPath": "basketball/nba",
       "awayId": "24",
       "homeId": "22",
       "neutral": false,
-      "homeMargin": "-0.5",
+      "homeMargin": "-1.2",
       "agreement": "split",
-      "marketHomeMargin": "missing",
-      "postedTotal": "missing",
+      "marketHomeMargin": "-5.5",
+      "postedTotal": "226.5",
       "fanduel": {
         "side": "outside-method-range",
         "total": "inside-method-range"
       },
       "draftkings": {
-        "side": "missing-input",
-        "total": "missing-input"
+        "side": "outside-method-range",
+        "total": "inside-method-range"
       },
       "alert": "🏀 🟡 2 📏 Lean. Thin sample. Game: Spurs at Trail Blazers, 11/7 - 10:00 PM EST.",
       "alertRating": 2,
