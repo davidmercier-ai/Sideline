@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { mulberry32 } from './projection-math.mjs'
 import {
+  blendRating,
   nbaGamesFromLog,
   nflGamesFromLog,
   simulateNbaBox,
@@ -8,6 +9,11 @@ import {
   simulateNflDraw,
   splitMade,
 } from './statline-sim.mjs'
+
+assert.equal(blendRating(0.6, null, 90), 0.6)
+assert.ok(blendRating(0.6, 90, 70) > 0.6)
+assert.ok(blendRating(0.6, 60, 90) < 0.6)
+assert.ok(blendRating(0.99, 99, 40) <= 0.9)
 
 assert.deepEqual(splitMade('9-19'), { made: 9, attempted: 19 })
 assert.equal(splitMade('20-19'), null)
@@ -95,6 +101,25 @@ const silent = [{ name: 'No Shots', games: [{ minutes: 10, fgm: 0, fga: 0, fg3m:
 const quiet = simulateNbaDraw(silent, silent, mulberry32(1))
 assert.equal(quiet.home[0].fga, 0)
 assert.equal(quiet.home[0].pts, 0)
+
+const threes = Array.from({ length: 3 }, () => ({
+  minutes: 30, fgm: 8, fga: 16, fg3m: 4, fg3a: 10, ftm: 0, fta: 0, reb: 1, ast: 0, blk: 0, stl: 0, pf: 1, to: 0, pts: 16,
+}))
+let hotMakes = 0
+let coldMakes = 0
+for (let i = 0; i < 40; i += 1) {
+  hotMakes += simulateNbaDraw(
+    [{ name: 'Hot', games: threes, skills: { three: 99, contestThree: 40 } }],
+    [{ name: 'Other', games: threes }],
+    mulberry32(i),
+  ).home[0].fg3m
+  coldMakes += simulateNbaDraw(
+    [{ name: 'Cold', games: threes, skills: { three: 40, contestThree: 95 } }],
+    [{ name: 'Other', games: threes }],
+    mulberry32(i),
+  ).home[0].fg3m
+}
+assert.ok(hotMakes > coldMakes)
 
 const qbGame = { att: 10, cmp: 6, passYds: 60, passTd: 1, int: 1, sacks: 2, car: 2, rushYds: 8, rushTd: 0, tgt: 0, rec: 0, recYds: 0, recTd: 0 }
 const wrGame = { att: 0, cmp: 0, passYds: 0, passTd: 0, int: 0, sacks: 0, car: 0, rushYds: 0, rushTd: 0, tgt: 8, rec: 4, recYds: 40, recTd: 1 }

@@ -13,6 +13,26 @@
 
 import { mulberry32 } from './projection-math.mjs'
 
+/**
+ * A published 0-99 skill moves an observed rate.
+ * Each rating point versus the defender is 0.4 percentage points.
+ * With no defender, the scale midpoint is 75.
+ * A missing offense rating leaves the observed rate alone.
+ * The result stays between 5% and 90%.
+ */
+export function blendRating(observed, offense, defense) {
+  if (!Number.isFinite(observed)) return null
+  if (!Number.isFinite(offense)) return observed
+  const edge = Number.isFinite(defense) ? (offense - defense) * 0.004 : (offense - 75) * 0.002
+  return Math.min(0.9, Math.max(0.05, observed + edge))
+}
+
+export function ratingYardScale(offense, defense) {
+  if (!Number.isFinite(offense)) return 1
+  const edge = Number.isFinite(defense) ? (offense - defense) * 0.003 : (offense - 75) * 0.0015
+  return Math.min(1.2, Math.max(0.8, 1 + edge))
+}
+
 export function splitMade(value) {
   const match = String(value ?? '').match(/^(\d+)-(\d+)$/)
   if (!match) return null
@@ -162,6 +182,7 @@ function prepareNba(player, random) {
   return {
     ...profile,
     name: player.name,
+    skills: player.skills || null,
     box,
     fgaLeft: sample.fga,
     ftaLeft: sample.fta,
@@ -224,13 +245,16 @@ function interleave(homeEvents, awayEvents, random) {
 
 function takeShot(player, random) {
   const three = player.threeRate != null && random() < player.threeRate
+  const skills = player.skills || {}
   if (three) {
-    if (player.fg3Pct == null) return null
-    const make = random() < player.fg3Pct
+    const pct = blendRating(player.fg3Pct, skills.three, skills.contestThree)
+    if (pct == null) return null
+    const make = random() < pct
     return { three: true, make, points: make ? 3 : 0 }
   }
-  if (player.fg2Pct == null) return null
-  const make = random() < player.fg2Pct
+  const pct = blendRating(player.fg2Pct, skills.inside, skills.contestInside)
+  if (pct == null) return null
+  const make = random() < pct
   return { three: false, make, points: make ? 2 : 0 }
 }
 
@@ -299,10 +323,11 @@ export function simulateNbaDraw(home, away, random) {
     plays.push(text)
   }
   for (const player of [...homePlayers, ...awayPlayers]) {
-    if (!player.ftaLeft || player.ftPct == null) continue
+    const ftPct = blendRating(player.ftPct, player.skills?.ft, null)
+    if (!player.ftaLeft || ftPct == null) continue
     for (let i = 0; i < player.ftaLeft; i += 1) {
       player.box.fta += 1
-      const make = random() < player.ftPct
+      const make = random() < ftPct
       if (make) {
         player.box.ftm += 1
         player.box.pts += 1
@@ -473,6 +498,7 @@ export function simulateNflDraw(home, away, random) {
     return {
       ...profile,
       name: player.name,
+      skills: player.skills || null,
       sample,
       box: emptyNflBox(player.name),
     }
@@ -494,15 +520,17 @@ export function simulateNflDraw(home, away, random) {
           plays.push(`${passer.name} interception${receiver && receiver !== passer ? `, intended for ${receiver.name}` : ''}`)
           continue
         }
-        const complete = passer.cmpPct != null && random() < passer.cmpPct
+        const completePct = blendRating(passer.cmpPct, passer.skills?.throwAcc, passer.skills?.coverage)
+        const complete = completePct != null && random() < completePct
         if (!complete) {
           plays.push(`${passer.name} incomplete${receiver && receiver !== passer ? ` for ${receiver.name}` : ''}`)
           continue
         }
         passer.box.cmp += 1
-        const yards = receiver && receiver !== passer
+        const yardsScale = ratingYardScale(receiver?.skills?.speed ?? passer.skills?.speed, passer.skills?.tackle)
+        const yards = Math.round((receiver && receiver !== passer
           ? playYards(receiver.games, 'rec', 'recYds', random, receiver.ydsPerRec)
-          : playYards(passer.games, 'cmp', 'passYds', random, passer.ydsPerCmp)
+          : playYards(passer.games, 'cmp', 'passYds', random, passer.ydsPerCmp)) * yardsScale)
         passer.box.passYds += yards
         let text = `${passer.name} complete`
         if (receiver && receiver !== passer) {
@@ -528,7 +556,7 @@ export function simulateNflDraw(home, away, random) {
       const carries = player.sample.car || 0
       for (let i = 0; i < carries; i += 1) {
         player.box.car += 1
-        const yards = playYards(player.games, 'car', 'rushYds', random, player.ydsPerCar)
+        const yards = Math.round(playYards(player.games, 'car', 'rushYds', random, player.ydsPerCar) * ratingYardScale(player.skills?.bc, player.skills?.tackle))
         player.box.rushYds += yards
         let text = `${player.name} rush for ${yards}`
         if (player.rushTdPct != null && random() < player.rushTdPct) {
@@ -544,7 +572,8 @@ export function simulateNflDraw(home, away, random) {
       const kicks = kicker.sample.fgAtt || 0
       for (let i = 0; i < kicks; i += 1) {
         kicker.box.fgAtt += 1
-        const made = kicker.fgPct != null && random() < kicker.fgPct
+        const fgPct = blendRating(kicker.fgPct, kicker.skills?.kick, null)
+        const made = fgPct != null && random() < fgPct
         if (made) kicker.box.fgMade += 1
         plays.push(`${kicker.name} field goal ${made ? 'good' : 'miss'}`)
       }
