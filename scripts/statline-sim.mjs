@@ -353,6 +353,60 @@ export function simulateNbaBox({ home, away, draws = 2000, seed = 1 }) {
   }
 }
 
+export function nflGamesFromLog(data) {
+  const names = data?.names || []
+  const at = new Map()
+  names.forEach((name, index) => {
+    if (!at.has(name)) at.set(name, index)
+  })
+  const seasons = data?.seasonTypes || []
+  const season = seasons.find((item) => /2026|2027/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
+    || seasons.find((item) => /2026|2027/.test(item.displayName || '') && !/preseason|playoff|postseason/i.test(item.displayName || ''))
+  const games = []
+  const seen = new Set()
+  for (const category of season?.categories || []) {
+    if (category.type !== 'event') continue
+    for (const event of category.events || []) {
+      if (!event.eventId || seen.has(event.eventId)) continue
+      seen.add(event.eventId)
+      const stats = event.stats || []
+      const read = (name) => {
+        const index = at.get(name)
+        if (index == null) return 0
+        const value = Number(stats[index])
+        return Number.isFinite(value) ? value : 0
+      }
+      const fg = splitMade(at.has('fieldGoalsMade-fieldGoalAttempts') ? stats[at.get('fieldGoalsMade-fieldGoalAttempts')] : '')
+      const xp = splitMade(at.has('extraPointsMade-extraPointAttempts') ? stats[at.get('extraPointsMade-extraPointAttempts')] : '')
+      const meta = data.events?.[event.eventId] || {}
+      const row = {
+        date: String(meta.gameDate || event.eventId),
+        venue: meta.atVs === '@' ? 'away' : meta.atVs === 'vs' ? 'home' : 'neutral',
+        att: read('passingAttempts'),
+        cmp: read('completions'),
+        passYds: read('passingYards'),
+        passTd: read('passingTouchdowns'),
+        int: read('interceptions'),
+        sacks: read('sacks'),
+        car: read('rushingAttempts'),
+        rushYds: read('rushingYards'),
+        rushTd: read('rushingTouchdowns'),
+        tgt: read('receivingTargets'),
+        rec: read('receptions'),
+        recYds: read('receivingYards'),
+        recTd: read('receivingTouchdowns'),
+        fgMade: fg?.made || 0,
+        fgAtt: fg?.attempted || 0,
+        xpMade: xp?.made || 0,
+        xpAtt: xp?.attempted || 0,
+      }
+      const used = row.att + row.car + row.tgt + row.rec + row.fgAtt + row.xpAtt
+      if (used > 0) games.push(row)
+    }
+  }
+  return games
+}
+
 function nflProfile(games) {
   const rows = games || []
   const rate = (made, attempts) => {
@@ -367,11 +421,20 @@ function nflProfile(games) {
     passTdPct: rate('passTd', 'cmp'),
     rushTdPct: rate('rushTd', 'car'),
     recTdPct: rate('recTd', 'rec'),
+    fgPct: rate('fgMade', 'fgAtt'),
+    xpPct: rate('xpMade', 'xpAtt'),
     ydsPerCmp: rate('passYds', 'cmp'),
     ydsPerCar: rate('rushYds', 'car'),
     ydsPerRec: rate('recYds', 'rec'),
     tgtMean: rows.length ? sumOf(rows, 'tgt') / rows.length : 0,
   }
+}
+
+function playYards(games, countKey, yardsKey, random, fallback) {
+  const pool = (games || []).filter((game) => (game[countKey] || 0) > 0)
+  const game = pool.length ? pool[Math.floor(random() * pool.length)] : null
+  if (!game) return Math.round(fallback || 0)
+  return Math.round(game[yardsKey] / game[countKey])
 }
 
 function emptyNflBox(name) {
@@ -390,6 +453,10 @@ function emptyNflBox(name) {
     rec: 0,
     recYds: 0,
     recTd: 0,
+    fgMade: 0,
+    fgAtt: 0,
+    xpMade: 0,
+    xpAtt: 0,
   }
 }
 
@@ -420,24 +487,25 @@ export function simulateNflDraw(home, away, random) {
       passer.box.sacks = passer.sample.sacks || 0
       for (let i = 0; i < attempts; i += 1) {
         passer.box.att += 1
+        const receiver = pickWeighted(offense, 'tgtMean', random, passer) || pickWeighted(offense, 'tgtMean', random)
+        if (receiver && receiver !== passer) receiver.box.tgt += 1
         if (passer.intPct != null && random() < passer.intPct) {
           passer.box.int += 1
-          plays.push(`${passer.name} interception`)
+          plays.push(`${passer.name} interception${receiver && receiver !== passer ? `, intended for ${receiver.name}` : ''}`)
           continue
         }
         const complete = passer.cmpPct != null && random() < passer.cmpPct
         if (!complete) {
-          plays.push(`${passer.name} incomplete`)
+          plays.push(`${passer.name} incomplete${receiver && receiver !== passer ? ` for ${receiver.name}` : ''}`)
           continue
         }
         passer.box.cmp += 1
-        const receiver = pickWeighted(offense, 'tgtMean', random, passer) || pickWeighted(offense, 'tgtMean', random)
-        const yardsEach = receiver?.ydsPerRec ?? passer.ydsPerCmp ?? 0
-        const yards = Math.round(yardsEach)
+        const yards = receiver && receiver !== passer
+          ? playYards(receiver.games, 'rec', 'recYds', random, receiver.ydsPerRec)
+          : playYards(passer.games, 'cmp', 'passYds', random, passer.ydsPerCmp)
         passer.box.passYds += yards
         let text = `${passer.name} complete`
         if (receiver && receiver !== passer) {
-          receiver.box.tgt += 1
           receiver.box.rec += 1
           receiver.box.recYds += yards
           text += ` to ${receiver.name} for ${yards}`
@@ -458,10 +526,9 @@ export function simulateNflDraw(home, away, random) {
     }
     for (const player of offense) {
       const carries = player.sample.car || 0
-      const yardsEach = player.ydsPerCar ?? 0
       for (let i = 0; i < carries; i += 1) {
         player.box.car += 1
-        const yards = Math.round(yardsEach)
+        const yards = playYards(player.games, 'car', 'rushYds', random, player.ydsPerCar)
         player.box.rushYds += yards
         let text = `${player.name} rush for ${yards}`
         if (player.rushTdPct != null && random() < player.rushTdPct) {
@@ -471,9 +538,28 @@ export function simulateNflDraw(home, away, random) {
         plays.push(text)
       }
     }
+    const touchdowns = offense.reduce((total, player) => total + player.box.passTd + player.box.rushTd, 0)
+    const kicker = offense.find((player) => sumOf(player.games, 'fgAtt') + sumOf(player.games, 'xpAtt') > 0)
+    if (kicker) {
+      const kicks = kicker.sample.fgAtt || 0
+      for (let i = 0; i < kicks; i += 1) {
+        kicker.box.fgAtt += 1
+        const made = kicker.fgPct != null && random() < kicker.fgPct
+        if (made) kicker.box.fgMade += 1
+        plays.push(`${kicker.name} field goal ${made ? 'good' : 'miss'}`)
+      }
+      for (let i = 0; i < touchdowns; i += 1) {
+        kicker.box.xpAtt += 1
+        const made = kicker.xpPct != null && random() < kicker.xpPct
+        if (made) kicker.box.xpMade += 1
+        plays.push(`${kicker.name} extra point ${made ? 'good' : 'miss'}`)
+      }
+    }
     void defenseName
   }
-  const scoreOf = (players) => players.reduce((total, player) => total + player.box.passTd * 6 + player.box.rushTd * 6, 0)
+  const scoreOf = (players) => players.reduce((total, player) => (
+    total + player.box.passTd * 6 + player.box.rushTd * 6 + player.box.fgMade * 3 + player.box.xpMade
+  ), 0)
   return {
     home: homePlayers.map((player) => player.box),
     away: awayPlayers.map((player) => player.box),
@@ -488,7 +574,7 @@ function medianNfl(draws, side) {
   return names.map((name) => {
     const rows = draws.map((draw) => draw[side].find((player) => player.name === name))
     const line = { name }
-    for (const key of ['att', 'cmp', 'passYds', 'passTd', 'int', 'sacks', 'car', 'rushYds', 'rushTd', 'tgt', 'rec', 'recYds', 'recTd']) {
+    for (const key of ['att', 'cmp', 'passYds', 'passTd', 'int', 'sacks', 'car', 'rushYds', 'rushTd', 'tgt', 'rec', 'recYds', 'recTd', 'fgMade', 'fgAtt', 'xpMade', 'xpAtt']) {
       line[key] = medianOf(rows.map((row) => row[key]))
     }
     return line
@@ -504,6 +590,8 @@ export function simulateNflBox({ home, away, draws = 2000, seed = 1 }) {
     seed,
     home: medianNfl(played, 'home'),
     away: medianNfl(played, 'away'),
+    homeMedian: medianOf(played.map((draw) => draw.homeScore)),
+    awayMedian: medianOf(played.map((draw) => draw.awayScore)),
     sample: played[0],
   }
 }

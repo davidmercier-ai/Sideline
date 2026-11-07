@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { mulberry32 } from './projection-math.mjs'
 import {
   nbaGamesFromLog,
+  nflGamesFromLog,
   simulateNbaBox,
   simulateNbaDraw,
   simulateNflDraw,
@@ -108,5 +109,30 @@ assert.equal(qb.att, 10)
 assert.ok(qb.cmp + qb.int <= qb.att)
 assert.ok(wr.rec <= wr.tgt)
 assert.ok(nfl.plays.some((play) => play.startsWith('QB')))
+
+const blanks = simulateNflDraw(
+  [
+    { name: 'QB', games: [{ att: 4, cmp: 0, passYds: 0, passTd: 0, int: 0, sacks: 0, car: 0, rushYds: 0, rushTd: 0, tgt: 0, rec: 0, recYds: 0, recTd: 0, fgMade: 0, fgAtt: 0, xpMade: 0, xpAtt: 0 }] },
+    { name: 'WR', games: [{ att: 0, cmp: 0, passYds: 0, passTd: 0, int: 0, sacks: 0, car: 0, rushYds: 0, rushTd: 0, tgt: 5, rec: 0, recYds: 0, recTd: 0, fgMade: 0, fgAtt: 0, xpMade: 0, xpAtt: 0 }] },
+  ],
+  [{ name: 'Other', games: [{ att: 0, cmp: 0, passYds: 0, passTd: 0, int: 0, sacks: 0, car: 0, rushYds: 0, rushTd: 0, tgt: 0, rec: 0, recYds: 0, recTd: 0, fgMade: 0, fgAtt: 0, xpMade: 0, xpAtt: 0 }] }],
+  mulberry32(1),
+)
+assert.equal(blanks.home[0].att, 4)
+assert.equal(blanks.home[1].rec, 0)
+assert.equal(blanks.home[1].tgt, 4)
+
+const kickerLog = {
+  names: ['fieldGoalsMade-fieldGoalAttempts', 'extraPointsMade-extraPointAttempts', 'totalKickingPoints'],
+  seasonTypes: [{
+    displayName: '2026 Regular Season',
+    categories: [{ type: 'event', events: [{ eventId: 'k1', stats: ['1-2', '1-1', '4'] }] }],
+  }],
+  events: { k1: { atVs: 'vs', gameDate: '2026-11-01' } },
+}
+const kicks = nflGamesFromLog(kickerLog)
+assert.equal(kicks[0].fgAtt, 2)
+assert.equal(kicks[0].xpMade, 1)
+assert.equal(kicks[0].venue, 'home')
 
 console.log('statline sim ok')
