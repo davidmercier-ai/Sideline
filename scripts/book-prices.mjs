@@ -319,6 +319,12 @@ export const DRAFTKINGS_PROP_FEEDS = {
     ['88808', '1001', '9514', 'rushing yards'],
     ['88808', '1342', '14114', 'receiving yards'],
   ],
+  nhl: [
+    ['42133', '1189', '12040', 'shots on goal'],
+    ['42133', '1675', '16213', 'points'],
+    ['42133', '1676', '16215', 'assists'],
+    ['42133', '1064', '16550', 'saves'],
+  ],
 }
 
 const DK_CONTENT = 'https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues'
@@ -375,6 +381,10 @@ const FANDUEL_PROP_TABS = {
     ['passing-props', 'passing yards', /^PLAYER_[A-Z]_PASSING_YARDS_HIGH$/],
     ['rushing-props', 'rushing yards', /^PLAYER_[A-Z]_RUSHING_YARDS_HIGH$/],
     ['receiving-props', 'receiving yards', /^PLAYER_[A-Z]_RECEIVING_YARDS_HIGH$/],
+  ],
+  nhl: [
+    ['shots', 'shots', /^PLAYER_TOTAL_SHOTS$/],
+    ['goals', 'goals', /^PLAYER_TOTAL_GOALS$/],
   ],
 }
 
