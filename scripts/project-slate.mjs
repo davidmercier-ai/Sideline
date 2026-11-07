@@ -15,6 +15,7 @@ import { boardStoreId, saveBoard } from './board-store.mjs'
 import { researchLevel, thinPublicLeague } from './research-protocol.mjs'
 import { findQuote, loadBooks, loadDraftKingsPropLines, loadDraftKingsTeamTotals, loadFanDuelPropLines, propsForNames } from './book-prices.mjs'
 import { looseName } from './player-logs.mjs'
+import { batterNames, loadStatcast, matchBatters, statcastLines } from './statcast.mjs'
 import { coversLeagueFor, espnPredictor, loadCoversConsensus, matchCovers } from './public-consensus.mjs'
 import {
   asNumber,
@@ -131,10 +132,10 @@ function readMarket(competition) {
     }
   }
   const book = odd.provider?.displayName || odd.provider?.name || 'unknown book'
-  const homeSpread = asNumber(odd.spread)
-  const total = asNumber(odd.overUnder)
   const spreadHome = odd.pointSpread?.home ?? {}
   const spreadAway = odd.pointSpread?.away ?? {}
+  const homeSpread = asNumber(odd.spread) ?? asNumber(spreadHome.close?.line)
+  const total = asNumber(odd.overUnder)
   const over = odd.total?.over ?? {}
   const under = odd.total?.under ?? {}
   return {
@@ -1000,6 +1001,9 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
   lines.push('')
   lines.push(...gameLogSection(game, awayLog.rows, homeLog.rows))
   lines.push('')
+  if (sportPath === 'baseball/mlb' && game.statcast) {
+    lines.push(...statcastLines(game.statcast))
+  }
   lines.push(...propsSection(game))
   return lines.join('\n')
 }
@@ -1008,8 +1012,26 @@ async function section(title, sportPath, games, football, unit) {
   const header = [`## ${title}`, '', `Games on this retrieved board: ${games.length}.`, '']
   if (games.length === 0) {
     header.push('No upcoming games were in the retrieved scoreboard. Nothing was projected for this section.')
+    if (sportPath === 'baseball/mlb') {
+      header.push('Statcast stays off this card until a game is listed. The season board is `node scripts/statcast.mjs`. Plate appearances, exit velocity, and xBA come from Baseball Savant.')
+    }
     header.push('')
     return { markdown: header.join('\n'), predictions: [], games: [] }
+  }
+  if (sportPath === 'baseball/mlb') {
+    try {
+      const board = await loadStatcast(2026)
+      await pool(games, 3, async (game) => {
+        try {
+          const summary = await getJson(`/apis/site/v2/sports/baseball/mlb/summary?event=${game.id}`)
+          game.statcast = matchBatters(board.hitters, batterNames(summary))
+        } catch {
+          game.statcast = []
+        }
+      })
+    } catch {
+      // A missing Savant board stays off the card.
+    }
   }
   await pool(games, 4, async (game) => {
     game.predictor = await espnPredictor(sportPath, game.id)

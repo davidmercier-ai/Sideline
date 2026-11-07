@@ -19,13 +19,17 @@ import {
   sideOf,
   simulateMatch,
 } from './projection-math.mjs'
+import { simCalibration } from './process-layer.mjs'
 
 const ESPN = 'https://site.api.espn.com'
 const LEAGUES = [
   { name: 'NFL', path: 'football/nfl', year: 2026, type: 2 },
+  { name: 'NCAAF', path: 'football/college-football', year: 2026, type: 2, groups: 80 },
   { name: 'NBA', path: 'basketball/nba', year: 2027, type: 2 },
   { name: 'NHL', path: 'hockey/nhl', year: 2027, type: 2 },
   { name: 'NCAAB', path: 'basketball/mens-college-basketball', year: 2027, type: 2 },
+  { name: 'EPL', path: 'soccer/eng.1', year: 2026, type: null },
+  { name: 'MLS', path: 'soccer/usa.1', year: 2026, type: null, regularName: true },
 ]
 
 async function getJson(url) {
@@ -123,7 +127,8 @@ function totalSide(actualTotal, postedTotal) {
 }
 
 async function loadLeague(league) {
-  const teamsData = await getJson(`${ESPN}/apis/site/v2/sports/${league.path}/teams?limit=400`)
+  const teamQuery = league.groups ? `?limit=400&groups=${league.groups}` : '?limit=400'
+  const teamsData = await getJson(`${ESPN}/apis/site/v2/sports/${league.path}/teams${teamQuery}`)
   const teams = (teamsData.sports?.[0]?.leagues?.[0]?.teams ?? []).map((entry) => entry.team).filter((team) => team?.id)
   const schedules = await pool(teams, 4, async (team) => {
     const schedule = await getJson(`${ESPN}/apis/site/v2/sports/${league.path}/teams/${team.id}/schedule`)
@@ -137,8 +142,10 @@ async function loadLeague(league) {
       const status = competition?.status?.type
       if (!status?.completed) continue
       if (Number(event.season?.year) !== league.year) continue
-      const eventType = event.seasonType?.type ?? event.season?.type?.type ?? event.season?.type
-      if (Number(eventType) !== league.type) continue
+      const eventType = Number(event.seasonType?.type ?? event.season?.type?.type ?? event.season?.type)
+      const typeName = event.seasonType?.name || event.season?.type?.name || ''
+      if (league.type != null && eventType !== league.type) continue
+      if (league.regularName && eventType !== 2 && !/^regular season$/i.test(typeName)) continue
       const sides = competition.competitors ?? []
       const away = sides.find((side) => side.homeAway === 'away')
       const home = sides.find((side) => side.homeAway === 'home')
@@ -222,7 +229,8 @@ export function spreadFromPickcenter(data) {
 }
 
 export function roomFor(leagueName) {
-  return leagueName === 'NHL' ? 0.25 : 1
+  if (leagueName === 'NHL' || leagueName === 'EPL' || leagueName === 'MLS') return 0.25
+  return 1
 }
 
 export function boardSideCall({ margins, marketMargin, room, thin }) {
@@ -353,6 +361,7 @@ function scoreLeague(name, games) {
         actualTotal,
         modelSide,
         simSide,
+        simHomeRate: sim?.ok ? sim.homeWinRate : null,
         simThin: Boolean(sim?.thin),
         simOk: Boolean(sim?.ok),
         marginError: Math.abs(venue.margin - actualMargin),
@@ -532,6 +541,7 @@ function summarize(name, scheduled, rows) {
     allowanceRate: rate(allowanceHits, allowanceDecided.length),
     marginError,
     totalError,
+    simBuckets: simCalibration(rows),
   }
 }
 
@@ -572,9 +582,20 @@ function report(results) {
   lines.push('')
   lines.push('The cover column uses the DraftKings number on the completed-game summary. That is not a line saved before tip. Pregame spreads are stored apart and are not used in this column until one is older than the game. A game with no DraftKings spread stays out of the cover rate.')
   lines.push('')
+  lines.push('## Sim frequency')
+  lines.push('')
+  lines.push('When the sim’s home-win frequency falls in a bucket, this is how often the home team won. A calibrated sim lands near the bucket. A gap versus a no-vig price stays unlabeled until this table is close to the bucket.')
+  lines.push('')
+  lines.push(`| League | ${results[0]?.simBuckets?.map((bucket) => bucket.label).join(' | ') || 'Buckets'} |`)
+  lines.push(`| --- | ${results[0]?.simBuckets?.map(() => '---').join(' | ') || '---'} |`)
+  for (const row of results) {
+    const cells = (row.simBuckets ?? []).map((bucket) => (bucket.decided ? `${((bucket.hits / bucket.decided) * 100).toFixed(1)}% (${bucket.hits}/${bucket.decided})` : '0/0'))
+    lines.push(`| ${row.name} | ${cells.join(' | ')} |`)
+  }
+  lines.push('')
   lines.push('## Board rule')
   lines.push('')
-  lines.push('A board side needs four finite reads on the same side of the spread, each at least the room past that number, and every venue list at 3 games or more. The room is 1 point in the NFL and NBA and 0.25 goals in the NHL. A board total is the same test against the posted total. A hit means the game finished on that side. A push is left out. This is a record of the filter, not a priced edge.')
+  lines.push('A board side needs four finite reads on the same side of the spread, each at least the room past that number, and every venue list at 3 games or more. The room is 1 point in football and basketball and 0.25 goals in hockey and soccer. A board total is the same test against the posted total. A hit means the game finished on that side. A push is left out. This is a record of the filter, not a priced edge.')
   lines.push('')
   lines.push('| League | Board sides | Side covers | Board totals | Total hits |')
   lines.push('| --- | --- | --- | --- | --- |')
@@ -785,8 +806,9 @@ function savedNote(saved) {
 }
 
 async function main() {
+  const only = process.argv[2]
   const results = []
-  for (const league of LEAGUES) {
+  for (const league of LEAGUES.filter((item) => !only || item.name.toLowerCase() === only.toLowerCase())) {
     process.stderr.write(`loading ${league.name}\n`)
     const games = await loadLeague(league)
     process.stderr.write(`${league.name}: ${games.length} completed\n`)

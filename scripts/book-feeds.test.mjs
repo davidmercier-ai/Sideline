@@ -24,6 +24,20 @@ const grizzlies = [...totals.values()][0]
 assert.equal(grizzlies.homeTotal.line, 110.5)
 assert.equal(grizzlies.homeTotal.over, '-105')
 assert.equal(grizzlies.awayTotal.line, 113.5)
+const withAlt = indexDraftKingsTeamTotals({
+  events: [{ id: '1', name: 'OKC Thunder @ MEM Grizzlies' }],
+  markets: [
+    { id: 'm1', eventId: '1', name: 'MEM Grizzlies: Team Total Points' },
+    { id: 'alt', eventId: '1', name: 'MEM Grizzlies: Team Total Points' },
+  ],
+  selections: [
+    { marketId: 'm1', label: 'Over', outcomeType: 'Over', points: 110.5, displayOdds: { american: '−105' } },
+    { marketId: 'm1', label: 'Under', outcomeType: 'Under', points: 110.5, displayOdds: { american: '−115' } },
+    { marketId: 'alt', label: 'Over', outcomeType: 'Over', points: 9.5, displayOdds: { american: '−800' } },
+    { marketId: 'alt', label: 'Under', outcomeType: 'Under', points: 9.5, displayOdds: { american: '+475' } },
+  ],
+})
+assert.equal([...withAlt.values()][0].homeTotal.line, 110.5)
 
 const props = indexDraftKingsProps({
   events: [{ id: '2', name: 'PHI 76ers @ CLE Cavaliers' }],

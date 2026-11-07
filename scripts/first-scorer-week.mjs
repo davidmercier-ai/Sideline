@@ -9,6 +9,7 @@ import { pathToFileURL } from 'node:url'
 import { playerReads } from './projection-math.mjs'
 import { looseName } from './player-logs.mjs'
 import { readFirstScorer } from './first-scorer.mjs'
+import { conversionWindow } from './process-layer.mjs'
 
 const ESPN = 'https://site.api.espn.com'
 const DATES = ['20261106', '20261107', '20261108', '20261109', '20261110']
@@ -109,6 +110,26 @@ async function recentGames(board, teamIds) {
   return [...events.values()]
 }
 
+function productionFromSummary(summary) {
+  const found = new Map()
+  for (const group of summary.rosters || []) {
+    const teamId = String(group.team?.id || '')
+    for (const player of group.roster || []) {
+      if (!(player.starter || player.subbedIn) || !player.athlete?.displayName) continue
+      const read = (key) => {
+        const stat = (player.stats || []).find((item) => item.name === key)
+        const value = Number(stat?.value)
+        return Number.isFinite(value) ? value : null
+      }
+      found.set(`${looseName(player.athlete.displayName)}|${teamId}`, {
+        goals: read('totalGoals'),
+        shots: read('totalShots'),
+      })
+    }
+  }
+  return found
+}
+
 function addPlayer(logs, name, row) {
   const key = looseName(name)
   const list = logs.get(key) ?? []
@@ -129,15 +150,19 @@ async function loadHistories(board, games) {
       const awayId = String(sides.find((side) => side.homeAway === 'away')?.team?.id || '')
       const homeId = String(sides.find((side) => side.homeAway === 'home')?.team?.id || '')
       const scorer = readFirstScorer(board.kind, summary)
+      const production = productionFromSummary(summary)
       for (const group of namesFromSummary(summary)) {
         const venue = group.teamId === homeId ? 'home' : group.teamId === awayId ? 'away' : 'neutral'
         for (const name of group.names) {
+          const made = production.get(`${looseName(name)}|${group.teamId}`)
           addPlayer(logs, name, {
             eventId: event.id,
             date: event.date,
             venue,
             teamId: group.teamId,
             value: scorer && looseName(scorer) === looseName(name) ? 1 : 0,
+            goals: made?.goals ?? null,
+            shots: made?.shots ?? null,
           })
         }
       }
@@ -165,11 +190,16 @@ function pickForGame(game, logs) {
     const reads = playerReads(mine, venue)
     const venueRead = reads[0]
     if (!venueRead || venueRead.missing || !Number.isFinite(venueRead.value)) continue
+    const ordered = [...mine].sort((a, b) => String(a.date).localeCompare(String(b.date)))
+    const shotRows = ordered.filter((row) => Number.isFinite(row.shots)).map((row) => ({ ...row, value: row.shots }))
+    const shotReads = playerReads(shotRows, venue)
     candidates.push({
       name: mine[0].name,
       side: venue === 'home' ? game.home : game.away,
       reads,
       thin: reads.some((read) => read.thin),
+      shots: shotReads[0]?.missing ? null : shotReads[0]?.value,
+      window: conversionWindow(ordered.map((row) => row.value), ordered.map((row) => row.goals)),
     })
   }
   candidates.sort((a, b) => (
@@ -192,7 +222,9 @@ function lineFor(game, pick) {
   if (!pick) return `${game.away} at ${game.home}, ${when}${started}: no prior first scorer`
   const reads = pick.reads.map(showRead).join(', ')
   const flag = pick.thin ? ' thin' : ''
-  return `${game.away} at ${game.home}, ${when}${started}: ${pick.name} (${pick.side})${flag}. ${reads}`
+  const shots = Number.isFinite(pick.shots) ? ` Venue shots ${pick.shots.toFixed(2)}.` : ''
+  const window = pick.window?.label ? ` ${pick.window.label}` : ''
+  return `${game.away} at ${game.home}, ${when}${started}: ${pick.name} (${pick.side})${flag}. ${reads}.${shots}${window}`
 }
 
 async function main() {

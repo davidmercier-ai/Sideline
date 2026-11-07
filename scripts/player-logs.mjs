@@ -81,6 +81,11 @@ function statValue(row, names, stat) {
     if (receiving == null && rushing == null) return null
     return (receiving ?? 0) + (rushing ?? 0) >= 1 ? 1 : 0
   }
+  if (stat === 'minutes') return get('minutes') ?? get('MIN')
+  if (stat === 'fga') return get('fieldGoalsAttempted') ?? get('FGA')
+  if (stat === 'targets') return get('receivingTargets') ?? get('targets')
+  if (stat === 'shots') return get('totalShots') ?? get('shots') ?? get('SHOT')
+  if (stat === 'sog') return get('shotsOnTarget') ?? get('shotsOnGoal') ?? get('SOG')
   return null
 }
 
@@ -89,7 +94,9 @@ export function rowsFromGamelog(data, stat) {
   const names = data.names || []
   const labelCounts = new Map()
   for (const label of labels) labelCounts.set(label, (labelCounts.get(label) || 0) + 1)
-  const season = (data.seasonTypes || []).find((item) => /2026/.test(item.displayName) && /Regular/i.test(item.displayName))
+  const seasons = data.seasonTypes || []
+  const season = seasons.find((item) => /2026|2027/.test(item.displayName || '') && /Regular/i.test(item.displayName || ''))
+    || seasons.find((item) => /2026|2027/.test(item.displayName || '') && !/preseason|playoff|postseason/i.test(item.displayName || ''))
   const keys = new Set([...names, ...labels])
   const rows = []
   const seen = new Set()
@@ -123,8 +130,8 @@ export function rowsFromGamelog(data, stat) {
 }
 
 const STATS = {
-  nfl: ['passYds', 'rushYds', 'recYds', 'receptions', 'anytimeTd'],
-  nba: ['points', 'reb', 'ast', 'threes'],
+  nfl: ['passYds', 'rushYds', 'recYds', 'receptions', 'anytimeTd', 'targets'],
+  nba: ['points', 'reb', 'ast', 'threes', 'minutes', 'fga'],
 }
 
 async function getJson(url) {
