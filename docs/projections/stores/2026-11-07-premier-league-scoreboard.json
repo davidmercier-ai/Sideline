@@ -2,11 +2,11 @@
   "id": "2026-11-07-premier-league-scoreboard",
   "title": "Premier League scoreboard",
   "sportPath": "soccer/eng.1",
-  "retrievedAt": "2026-11-07T04:47:28.866Z",
+  "retrievedAt": "2026-11-07T14:08:27.644Z",
   "games": [
     {
       "date": "2026-11-07T12:30Z",
-      "when": "Scheduled",
+      "when": "78'",
       "away": "Spurs",
       "home": "Leeds",
       "score": "0.8–1.3",
@@ -29,7 +29,7 @@
         "side": "missing-input",
         "total": "outside-method-range"
       },
-      "alert": "⚽ 🟡 2 📒 Pass. Under 2.5 clears the number. Walk-forward did not support a bet. Game: Spurs at Leeds, Scheduled.",
+      "alert": "⚽ 🟡 2 📒 Pass. Under 2.5 clears the number. Walk-forward did not support a bet. Game: Spurs at Leeds, 78'.",
       "alertRating": 2,
       "alertAction": "Pass",
       "research": "screen"
