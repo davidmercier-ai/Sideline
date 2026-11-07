@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { indexDraftKingsProps, indexDraftKingsTeamTotals, propsForNames } from './book-prices.mjs'
-import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, favoriteSide, quoteFromPickcenter, spreadFromPickcenter } from './backtest-slate.mjs'
+import { allowanceRead, boardSideCall, boardTotalCall, closestReadGap, coverRole, favoriteSide, predictorSide, quoteFromPickcenter, spreadFromPickcenter, spreadSizeBucket } from './backtest-slate.mjs'
+import { alertSignals } from './projection-math.mjs'
 import { indexFanDuelProps } from './book-prices.mjs'
 import { propBoardCall } from './project-players.mjs'
 import { lineBeforeGame, walkForwardProp, walkForwardSaved } from './backtest-players.mjs'
@@ -59,6 +60,17 @@ assert.equal(boardSideCall({ margins: [2.2, 5, 4, 7], marketMargin: 3, room: 1, 
 assert.equal(boardSideCall({ margins: cleared, marketMargin: 3, room: 1, thin: true }), null)
 assert.equal(boardTotalCall({ totals: [210, 212, 214, 211], postedTotal: 220, room: 1, thin: false }), 'under')
 assert.equal(boardTotalCall({ totals: [210, 219.5, 214, 211], postedTotal: 220, room: 1, thin: false }), null)
+assert.equal(spreadSizeBucket(-2.5), 'under3')
+assert.equal(spreadSizeBucket(8), 'to12')
+assert.equal(spreadSizeBucket(14), 'over12')
+assert.equal(predictorSide({ awayTeam: { statistics: [{ name: 'gameProjection', value: 62 }] } }), 'away')
+assert.equal(predictorSide({}), null)
+assert.deepEqual(alertSignals([
+  { margin: 1.2 }, { margin: 0.8 }, { margin: 0.4 }, { margin: -0.3 },
+], 0.5, false).scar, 'home')
+assert.equal(alertSignals([
+  { margin: 3 }, { margin: 3 }, { margin: 3 }, { margin: 3 },
+], 3, false).onNumber, 'home')
 assert.equal(favoriteSide(-3), 'home')
 assert.equal(favoriteSide(3), 'away')
 assert.equal(favoriteSide(0), null)

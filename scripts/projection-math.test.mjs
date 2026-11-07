@@ -334,8 +334,10 @@ const scar = buildAlert({
   methods: [{ margin: 1.2, total: 6 }, { margin: 0.8, total: 6 }, { margin: 0.4, total: 6 }, { margin: -0.3, total: 6 }],
   marketHomeMargin: 0.5,
 })
-assert.equal(scar.rating, 3)
-assert.equal(scar.reason, 'scar')
+assert.equal(scar.rating, 2)
+assert.equal(scar.reason, 'record')
+assert.equal(scar.action, 'Pass')
+assert.ok(scar.bet.includes('scar'))
 assert.ok(scar.text.includes('🏒'))
 
 const dkId = '0QA382657149#2341145992_13L88808Q1-549717439Q20'

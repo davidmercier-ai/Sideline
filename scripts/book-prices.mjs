@@ -359,6 +359,7 @@ const FANDUEL_PROP_TABS = {
     ['player-assists', 'assists', /^PLAYER_[A-Z]_TOTAL_ASSISTS$/],
   ],
   nfl: [
+    // HIGH is the main two-sided over/under on this tab. ALT markets are excluded.
     ['passing-props', 'passing yards', /^PLAYER_[A-Z]_PASSING_YARDS_HIGH$/],
     ['rushing-props', 'rushing yards', /^PLAYER_[A-Z]_RUSHING_YARDS_HIGH$/],
     ['receiving-props', 'receiving yards', /^PLAYER_[A-Z]_RECEIVING_YARDS_HIGH$/],

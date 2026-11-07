@@ -699,8 +699,10 @@ function comparisonSection(game, scoring, methods, sportPath) {
   }
   if (LEAGUE_RECORD[sportPath] === 'NBA' && Number.isFinite(record.straightFavoriteDecided)) {
     const cut = record.cut === 'open'
-      ? 'The gap stays on the record. It is not a bet.'
-      : 'The cut is finished. It is not a bet.'
+      ? 'The later sample still beats every favorite. The gap stays on the record. It is not a bet.'
+      : record.cut === 'note'
+        ? 'The later sample has no games yet. Open stays a note. It is not a bet.'
+        : 'The cut is finished. It is not a bet.'
     lines.push(`- NBA favorites won ${record.straightFavoriteHits} of ${record.straightFavoriteDecided} straight up. Short-of-the-number favorites won ${record.shortFavoriteHits} of ${record.shortFavoriteDecided}. ${cut}`)
   }
   const postedTotals = game.extra?.dkTeamTotals
@@ -845,7 +847,7 @@ function propsSection(game) {
   const lines = [
     '**Props**',
     '',
-    'Separate from the team card. DraftKings and FanDuel main over/unders are attached when those feeds send them. FanDuel props come from the event page. The 1-unit player rule is not a bet. The independent read stays missing on this pass.',
+    'Separate from the team card. DraftKings and FanDuel main over/unders are attached when those feeds send them. FanDuel props come from the event page. FanDuel tags the main passing, rushing, and receiving total as HIGH. That line is the two-sided over/under. Markets tagged ALT are left out. The 1-unit player rule is not a bet. The independent read stays missing on this pass.',
     '',
     '| Prop | Independent projection | FanDuel | DraftKings | Flag |',
     '| --- | --- | --- | --- | --- |',
@@ -887,7 +889,11 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
   game.research = research
   lines.push(`- Alert: ${alert.text}`)
   if (String(sportPath).includes('mens-college-basketball')) {
-    lines.push('- College basketball stays a lean until both teams have three completed 2026-27 games. Season year 2026 is last season and stays out.')
+    const college = recordedMiss.NCAAB
+    const homeLine = college && Number.isFinite(college.homeDecided)
+      ? ` Always home won ${college.homeHits} of ${college.homeDecided}. Venue side won ${college.sideHits} of ${college.sideDecided}.`
+      : ''
+    lines.push(`- College basketball stays a lean until both teams have three completed 2026-27 games. Season year 2026 is last season and stays out.${homeLine}`)
   }
   lines.push(`- Research: ${research.name}. ${research.reason}`)
   lines.push('')
@@ -933,6 +939,10 @@ function renderGame(game, awayLog, homeLog, football, sportPath, scoring = proje
     lines.push(`- Sim median score: ${game.away.name} ${fmt(sim.awayMedian)}, ${game.home.name} ${fmt(sim.homeMedian)}.`)
     lines.push(`- Sim frequencies: ${game.home.name} wins ${fmt(sim.homeWinRate * 100)}%, ${game.away.name} wins ${fmt(sim.awayWinRate * 100)}%, ties ${fmt(sim.tieRate * 100)}%.`)
     lines.push(sim.thin ? '- Sim sample: thin. At least one venue slice has fewer than 3 games, so this frequency is not a stable probability.' : '- Sim sample: each venue slice has at least 3 games.')
+    const simRecord = recordedMiss[LEAGUE_RECORD[sportPath]]
+    if (simRecord && Number.isFinite(simRecord.simDecided)) {
+      lines.push(`- Stable sim record: ${simRecord.simHits} of ${simRecord.simDecided}. A thin sim is not in that count.`)
+    }
     if (sim.fdCover != null) lines.push(`- Sim home-cover rate versus FanDuel: ${fmt(sim.fdCover * 100)}% (pushes ${fmt(sim.fdCoverPush * 100)}%).`)
     if (sim.dkCover != null) lines.push(`- Sim home-cover rate versus DraftKings: ${fmt(sim.dkCover * 100)}% (pushes ${fmt(sim.dkCoverPush * 100)}%).`)
     if (sim.fdOver != null) lines.push(`- Sim over rate versus FanDuel total: ${fmt(sim.fdOver * 100)}%.`)

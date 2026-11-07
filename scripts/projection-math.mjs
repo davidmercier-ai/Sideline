@@ -243,6 +243,31 @@ export function betSlipLink({ book, action, eventId, selectionId, marketId } = {
  * The rating is not a win probability.
  * slip is the book ids for a Bet or Bet now. A Lean or a Pass drops it.
  */
+export function alertSignals(methods, marketMargin, thin = false) {
+  const margins = (methods ?? []).map((method) => method?.margin).filter((value) => Number.isFinite(value))
+  const sides = margins.map((margin) => sideOf(margin)).filter((side) => side !== 'unavailable')
+  const unique = new Set(sides)
+  const venueSide = sides[0] ?? 'unavailable'
+  const lastSide = sides.length ? sides[sides.length - 1] : 'unavailable'
+  const withoutLast = sides.slice(0, -1)
+  const scar = !thin
+    && withoutLast.length >= 1
+    && (venueSide === 'home' || venueSide === 'away')
+    && withoutLast.every((side) => side === venueSide)
+    && lastSide !== venueSide
+    && lastSide !== 'unavailable'
+  const unanimous = unique.size === 1 && !unique.has('tie') && sides.length >= 2
+  let onNumber = null
+  if (!thin && !scar && unanimous && Number.isFinite(marketMargin)) {
+    const side = [...unique][0]
+    if (side === 'home' || side === 'away') {
+      const gaps = margins.map((margin) => (side === 'home' ? margin - marketMargin : marketMargin - margin))
+      if (!gaps.every((gap) => gap > 0) && !gaps.some((gap) => gap < 0)) onNumber = side
+    }
+  }
+  return { scar: scar ? venueSide : null, onNumber }
+}
+
 export function buildAlert({
   sportPath,
   away,
@@ -285,10 +310,10 @@ export function buildAlert({
     action = 'Lean'
     bet = 'Thin sample'
   } else if (scar) {
-    rating = 3
-    reason = 'scar'
-    action = 'Bet'
-    bet = sideName
+    rating = 2
+    reason = 'record'
+    action = 'Pass'
+    bet = `${sideName} scar. Walk-forward did not beat every favorite`
   } else if (!unanimous) {
     reason = 'split'
     action = 'Pass'
@@ -312,10 +337,10 @@ export function buildAlert({
       action = 'Pass'
       bet = `${sideName} does not clear the number`
     } else {
-      rating = 3
-      reason = 'venue'
-      action = 'Bet'
-      bet = sideName
+      rating = 2
+      reason = 'record'
+      action = 'Pass'
+      bet = `${sideName} lands on the number. That slice did not beat every favorite`
     }
   } else {
     rating = 4

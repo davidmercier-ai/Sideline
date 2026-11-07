@@ -5,9 +5,12 @@
  * Run: node scripts/backtest-slate.mjs
  */
 
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
+import { loadDraftKingsTeamTotals } from './book-prices.mjs'
+import { loadCoversConsensus } from './public-consensus.mjs'
 import { pathToFileURL } from 'node:url'
 import {
+  alertSignals,
   homeMargin,
   medianPair,
   methodConvergence,
@@ -167,6 +170,13 @@ async function loadLeague(league) {
       const quote = quoteFromPickcenter(summary)
       if (!Number.isFinite(game.homeSpread) && Number.isFinite(quote.spread)) game.homeSpread = quote.spread
       if (!Number.isFinite(game.total) && Number.isFinite(quote.total)) game.total = quote.total
+      const [sport, slug] = league.path.split('/')
+      try {
+        const predictor = await getJson(`https://sports.core.api.espn.com/v2/sports/${sport}/leagues/${slug}/events/${game.id}/competitions/${game.id}/predictor`)
+        game.predictorSide = predictorSide(predictor)
+      } catch {
+        game.predictorSide = null
+      }
     } catch {
       game.homeSpread = Number.isFinite(game.homeSpread) ? game.homeSpread : null
       game.total = Number.isFinite(game.total) ? game.total : null
@@ -252,6 +262,32 @@ export const GAP_BUCKETS = [
   { id: 'over10', label: '10 or more', test: (gap) => gap >= 10 },
 ]
 
+export const HOLDOUT_AFTER = '2026-11-07T00:07:16.237Z'
+
+export function predictorSide(data) {
+  const read = (team) => {
+    const stat = (team?.statistics ?? []).find((item) => item?.name === 'gameProjection')
+    const value = Number(stat?.value)
+    return Number.isFinite(value) ? value : null
+  }
+  const home = read(data?.homeTeam)
+  const away = read(data?.awayTeam)
+  if (home == null && away == null) return null
+  const homeWin = home ?? (100 - away)
+  const awayWin = away ?? (100 - home)
+  if (Math.abs(homeWin - awayWin) < 0.05) return 'tie'
+  return homeWin > awayWin ? 'home' : 'away'
+}
+
+export function spreadSizeBucket(homeSpread) {
+  const size = Math.abs(homeSpread)
+  if (!Number.isFinite(size) || size === 0) return null
+  if (size < 3) return 'under3'
+  if (size < 7) return 'to7'
+  if (size < 12) return 'to12'
+  return 'over12'
+}
+
 export function favoriteSide(homeSpread) {
   if (!Number.isFinite(homeSpread) || homeSpread === 0) return null
   return homeSpread < 0 ? 'home' : 'away'
@@ -304,6 +340,7 @@ function scoreLeague(name, games) {
       const boardSide = boardSideCall({ margins, marketMargin, room, thin })
       const boardTotal = boardTotalCall({ totals, postedTotal: game.total, room, thin })
       const allowance = allowanceRead(awayPrior, homePrior)
+      const signals = alertSignals(methods, marketMargin, thin)
       const coverPick = Number.isFinite(marketMargin) && sideOf(venue.margin - marketMargin) !== 'tie'
         ? sideOf(venue.margin - marketMargin)
         : null
@@ -331,6 +368,9 @@ function scoreLeague(name, games) {
         allowanceSide: !allowance.thin && sideOf(allowance.margin) !== 'tie' && sideOf(allowance.margin) !== 'unavailable'
           ? sideOf(allowance.margin)
           : null,
+        scarSide: signals.scar,
+        onNumberSide: signals.onNumber,
+        predictorSide: game.predictorSide ?? null,
       })
     }
     const stamp = (teamId, venueName, pointsFor, pointsAgainst) => {
@@ -379,6 +419,25 @@ function summarize(name, scheduled, rows) {
   const shortDogHits = shortDog.filter((row) => row.agreement.side === row.actual).length
   const straightFavorites = decided.filter((row) => favoriteSide(row.game.homeSpread))
   const straightFavoriteHits = straightFavorites.filter((row) => row.actual === favoriteSide(row.game.homeSpread)).length
+  const picked = (rows, field) => {
+    const sample = rows.filter((row) => (row[field] === 'home' || row[field] === 'away') && (row.actual === 'home' || row.actual === 'away'))
+    const hits = sample.filter((row) => row[field] === row.actual).length
+    return { hits, decided: sample.length, rate: rate(hits, sample.length) }
+  }
+  const scar = picked(rows, 'scarSide')
+  const onNumber = picked(rows, 'onNumberSide')
+  const predictor = picked(rows, 'predictorSide')
+  const shortHome = shortFavorite.filter((row) => favoriteSide(row.game.homeSpread) === 'home')
+  const shortRoad = shortFavorite.filter((row) => favoriteSide(row.game.homeSpread) === 'away')
+  const shortHomeHits = shortHome.filter((row) => row.agreement.side === row.actual).length
+  const shortRoadHits = shortRoad.filter((row) => row.agreement.side === row.actual).length
+  const sizeOf = (id) => shortFavorite.filter((row) => spreadSizeBucket(row.game.homeSpread) === id)
+  const sizeHit = (sample) => sample.filter((row) => row.agreement.side === row.actual).length
+  const afterHoldout = (row) => Date.parse(row.game.date) > Date.parse(HOLDOUT_AFTER)
+  const holdoutShort = shortFavorite.filter(afterHoldout)
+  const holdoutShortHits = holdoutShort.filter((row) => row.agreement.side === row.actual).length
+  const holdoutFavorites = straightFavorites.filter(afterHoldout)
+  const holdoutFavoriteHits = holdoutFavorites.filter((row) => row.actual === favoriteSide(row.game.homeSpread)).length
   const allowanceDecided = decided.filter((row) => row.allowanceSide === 'home' || row.allowanceSide === 'away')
   const allowanceHits = allowanceDecided.filter((row) => row.allowanceSide === row.actual).length
   const unanimousPriced = unanimous.filter((row) => Number.isFinite(row.closestGap))
@@ -433,6 +492,41 @@ function summarize(name, scheduled, rows) {
     straightFavoriteHits,
     straightFavoriteDecided: straightFavorites.length,
     straightFavoriteRate: rate(straightFavoriteHits, straightFavorites.length),
+    scarHits: scar.hits,
+    scarDecided: scar.decided,
+    scarRate: scar.rate,
+    onNumberHits: onNumber.hits,
+    onNumberDecided: onNumber.decided,
+    onNumberRate: onNumber.rate,
+    predictorHits: predictor.hits,
+    predictorDecided: predictor.decided,
+    predictorRate: predictor.rate,
+    shortHomeHits,
+    shortHomeDecided: shortHome.length,
+    shortHomeRate: rate(shortHomeHits, shortHome.length),
+    shortRoadHits,
+    shortRoadDecided: shortRoad.length,
+    shortRoadRate: rate(shortRoadHits, shortRoad.length),
+    shortUnder3Hits: sizeHit(sizeOf('under3')),
+    shortUnder3Decided: sizeOf('under3').length,
+    shortUnder3Rate: rate(sizeHit(sizeOf('under3')), sizeOf('under3').length),
+    shortTo7Hits: sizeHit(sizeOf('to7')),
+    shortTo7Decided: sizeOf('to7').length,
+    shortTo7Rate: rate(sizeHit(sizeOf('to7')), sizeOf('to7').length),
+    shortTo12Hits: sizeHit(sizeOf('to12')),
+    shortTo12Decided: sizeOf('to12').length,
+    shortTo12Rate: rate(sizeHit(sizeOf('to12')), sizeOf('to12').length),
+    shortOver12Hits: sizeHit(sizeOf('over12')),
+    shortOver12Decided: sizeOf('over12').length,
+    shortOver12Rate: rate(sizeHit(sizeOf('over12')), sizeOf('over12').length),
+    holdoutShortHits,
+    holdoutShortDecided: holdoutShort.length,
+    holdoutShortRate: rate(holdoutShortHits, holdoutShort.length),
+    holdoutFavoriteHits,
+    holdoutFavoriteDecided: holdoutFavorites.length,
+    holdoutFavoriteRate: rate(holdoutFavoriteHits, holdoutFavorites.length),
+    homeHits: homeWins,
+    homeDecided: decided.length,
     allowanceHits,
     allowanceDecided: allowanceDecided.length,
     allowanceRate: rate(allowanceHits, allowanceDecided.length),
@@ -476,7 +570,7 @@ function report(results) {
     : ' A team with fewer than three completed games stays a lean.'
   lines.push(`Games with no prior venue sample are not scored. The stable sim side skips a game when any venue list has fewer than 3 games. Always home is the rate at which the home team won the decided games, shown so the model rates have a simple comparison. NCAAB uses the 2026-27 season only.${collegeNote}`)
   lines.push('')
-  lines.push('The cover column uses only the DraftKings pick-center spread from the game summary. Another book’s number stays out. A game with no DraftKings spread stays out of the cover rate. That is a missing price, not a cover rate of zero.')
+  lines.push('The cover column uses the DraftKings number on the completed-game summary. That is not a line saved before tip. Pregame spreads are stored apart and are not used in this column until one is older than the game. A game with no DraftKings spread stays out of the cover rate.')
   lines.push('')
   lines.push('## Board rule')
   lines.push('')
@@ -511,9 +605,50 @@ function report(results) {
   for (const row of results) {
     if (!row.shortFavoriteDecided || !row.straightFavoriteDecided) continue
     const ahead = row.shortFavoriteRate - row.straightFavoriteRate > 0.05
-    lines.push(ahead
-      ? `${row.name}: the short-of-the-number favorites beat every favorite by more than 5 points. The gap stays on the record. It is not a bet.`
-      : `${row.name}: the short-of-the-number favorites are within 5 points of every favorite. The cut is finished. It is not a bet.`)
+    const later = row.holdoutShortDecided > 0
+    lines.push(!ahead
+      ? `${row.name}: the short-of-the-number favorites are within 5 points of every favorite. The cut is finished. It is not a bet.`
+      : later
+        ? `${row.name}: the later sample still beats every favorite by more than 5 points. The gap stays on the record. It is not a bet.`
+        : `${row.name}: the short-of-the-number favorites beat every favorite by more than 5 points. The later sample has no games yet, so open stays a note. It is not a bet.`)
+  }
+  lines.push('')
+  lines.push('## Where the short favorites sit')
+  lines.push('')
+  lines.push('The short-of-the-number favorites, split by home or road and by the size of the spread. The unit is points in football and basketball and goals in hockey.')
+  lines.push('')
+  lines.push('| League | Home favorite | Road favorite | Spread under 3 | 3 to 7 | 7 to 12 | 12 or more |')
+  lines.push('| --- | --- | --- | --- | --- | --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.shortHomeRate, row.shortHomeHits, row.shortHomeDecided)} | ${record(row.shortRoadRate, row.shortRoadHits, row.shortRoadDecided)} | ${record(row.shortUnder3Rate, row.shortUnder3Hits, row.shortUnder3Decided)} | ${record(row.shortTo7Rate, row.shortTo7Hits, row.shortTo7Decided)} | ${record(row.shortTo12Rate, row.shortTo12Hits, row.shortTo12Decided)} | ${record(row.shortOver12Rate, row.shortOver12Hits, row.shortOver12Decided)} |`)
+  }
+  lines.push('')
+  lines.push(`Games after ${HOLDOUT_AFTER} are the confirming sample. The games that produced the gap are not in it. Until that sample has a count, open stays a note.`)
+  lines.push('')
+  lines.push('| League | Short favorites after the freeze | Every favorite after the freeze |')
+  lines.push('| --- | --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.holdoutShortRate, row.holdoutShortHits, row.holdoutShortDecided)} | ${record(row.holdoutFavoriteRate, row.holdoutFavoriteHits, row.holdoutFavoriteDecided)} |`)
+  }
+  lines.push('')
+  lines.push('## Scar and on the number')
+  lines.push('')
+  lines.push('A scar is the venue reads on one side and the last available read on the other. On the number is a unanimous side whose closest read lands on the spread. Each is compared with every favorite in that league. A slice that does not beat every favorite is not a bet.')
+  lines.push('')
+  lines.push('| League | Scar | On the number | Every favorite |')
+  lines.push('| --- | --- | --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.scarRate, row.scarHits, row.scarDecided)} | ${record(row.onNumberRate, row.onNumberHits, row.onNumberDecided)} | ${record(row.straightFavoriteRate, row.straightFavoriteHits, row.straightFavoriteDecided)} |`)
+  }
+  lines.push('')
+  lines.push('## Public models')
+  lines.push('')
+  lines.push('The ESPN Matchup Predictor is read from the completed-game predictor, when that source still has a win chance. The side is whoever the predictor scored higher. Covers is the current board only, so a Covers row counts only when a saved pick is older than the game. Neither is blended into the four reads.')
+  lines.push('')
+  lines.push('| League | ESPN predictor |')
+  lines.push('| --- | --- |')
+  for (const row of results) {
+    lines.push(`| ${row.name} | ${record(row.predictorRate, row.predictorHits, row.predictorDecided)} |`)
   }
   lines.push('')
   lines.push('## Opponent allowance')
@@ -540,6 +675,115 @@ function report(results) {
   return lines.join('\n')
 }
 
+async function readJson(path) {
+  try {
+    return JSON.parse(await readFile(path, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
+function mergeRows(existing, incoming, keyFn) {
+  const lines = [...(existing ?? [])]
+  const seen = new Set(lines.map(keyFn))
+  for (const row of incoming) {
+    const key = keyFn(row)
+    if (seen.has(key)) continue
+    seen.add(key)
+    lines.push(row)
+  }
+  return lines
+}
+
+async function savePregameLines(retrievedAt) {
+  const spreads = []
+  const boards = [
+    ['football/nfl', 'NFL'],
+    ['basketball/nba', 'NBA'],
+    ['hockey/nhl', 'NHL'],
+    ['basketball/mens-college-basketball', 'NCAAB'],
+  ]
+  for (const [path, league] of boards) {
+    const board = await getJson(`${ESPN}/apis/site/v2/sports/${path}/scoreboard?limit=400`)
+    const upcoming = (board.events ?? []).filter((event) => !event.competitions?.[0]?.status?.type?.completed)
+    await pool(upcoming, 6, async (event) => {
+      try {
+        const summary = await getJson(`${ESPN}/apis/site/v2/sports/${path}/summary?event=${event.id}`)
+        const spread = quoteFromPickcenter(summary).spread
+        if (!Number.isFinite(spread)) return
+        const sides = event.competitions?.[0]?.competitors ?? []
+        const away = sides.find((side) => side.homeAway === 'away')
+        const home = sides.find((side) => side.homeAway === 'home')
+        spreads.push({
+          retrievedAt,
+          league,
+          eventId: String(event.id),
+          date: event.date,
+          away: away?.team?.shortDisplayName || away?.team?.displayName || '',
+          home: home?.team?.shortDisplayName || home?.team?.displayName || '',
+          homeSpread: spread,
+        })
+      } catch {
+        // A missing upcoming quote stays out of the file.
+      }
+    })
+  }
+  const teamTotals = []
+  for (const sport of ['nfl', 'ncaaf', 'nba', 'nhl']) {
+    try {
+      const index = await loadDraftKingsTeamTotals(sport)
+      for (const row of index.values()) {
+        teamTotals.push({
+          retrievedAt,
+          sport,
+          away: row.away,
+          home: row.home,
+          awayLine: row.awayTotal?.line ?? null,
+          homeLine: row.homeTotal?.line ?? null,
+        })
+      }
+    } catch {
+      // A league with no team-total feed adds no rows.
+    }
+  }
+  let covers = []
+  try {
+    const loaded = await loadCoversConsensus()
+    covers = loaded.picks.map((pick) => ({
+      retrievedAt,
+      league: pick.league,
+      away: pick.awayName,
+      home: pick.homeName,
+      awayPicks: pick.awayPicks,
+      homePicks: pick.homePicks,
+      dateText: pick.dateText,
+    }))
+  } catch {
+    covers = []
+  }
+  const spreadFile = await readJson('docs/projections/spread-lines.json')
+  const totalFile = await readJson('docs/projections/team-total-lines.json')
+  const coversFile = await readJson('docs/projections/consensus-lines.json')
+  const spreadLines = mergeRows(spreadFile?.lines, spreads, (row) => `${row.eventId}|${row.retrievedAt}`)
+  const totalLines = mergeRows(totalFile?.lines, teamTotals, (row) => `${row.sport}|${row.away}|${row.home}|${row.awayLine}|${row.homeLine}|${row.retrievedAt}`)
+  const coverLines = mergeRows(coversFile?.lines, covers, (row) => `${row.league}|${row.away}|${row.home}|${row.retrievedAt}`)
+  await writeFile('docs/projections/spread-lines.json', `${JSON.stringify({ lines: spreadLines })}\n`)
+  await writeFile('docs/projections/team-total-lines.json', `${JSON.stringify({ lines: totalLines })}\n`)
+  await writeFile('docs/projections/consensus-lines.json', `${JSON.stringify({ lines: coverLines })}\n`)
+  return { spreads: spreadLines.length, teamTotals: totalLines.length, covers: coverLines.length }
+}
+
+function savedNote(saved) {
+  return [
+    '## Lines saved before tip',
+    '',
+    `Pregame DraftKings spreads on file: ${saved.spreads}. Team totals on file: ${saved.teamTotals}. Covers picks on file: ${saved.covers}. A row counts only when its retrieval time is before the game. The completed games in this run are older than these retrievals, so the pregame cover record, the team-total record, and the Covers record are 0/0. They stay out of the alert until a count exists. The prop file is separate and stays 0/0 until a saved prop line is older than a completed game.`,
+    '',
+    'FanDuel tags the main passing, rushing, and receiving total as HIGH. That line is the two-sided over/under. Markets tagged ALT are left out.',
+    '',
+  ].join('\n')
+}
+
 async function main() {
   const results = []
   for (const league of LEAGUES) {
@@ -548,7 +792,9 @@ async function main() {
     process.stderr.write(`${league.name}: ${games.length} completed\n`)
     results.push(scoreLeague(league.name, games))
   }
-  const markdown = `${report(results)}\n`
+  const retrievedAt = new Date().toISOString()
+  const saved = await savePregameLines(retrievedAt)
+  const markdown = `${report(results)}\n${savedNote(saved)}\n`
   const summary = {}
   for (const row of results) {
     summary[row.name] = {
@@ -562,7 +808,20 @@ async function main() {
       straightFavoriteDecided: row.straightFavoriteDecided,
       shortFavoriteHits: row.shortFavoriteHits,
       shortFavoriteDecided: row.shortFavoriteDecided,
-      cut: row.shortFavoriteDecided && row.straightFavoriteDecided && row.shortFavoriteRate - row.straightFavoriteRate > 0.05 ? 'open' : 'finished',
+      simHits: row.simHits,
+      simDecided: row.simDecided,
+      homeHits: row.homeHits,
+      homeDecided: row.homeDecided,
+      sideHits: row.sideHits,
+      sideDecided: row.sideDecided,
+      scarHits: row.scarHits,
+      scarDecided: row.scarDecided,
+      scarRate: row.scarRate,
+      onNumberHits: row.onNumberHits,
+      onNumberDecided: row.onNumberDecided,
+      onNumberRate: row.onNumberRate,
+      straightFavoriteRate: row.straightFavoriteRate,
+      cut: row.holdoutShortDecided > 0 && row.shortFavoriteRate - row.straightFavoriteRate > 0.05 ? 'open' : (row.shortFavoriteRate - row.straightFavoriteRate > 0.05 ? 'note' : 'finished'),
     }
   }
   await writeFile('docs/projections/BACKTEST.md', markdown)
