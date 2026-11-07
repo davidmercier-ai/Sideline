@@ -7,6 +7,7 @@ import {
   gamesFromGamelog,
   nameBeforeYards,
   rowsForPlayer,
+  walkForwardFirst,
 } from './first-scorer.mjs'
 
 assert.equal(nameBeforeYards('Bhayshul Tuten 1 Yd Rush (Cam Little Kick)'), 'Bhayshul Tuten')
@@ -68,5 +69,16 @@ assert.equal(rows[1].venue, 'away')
 assert.equal(currentSeason({
   seasonTypes: [{ displayName: '2026-27 English Premier League' }],
 }).displayName, '2026-27 English Premier League')
+
+const history = [1, 1, 1, 0].map((value, index) => ({
+  date: `2026-10-${10 + index}`,
+  venue: 'home',
+  value,
+}))
+const forward = walkForwardFirst(history)
+assert.equal(forward.base.decided, 3)
+assert.equal(forward.base.hits, 2)
+assert.equal(forward.strict.decided, 1)
+assert.equal(forward.strict.hits, 0)
 
 console.log('first scorer ok')

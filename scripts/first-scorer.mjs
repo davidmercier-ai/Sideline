@@ -93,6 +93,36 @@ export function readFirstScorer(kind, summary) {
   return read ? read(summary) : null
 }
 
+export function walkForwardFirst(rows) {
+  const ordered = [...(rows ?? [])]
+    .filter((row) => Number.isFinite(row?.value))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+  const tally = {
+    strict: { hits: 0, decided: 0 },
+    called: { hits: 0, decided: 0 },
+    base: { hits: 0, decided: 0 },
+  }
+  for (let index = 0; index < ordered.length; index += 1) {
+    const game = ordered[index]
+    if (game.venue !== 'home' && game.venue !== 'away') continue
+    const reads = playerReads(ordered.slice(0, index), game.venue)
+    if (reads.some((read) => read.missing || !Number.isFinite(read.value))) continue
+    tally.base.decided += 1
+    if (game.value === 1) tally.base.hits += 1
+    if (reads.some((read) => read.thin)) continue
+    const yes = reads.map((read) => read.value >= 0.5)
+    if (yes[0] && yes.filter(Boolean).length >= 3) {
+      tally.called.decided += 1
+      if (game.value === 1) tally.called.hits += 1
+    }
+    if (yes.every(Boolean)) {
+      tally.strict.decided += 1
+      if (game.value === 1) tally.strict.hits += 1
+    }
+  }
+  return tally
+}
+
 export function rowsForPlayer(games, scorers, playerName) {
   const target = looseName(playerName)
   const rows = []
