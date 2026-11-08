@@ -49,6 +49,19 @@ https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&cus
 
 Take the ids from that response and pass them to the commands below. Do not build the slip from the feed URL.
 
+## DraftKings phone
+
+Every DraftKings selection is two links. The desktop line opens the game on the phone and leaves the slip empty. The phone line is the one that adds the pick. One selection is one phone line. Two selections are two phone lines. Do not join phone ids with a comma.
+
+```
+phone
+dksb://sb/addbet/SELECTIONID
+```
+
+A `#` in the selection id is `%23` on that line. `0QA382657149#2341145992_13L88808Q1-549717439Q20` is `dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20`.
+
+Do not send `https://dksb.sng.link/`. That opens the App Store.
+
 ## DraftKings
 
 Copy three values off the live event. Nothing else.
@@ -63,10 +76,12 @@ The event id is `events[].id`. The selection id is `selections[].id` on the mark
 node scripts/slip-link.mjs dk "TB Buccaneers @ CHI Bears" 34118027 0OU84695460U4750_3
 ```
 
-That command prints two lines. The first is the desktop slip. The second is the phone add. Copy both.
+That command prints the desktop line and the phone line. Copy both. The phone line is required.
 
 ```
+desktop
 https://sportsbook.draftkings.com/event/tb-buccaneers-%40-chi-bears/34118027?outcomes=0OU84695460U4750_3
+phone
 dksb://sb/addbet/0OU84695460U4750_3
 ```
 
@@ -81,7 +96,9 @@ node scripts/slip-link.mjs dk "SJ Sharks @ LA Kings" 34118045 "0QA382657149#2341
 ```
 
 ```
+desktop
 https://sportsbook.draftkings.com/event/sj-sharks-%40-la-kings/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233
+phone
 dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20
 dksb://sb/addbet/0QA2%233
 ```
@@ -91,7 +108,9 @@ The path uses the first event only. Every selection id still goes in `outcomes`.
 If the script is not there, use `seoIdentifier` from `https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/events/EVENTID/categories`. For the Bears game that field is `tb-buccaneers-%40-chi-bears`. Put it in front of the event id.
 
 ```
+desktop
 https://sportsbook.draftkings.com/event/SEOIDENTIFIER/EVENTID?outcomes=SELECTIONID
+phone
 dksb://sb/addbet/SELECTIONID
 ```
 

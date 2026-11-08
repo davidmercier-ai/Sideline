@@ -67,7 +67,9 @@ function printDraftKings(eventName, eventId, selectionIds) {
     process.exitCode = 1
     return
   }
+  console.log('desktop')
   console.log(desktop)
+  console.log('phone')
   for (const line of phone) console.log(line)
 }
 
