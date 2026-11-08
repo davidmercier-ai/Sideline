@@ -2,6 +2,35 @@
 
 Send the link. Run the command and copy the output. Do not retype a URL. Do not wrap a URL in a markdown link. Each URL is its own line inside one code block. A Lean or a Pass gets no link. Opening a link does not place the bet.
 
+## DK for phone
+
+This is the phone link. One selection id is one line. Copy the line. Tap it. The desktop `https://sportsbook.draftkings.com` link is not this link.
+
+```
+dksb://sb/addbet/SELECTIONID
+```
+
+```
+node scripts/slip-link.mjs phone 0OU84695460U4750_3
+```
+
+```
+dksb://sb/addbet/0OU84695460U4750_3
+```
+
+Two legs are two lines. A `#` in the id is `%23`.
+
+```
+node scripts/slip-link.mjs phone "0QA382657149#2341145992_13L88808Q1-549717439Q20" "0QA2#3"
+```
+
+```
+dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20
+dksb://sb/addbet/0QA2%233
+```
+
+Do not send `https://dksb.sng.link/`. That opens the App Store.
+
 ## DraftKings links
 
 Send both. The first is the desktop slip. The second is the phone add. Copy each line as it is.

@@ -98,6 +98,16 @@ function main() {
     selfTest()
     return
   }
+  if (command === 'phone') {
+    const lines = draftKingsPhone(args)
+    if (lines.length === 0) {
+      console.error('Need at least one DraftKings selection id.')
+      process.exitCode = 1
+      return
+    }
+    for (const line of lines) console.log(line)
+    return
+  }
   if (command === 'dk') {
     printDraftKings(args[0], args[1], args.slice(2))
     return
@@ -112,6 +122,7 @@ function main() {
     console.log(link)
     return
   }
+  console.error('Use: slip-link.mjs phone selectionId [selectionId...]')
   console.error('Use: slip-link.mjs dk "Event Name" eventId selectionId [selectionId...]')
   console.error('Use: slip-link.mjs fd marketId selectionId [marketId selectionId...]')
   process.exitCode = 1
