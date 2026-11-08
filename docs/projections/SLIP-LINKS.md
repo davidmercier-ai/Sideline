@@ -2,6 +2,30 @@
 
 Send the link. Run the command and copy the output. Do not retype a URL. Do not wrap a URL in a markdown link. Each URL is its own line inside one code block. A Lean or a Pass gets no link. Opening a link does not place the bet.
 
+## DraftKings links
+
+Send both. The first is the desktop slip. The second is the phone add. Copy each line as it is.
+
+```
+https://sportsbook.draftkings.com/event/SLUG/EVENTID?outcomes=SELECTIONID
+dksb://sb/addbet/SELECTIONID
+```
+
+`SLUG` is the event name in lowercase, with spaces turned into hyphens and ` @ ` turned into `-%40-`. `TB Buccaneers @ CHI Bears` is `tb-buccaneers-%40-chi-bears`. `EVENTID` is `events[].id`. `SELECTIONID` is `selections[].id`. A `#` in that id is `%23`. Two legs share one desktop line, with the ids joined by a comma. The phone gets a separate `dksb://` line for each id.
+
+```
+https://sportsbook.draftkings.com/event/tb-buccaneers-%40-chi-bears/34118027?outcomes=0OU84695460U4750_3
+dksb://sb/addbet/0OU84695460U4750_3
+```
+
+```
+https://sportsbook.draftkings.com/event/sj-sharks-%40-la-kings/34118045?outcomes=0QA382657149%232341145992_13L88808Q1-549717439Q20,0QA2%233
+dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20
+dksb://sb/addbet/0QA2%233
+```
+
+The Bears line is the shape. That game is a pass.
+
 ## Network
 
 These feeds answered at 2:07 PM ET. Send `Accept: application/json` and `User-Agent: SidelineProjection/0.1`. A request with no user agent is refused.
