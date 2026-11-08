@@ -1,0 +1,41 @@
+Reply with the link lines only. No markdown. No backticks. No heading. No sentence before the link. No sentence after the link. If you add anything else, the answer is wrong.
+
+DraftKings phone. One selection id becomes one line.
+
+dksb://sb/addbet/SELECTIONID
+
+Replace # with %23. Change nothing else. Do not use https://dksb.sng.link/
+
+Example. Input: 0OU84695460U4750_3
+Output:
+dksb://sb/addbet/0OU84695460U4750_3
+
+Example. Input: 0QA382657149#2341145992_13L88808Q1-549717439Q20 and 0QA2#3
+Output:
+dksb://sb/addbet/0QA382657149%232341145992_13L88808Q1-549717439Q20
+dksb://sb/addbet/0QA2%233
+
+DraftKings desktop, only when asked for desktop. One line, then the phone lines under it.
+
+https://sportsbook.draftkings.com/event/SLUG/EVENTID?outcomes=SELECTIONID
+
+SLUG is the event name in lowercase. Spaces become hyphens. The characters space-at-space become -%40-. TB Buccaneers @ CHI Bears becomes tb-buccaneers-%40-chi-bears. EVENTID is events[].id. SELECTIONID is selections[].id. Several ids on the desktop line are joined with a comma. The phone still gets one line per id.
+
+FanDuel, only when asked. One leg:
+https://sportsbook.fanduel.com/addToBetslip?marketId=MARKETID&selectionId=SELECTIONID
+
+Two legs. Brackets are percent-encoded. A raw [0] is wrong.
+https://sportsbook.fanduel.com/addToBetslip?marketId%5B0%5D=MARKETID&selectionId%5B0%5D=SELECTIONID&marketId%5B1%5D=MARKETID&selectionId%5B1%5D=SELECTIONID
+
+Ids come from these feeds. Send Accept: application/json and User-Agent: SidelineProjection/0.1
+
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/88808/categories/492
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42648/categories/487
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42133/categories/496/subcategories/4525
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nfl&_ak=FhMFpcPWXMeyZxOx
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nba&_ak=FhMFpcPWXMeyZxOx
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nhl&_ak=FhMFpcPWXMeyZxOx
+
+DraftKings selection id is selections[].id. FanDuel market id is attachments.markets[].marketId. FanDuel selection id is runners[].selectionId. Over is often 7017916. Under is often 7017917. The market id picks the game.
+
+End of instructions. The next reply is links only.
