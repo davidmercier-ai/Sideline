@@ -2,6 +2,53 @@
 
 Send the link. Run the command and copy the output. Do not retype a URL. Do not wrap a URL in a markdown link. Each URL is its own line inside one code block. A Lean or a Pass gets no link. Opening a link does not place the bet.
 
+## Network
+
+These feeds answered at 2:07 PM ET. Send `Accept: application/json` and `User-Agent: SidelineProjection/0.1`. A request with no user agent is refused.
+
+DraftKings Ohio. Game lines are one GET. The event id is `events[].id`. The event name is `events[].name`. The selection id is `selections[].id` on the market whose `eventId` is that game and whose `name` is `Spread`, `Total`, `Moneyline`, or `Puck Line`.
+
+```
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/88808/categories/492
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42648/categories/487
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42133/categories/496/subcategories/4525
+```
+
+The first is NFL. The second is NBA. The third is NHL moneyline, puck line, and total. NHL team totals are a different feed and are not the game line.
+
+```
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42133/categories/1193
+```
+
+Player props, when the leg is a prop:
+
+```
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/88808/categories/1000/subcategories/9524
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/88808/categories/1001/subcategories/9514
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/88808/categories/1342/subcategories/14114
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42648/categories/1215/subcategories/12488
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42648/categories/1216/subcategories/12492
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/leagues/42648/categories/1217/subcategories/12495
+```
+
+Those six are NFL pass yards, rush yards, receiving yards, then NBA points, rebounds, and assists.
+
+If the league feed has no `seoIdentifier`, one event has it:
+
+```
+https://sportsbook-nash.draftkings.com/sites/US-OH-SB/api/sportscontent/v1/events/EVENTID/categories
+```
+
+FanDuel Ohio. The market id is `attachments.markets[].marketId`. The selection id is `runners[].selectionId`. The page id is `nfl`, `nba`, or `nhl`.
+
+```
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nfl&_ak=FhMFpcPWXMeyZxOx
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nba&_ak=FhMFpcPWXMeyZxOx
+https://sbapi.oh.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=nhl&_ak=FhMFpcPWXMeyZxOx
+```
+
+Take the ids from that response and pass them to the commands below. Do not build the slip from the feed URL.
+
 ## DraftKings
 
 Copy three values off the live event. Nothing else.
