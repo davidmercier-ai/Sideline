@@ -58,6 +58,21 @@ export function boardPath(path: string, date: string): string {
   return `${path}?date=${date}`
 }
 
+/** Tonight is a day card, not the full soccer board. Two desktop rows / one phone column. */
+export const TONIGHT_SOCCER_DESKTOP = 6
+export const TONIGHT_SOCCER_PHONE = 3
+
+export function tonightSoccerLimit(phone: boolean): number {
+  return phone ? TONIGHT_SOCCER_PHONE : TONIGHT_SOCCER_DESKTOP
+}
+
+export function tonightPreview<T>(items: T[], limit: number): { shown: T[]; more: number } {
+  return {
+    shown: items.slice(0, limit),
+    more: Math.max(0, items.length - limit),
+  }
+}
+
 export function tonightCounts(slate: TonightSlate): {
   games: number
   live: number

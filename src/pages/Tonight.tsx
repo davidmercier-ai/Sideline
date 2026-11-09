@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { GameCard } from '../components/GameCard'
 import { GoalCard } from '../components/GoalCard'
@@ -6,14 +6,35 @@ import { NhlCard } from '../components/NhlCard'
 import { ThreeCard } from '../components/ThreeCard'
 import { loadSidelineContext } from '../lib/context'
 import { formatLongDate, parseIsoDate, shiftDate, todayET } from '../lib/format'
-import { boardPath, fetchTonight, findSimSlateDate, tonightCounts } from '../lib/tonight'
+import {
+  boardPath,
+  fetchTonight,
+  findSimSlateDate,
+  tonightCounts,
+  tonightPreview,
+  tonightSoccerLimit,
+} from '../lib/tonight'
 import { usePoll } from '../lib/usePoll'
 import { readWatched, toggleWatched, writeWatched } from '../lib/watch'
+
+const PHONE_SHEET = '(max-width: 820px)'
+
+function usePhoneSheet() {
+  const [phone, setPhone] = useState(() => window.matchMedia(PHONE_SHEET).matches)
+  useEffect(() => {
+    const media = window.matchMedia(PHONE_SHEET)
+    const onChange = () => setPhone(media.matches)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+  return phone
+}
 
 export function TonightPage() {
   const [params, setParams] = useSearchParams()
   const date = parseIsoDate(params.get('date')) ?? todayET()
   const simulated = date !== todayET()
+  const phone = usePhoneSheet()
   const [watched, setWatched] = useState(readWatched)
   const [simulating, setSimulating] = useState(false)
   const { data, error, loading } = usePoll(() => fetchTonight(date), date, 20000)
@@ -24,6 +45,7 @@ export function TonightPage() {
   )
 
   const counts = data ? tonightCounts(data) : { games: 0, live: 0 }
+  const soccer = data ? tonightPreview(data.soccer, tonightSoccerLimit(phone)) : { shown: [], more: 0 }
 
   function setDate(next: string) {
     const nextParams = new URLSearchParams(params)
@@ -101,7 +123,9 @@ export function TonightPage() {
               to: boardPath('/soccer', date),
               empty: 'No matches on this date.',
               count: data.soccer.length,
-              cards: data.soccer.map((match) => (
+              more: soccer.more,
+              live: data.soccer.some((match) => match.state === 'in'),
+              cards: soccer.shown.map((match) => (
                 <GoalCard key={`${match.league}-${match.id}`} match={match} />
               )),
             },
@@ -110,6 +134,8 @@ export function TonightPage() {
               to: boardPath('/mlb', date),
               empty: 'No MLB games on this date.',
               count: data.mlb.length,
+              more: 0,
+              live: data.mlb.some((game) => game.status.abstractGameState === 'Live'),
               cards: data.mlb.map((game) => (
                 <GameCard
                   key={game.gamePk}
@@ -126,6 +152,8 @@ export function TonightPage() {
               to: boardPath('/nhl', date),
               empty: 'No NHL games on this date.',
               count: data.nhl.length,
+              more: 0,
+              live: data.nhl.some((game) => game.state === 'in'),
               cards: data.nhl.map((game) => <NhlCard key={game.id} game={game} />),
             },
             {
@@ -133,10 +161,16 @@ export function TonightPage() {
               to: boardPath('/nba', date),
               empty: 'No NBA games on this date.',
               count: data.nba.length,
+              more: 0,
+              live: data.nba.some((game) => game.state === 'in'),
               cards: data.nba.map((game) => <ThreeCard key={game.id} game={game} />),
             },
           ]
-            .sort((a, b) => Number(b.count > 0) - Number(a.count > 0))
+            .sort((a, b) => {
+              const filled = Number(b.count > 0) - Number(a.count > 0)
+              if (filled !== 0) return filled
+              return Number(b.live) - Number(a.live)
+            })
             .map((section) => (
               <SportSection
                 key={section.title}
@@ -144,6 +178,7 @@ export function TonightPage() {
                 to={section.to}
                 empty={section.empty}
                 count={section.count}
+                more={section.more}
               >
                 {section.cards}
               </SportSection>
@@ -159,12 +194,14 @@ function SportSection({
   to,
   empty,
   count,
+  more,
   children,
 }: {
   title: string
   to: string
   empty: string
   count: number
+  more: number
   children: ReactNode
 }) {
   return (
@@ -174,7 +211,7 @@ function SportSection({
           {title}
         </h2>
         <Link className="back-link" to={to}>
-          Full board →
+          {more > 0 ? `Full board → ${more} more` : 'Full board →'}
         </Link>
       </div>
       {count === 0 ? <p className="muted">{empty}</p> : <div className="game-grid">{children}</div>}

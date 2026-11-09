@@ -20,7 +20,7 @@ npm run preview
 
 ## What’s here
 
-- **Tonight** — `/` one sheet for soccer, MLB, NHL, and NBA. Date rail plus **Simulate** to replay the last stacked night (`?date=`). Empty sports sink so a dark MLB night is not a hole in the middle.
+- **Tonight** — `/` a day card for soccer, MLB, NHL, and NBA. Soccer is a live-first preview (6 on desktop, 3 on phone) with **Full board → N more**; NHL and NBA stay in full. Empty sports sink last. Date rail plus **Simulate**.
 - **MLB scoreboard** — `/mlb` live / upcoming / final filters, date rail, watch list
 - **Game** — live scorebug, diamond + count, linescore, recent plays, abbreviated box
 - **Standings** — AL / NL divisions with games back and run differential
