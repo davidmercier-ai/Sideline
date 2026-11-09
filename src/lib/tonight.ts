@@ -18,7 +18,7 @@ export async function fetchTonight(date = todayET()): Promise<TonightSlate> {
     fetchSchedule(date).catch(() => [] as ScheduleGame[]),
     fetchNbaSlate(date).catch(() => [] as NbaGame[]),
     fetchNhlSlate(date).catch(() => [] as NhlGame[]),
-    fetchSoccerSlate(date)
+    fetchSoccerSlate(date, true)
       .then((matches) => matches.filter((match) => dateInET(match.date) === date))
       .catch(() => [] as SoccerMatch[]),
   ])
@@ -53,8 +53,8 @@ export async function findSimSlateDate(from = todayET()): Promise<string> {
   return best?.date ?? shiftDate(from, -1)
 }
 
-export function boardPath(path: string, date: string): string {
-  if (date === todayET()) return path
+export function boardPath(path: string, date: string, alwaysDate = false): string {
+  if (!alwaysDate && date === todayET()) return path
   return `${path}?date=${date}`
 }
 

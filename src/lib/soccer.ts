@@ -154,8 +154,8 @@ async function fetchBoard(slug: string, date?: string): Promise<EspnBoard> {
   return getEspnJson<EspnBoard>(`/apis/site/v2/sports/soccer/${slug}/scoreboard${query}`)
 }
 
-export async function fetchSoccerSlate(date = todayET()): Promise<SoccerMatch[]> {
-  const includeDefault = date === todayET()
+export async function fetchSoccerSlate(date = todayET(), onlyDate = false): Promise<SoccerMatch[]> {
+  const includeDefault = !onlyDate && date === todayET()
   const results = await Promise.all(
     SOCCER_LEAGUES.flatMap((league) => {
       const boards = [fetchBoard(league.slug, date).catch(() => ({ events: [] as EspnEvent[] }))]

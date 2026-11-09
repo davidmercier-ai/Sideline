@@ -120,7 +120,7 @@ export function TonightPage() {
           {[
             {
               title: 'Soccer',
-              to: boardPath('/soccer', date),
+              to: boardPath('/soccer', date, true),
               empty: 'No matches on this date.',
               count: data.soccer.length,
               more: soccer.more,

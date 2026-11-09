@@ -16,11 +16,12 @@ const FILTERS: { id: Filter; label: string }[] = [
 
 export function SoccerBoardPage() {
   const [params, setParams] = useSearchParams()
-  const date = parseIsoDate(params.get('date')) ?? todayET()
-  const dated = date !== todayET()
+  const requested = parseIsoDate(params.get('date'))
+  const date = requested ?? todayET()
+  const dated = requested != null
   const [filter, setFilter] = useState<Filter>('all')
   const [league, setLeague] = useState('all')
-  const { data, error, loading } = usePoll(() => fetchSoccerSlate(date), date, 30000)
+  const { data, error, loading } = usePoll(() => fetchSoccerSlate(date, dated), `${date}-${dated ? 'day' : 'board'}`, 30000)
 
   const matches = useMemo(() => {
     const list = data ?? []
