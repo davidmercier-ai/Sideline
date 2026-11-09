@@ -95,56 +95,59 @@ export function TonightPage() {
 
       {data ? (
         <>
-          <SportSection
-            title="Soccer"
-            to={boardPath('/soccer', date)}
-            empty="No matches on this date."
-            count={data.soccer.length}
-          >
-            {data.soccer.map((match) => (
-              <GoalCard key={`${match.league}-${match.id}`} match={match} />
+          {[
+            {
+              title: 'Soccer',
+              to: boardPath('/soccer', date),
+              empty: 'No matches on this date.',
+              count: data.soccer.length,
+              cards: data.soccer.map((match) => (
+                <GoalCard key={`${match.league}-${match.id}`} match={match} />
+              )),
+            },
+            {
+              title: 'MLB',
+              to: boardPath('/mlb', date),
+              empty: 'No MLB games on this date.',
+              count: data.mlb.length,
+              cards: data.mlb.map((game) => (
+                <GameCard
+                  key={game.gamePk}
+                  game={game}
+                  watched={watched.includes(game.gamePk)}
+                  onWatch={onWatch}
+                  pitchers={extras.data?.pitchers}
+                  lines={extras.data?.lines}
+                />
+              )),
+            },
+            {
+              title: 'NHL',
+              to: boardPath('/nhl', date),
+              empty: 'No NHL games on this date.',
+              count: data.nhl.length,
+              cards: data.nhl.map((game) => <NhlCard key={game.id} game={game} />),
+            },
+            {
+              title: 'NBA',
+              to: boardPath('/nba', date),
+              empty: 'No NBA games on this date.',
+              count: data.nba.length,
+              cards: data.nba.map((game) => <ThreeCard key={game.id} game={game} />),
+            },
+          ]
+            .sort((a, b) => Number(b.count > 0) - Number(a.count > 0))
+            .map((section) => (
+              <SportSection
+                key={section.title}
+                title={section.title}
+                to={section.to}
+                empty={section.empty}
+                count={section.count}
+              >
+                {section.cards}
+              </SportSection>
             ))}
-          </SportSection>
-
-          <SportSection
-            title="MLB"
-            to={boardPath('/mlb', date)}
-            empty="No MLB games on this date."
-            count={data.mlb.length}
-          >
-            {data.mlb.map((game) => (
-              <GameCard
-                key={game.gamePk}
-                game={game}
-                watched={watched.includes(game.gamePk)}
-                onWatch={onWatch}
-                pitchers={extras.data?.pitchers}
-                lines={extras.data?.lines}
-              />
-            ))}
-          </SportSection>
-
-          <SportSection
-            title="NHL"
-            to={boardPath('/nhl', date)}
-            empty="No NHL games on this date."
-            count={data.nhl.length}
-          >
-            {data.nhl.map((game) => (
-              <NhlCard key={game.id} game={game} />
-            ))}
-          </SportSection>
-
-          <SportSection
-            title="NBA"
-            to={boardPath('/nba', date)}
-            empty="No NBA games on this date."
-            count={data.nba.length}
-          >
-            {data.nba.map((game) => (
-              <ThreeCard key={game.id} game={game} />
-            ))}
-          </SportSection>
         </>
       ) : null}
     </main>

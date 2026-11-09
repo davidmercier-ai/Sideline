@@ -5,7 +5,11 @@ export async function getEspnJson<T>(path: string): Promise<T> {
   if (!response.ok) throw new Error(`ESPN request failed (${response.status})`)
   const text = await response.text()
   if (!text.trim()) return {} as T
-  return JSON.parse(text) as T
+  try {
+    return JSON.parse(text) as T
+  } catch {
+    return {} as T
+  }
 }
 
 export async function fetchEspnScoreboard<T extends { date?: string }>(

@@ -20,7 +20,7 @@ npm run preview
 
 ## What’s here
 
-- **Tonight** — `/` one sheet for soccer, MLB, NHL, and NBA. Date rail plus **Simulate** to replay the last stacked night (`?date=`)
+- **Tonight** — `/` one sheet for soccer, MLB, NHL, and NBA. Date rail plus **Simulate** to replay the last stacked night (`?date=`). Empty sports sink so a dark MLB night is not a hole in the middle.
 - **MLB scoreboard** — `/mlb` live / upcoming / final filters, date rail, watch list
 - **Game** — live scorebug, diamond + count, linescore, recent plays, abbreviated box
 - **Standings** — AL / NL divisions with games back and run differential
@@ -37,7 +37,7 @@ Live pages poll the MLB Stats API while games are on. No API key. No backend.
 
 [MLB Stats API](https://statsapi.mlb.com) for schedule, live feed, standings, roster, and pitcher season stats. Team marks come from MLB’s public logo CDN. Soccer, NBA, NHL, and public MLB moneylines come from ESPN via the Vite `/espn` proxy (`npm run dev` or `npm run preview`). Dated ESPN boards that return an empty body fall back to the default scoreboard and keep the requested ET date.
 
-When a real model is ready, swap `src/lib/lean.ts`. The UI already accepts `{ home, away }` plus an optional public line.
+When a real model is ready, swap `src/lib/lean.ts`. The UI already accepts `{ home, away }` plus an optional public line. Snapshot work in `docs/projections/` stays off the live board. No bet slip.
 
 ## Stack
 

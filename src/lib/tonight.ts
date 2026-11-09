@@ -47,6 +47,8 @@ export async function findSimSlateDate(from = todayET()): Promise<string> {
       best = { date, sports, games }
     }
     if (sports >= 3 && games >= 8) return date
+    // Off-MLB nights never hit three sports; stop once a two-sport sheet is clearly stacked.
+    if (i >= 4 && best && best.sports >= 2 && best.games >= 8) return best.date
   }
   return best?.date ?? shiftDate(from, -1)
 }
