@@ -16,11 +16,13 @@ export function Header() {
       </NavLink>
       <nav className="nav" aria-label="Primary">
         <NavLink to="/" end>
-          Scoreboard
+          Tonight
         </NavLink>
+        <NavLink to="/mlb">MLB</NavLink>
         <NavLink to="/standings">Standings</NavLink>
         <NavLink to="/soccer">Soccer</NavLink>
         <NavLink to="/nba">NBA</NavLink>
+        <NavLink to="/nhl">NHL</NavLink>
       </nav>
     </header>
   )

@@ -1,4 +1,4 @@
-import { getEspnJson } from './espn'
+import { fetchEspnScoreboard } from './espn'
 import type {
   LiveFeed,
   PitcherSeason,
@@ -129,23 +129,21 @@ export function lineKey(awayAbbr?: string, homeAbbr?: string): string {
 }
 
 export async function fetchPublicLines(date: string): Promise<Record<string, PublicLine>> {
-  const compact = date.replaceAll('-', '')
   try {
-    const data = await getEspnJson<{
-      events?: Array<{
-        competitions?: Array<{
-          competitors?: Array<{ homeAway?: string; team?: { abbreviation?: string } }>
-          odds?: Array<{
-            provider?: { displayName?: string; name?: string }
-            details?: string
-            overUnder?: number
-            moneyline?: { home?: { close?: { odds?: string } }; away?: { close?: { odds?: string } } }
-          }>
+    const events = await fetchEspnScoreboard<{
+      date?: string
+      competitions?: Array<{
+        competitors?: Array<{ homeAway?: string; team?: { abbreviation?: string } }>
+        odds?: Array<{
+          provider?: { displayName?: string; name?: string }
+          details?: string
+          overUnder?: number
+          moneyline?: { home?: { close?: { odds?: string } }; away?: { close?: { odds?: string } } }
         }>
       }>
-    }>(`/apis/site/v2/sports/baseball/mlb/scoreboard?dates=${compact}`)
+    }>('/apis/site/v2/sports/baseball/mlb/scoreboard', date)
     const lines: Record<string, PublicLine> = {}
-    for (const event of data.events ?? []) {
+    for (const event of events) {
       const comp = event.competitions?.[0]
       const away = comp?.competitors?.find((c) => c.homeAway === 'away')?.team?.abbreviation
       const home = comp?.competitors?.find((c) => c.homeAway === 'home')?.team?.abbreviation

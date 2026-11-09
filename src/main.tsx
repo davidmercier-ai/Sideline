@@ -6,18 +6,27 @@ import './index.css'
 import { GamePage } from './pages/Game.tsx'
 import { NbaBoardPage } from './pages/NbaBoard.tsx'
 import { NbaGamePage } from './pages/NbaGame.tsx'
+import { NhlBoardPage } from './pages/NhlBoard.tsx'
+import { NhlGamePage } from './pages/NhlGame.tsx'
 import { ScoreboardPage } from './pages/Scoreboard.tsx'
 import { SoccerBoardPage } from './pages/SoccerBoard.tsx'
+import { TonightPage } from './pages/Tonight.tsx'
 import { SoccerMatchPage } from './pages/SoccerMatch.tsx'
 import { StandingsPage } from './pages/Standings.tsx'
 import { TeamPage } from './pages/Team.tsx'
+
+const standalone =
+  window.matchMedia('(display-mode: standalone)').matches ||
+  ('standalone' in navigator && Boolean((navigator as Navigator & { standalone?: boolean }).standalone))
+if (standalone) document.documentElement.classList.add('standalone')
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<App />}>
-          <Route index element={<ScoreboardPage />} />
+          <Route index element={<TonightPage />} />
+          <Route path="/mlb" element={<ScoreboardPage />} />
           <Route path="/game/:gamePk" element={<GamePage />} />
           <Route path="/standings" element={<StandingsPage />} />
           <Route path="/team/:teamId" element={<TeamPage />} />
@@ -25,6 +34,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/soccer/:league/:eventId" element={<SoccerMatchPage />} />
           <Route path="/nba" element={<NbaBoardPage />} />
           <Route path="/nba/:eventId" element={<NbaGamePage />} />
+          <Route path="/nhl" element={<NhlBoardPage />} />
+          <Route path="/nhl/:eventId" element={<NhlGamePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
